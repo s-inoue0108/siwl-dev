@@ -26,6 +26,8 @@ interface Props {
 }
 const { title, description, ogImage } = Astro.props;
 const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env.APP_URL);
+
+console.log(ogImageUrl)
 ---
 
 <!doctype html>

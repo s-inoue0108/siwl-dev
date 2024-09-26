@@ -4,7 +4,7 @@ import { getImageResponse } from "../../utils/api/generateImage";
 
 export const getStaticPaths = async () => {
   const articles = await getCollection("article", ({ data }) => {
-    return import.meta.env.PROD ? data.isDraft !== false : true;
+    return import.meta.env.PROD ? data.isDraft === false : true;
   });
 
   if (!articles || articles.length === 0) return [];
