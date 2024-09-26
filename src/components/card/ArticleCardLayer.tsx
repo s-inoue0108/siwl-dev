@@ -1,7 +1,7 @@
 import { type CollectionEntry, getEntries } from "astro:content";
 import { createSignal, createResource } from "solid-js";
 import TagCard from "./TagCard";
-import { IoTimeOutline, IoText, IoPricetags } from "solid-icons/io";
+import { IoTimeOutline, IoText, IoPricetags, IoNewspaperOutline } from "solid-icons/io";
 
 interface Props {
 	article: CollectionEntry<"article">;
@@ -35,8 +35,8 @@ const ArticleCardLayer = ({ article }: Props) => {
 					<p class="font-medium text-muted-foreground p-2">{article.data.description}</p>
 				)}
 			</div>
-			<div class="absolute bottom-1 left-2 inline-flex items-center gap-1">
-				<IoTimeOutline size={"0.8rem"} color="var(--muted-foreground)" />
+			<div class="absolute bottom-1 left-2 flex items-center gap-[0.375rem]">
+				<IoTimeOutline size={"0.8rem"} color="var(--accent-foreground)" />
 				<time
 					datetime={article.data.publishDate.toISOString()}
 					class="text-xs text-muted-foreground tracking-wider"
@@ -47,6 +47,10 @@ const ArticleCardLayer = ({ article }: Props) => {
 						day: "2-digit",
 					})}
 				</time>
+			</div>
+			<div class="absolute bottom-1 left-32 flex items-center gap-[0.375rem]">
+				<IoNewspaperOutline size={"0.8rem"} color="var(--accent-foreground)" />
+				<p class="text-xs text-muted-foreground tracking-wider">{`${300} words`}</p>
 			</div>
 			<button
 				type="button"
