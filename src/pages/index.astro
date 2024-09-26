@@ -1,12 +1,15 @@
 ---
-import ArticleCard from "../components/card/ArticleCard";
+import ArticleCardsPanel from "../components/large/ArticleCardsPanel.astro";
 import Base from "../layouts/Base.astro";
-import { allArticles } from "../utils/collections";
+import { getCollection } from "astro:content";
 
-const articles = allArticles.filter((article) => article.data.isDraft === false);
+const articles = await getCollection("article", ({ data }) => {
+  return import.meta.env.PROD ? data.isDraft === false : true;
+});
 ---
 
 <Base title={`${import.meta.env.APP_NAME}`} description="プログラミングについての情報発信">
 	<section class="w-full flex flex-col">
+		<ArticleCardsPanel articles={articles.slice(0, 6)} />
 	</section>
 </Base>
