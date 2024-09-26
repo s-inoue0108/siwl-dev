@@ -1,0 +1,5 @@
+isDraft: false
+name: "Solid"
+icon:
+  src: "/src/assets/icons/solid.svg"
+  alt: "Solid"

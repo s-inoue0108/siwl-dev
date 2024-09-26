@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly APP_NAME: string;
+  readonly APP_URL: string;
   readonly APP_ADMIN_MAIL: string;
   readonly PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY: string;
   readonly GITHUB_URL: string;

@@ -9,11 +9,14 @@ import remarkToc from "remark-toc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
+import tailwind from "@astrojs/tailwind";
+
 // https://astro.build/config
 export default defineConfig({
 	server: {
 		port: 3000,
 	},
+
 	site: "https://si-library.net",
 	integrations: [
 		solid(),
@@ -39,12 +42,14 @@ export default defineConfig({
 			rehypePlugins: [rehypeKatex],
 			remarkRehype: { footnoteLabel: "Footnotes" },
 		}),
+		tailwind(),
 	],
 	vite: {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `@import "src/assets/scss/_mixin.scss", "src/assets/scss/_vars.scss";`,
+					additionalData: `@import "src/assets/scss/base.scss";`,
+					silenceDeprecations: ["legacy-js-api"],
 				},
 			},
 		},

@@ -1,0 +1,5 @@
+isDraft: false
+name: "HTML"
+icon:
+  src: "/src/assets/icons/html.svg"
+  alt: "HTML"

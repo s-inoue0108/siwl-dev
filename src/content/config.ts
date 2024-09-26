@@ -3,18 +3,40 @@ import { z, defineCollection, reference } from 'astro:content';
 const articleCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    isDraft: z.boolean(),
+    isDraft: z.boolean().default(false),
     title: z.string(),
     description: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    publishDate: z.number(),
-    updateDate: z.number().optional(),
+    tags: z.array(reference('tag')).optional(),
+    publishDate: z.date(),
+    updateDate: z.date().optional(),
     relatedArticle: z.array(reference('blog')).optional(),
+  }),
+});
+
+const tagCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    isDraft: z.boolean().default(false),
+    name: z.string(),
+    icon: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }).optional(),
+  }),
+});
+
+const linkCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    isDraft: z.boolean().default(false),
+    name: z.string(),
+    description: z.string().optional(),
+    url: z.string(),
   }),
 });
 
 export const collections = {
   'article': articleCollection,
+  'tag': tagCollection,
+  "link": linkCollection,
 };
-
-export type Collections = typeof collections;

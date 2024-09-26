@@ -1,0 +1,5 @@
+isDraft: false
+name: "Astro"
+icon:
+  src: "/src/assets/icons/astro.svg"
+  alt: "Astro"

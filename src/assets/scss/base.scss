@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.light {
+		--background: #f9f9f9; // ベースの背景色
+		--foreground: #030303; // ベースの文字色
+
+		--muted: #e4e8fa; // 補足要素の背景色
+		--muted-foreground: #4b5563; // 補足要素の文字色
+
+		--accent: #4020d0;
+		--accent-foreground: #b79aed;
+	}
+
+	// ダークモード時の配色
+	.dark {
+		--background: #0a0c18;
+		--foreground: #fcfcfc;
+
+		--muted: #040818;
+		--muted-foreground: #868893;
+
+		--accent: #4020d0;
+		--accent-foreground: #7749c3;
+	}
+}
+
+@layer base {
+	body {
+		@apply bg-background text-foreground;
+	}
+}

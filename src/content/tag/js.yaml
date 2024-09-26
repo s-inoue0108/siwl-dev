@@ -1,0 +1,5 @@
+isDraft: false
+name: "JavaScript"
+icon:
+  src: "/src/assets/icons/javascript.svg"
+  alt: "javascript"

@@ -1,0 +1,48 @@
+---
+import Base from "../../../../layouts/Base.astro";
+import ArticleCard from "../../../../components/card/ArticleCard";
+import { type GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
+
+  const tags = await getCollection("tag", ({ data }) => {
+    return import.meta.env.PROD ? data.isDraft !== false : true;
+  });
+  const articles = await getCollection("article", ({ data }) => {
+    return import.meta.env.PROD ? data.isDraft !== false : true;
+  });
+
+  const routes = tags.flatMap((tag) => {
+		const filteredArticles = articles.filter(({ data }) => {
+			return (
+      data.tags &&
+      data.tags.length > 0 &&
+      data.tags.map(({ id }) => id).includes(tag.id)
+			);
+		});
+		return paginate(filteredArticles, {
+			params: { tag: tag.id },
+			pageSize: 10,
+			props: { tag: tag },
+		});
+	});
+	return routes;
+});
+
+const { page } = Astro.props;
+---
+
+<Base title={`記事一覧 | ページ${page.currentPage} | ${import.meta.env.APP_NAME}`} description="プログラミングについての情報発信">
+	<section class="w-full flex flex-col">
+		<ul class="flex flex-col lg:flex-row lg:flex-wrap gap-8 lg:px-8">
+			{
+				page.data.map((article) => (
+					<li class="lg:w-[calc(33.33%-1.333rem)]">
+						<ArticleCard article={article} client:visible />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Base>

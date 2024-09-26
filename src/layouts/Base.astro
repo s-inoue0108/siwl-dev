@@ -15,12 +15,17 @@ import "@fontsource/montserrat/700.css";
 // Components
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
+import Sidebar from "../components/common/Sidebar";
+// View Transitions
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
 	description: string;
+	ogImage?: URL;
 }
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
+const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env.APP_URL);
 ---
 
 <!doctype html>
@@ -33,8 +38,7 @@ const { title, description } = Astro.props;
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title} />
-		<!-- <meta property="og:image" content={ogpImageURL} /> -->
-		<meta name="generator" content={Astro.generator} />
+		<meta property="og:image" content={ogImageUrl} />
 
 		<!-- Twitter OGP -->
 		<meta name="twitter:card" content="summary_large_image" />
@@ -47,15 +51,18 @@ const { title, description } = Astro.props;
 		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#94A3B8" />
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4B5563" />
 
+		<!--View Transitions-->
+    <ViewTransitions />
+
 		<!--noindex nofollow in /contact-->
-		<!-- {
-			new RegExp("^/contact").test(currentPath) && (
+		{
+			new RegExp("^/contact").test(Astro.url.pathname) && (
 				<>
 					<meta name="robots" content="noindex" />
 					<meta name="robots" content="nofollow" />
 				</>
 			)
-		} -->
+		}
 
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/siwl-logo.svg" />
@@ -81,13 +88,43 @@ const { title, description } = Astro.props;
 			gtag("config", "G-CYF55805ED");
 		</script>
 
+		<!--initialize theme -->
+		<script is:inline>
+			const initializeTheme = () => {
+				const rootClass = document.documentElement.classList;
+			  const storage = window.localStorage;
+			  if (typeof storage.getItem("theme") === "string") {
+				  if (storage.getItem("theme") === "dark") {
+					  rootClass.add("dark");
+					  rootClass.remove("light");
+				  } else {
+					  rootClass.add("light");
+					  rootClass.remove("dark");
+				  }
+			  } else {
+				  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					  rootClass.add("dark");
+					  rootClass.remove("light");
+				  } else {
+					  rootClass.add("light");
+					  rootClass.remove("dark");
+				  }
+			  }
+			}
+			initializeTheme();
+			document.addEventListener('astro:after-swap', initializeTheme);
+		</script>
+
 		<!--title -->
 		<title>{title}</title>
 	</head>
-  <body>
-    <Header />
+  <body class="max-w-screen overflow-x-clip">
 		<main>
-			<slot />
+			<Header />
+			<Sidebar appName={import.meta.env.APP_NAME} gitHubUrl={import.meta.env.GITHUB_URL} xUrl={import.meta.env.X_URL} zennUrl={import.meta.env.ZENN_URL} client:visible />
+			<article id="content" class="bg-background text-foreground min-h-screen px-4 lg:pl-16 pt-9 sm:pt-12 lg:pt-16">
+				<slot />
+			</article>
 		</main>
 		<Footer />
   </body>
@@ -95,57 +132,12 @@ const { title, description } = Astro.props;
 
 <!--main css -->
 <style is:global lang="scss">
-	html {
-		font-family: "Montserrat", "Noto sans JP", "sans-serif";
-		scroll-behavior: smooth;
-	}
-
 	body {
-		max-width: 100vw;
-		overflow-x: clip;
+		font-family: "Montserrat", "Noto sans JP", "sans-serif";
 		line-break: strict;
 		word-break: break-word;
 		overflow-wrap: break-word;
 		word-wrap: break-word;
-	}
-
-	.scroll-bar::-webkit-scrollbar {
-		background: getColor(--bg-secondary-color);
-	}
-
-	.scroll-bar::-webkit-scrollbar-thumb {
-		background: getColor(--border-color);
-	}
-
-	.loading-fade {
-		background: getColor(--bg-secondary-color);
-		animation: loading-fade 0.4s ease-out;
-	}
-
-	@keyframes loading-fade {
-		0% {
-			opacity: 0;
-		}
-
-		100% {
-			opacity: 1;
-		}
-	}
-
-	main {
-		color: getColor(--text-primary-color);
-		background: getColor(--bg-primary-color);
-		width: 100%;
-		min-height: 100dvh;
-		padding: 1rem;
-		padding-top: calc(36px + 1rem);
-
-		@include resp(sm) {
-			padding-top: calc(48px + 1rem);
-		}
-
-		@include resp(lg) {
-			padding-top: calc(64px + 1rem);
-		}
+		scroll-behavior: smooth;
 	}
 </style>
