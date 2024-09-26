@@ -7,10 +7,10 @@ import { getCollection } from "astro:content";
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 
   const tags = await getCollection("tag", ({ data }) => {
-    return import.meta.env.PROD ? data.isDraft !== false : true;
+    return import.meta.env.PROD ? data.isDraft === false : true;
   });
   const articles = await getCollection("article", ({ data }) => {
-    return import.meta.env.PROD ? data.isDraft !== false : true;
+    return import.meta.env.PROD ? data.isDraft === false : true;
   });
 
   const routes = tags.flatMap((tag) => {
