@@ -1,0 +1,19 @@
+---
+import { type CollectionEntry } from "astro:content";
+import type { Page } from "astro";
+import ArticleCard from "../card/ArticleCard.astro";
+
+interface Props {
+	articles: CollectionEntry<"article">[] | Page["data"];
+}
+
+const { articles } = Astro.props;
+---
+
+<ul class="flex flex-col sm:flex-row sm:flex-wrap gap-8 lg:px-8">
+	{articles.map((article) => (
+		<li class="sm:w-[calc(50%-1.333rem)] lg:w-[calc(33.33%-1.333rem)]">
+			<ArticleCard article={article} />
+		</li>
+	))}
+</ul>

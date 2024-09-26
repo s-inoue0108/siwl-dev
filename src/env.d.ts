@@ -9,6 +9,9 @@ interface ImportMetaEnv {
   readonly X_URL: string;
   readonly ZENN_URL: string;
   readonly X_OWNER: string;
+  readonly COSMIC_BUCKET_SLUG: string;
+  readonly COSMIC_READ_KEY: string;
+  readonly COSMIC_WRITE_KEY: string;
 }
 
 interface ImportMeta {

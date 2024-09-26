@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import { type GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
-import ArticleCard from "../../components/card/ArticleCard";
+import ArticleCardsPanel from "../../components/large/ArticleCardsPanel.astro";
 
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
   const articles = await getCollection("article", ({ data }) => {
@@ -21,12 +21,6 @@ const { page } = Astro.props;
 
 <Base title={`記事一覧 | ページ${page.currentPage} | ${import.meta.env.APP_NAME}`} description="プログラミングについての情報発信">
 	<section class="w-full flex flex-col">
-		<ul class="flex flex-col lg:flex-row lg:flex-wrap gap-8 lg:px-8">
-			{page.data.map((article) => (
-				<li class="lg:w-[calc(33.33%-1.333rem)]">
-					<ArticleCard article={article} client:load />
-				</li>
-			))}
-		</ul>
+		<ArticleCardsPanel articles={page.data} />
 	</section>
 </Base>

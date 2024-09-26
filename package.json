@@ -17,15 +17,14 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/solid-js": "^4.4.2",
     "@astrojs/tailwind": "^5.1.1",
+    "@cosmicjs/sdk": "^1.2.0",
     "@fontsource/montserrat": "^5.0.17",
     "@fontsource/noto-sans-jp": "^5.0.18",
     "@fontsource/source-code-pro": "^5.0.17",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.15.9",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "cheerio": "^1.0.0",
     "fuse.js": "^7.0.0",
-    "gsap": "^3.12.5",
     "katex": "^0.16.9",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
@@ -41,8 +40,8 @@
     "@types/body-scroll-lock": "^3.1.2",
     "@types/grecaptcha": "^3.0.8",
     "@types/katex": "^0.16.7",
-    "daisyui": "^4.12.10",
     "destyle.css": "^4.0.1",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "tsx": "^4.19.1"
   }
 }

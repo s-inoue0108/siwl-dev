@@ -18,10 +18,6 @@ const tagCollection = defineCollection({
   schema: z.object({
     isDraft: z.boolean().default(false),
     name: z.string(),
-    icon: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }).optional(),
   }),
 });
 

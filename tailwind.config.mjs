@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import daisyui from "daisyui";
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
@@ -23,10 +22,6 @@ export default {
 			lime: "#bef264",
 		},
 	},
-	plugins: [daisyui],
+	plugins: [],
 	darkMode: "class",
-	daisyui: {
-		themes: ["light", "dark"],
-		darkTheme: "dark",
-	},
 };

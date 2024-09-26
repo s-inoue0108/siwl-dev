@@ -1,10 +1,7 @@
-import { getEntries, type CollectionEntry } from "astro:content";
-import { IoTimeOutline, IoPricetags, IoText } from "solid-icons/io";
-import { ImSpinner3 } from "solid-icons/im";
-import { createResource, createSignal, lazy, Suspense } from "solid-js";
+import { type CollectionEntry, getEntries } from "astro:content";
+import { createSignal, createResource } from "solid-js";
 import TagCard from "./TagCard";
-
-const LazyThambnail = lazy(() => import("./Thambnail"));
+import { IoTimeOutline, IoText, IoPricetags } from "solid-icons/io";
 
 interface Props {
 	article: CollectionEntry<"article">;
@@ -19,20 +16,15 @@ const getTags = async (tagIds: CollectionEntry<"tag">["id"][]) => {
 	return tags;
 };
 
-const ArticleCard = ({ article }: Props) => {
+const ArticleCardLayer = ({ article }: Props) => {
 	const [isOpen, setIsOpen] = createSignal(false);
 	const [tagIds] = createSignal(article.data.tags ? article.data.tags.map((tag) => tag.id) : []);
 	const [tags] = createResource(tagIds, getTags);
 	return (
-		<div class="relative bg-muted-background rounded-lg shadow-md">
-			<div class="flex flex-col">
-				<a href={`/article/${article.slug}`} class="hover:opacity-70 transition rounded-t-lg">
-					<Suspense fallback={<ImSpinner3 size={"4rem"} color="var(--muted-foreground)" />}>
-						<LazyThambnail slug={article.slug} />
-					</Suspense>
-				</a>
+		<>
+			<div class="h-36">
 				{isOpen() ? (
-					<ul class="h-24 flex flex-wrap gap-2 p-2">
+					<ul class="flex flex-wrap gap-2 p-2">
 						{tags()?.map((tag) => (
 							<li>
 								<TagCard tag={tag} />
@@ -40,14 +32,14 @@ const ArticleCard = ({ article }: Props) => {
 						))}
 					</ul>
 				) : (
-					<p class="h-24 text-muted-foreground p-2">{article.data.description}</p>
+					<p class="font-medium text-muted-foreground p-2">{article.data.description}</p>
 				)}
 			</div>
-			<div class="absolute bottom-0 left-0 inline-flex items-center gap-1">
+			<div class="absolute bottom-1 left-2 inline-flex items-center gap-1">
 				<IoTimeOutline size={"0.8rem"} color="var(--muted-foreground)" />
 				<time
 					datetime={article.data.publishDate.toISOString()}
-					class="font-extralight text-xs text-muted-foreground tracking-wider"
+					class="text-xs text-muted-foreground tracking-wider"
 				>
 					{article.data.publishDate.toLocaleDateString("ja-JP", {
 						year: "numeric",
@@ -63,14 +55,14 @@ const ArticleCard = ({ article }: Props) => {
 			>
 				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 					{isOpen() ? (
-						<IoText size={"1.2rem"} color="#7749C3" />
+						<IoPricetags size={"1.2rem"} color="var(--muted)" />
 					) : (
-						<IoPricetags size={"1.2rem"} color="#7749C3" />
+						<IoText size={"1.2rem"} color="var(--muted)" />
 					)}
 				</div>
 			</button>
-		</div>
+		</>
 	);
 };
 
-export default ArticleCard;
+export default ArticleCardLayer;

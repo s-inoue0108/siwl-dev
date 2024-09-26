@@ -62,12 +62,17 @@ const Sidebar = (props: Props) => {
 			<ul class="flex flex-col gap-2 w-full mx-auto">
 				<li class="flex items-center">
 					<a href="/blog/1" data-astro-reload>
-						Tech Blog
+						Blog Top
+					</a>
+				</li>
+				<li class="flex items-center">
+					<a href="/blog/archives" data-astro-reload>
+						Archives
 					</a>
 				</li>
 				<li class="flex items-center">
 					<a href="/about" data-astro-reload>
-						About
+						About Me
 					</a>
 				</li>
 				<li class="flex items-center">

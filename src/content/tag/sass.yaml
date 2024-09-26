@@ -1,5 +1,2 @@
 isDraft: false
 name: "SASS/SCSS"
-icon:
-  src: "/src/assets/icons/sass.svg"
-  alt: "SASS/SCSS"

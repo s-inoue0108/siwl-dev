@@ -1,5 +1,2 @@
 isDraft: false
 name: "React"
-icon:
-  src: "/src/assets/icons/react.svg"
-  alt: "React"

@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry } from "astro:content";
+import Thambnail from "./Thambnail";
+import ArticleCardLayer from "./ArticleCardLayer";
+
+interface Props {
+	article: CollectionEntry<"article">;
+}
+
+const { article } = Astro.props;
+---
+
+<div class="relative bg-muted-background rounded-lg shadow-md">
+	<div class="flex flex-col">
+		<a href={`/article/${article.slug}`} class="hover:opacity-70 transition rounded-t-lg">
+			<Thambnail slug={article.slug} />
+		</a>
+		<ArticleCardLayer article={article} client:load />
+	</div>
+</div>

@@ -1,5 +1,2 @@
 isDraft: false
 name: "Vue"
-icon:
-  src: "/src/assets/icons/vue.svg"
-  alt: "Vue"
