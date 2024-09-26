@@ -40,11 +40,14 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 						props: {
 							style: {
 								width: "128px",
+								height: "128px",
 								position: "absolute",
 								bottom: "1rem",
 								right: "2rem",
 							},
 							src: `${import.meta.env.APP_URL}/src/assets/images/siwl-logo.svg`,
+							width: "128px",
+							height: "128px",
 							alt: "logo",
 						},
 					},
