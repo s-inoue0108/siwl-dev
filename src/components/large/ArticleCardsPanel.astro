@@ -10,9 +10,9 @@ interface Props {
 const { articles } = Astro.props;
 ---
 
-<ul class="flex flex-col sm:flex-row sm:flex-wrap gap-8 lg:px-8">
+<ul class="sm:mt-8 lg:mt-[2.666rem] flex flex-col sm:flex-row sm:flex-wrap gap-8">
 	{articles.map((article) => (
-		<li class="sm:w-[calc(50%-1.333rem)] lg:w-[calc(33.33%-1.333rem)]">
+		<li class="sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.333rem)]">
 			<ArticleCard article={article} />
 		</li>
 	))}

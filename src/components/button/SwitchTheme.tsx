@@ -27,7 +27,11 @@ const SwitchTheme = ({ size = "1.2rem", isBorder = false }: Props) => {
 
 	onMount(() => {
 		const theme = window.localStorage.getItem("theme");
-		setIsDark(theme && theme === "dark" ? true : false);
+		if (theme && typeof theme === "string") {
+			setIsDark(theme === "dark" ? true : false);
+		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			setIsDark(true);
+		}
 	});
 
 	return (

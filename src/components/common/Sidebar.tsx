@@ -17,8 +17,8 @@ interface Props {
 const Sidebar = (props: Props) => {
 	return (
 		<aside
-			class={`hidden lg:block fixed top-0 left-0 pt-4 px-8 w-[360px] transition-all ${
-				!isOpenMenu() && "translate-x-[calc(-360px+3.4rem)]"
+			class={`hidden lg:block fixed top-0 left-0 pt-4 px-8 w-[360px] transition duration-300 ${
+				!isOpenMenu() && "translate-x-[calc(-360px+3.95rem)]"
 			} bg-muted-background h-dvh z-50`}
 		>
 			<header>
@@ -26,11 +26,13 @@ const Sidebar = (props: Props) => {
 					<a href="/" class="text-5xl font-bold" data-astro-reload>
 						{props.appName}
 					</a>
-					<ul class="absolute top-4 right-3 w-8 flex flex-col items-center gap-4">
+					<ul class="absolute top-6 right-[0.7rem] flex flex-col items-center gap-4">
 						<li>
+							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<Hamburger size="1.8rem" isBorder={true} />
 						</li>
 						<li>
+							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<SwitchTheme size="1.8rem" isBorder={true} />
 						</li>
 						{/* <ul class="pt-8 flex flex-col items-center gap-6">

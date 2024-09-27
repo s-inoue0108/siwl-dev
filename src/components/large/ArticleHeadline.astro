@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import { IoGitMergeOutline, IoGitBranchOutline } from "solid-icons/io";
+import { BsTextParagraph } from "solid-icons/bs";
+import TagCard from "../card/TagCard.astro";
+import { getEntry } from "astro:content";
+
+interface Props {
+  slug: CollectionEntry<"article">["slug"];
+  data: CollectionEntry<"article">["data"];
+}
+
+const { slug, data } = Astro.props;
+
+const getTagById = async (id: CollectionEntry<"tag">["id"]) => {
+  const tag = await getEntry("tag", id);
+  return tag;
+}
+---
+
+<section>
+  <figure class="w-screen -mx-4 lg:w-2/3 lg:mx-auto">
+    <Image src={`/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="lg:rounded-xl" transition:name={`thambnail-${slug}`} />
+  </figure>
+  <ul class="flex justify-between items-center pt-1">
+    <ul class="flex items-center gap-4">
+      <li class="inline-flex items-center gap-1">
+        <IoGitBranchOutline size={"0.8rem"} color="var(--accent-foreground)" />
+        <time
+          datetime={data.publishDate.toISOString()}
+          class="text-xs text-muted-foreground tracking-wider"
+        >
+          {data.publishDate.toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })}
+        </time>
+      </li>
+      {
+        data.updateDate && (
+          <li class="inline-flex items-center gap-1">
+          <IoGitMergeOutline size={"0.8rem"} color="var(--accent-foreground)" />
+          <time
+            datetime={data.updateDate.toISOString()}
+            class="text-xs text-muted-foreground tracking-wider"
+          >
+            {data.updateDate.toLocaleDateString("ja-JP", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          </time>
+        </li>
+        )
+      }
+    </ul>
+    <li class="inline-flex items-center gap-1">
+      <BsTextParagraph size={"0.8rem"} color="var(--accent-foreground)" />
+      <p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
+    </li>
+  </ul>
+  <h1 class="text-3xl font-bold tracking-wide pt-6">{data.title}</h1>
+  <p class="text-muted-foreground pt-6">{data.description}</p>
+  <ul>
+    {
+      data.tags && data.tags.map(({ id }) => (
+        <li>
+          <TagCard id={id} />
+        </li>
+      ))
+    }
+  </ul>
+</section>

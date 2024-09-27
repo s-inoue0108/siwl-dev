@@ -1,20 +1,64 @@
 ---
 import { type CollectionEntry } from "astro:content";
-import Thambnail from "./Thambnail";
-import ArticleCardLayer from "./ArticleCardLayer";
+import TagCard from "./TagCard.astro";
+import { IoGitBranchOutline } from "solid-icons/io";
+import { BsTextParagraph } from "solid-icons/bs";
+import { Image } from "astro:assets";
+import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
 
 interface Props {
 	article: CollectionEntry<"article">;
 }
 
 const { article } = Astro.props;
+const { slug, data } = article;
 ---
 
-<div class="relative bg-muted-background rounded-lg shadow-md">
+<section id={`article-card-${slug}`} class="relative bg-muted-background rounded-lg shadow-md animate-fade-in">
 	<div class="flex flex-col">
-		<a href={`/article/${article.slug}`} class="hover:opacity-70 transition rounded-t-lg">
-			<Thambnail slug={article.slug} />
+		<a href={`/article/${slug}`} class="hover:opacity-70 transition rounded-t-lg">
+			<Image src={`/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="w-full h-full object-contain rounded-t-lg" transition:name={`thambnail-${article.slug}`} />
 		</a>
-		<ArticleCardLayer article={article} client:load />
+		<div class="flex flex-col">
+			<div class="relative h-32">
+				<div id={`article-card-${slug}-tags`} class="w-full h-full absolute bg-muted-background">
+					<ul class="flex flex-wrap gap-2 p-2">
+						{data.tags &&
+							data.tags.map(({ id }) => (
+								<li>
+									<TagCard id={id} />
+								</li>
+							))}
+					</ul>
+				</div>
+				<div id={`article-card-${slug}-description`} class="w-full h-full absolute bg-muted-background">
+					<p  class="font-medium text-muted-foreground p-2 overflow-clip">
+						{data.description}
+					</p>
+				</div>
+			</div>
+			<div class="flex justify-between items-end">
+				<ul class="flex items-center gap-4 pl-2 pb-1">
+					<li class="inline-flex items-center gap-1">
+						<IoGitBranchOutline size={"0.8rem"} color="var(--accent-foreground)" />
+						<time
+							datetime={data.publishDate.toISOString()}
+							class="text-xs text-muted-foreground tracking-wider"
+						>
+							{data.publishDate.toLocaleDateString("ja-JP", {
+								year: "numeric",
+								month: "2-digit",
+								day: "2-digit",
+							})}
+						</time>
+					</li>
+					<li class="inline-flex items-center gap-1">
+						<BsTextParagraph size={"0.8rem"} color="var(--accent-foreground)" />
+						<p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
+					</li>
+				</ul>
+				<ArticleCardLayerButton slug={slug} client:load />
+			</div>
+		</div>
 	</div>
-</div>
+</section>
