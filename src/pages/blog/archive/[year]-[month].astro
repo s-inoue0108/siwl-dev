@@ -1,0 +1,53 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import Breadcrumbs from "../../../components/common/Breadcrumbs.astro";
+
+export const getStaticPaths = (async () => {
+  const articles = await getCollection("article", ({ data }) => {
+    return import.meta.env.PROD ? data.isDraft === false : true;
+  });
+
+  const publishDates = articles.map(({ data }) => {
+		return {
+			year: data.publishDate.getFullYear(),
+			month: data.publishDate.getMonth() + 1,
+		};
+	});
+
+  const uniquePublishDates = Array.from(
+		new Map(publishDates.map((date) => [JSON.stringify(date), date])).values()
+	);
+
+  return uniquePublishDates.map(({ year, month }) => {
+    const sortedAndfilteredArticles = articles.filter(({ data }) => {
+			return (
+				data.publishDate.getFullYear() === year &&
+				data.publishDate.getMonth() + 1 === month
+			);
+		});
+    return {
+      params: { year: year.toString(), month: month.toString() },
+      props: { articles: sortedAndfilteredArticles },
+    };
+  })
+});
+
+const { year, month } = Astro.params;
+const { articles } = Astro.props;
+---
+
+<Base title={`Archives (${year}-${month}) | ${import.meta.env.APP_NAME}`} description="記事のアーカイブとスタッツを公開しています。">
+  <Breadcrumbs />
+	<section class="w-full flex flex-col">
+    <ul>
+      {articles.map((article) => {
+        return (
+          <li>
+            <a href={`/blog/article/${article.slug}`}>{article.data.title}</a>
+          </li>
+        );
+      })}
+    </ul>
+	</section>
+</Base>

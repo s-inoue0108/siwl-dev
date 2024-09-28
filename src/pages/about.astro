@@ -1,8 +1,10 @@
 ---
+import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
 ---
 
 <Base title={`About | ${import.meta.env.APP_NAME}`} description="Webプログラミングについての情報発信を目的としたテックブログです。">
+	<Breadcrumbs />
 	<section class="w-full flex flex-col">
 	</section>
 </Base>

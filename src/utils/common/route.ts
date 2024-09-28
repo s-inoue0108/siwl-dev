@@ -1,7 +1,5 @@
-import type { CollectionEntry } from "astro:content";
-
 const routeRule = {
-  "Blog": [/^\/blog\/[0-9]+$/, /^\/blog\/tag\/[^\/]+\/[0-9]+$/, /^\/blog\/article\/[^\/]+/],
+  "Blog": [/^\/blog\/[0-9]+$/, /^\/blog\/tag\/[^\/]+\/[0-9]+/, /^\/blog\/article\/[^\/]+/, /^\/blog\/archive/, /^\/blog\/archive\/[0-9]{4}-[0-9]{1,2}/],
   "About": [/^\/about$/],
   "Works": [/^\/works$/],
   "Contact": [/^\/contact$/],

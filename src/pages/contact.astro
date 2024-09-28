@@ -1,8 +1,10 @@
 ---
+import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
 ---
 
 <Base title={`Contact | ${import.meta.env.APP_NAME}`} description={`${import.meta.env.APP_NAME}に関するお問い合わせ、運営者への連絡を受け付けております。`}>
+	<Breadcrumbs />
 	<section class="w-full flex flex-col">
 	</section>
 </Base>
