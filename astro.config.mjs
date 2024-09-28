@@ -17,11 +17,10 @@ export default defineConfig({
 		port: 3000,
 	},
 
-	site: "https://si-library.net",
+	site: import.meta.env.APP_URL,
 	integrations: [
 		solid(),
 		sitemap({
-			filter: (page) => page !== "https://si-library.net/blog/preview/",
 			i18n: {
 				defaultLocale: "ja",
 				locales: {

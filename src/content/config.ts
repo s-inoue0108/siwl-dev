@@ -15,13 +15,10 @@ const articleCollection = defineCollection({
 
 const tagCollection = defineCollection({
   type: 'data',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     isDraft: z.boolean().default(false),
     name: z.string(),
-    icon: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }).optional(),
+    icon: image().optional(),
   }),
 });
 

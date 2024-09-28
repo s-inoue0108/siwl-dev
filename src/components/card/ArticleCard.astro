@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import TagCard from "./TagCard.astro";
-import { IoGitBranchOutline } from "solid-icons/io";
+import { IoGitCommitOutline } from "solid-icons/io";
 import { BsTextParagraph } from "solid-icons/bs";
 import { Image } from "astro:assets";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
@@ -14,15 +14,15 @@ const { article } = Astro.props;
 const { slug, data } = article;
 ---
 
-<section id={`article-card-${slug}`} class="relative bg-muted-background rounded-lg shadow-md animate-fade-in">
-	<div class="flex flex-col">
-		<a href={`/article/${slug}`} class="hover:opacity-70 transition rounded-t-lg">
-			<Image src={`/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="w-full h-full object-contain rounded-t-lg" transition:name={`thambnail-${article.slug}`} />
+<section id={`article-card-${slug}`} class="relative animate-fade-in">
+	<div class="flex flex-col sm:flex-row sm:justify-between gap-2">
+		<a href={`/blog/article/${slug}`} class="hover:opacity-80 transition-opacity duration-150 rounded-md">
+			<Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="sm:w-[28rem] object-contain rounded-md" transition:name={`thambnail-${article.slug}`} />
 		</a>
-		<div class="flex flex-col">
-			<div class="relative h-32">
-				<div id={`article-card-${slug}-tags`} class="w-full h-full absolute bg-muted-background">
-					<ul class="flex flex-wrap gap-2 p-2">
+		<div class="w-full flex flex-col border-b-[1px] border-muted-background">
+			<div class="relative h-32 sm:h-full">
+				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
+					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
 						{data.tags &&
 							data.tags.map(({ id }) => (
 								<li>
@@ -31,19 +31,21 @@ const { slug, data } = article;
 							))}
 					</ul>
 				</div>
-				<div id={`article-card-${slug}-description`} class="w-full h-full absolute bg-muted-background">
-					<p  class="font-medium text-muted-foreground p-2 overflow-clip">
-						{data.description}
-					</p>
+				<div id={`article-card-${slug}-description`} class="absolute bg-background">
+					<a href={`/blog/article/${slug}`} class="hover:text-accent-foreground transition-colors duration-150">
+						<h1 class="font-semibold text-2xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
+							{data.title}
+						</h1>
+					</a>
 				</div>
 			</div>
 			<div class="flex justify-between items-end">
 				<ul class="flex items-center gap-4 pl-2 pb-1">
-					<li class="inline-flex items-center gap-1">
-						<IoGitBranchOutline size={"0.8rem"} color="var(--accent-foreground)" />
+					<li class="inline-flex items-center gap-1 text-[0.8rem] sm:text-[1.2rem]">
+						<IoGitCommitOutline color="var(--accent-foreground)" class="rotate-90" />
 						<time
 							datetime={data.publishDate.toISOString()}
-							class="text-xs text-muted-foreground tracking-wider"
+							class="text-xs sm:text-sm text-muted-foreground tracking-wider"
 						>
 							{data.publishDate.toLocaleDateString("ja-JP", {
 								year: "numeric",
@@ -52,9 +54,9 @@ const { slug, data } = article;
 							})}
 						</time>
 					</li>
-					<li class="inline-flex items-center gap-1">
-						<BsTextParagraph size={"0.8rem"} color="var(--accent-foreground)" />
-						<p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
+					<li class="inline-flex items-center gap-1 text-[0.8rem] sm:text-[1.2rem]">
+						<BsTextParagraph color="var(--accent-foreground)" />
+						<p class="text-xs sm:text-sm text-muted-foreground tracking-wider">{`${300} chars`}</p>
 					</li>
 				</ul>
 				<ArticleCardLayerButton slug={slug} client:load />

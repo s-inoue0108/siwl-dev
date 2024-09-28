@@ -3,6 +3,7 @@ import Base from "../../../../layouts/Base.astro";
 import { type GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
 import ArticleCardsPanel from "../../../../components/large/ArticleCardsPanel.astro";
+import Breadcrumbs from "../../../../components/common/Breadcrumbs.astro";
 
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 
@@ -30,11 +31,17 @@ export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 	return routes;
 });
 
-const { page } = Astro.props;
+const { page, tag } = Astro.props;
 ---
 
-<Base title={`記事一覧 | ページ${page.currentPage} | ${import.meta.env.APP_NAME}`} description="プログラミングについての情報発信">
-	<section class="w-full flex flex-col">
-		<ArticleCardsPanel articles={page.data} />
+<Base title={`Blog | ${import.meta.env.APP_NAME}`} description="Webプログラミングについての情報を発信しています。">
+  <Breadcrumbs tagId={tag.id} />
+	<section class="w-full flex flex-col lg:flex-row">
+    <article class="lg:w-[65%]">
+      <ArticleCardsPanel articles={page.data} />
+    </article>
+    <aside class="lg:w-[35%]">
+
+    </aside>
 	</section>
 </Base>

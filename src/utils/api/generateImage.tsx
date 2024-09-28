@@ -29,7 +29,7 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 								width: "100%",
 								color: "#fcfcfc",
 								fontWeight: "700",
-								fontSize: "5.4rem",
+								fontSize: "6rem",
 								padding: "0.5rem 2rem",
 							},
 							children: `${title}`,

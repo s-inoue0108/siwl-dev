@@ -14,26 +14,26 @@ const tag = await getEntry("tag", id);
 
 <a href={`/blog/tag/${id}/1`} class={`${
 	isLink
-	? "cursor-pointer hover:bg-accent-foreground hover:text-accent-background transition"
+	? "cursor-pointer hover:bg-accent-foreground hover:text-foreground transition"
 	: "pointer-events-none"
-	} w-fit h-fit inline-flex items-center gap-1 text-muted-foreground rounded-md px-1`}
+	} w-fit h-fit inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
 >
-	<figure class="h-3">
+	<figure class="h-3 text-sm lg:h-[1.125rem] lg:text-lg">
 		{
 			tag.data.icon ? (
 				<Image
-					src={tag.data.icon.src}
+					src={tag.data.icon}
 					width={20}
 					height={20}
-					alt={tag.data.icon.alt}
+					alt={tag.data.name}
 					class="w-full h-full object-contain"
 				/>
 			) : (
-		  <IoPricetag size={"0.75rem"} />
+		  <IoPricetag />
 		)
 		}
 	</figure>
-	<label class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm font-semibold`}>
+	<figcaption class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-medium`}>
 		{tag.data.name}
-	</label>
+	</figcaption>
 </a>

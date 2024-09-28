@@ -26,7 +26,7 @@ const Sidebar = (props: Props) => {
 					<a href="/" class="text-5xl font-bold" data-astro-reload>
 						{props.appName}
 					</a>
-					<ul class="absolute top-6 right-[0.7rem] flex flex-col items-center gap-4">
+					<ul class="absolute top-4 right-[0.7rem] flex flex-col items-center gap-4">
 						<li>
 							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<Hamburger size="1.8rem" isBorder={true} />
@@ -35,7 +35,7 @@ const Sidebar = (props: Props) => {
 							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<SwitchTheme size="1.8rem" isBorder={true} />
 						</li>
-						{/* <ul class="pt-8 flex flex-col items-center gap-6">
+						<ul class="pt-8 flex flex-col items-center gap-6">
 							<li>
 								<LinkButton
 									href={props.gitHubUrl}
@@ -57,24 +57,24 @@ const Sidebar = (props: Props) => {
 									Icon={<SiZenn size="1.6rem" />}
 								/>
 							</li>
-						</ul> */}
+						</ul>
 					</ul>
 				</nav>
 			</header>
 			<ul class="flex flex-col gap-2 w-full mx-auto">
 				<li class="flex items-center">
 					<a href="/blog/1" data-astro-reload>
-						Blog Top
+						Blog
 					</a>
 				</li>
 				<li class="flex items-center">
-					<a href="/blog/archives" data-astro-reload>
+					<a href="/blog/archive" data-astro-reload>
 						Archives
 					</a>
 				</li>
 				<li class="flex items-center">
 					<a href="/about" data-astro-reload>
-						About Me
+						About
 					</a>
 				</li>
 				<li class="flex items-center">

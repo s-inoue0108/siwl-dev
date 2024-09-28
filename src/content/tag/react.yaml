@@ -1,2 +1,3 @@
 isDraft: false
 name: "React"
+icon: "./icons/react.svg"

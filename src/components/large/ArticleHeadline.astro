@@ -1,35 +1,28 @@
 ---
 import { Image } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
-import { IoGitMergeOutline, IoGitBranchOutline } from "solid-icons/io";
+import { IoGitMergeOutline, IoGitCommitOutline } from "solid-icons/io";
 import { BsTextParagraph } from "solid-icons/bs";
 import TagCard from "../card/TagCard.astro";
-import { getEntry } from "astro:content";
-
 interface Props {
   slug: CollectionEntry<"article">["slug"];
   data: CollectionEntry<"article">["data"];
 }
 
 const { slug, data } = Astro.props;
-
-const getTagById = async (id: CollectionEntry<"tag">["id"]) => {
-  const tag = await getEntry("tag", id);
-  return tag;
-}
 ---
 
 <section>
-  <figure class="w-screen -mx-4 lg:w-2/3 lg:mx-auto">
-    <Image src={`/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="lg:rounded-xl" transition:name={`thambnail-${slug}`} />
+  <figure class="w-screen -mx-4 lg:w-2/3 lg:mx-0">
+    <Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="lg:rounded-xl" transition:name={`thambnail-${slug}`} />
   </figure>
   <ul class="flex justify-between items-center pt-1">
     <ul class="flex items-center gap-4">
-      <li class="inline-flex items-center gap-1">
-        <IoGitBranchOutline size={"0.8rem"} color="var(--accent-foreground)" />
+      <li class="inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
+        <IoGitCommitOutline color="var(--accent-foreground)" class="rotate-90" />
         <time
           datetime={data.publishDate.toISOString()}
-          class="text-xs text-muted-foreground tracking-wider"
+          class="text-xs lg:text-lg text-muted-foreground tracking-wider"
         >
           {data.publishDate.toLocaleDateString("ja-JP", {
             year: "numeric",
@@ -40,11 +33,11 @@ const getTagById = async (id: CollectionEntry<"tag">["id"]) => {
       </li>
       {
         data.updateDate && (
-          <li class="inline-flex items-center gap-1">
-          <IoGitMergeOutline size={"0.8rem"} color="var(--accent-foreground)" />
+          <li class="inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
+          <IoGitMergeOutline color="var(--accent-foreground)" />
           <time
             datetime={data.updateDate.toISOString()}
-            class="text-xs text-muted-foreground tracking-wider"
+            class="text-xs lg:text-lg text-muted-foreground tracking-wider"
           >
             {data.updateDate.toLocaleDateString("ja-JP", {
               year: "numeric",
@@ -61,9 +54,9 @@ const getTagById = async (id: CollectionEntry<"tag">["id"]) => {
       <p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
     </li>
   </ul>
-  <h1 class="text-3xl font-bold tracking-wide pt-6">{data.title}</h1>
+  <h1 class="text-3xl font-bold tracking-wide pt-6" transition:name={`title-${slug}`}>{data.title}</h1>
   <p class="text-muted-foreground pt-6">{data.description}</p>
-  <ul>
+  <ul class="inline-flex flex-wrap items-center gap-2 pt-6">
     {
       data.tags && data.tags.map(({ id }) => (
         <li>
