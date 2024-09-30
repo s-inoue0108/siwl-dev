@@ -1,9 +1,9 @@
 ---
-import { type CollectionEntry,　getEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import TagCard from "./TagCard.astro";
-import { IoGitCommit, IoTimer, IoCodeSlash } from "solid-icons/io";
-import { Image } from "astro:assets";
+import { IoGitCommit, IoTimer, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
+import { getEntry } from "astro:content";
 
 interface Props {
 	article: CollectionEntry<"article">;
@@ -12,40 +12,22 @@ interface Props {
 const { article } = Astro.props;
 const { slug, data } = article;
 
-const getFirstTagIcon = async () => {
-	if (!data.tags) return undefined;
-	const firstTag = await getEntry("tag", data.tags[0].id);
-	return firstTag.data.icon;
-}
-
-const firstTagIcon = await getFirstTagIcon();
+const category = await getEntry("category", data.category.id);
 ---
 
-<section id={`article-card-${slug}`} class="relative">
-	<div class="flex flex-col sm:flex-row sm:justify-between gap-2">
-		<a href={`/blog/article/${slug}`} class="bg-accent-base hover:opacity-80 transition-opacity duration-150 rounded-md">
-			<div class="relative w-full sm:w-64 h-36 p-6">
+<section id={`article-card-${slug}`}>
+	<div class="flex flex-col sm:flex-row gap-2">
+		<a href={`/blog/articles/${slug}`} class=`sm:w-64 h-36 hover:opacity-80 transition-opacity duration-150 rounded-md ${data.category.id === "tech" ? "bg-accent-base" : "bg-accent-sub-base"}`>
+			<div class="relative w-full h-full p-6">
 				{
-					firstTagIcon ? (
-						<Image
-							src={firstTagIcon}
-							width={512}
-							height={512}
-							alt={data.title}
-							class="flex items-center justify-center w-full h-full lg:-translate-x-[2rem] object-contain"
-							transition:name={`thambnail-${article.slug}`}
-						/>
-					) : (
-						<span>
-              <IoCodeSlash color="var(--foreground)" />
-						</span>
-					)
+					<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
+						<span class="text-4xl lg:text-4xl">{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}</span>
+						<span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">{category.data.name}</span>
+					</div>
 				}
 			</div>
-			<!-- <Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="sm:w-[240px] h-[135px] object-contain rounded-md" transition:name={`thambnail-${article.slug}`} /> -->
-
 		</a>
-		<div class="w-full flex flex-col border-b border-muted-background">
+		<div class="w-full flex flex-col border-b-2 border-muted-background">
 			<div class="relative h-32 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
@@ -58,7 +40,7 @@ const firstTagIcon = await getFirstTagIcon();
 					</ul>
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
-					<a href={`/blog/article/${slug}`} class="hover:text-accent-base transition-colors duration-150">
+					<a href={`/blog/articles/${slug}`} class=`${data.category.id === "tech" ? "hover:text-accent-base" : "hover:text-accent-sub-base"} transition-colors duration-150`>
 						<h1 class="font-extrabold text-xl lg:text-2xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
 							{data.title}
 						</h1>
@@ -82,10 +64,10 @@ const firstTagIcon = await getFirstTagIcon();
 					</a>
 					<li class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
 						<IoTimer />
-						<p class="text-xs sm:text-sm tracking-wider">{`${300} chars`}</p>
+						<p class="text-xs sm:text-sm tracking-wider">{`${10} min`}</p>
 					</li>
 				</ul>
-				<ArticleCardLayerButton slug={slug} client:load />
+				<ArticleCardLayerButton article={article} client:load />
 			</div>
 		</div>
 	</div>

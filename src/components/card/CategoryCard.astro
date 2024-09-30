@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getEntry } from "astro:content";
+import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+
+interface Props {
+	id: CollectionEntry<"category">["id"];
+	isLink?: boolean;
+}
+
+const { id, isLink = true } = Astro.props;
+const category = await getEntry("category", id);
+---
+
+<div>
+  <a href={`/blog/categories/${category.id}`} class=`sm:w-64 h-36 hover:opacity-80 transition-opacity duration-150 rounded-md ${category.id === "tech" ? "bg-accent-base" : "bg-accent-sub-base"}`>
+    <div class="relative w-full h-full p-6">
+      {
+        <div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
+          <span class="text-4xl lg:text-4xl">{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}</span>
+          <span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">{category.data.name}</span>
+        </div>
+      }
+    </div>
+  </a>
+</div>

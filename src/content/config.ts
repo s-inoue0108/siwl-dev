@@ -17,7 +17,8 @@ const articleCollection = defineCollection({
 const categoryCollection = defineCollection({
   type: "data",
   schema: z.object({
-    name: z.enum(["Tech", "Idea"]),
+    name: z.string(),
+    description: z.string().optional(),
   })
 });
 
@@ -26,11 +27,12 @@ const tagCollection = defineCollection({
   schema: ({ image }) => z.object({
     isDraft: z.boolean().default(false),
     name: z.string(),
+    belong: reference("category").default("tech"),
     icon: image().optional(),
   }),
 });
 
-const linkCollection = defineCollection({
+const bookmarkCollection = defineCollection({
   type: "data",
   schema: z.object({
     isDraft: z.boolean().default(false),
@@ -44,5 +46,5 @@ export const collections = {
   "article": articleCollection,
   "category": categoryCollection,
   "tag": tagCollection,
-  "link": linkCollection,
+  "bookmark": bookmarkCollection,
 };

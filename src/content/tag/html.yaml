@@ -1,3 +1,4 @@
 isDraft: false
-name: "HTML"
-icon: "./icons/html.svg"
+name: HTML
+belong: tech
+icon: ./icons/html.svg

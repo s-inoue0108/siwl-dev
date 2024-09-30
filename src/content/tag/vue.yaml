@@ -1,3 +1,4 @@
 isDraft: false
-name: "Vue"
-icon: "./icons/vue.svg"
+name: Vue
+belong: tech
+icon: ./icons/vue.svg

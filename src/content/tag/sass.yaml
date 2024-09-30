@@ -1,3 +1,4 @@
 isDraft: false
-name: "SASS/SCSS"
-icon: "./icons/sass.svg"
+name: SASS/SCSS
+belong: tech
+icon: ./icons/sass.svg

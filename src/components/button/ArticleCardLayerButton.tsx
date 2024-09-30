@@ -3,15 +3,15 @@ import { IoPricetags } from "solid-icons/io";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-	slug: CollectionEntry<"article">["slug"];
+	article: CollectionEntry<"article">;
 }
 
-const ArticleCardLayerButton = ({ slug }: Props) => {
+const ArticleCardLayerButton = ({ article }: Props) => {
 	const [isOpen, setIsOpen] = createSignal(false);
 
 	createEffect(() => {
-		const tagsDom = document.getElementById(`article-card-${slug}-tags`)!;
-		const descriptionDom = document.getElementById(`article-card-${slug}-description`)!;
+		const tagsDom = document.getElementById(`article-card-${article.slug}-tags`)!;
+		const descriptionDom = document.getElementById(`article-card-${article.slug}-description`)!;
 		tagsDom.style.transition = "opacity 0.1s ease-in-out";
 		descriptionDom.style.transition = "opacity 0.1s ease-in-out";
 		if (isOpen()) {
@@ -37,16 +37,25 @@ const ArticleCardLayerButton = ({ slug }: Props) => {
 		<button
 			type="button"
 			class={`relative ${
-				isOpen() ? "bg-accent-base" : "bg-muted-background"
-			} hover:bg-accent-base transition-colors duration-150 rounded-t-md w-8 h-[calc(2rem-1px)]`}
+				isOpen()
+					? `${article.data.category.id === "tech" ? "bg-accent-base" : "bg-accent-sub-base"}`
+					: `bg-muted-background ${
+							article.data.category.id === "tech"
+								? "hover:bg-accent-base"
+								: "hover:bg-accent-sub-base"
+					  }`
+			} transition-colors duration-150 rounded-t-lg w-16 h-8 translate-y-[2px]`}
 			onClick={() => setIsOpen(!isOpen())}
 		>
 			<div
-				class={`transition-colors duration-150 absolute top-[calc(50%+1px)] left-1/2 -translate-x-1/2 -translate-y-1/2 ${
-					isOpen() ? "text-accent-vivid" : "text-muted-foreground"
+				class={`transition-colors duration-150 absolute top-[calc(50%+2px)] left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+					isOpen() ? "text-foreground" : "text-muted-foreground"
 				}`}
 			>
-				<IoPricetags size={"1rem"} />
+				<div class="flex items-center gap-2">
+					<IoPricetags size={"0.7rem"} />
+					<span class="text-sm font-bold whitespace-nowrap">Tag</span>
+				</div>
 			</div>
 		</button>
 	);

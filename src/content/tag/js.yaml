@@ -1,3 +1,4 @@
 isDraft: false
-name: "JavaScript"
-icon: "./icons/javascript.svg"
+name: JavaScript
+belong: tech
+icon: ./icons/javascript.svg

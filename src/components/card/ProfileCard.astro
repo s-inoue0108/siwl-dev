@@ -14,7 +14,7 @@ import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si"
 	/>
 	<div class="bg-background/80 z-10 p-4 rounded-xl flex flex-col items-center gap-4">
 		<div class="flex items-center gap-3 lg:gap-4">
-			<hr class="border-4 border-accent-base rounded-full h-[1rem] lg:h-[1.25rem]" />
+			<div class="w-2 h-3/4 bg-gradient-to-b from-accent-sub-base to-accent-base rounded-full" />
 			<h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">
 				Shota Inoue
 			</h1>
@@ -44,25 +44,25 @@ import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si"
 				フロントエンドの技術を学習中。
 			</span>
 		</p>
-		<ul class="flex items-center gap-3">
+		<ul class="w-full px-6 flex items-center justify-between">
 			<li>
-				<a href="/about" class="font-semibold tracking-wide hover:bg-accent-base transition-colors duration-150 px-2 py-1 rounded-xl">
-					Profile
+				<a href="/about" class="font-semibold tracking-wide bg-gradient-to-r from-accent-sub-base to-accent-base px-2 py-1 rounded-xl">
+					About Me
 				</a>
 			</li>
-			<ul class="flex items-center gap-5">
+			<ul class="flex items-center gap-4">
 				<li>
-					<a href={import.meta.env.GITHUB_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+					<a href={import.meta.env.GITHUB_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
 						<SiGithub />
 					</a>
 				</li>
 				<li>
-					<a href={import.meta.env.X_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+					<a href={import.meta.env.X_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
 						<SiTwitter />
 					</a>
 				</li>
 				<li>
-					<a href={import.meta.env.ZENN_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+					<a href={import.meta.env.ZENN_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
 						<SiZenn />
 					</a>
 				</li>

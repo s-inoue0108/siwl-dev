@@ -1,3 +1,4 @@
 isDraft: false
-name: "React"
-icon: "./icons/react.svg"
+name: React
+belong: tech
+icon: ./icons/react.svg

@@ -1,3 +1,4 @@
 isDraft: false
-name: "Solid"
-icon: "./icons/solid.svg"
+name: Solid
+belong: tech
+icon: ./icons/solid.svg

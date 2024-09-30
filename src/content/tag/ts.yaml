@@ -1,3 +1,4 @@
 isDraft: false
-name: "TypeScript"
-icon: "./icons/typescript.svg"
+name: TypeScript
+belong: tech
+icon: ./icons/typescript.svg

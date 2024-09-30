@@ -2,6 +2,7 @@
 import { type CollectionEntry } from "astro:content";
 import type { Page } from "astro";
 import ArticleCard from "../card/ArticleCard.astro";
+import NoItem from "../NoItem.astro";
 
 interface Props {
 	articles: CollectionEntry<"article">[] | Page["data"];
@@ -10,10 +11,21 @@ interface Props {
 const { articles } = Astro.props;
 ---
 
-<ul class="flex flex-col items-center gap-8">
-	{articles.map((article) => (
-		<li class="w-full">
-			<ArticleCard article={article} />
-		</li>
-	))}
-</ul>
+<>
+	{articles.length > 0 ? (
+		<ul class="flex flex-col items-center gap-8">
+			{articles.map((article) => (
+				<li class="w-full">
+					<ArticleCard article={article} />
+				</li>
+			))}
+		</ul>
+	) : (
+		<div class="pt-12 sm:pt-24">
+			<NoItem message="記事がありません" />
+		</div>
+	)
+}
+</>
+
+

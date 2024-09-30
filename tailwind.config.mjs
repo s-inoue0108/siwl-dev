@@ -13,6 +13,7 @@ export default {
 				accent: {
 					vivid: "rgba(var(--accent-vivid), var(--opacity))",
 					base: "rgba(var(--accent-base), var(--opacity))",
+					"sub-base": "rgba(var(--accent-sub-base), var(--opacity))",
 				},
 			},
 			animation: {

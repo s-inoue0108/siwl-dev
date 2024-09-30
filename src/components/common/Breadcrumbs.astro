@@ -1,33 +1,94 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { IoChevronForward } from "solid-icons/io";
+import { IoChevronForward, IoDesktopOutline, IoBulbOutline, IoGitCommitOutline } from "solid-icons/io";
 import { AllowedRoutes } from "../../utils/common/route";
 import TagCard from "../card/TagCard.astro";
 
-const route = new AllowedRoutes(Astro.url.pathname);
-
 interface Props {
   count?: number;
-  tagId?: CollectionEntry<"tag">["id"];
+  category?: CollectionEntry<"category">;
+  tag?: CollectionEntry<"tag">;
+  archive?: {
+    year: string;
+    month: string;
+  }
 }
 
-const { count = 0, tagId } = Astro.props;
+const { count = 0, category, tag, archive } = Astro.props;
+
+const route = new AllowedRoutes(Astro.url.pathname);
+const root = route.getRootPageMeta();
+const subset = route.getSubsetPageMeta();
 ---
 
 <ul class="w-full flex justify-between items-center">
   <ul class="flex items-center gap-1">
-    <li class="flex items-center">
-      <a href="/blog/1" class="font-semibold text-sm lg:text-lg text-muted-foreground hover:text-accent-base transition-colors duration-150">
-        {route.getRootPageMeta().name}
+    <li class="flex items-center gap-1">
+      <a href={root.meta.rootpath} class="font-semibold text-sm lg:text-lg text-muted-foreground hover:text-foreground transition-colors duration-150">
+        {root.meta.name}
       </a>
       <span class="text-base lg:text-xl text-muted-foreground">
         <IoChevronForward />
       </span>
     </li>
+    {/* subset */}
     {
-      tagId && (
-        <li>
-          <TagCard id={tagId} />
+      !root.isRoot && (
+        <ul class="flex items-center gap-1">
+          {
+            <li class="flex items-center gap-1">
+              <a href={subset.meta.rootpath} class="font-semibold text-sm lg:text-lg text-muted-foreground hover:text-foreground transition-colors duration-150">
+                {subset.meta.name}
+              </a>
+              <span class="text-base lg:text-xl text-muted-foreground">
+                <IoChevronForward />
+              </span>
+            </li>
+          }
+        </ul>
+      )
+    }
+    {/* category */}
+    {
+      category && (
+        <li class="pt-[2px]">
+          <a href={`/blog/categories/${category.id}/1`} 
+            class={`cursor-pointer ${category.id === "tech" ? "hover:bg-accent-base" : "hover:bg-accent-sub-base"} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
+          >
+            <div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+              {
+                category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />
+              }
+            </div>
+            <span class={`cursor-pointer text-sm lg:text-lg font-semibold`}>
+              {category.data.name}
+            </span>
+          </a>
+        </li>
+      )
+    }
+    {/* tag */}
+    {
+      tag && (
+        <li class="pt-[2px]">
+          <TagCard id={tag.id} />
+        </li>
+      )
+    }
+    {/* archive */}
+    {
+      archive && (
+        <li class="pt-[2px]">
+          <a href={`/blog/archives/${archive.year}-${archive.month}`} 
+            class="hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1"
+          >
+            <div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+              <IoGitCommitOutline class="rotate-90" />
+            </div>
+            <span class={`cursor-pointer text-sm lg:text-lg font-semibold`}>
+              {`${archive.year}-${archive.month}`}
+            </span>
+          </a>
         </li>
       )
     }

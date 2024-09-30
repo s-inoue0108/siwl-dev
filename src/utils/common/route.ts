@@ -11,57 +11,68 @@ export class AllowedRoutes {
       description: "プログラミングについての情報を発信しています。",
       subsets: [
         {
-          name: "Category",
-          matchers: [/^\/blog\/category\/[tech|idea]+\/[0-9]+/,],
-          rootpath: "/blog/1",
-          description: "",
+          name: "Categories",
+          matchers: [/^\/blog\/categories/, /^\/blog\/categories\/[tech|idea]+\/[0-9]+/,],
+          rootpath: "/blog/categories",
+          description: "カテゴリーの一覧を掲載しています。",
+          subsets: [],
         },
         {
-          name: "Tag",
-          matchers: [/^\/blog\/tag\/[^\/]+\/[0-9]+/,],
-          rootpath: "/blog/1",
-          description: "",
+          name: "Tags",
+          matchers: [/^\/blog\/tags/, /^\/blog\/tags\/[^\/]+\/[0-9]+/,],
+          rootpath: "/blog/tags",
+          description: "タグの一覧を掲載しています。",
+          subsets: [],
         },
         {
-          name: "Article",
-          matchers: [/^\/blog\/article\/[^\/]+/,],
+          name: "Articles",
+          matchers: [/^\/blog\/articles\/[^\/]+/,],
           rootpath: "/blog/1",
-          description: "",
+          description: "記事ページです。",
+          subsets: [],
         },
         {
-          name: "Archive",
-          matchers: [/^\/blog\/archive/, /^\/blog\/archive\/[0-9]{4}-[0-9]{1,2}/],
-          rootpath: "/blog/1",
-          description: "",
+          name: "Archives",
+          matchers: [/^\/blog\/archives/, /^\/blog\/archives\/[0-9]{4}-[0-9]{1,2}/],
+          rootpath: "/blog/archives",
+          description: "記事のアーカイブ、スタッツを公開しています。",
+          subsets: [],
         },
       ],
+    },
+    {
+      name: "Bookmarks",
+      matchers: [/^\/bookmarks\/[0-9]+/],
+      rootpath: "/bookmarks/1",
+      description: "よく利用するサイト等のリンクを掲載しています。",
+      subsets: [],
     },
     {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "",
+      description: "Shota Inoueのプロフィールや、サイトの情報を掲載しています。",
       subsets: [],
     },
     {
       name: "Works",
       matchers: [/^\/works/],
       rootpath: "/works",
-      description: "",
+      description: "過去の制作物や、実績などを紹介しています。",
       subsets: [],
     },
     {
       name: "Contact",
       matchers: [/^\/contact/],
       rootpath: "/contact",
-      description: "",
+      description: "サイトに関するご意見や、お問い合わせを受け付けております。",
       subsets: [],
     },
     {
       name: "Privacy Policy",
       matchers: [/^\/privacy-policy/],
       rootpath: "/privacy-policy",
-      description: "",
+      description: "サイトのプライバシーポリシーを掲載しています。",
       subsets: [],
     },
   ] as const
@@ -91,17 +102,51 @@ export class AllowedRoutes {
   getRootPageMeta = () => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
 
-    const roots = AllowedRoutes._ROUTE_CONFIG.map((route) => {
-      return getOmit(route, "subsets");
+    const meta = AllowedRoutes._ROUTE_CONFIG.find(({ matchers, subsets }) => {
+      const isMatchRoot = matchers.some((matcher) => {
+        return matcher.test(this._path);
+      });
+
+      if (subsets.length > 0) {
+        const subsetPatterns = subsets.flatMap(({ matchers }) => {
+          return matchers;
+        });
+
+        const isMatchSubset = subsetPatterns.some((matcher) => {
+          return matcher.test(this._path);
+        });
+
+        return isMatchRoot || isMatchSubset;
+      }
+
+      return isMatchRoot;
     });
 
-    const obj = roots.find(({ matchers }) => {
+    const isRoot = AllowedRoutes._ROUTE_CONFIG.flatMap(({ matchers }) => {
+      return matchers;
+    }).some((matcher) => {
+      return matcher.test(this._path);
+    });
+
+    if (!meta) throw new Error(`Invalid path: ${this._path}`);
+    return { meta, isRoot };
+  }
+
+  // サブページのメタ情報
+  getSubsetPageMeta = () => {
+    if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
+
+    const { meta } = this.getRootPageMeta();
+
+    if (meta.subsets.length < 1) return { meta: getOmit(meta, "subsets"), isRoot: true };
+
+    const subsetMeta = meta.subsets.find(({ matchers }) => {
       return matchers.some((matcher) => {
         return matcher.test(this._path);
       });
     });
 
-    if (!obj) throw new Error(`Invalid path: ${this._path}`);
-    return obj;
+    if (!subsetMeta) return { meta: getOmit(meta, "subsets"), isRoot: true };
+    return { meta: subsetMeta, isRoot: false };
   }
 }

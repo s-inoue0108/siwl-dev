@@ -1,10 +1,14 @@
 ---
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
+import { AllowedRoutes } from "../utils/common/route";
+
+const routes = new AllowedRoutes(Astro.url.pathname);
+const { meta } = routes.getSubsetPageMeta();
 ---
 
-<Base title={`Contact | ${import.meta.env.APP_NAME}`} description={`${import.meta.env.APP_NAME}に関するお問い合わせ、運営者への連絡を受け付けております。`}>
-	<Breadcrumbs />
-	<section class="w-full flex flex-col">
+<Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
+	<section class="pt-8 w-full flex flex-col lg:flex-row">
+    <Breadcrumbs />
 	</section>
 </Base>

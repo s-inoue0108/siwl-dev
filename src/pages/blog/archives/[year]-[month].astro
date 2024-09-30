@@ -2,6 +2,10 @@
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import Breadcrumbs from "../../../components/common/Breadcrumbs.astro";
+import ProfileCard from "../../../components/card/ProfileCard.astro";
+import TagCardsPanel from "../../../components/large/TagCardsPanel";
+import CategoriesPanel from "../../../components/large/CategoriesPanel";
+import { AllowedRoutes } from "../../../utils/common/route";
 
 export const getStaticPaths = (async () => {
   const articles = await getCollection("article", ({ data }) => {
@@ -35,11 +39,15 @@ export const getStaticPaths = (async () => {
 
 const { year, month } = Astro.params;
 const { articles } = Astro.props;
+
+const route = new AllowedRoutes(Astro.url.pathname);
+const { meta } = route.getSubsetPageMeta();
 ---
 
-<Base title={`Archives (${year}-${month}) | ${import.meta.env.APP_NAME}`} description="記事のアーカイブとスタッツを公開しています。">
-  <Breadcrumbs />
-	<section class="w-full flex flex-col">
+<Base title={`${meta.name} for ${year}-${month} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
+	<section class="pt-8 w-full flex flex-col lg:flex-row">
+    <article class="flex flex-col gap-8 lg:w-[65%]">
+    <Breadcrumbs count={articles.length} archive={{ year, month }} />
     <ul>
       {articles.map((article) => {
         return (
@@ -49,5 +57,13 @@ const { articles } = Astro.props;
         );
       })}
     </ul>
+    </article>
+    <aside class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
+      <ProfileCard />
+      <div class="lg:sticky lg:top-24 flex flex-col sm:gap-8">
+        <CategoriesPanel client:visible />
+        <TagCardsPanel client:visible />
+      </div>
+    </aside>
 	</section>
 </Base>

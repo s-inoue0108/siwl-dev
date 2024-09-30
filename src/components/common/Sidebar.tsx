@@ -65,7 +65,7 @@ const Sidebar = ({ appName }: Props) => {
 					</a>
 				</li>
 				<li class="flex items-center">
-					<a href="/blog/archive" data-astro-reload>
+					<a href="/blog/archives" data-astro-reload>
 						Archives
 					</a>
 				</li>
