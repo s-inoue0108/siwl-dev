@@ -1,47 +1,40 @@
-# Astro Starter Kit: Minimal
+# SIWL.dev
 
-```sh
-npm create astro@latest -- --template minimal
+[SIWL.dev](/public/siwl-logo.svg)
+
+# コンテンツの追加・編集・削除
+
+## siwl CLI
+
+```bash:usage
+$ siwl <action> <model> <filename>
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### `<model>`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+`article` または `tag` を指定します。
 
-## 🚀 Project Structure
+### `<action>`
 
-Inside of your Astro project, you'll see the following folders and files:
+#### 共通のもの
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+以下のコマンドは `<model>` `<filename>` を指定せず実行します。
+開発サーバの起動、公開設定の反映などがあります。
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| `<action>` | 説明                                                                           |
+| :--------- | :----------------------------------------------------------------------------- |
+| `dev`      | 開発サーバを起動します                                                         |
+| `publish`  | `edit` リモートブランチに変更内容を反映し、`main` ブランチにマージします。[^1] |
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+[^1]: `git `
 
-Any static assets, like images, can be placed in the `public/` directory.
+### 引数をとるもの
 
-## 🧞 Commands
+コンテンツの追加・削除・編集などのコマンドがあります。
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| `<action>` | 説明                                                                                                |
+| :--------- | :-------------------------------------------------------------------------------------------------- |
+| `add`      | `/content/<model>/` に `<filename>.mdx` または `<filename>.yaml` を追加し、スキーマを初期化します。 |
+| `remove`   | `/content/<model>/` から `<filename>.mdx` または `<filename>.yaml` を削除します。                   |
+| `list`     | `<model>` を一覧表示します。`draft` になっているコンテンツはハイライト表示します。                  |
+|            |                                                                                                     |

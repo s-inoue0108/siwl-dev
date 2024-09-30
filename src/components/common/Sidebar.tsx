@@ -5,16 +5,13 @@ import { IoLogoGithub, IoLogoTwitter } from "solid-icons/io";
 import { SiZenn } from "solid-icons/si";
 import SearchInput from "../form/SearchInput";
 import { isOpenMenu } from "../../utils/store/isOpenMenu";
-import ProfileCard from "../card/ProfileCard";
+// import ProfileCard from "../card/ProfileCard";
 
 interface Props {
 	appName: string;
-	gitHubUrl: string;
-	zennUrl: string;
-	xUrl: string;
 }
 
-const Sidebar = (props: Props) => {
+const Sidebar = ({ appName }: Props) => {
 	return (
 		<aside
 			class={`hidden lg:block fixed top-0 left-0 pt-4 px-8 w-[360px] transition duration-300 ${
@@ -24,7 +21,7 @@ const Sidebar = (props: Props) => {
 			<header>
 				<nav class="pt-6">
 					<a href="/" class="text-5xl font-bold" data-astro-reload>
-						{props.appName}
+						{appName}
 					</a>
 					<ul class="absolute top-4 right-[0.7rem] flex flex-col items-center gap-4">
 						<li>
@@ -35,7 +32,7 @@ const Sidebar = (props: Props) => {
 							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<SwitchTheme size="1.8rem" isBorder={true} />
 						</li>
-						<ul class="pt-8 flex flex-col items-center gap-6">
+						{/* <ul class="pt-8 flex flex-col items-center gap-6">
 							<li>
 								<LinkButton
 									href={props.gitHubUrl}
@@ -57,7 +54,7 @@ const Sidebar = (props: Props) => {
 									Icon={<SiZenn size="1.6rem" />}
 								/>
 							</li>
-						</ul>
+						</ul> */}
 					</ul>
 				</nav>
 			</header>
@@ -88,7 +85,7 @@ const Sidebar = (props: Props) => {
 					</a>
 				</li>
 			</ul>
-			<ProfileCard />
+			{/* <ProfileCard /> */}
 		</aside>
 	);
 };

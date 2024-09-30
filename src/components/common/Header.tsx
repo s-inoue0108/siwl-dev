@@ -33,16 +33,16 @@ const Header = ({ appName, currentPath }: Props) => {
 						<NavigationLink name="Blog" href="/blog/1" isCurrent={/^\/blog\//.test(currentPath)} />
 					</li>
 					<li>
-						<NavigationLink name="About" href="/about" isCurrent={/^\/about$/.test(currentPath)} />
+						<NavigationLink name="About" href="/about" isCurrent={/^\/about/.test(currentPath)} />
 					</li>
 					<li>
-						<NavigationLink name="Works" href="/works" isCurrent={/^\/works$/.test(currentPath)} />
+						<NavigationLink name="Works" href="/works" isCurrent={/^\/works/.test(currentPath)} />
 					</li>
 					<li>
 						<NavigationLink
 							name="Contact"
 							href="/contact"
-							isCurrent={/^\/contact$/.test(currentPath)}
+							isCurrent={/^\/contact/.test(currentPath)}
 						/>
 					</li>
 					<li>

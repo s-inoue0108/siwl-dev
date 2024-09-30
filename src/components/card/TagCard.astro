@@ -12,14 +12,14 @@ const { id, isLink = true } = Astro.props;
 const tag = await getEntry("tag", id);
 ---
 
-<div class="w-fit">
+<div>
 	<a href={`/blog/tag/${id}/1`} class={`${
 		isLink
-		? "cursor-pointer hover:bg-accent-foreground hover:text-foreground transition"
+		? "cursor-pointer hover:bg-accent-base hover:text-foreground transition"
 		: "pointer-events-none"
 		} inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
 	>
-		<figure class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+		<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
 			{
 				tag.data.icon ? (
 					<Image
@@ -33,10 +33,10 @@ const tag = await getEntry("tag", id);
 				<IoPricetag />
 			)
 			}
-		</figure>
-		<figcaption class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-medium`}>
+		</div>
+		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold`}>
 			{tag.data.name}
-		</figcaption>
+		</span>
 	</a>
 </div>
 

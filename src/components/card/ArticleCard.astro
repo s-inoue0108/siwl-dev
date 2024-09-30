@@ -1,8 +1,7 @@
 ---
-import { type CollectionEntry } from "astro:content";
+import { type CollectionEntry,　getEntry } from "astro:content";
 import TagCard from "./TagCard.astro";
-import { IoGitCommitOutline } from "solid-icons/io";
-import { BsTextParagraph } from "solid-icons/bs";
+import { IoGitCommit, IoTimer, IoCodeSlash } from "solid-icons/io";
 import { Image } from "astro:assets";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
 
@@ -12,14 +11,41 @@ interface Props {
 
 const { article } = Astro.props;
 const { slug, data } = article;
+
+const getFirstTagIcon = async () => {
+	if (!data.tags) return undefined;
+	const firstTag = await getEntry("tag", data.tags[0].id);
+	return firstTag.data.icon;
+}
+
+const firstTagIcon = await getFirstTagIcon();
 ---
 
-<section id={`article-card-${slug}`} class="relative animate-fade-in">
+<section id={`article-card-${slug}`} class="relative">
 	<div class="flex flex-col sm:flex-row sm:justify-between gap-2">
-		<a href={`/blog/article/${slug}`} class="hover:opacity-80 transition-opacity duration-150 rounded-md">
-			<Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="sm:w-[28rem] object-contain rounded-md" transition:name={`thambnail-${article.slug}`} />
+		<a href={`/blog/article/${slug}`} class="bg-accent-base hover:opacity-80 transition-opacity duration-150 rounded-md">
+			<div class="relative w-full sm:w-64 h-36 p-6">
+				{
+					firstTagIcon ? (
+						<Image
+							src={firstTagIcon}
+							width={512}
+							height={512}
+							alt={data.title}
+							class="flex items-center justify-center w-full h-full lg:-translate-x-[2rem] object-contain"
+							transition:name={`thambnail-${article.slug}`}
+						/>
+					) : (
+						<span>
+              <IoCodeSlash color="var(--foreground)" />
+						</span>
+					)
+				}
+			</div>
+			<!-- <Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="sm:w-[240px] h-[135px] object-contain rounded-md" transition:name={`thambnail-${article.slug}`} /> -->
+
 		</a>
-		<div class="w-full flex flex-col border-b-[1px] border-muted-background">
+		<div class="w-full flex flex-col border-b border-muted-background">
 			<div class="relative h-32 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
@@ -32,8 +58,8 @@ const { slug, data } = article;
 					</ul>
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
-					<a href={`/blog/article/${slug}`} class="hover:text-accent-foreground transition-colors duration-150">
-						<h1 class="font-semibold text-2xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
+					<a href={`/blog/article/${slug}`} class="hover:text-accent-base transition-colors duration-150">
+						<h1 class="font-extrabold text-xl lg:text-2xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
 							{data.title}
 						</h1>
 					</a>
@@ -41,11 +67,11 @@ const { slug, data } = article;
 			</div>
 			<div class="flex justify-between items-end">
 				<ul class="flex items-center gap-4 pl-2 pb-1">
-					<li class="inline-flex items-center gap-1 text-[0.8rem] sm:text-[1.2rem]">
-						<IoGitCommitOutline color="var(--accent-foreground)" class="rotate-90" />
+					<a href={`/blog/archive/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`} class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
+						<IoGitCommit class="rotate-90" />
 						<time
 							datetime={data.publishDate.toISOString()}
-							class="text-xs sm:text-sm text-muted-foreground tracking-wider"
+							class="text-xs sm:text-sm tracking-wider"
 						>
 							{data.publishDate.toLocaleDateString("ja-JP", {
 								year: "numeric",
@@ -53,10 +79,10 @@ const { slug, data } = article;
 								day: "2-digit",
 							})}
 						</time>
-					</li>
-					<li class="inline-flex items-center gap-1 text-[0.8rem] sm:text-[1.2rem]">
-						<BsTextParagraph color="var(--accent-foreground)" />
-						<p class="text-xs sm:text-sm text-muted-foreground tracking-wider">{`${300} chars`}</p>
+					</a>
+					<li class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
+						<IoTimer />
+						<p class="text-xs sm:text-sm tracking-wider">{`${300} chars`}</p>
 					</li>
 				</ul>
 				<ArticleCardLayerButton slug={slug} client:load />

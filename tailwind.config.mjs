@@ -4,19 +4,20 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				background: "var(--background)",
-				foreground: "var(--foreground)",
+				background: "rgba(var(--background), var(--opacity))",
+				foreground: "rgba(var(--foreground), var(--opacity))",
 				muted: {
-					background: "var(--muted)",
-					foreground: "var(--muted-foreground)",
+					background: "rgba(var(--muted), var(--opacity))",
+					foreground: "rgba(var(--muted-foreground), var(--opacity))",
 				},
 				accent: {
-					background: "var(--accent)",
-					foreground: "var(--accent-foreground)",
+					vivid: "rgba(var(--accent-vivid), var(--opacity))",
+					base: "rgba(var(--accent-base), var(--opacity))",
 				},
 			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",
+				inversion: "inversion 1s linear",
 			},
 			keyframes: {
 				"fade-in": {
@@ -25,6 +26,14 @@ export default {
 					},
 					"100%": {
 						opacity: "1",
+					},
+				},
+				inversion: {
+					"0%": {
+						transform: "rotate(0deg)",
+					},
+					"100%": {
+						transform: "rotate(180deg)",
 					},
 				},
 			},

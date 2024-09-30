@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import ProfileImage from "../../assets/images/profile-image.jpg";
+import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si"
+---
+
+<section class="relative w-screen -mx-4 sm:w-full sm:mx-0 lg:rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
+	<Image
+		src={ProfileImage}
+		alt="Profile Image"
+		class="w-full h-full object-cover absolute top-0 left-0 z-0 lg:rounded-xl filter grayscale select-none shadow-lg"
+		width={1008}
+		height={756}
+	/>
+	<div class="bg-background/80 z-10 p-4 rounded-xl flex flex-col items-center gap-4">
+		<div class="flex items-center gap-3 lg:gap-4">
+			<hr class="border-4 border-accent-base rounded-full h-[1rem] lg:h-[1.25rem]" />
+			<h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">
+				Shota Inoue
+			</h1>
+		</div>
+		<p class="text-muted-foreground font-medium">
+			<span>
+				21
+			</span>
+			<span>
+				歳、
+			</span>
+			<span>
+				エンジニア
+			</span>
+			<span>
+				0	
+			</span>	
+			<span>
+				年生。
+			</span>
+			<br />
+			<span>
+				数字は自動でインクリメントされます。
+			</span>
+			<br />
+			<span>
+				フロントエンドの技術を学習中。
+			</span>
+		</p>
+		<ul class="flex items-center gap-3">
+			<li>
+				<a href="/about" class="font-semibold tracking-wide hover:bg-accent-base transition-colors duration-150 px-2 py-1 rounded-xl">
+					Profile
+				</a>
+			</li>
+			<ul class="flex items-center gap-5">
+				<li>
+					<a href={import.meta.env.GITHUB_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+						<SiGithub />
+					</a>
+				</li>
+				<li>
+					<a href={import.meta.env.X_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+						<SiTwitter />
+					</a>
+				</li>
+				<li>
+					<a href={import.meta.env.ZENN_URL} target="_blank" rel="noopener noreferrer" class="text-xl hover:text-accent-base transition-colors duration-150">
+						<SiZenn />
+					</a>
+				</li>
+			</ul>
+		</ul>
+	</div>
+</section>

@@ -5,17 +5,20 @@ import { AllowedRoutes } from "../../utils/common/route";
 import TagCard from "../card/TagCard.astro";
 
 const route = new AllowedRoutes(Astro.url.pathname);
+
 interface Props {
+  count?: number;
   tagId?: CollectionEntry<"tag">["id"];
 }
 
-const { tagId } = Astro.props;
+const { count = 0, tagId } = Astro.props;
 ---
 
-  <ul class="pt-4 flex items-center gap-1">
+<ul class="w-full flex justify-between items-center">
+  <ul class="flex items-center gap-1">
     <li class="flex items-center">
-      <a href="/blog/1" class="font-semibold text-sm lg:text-lg text-muted-foreground hover:text-accent-foreground transition-colors duration-150">
-        {route.getRootPageName()}
+      <a href="/blog/1" class="font-semibold text-sm lg:text-lg text-muted-foreground hover:text-accent-base transition-colors duration-150">
+        {route.getRootPageMeta().name}
       </a>
       <span class="text-base lg:text-xl text-muted-foreground">
         <IoChevronForward />
@@ -29,3 +32,10 @@ const { tagId } = Astro.props;
       )
     }
   </ul>
+  {
+    count > 0 && (
+      <p class="font-semibold text-sm lg:text-lg text-muted-foreground">{`${count} 件を表示中`}</p>
+    )
+  }
+</ul>
+  

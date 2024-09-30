@@ -40,7 +40,7 @@ const SwitchTheme = ({ size = "1.2rem", isBorder = false }: Props) => {
 			onClick={switchTheme}
 			class={`${
 				isBorder &&
-				"p-[0.375rem] border-[1px] border-muted-foreground rounded-md transition hover:bg-accent-foreground hover:border-accent-foreground"
+				"p-[0.375rem] border-[1px] border-muted-foreground rounded-md transition hover:bg-accent-base hover:border-accent-base"
 			}`}
 		>
 			{isDark() ? <IoMoon size={size} /> : <IoSunny size={size} />}

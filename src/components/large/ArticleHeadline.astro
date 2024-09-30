@@ -1,8 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
-import { IoGitMergeOutline, IoGitCommitOutline } from "solid-icons/io";
-import { BsTextParagraph } from "solid-icons/bs";
+import { IoGitMergeOutline, IoGitCommitOutline, IoTimerOutline } from "solid-icons/io";
 import TagCard from "../card/TagCard.astro";
 interface Props {
   slug: CollectionEntry<"article">["slug"];
@@ -18,8 +17,8 @@ const { slug, data } = Astro.props;
   </figure>
   <ul class="flex justify-between items-center pt-1">
     <ul class="flex items-center gap-4">
-      <li class="inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
-        <IoGitCommitOutline color="var(--accent-foreground)" class="rotate-90" />
+      <a href={`/blog/archive/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`} class="text-accent-base inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
+        <IoGitCommitOutline class="rotate-90" />
         <time
           datetime={data.publishDate.toISOString()}
           class="text-xs lg:text-lg text-muted-foreground tracking-wider"
@@ -30,11 +29,11 @@ const { slug, data } = Astro.props;
             day: "2-digit",
           })}
         </time>
-      </li>
+      </a>
       {
         data.updateDate && (
-          <li class="inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
-          <IoGitMergeOutline color="var(--accent-foreground)" />
+          <li class="text-accent-base inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
+          <IoGitMergeOutline />
           <time
             datetime={data.updateDate.toISOString()}
             class="text-xs lg:text-lg text-muted-foreground tracking-wider"
@@ -49,8 +48,8 @@ const { slug, data } = Astro.props;
         )
       }
     </ul>
-    <li class="inline-flex items-center gap-1">
-      <BsTextParagraph size={"0.8rem"} color="var(--accent-foreground)" />
+    <li class="text-accent-base inline-flex items-center gap-1">
+      <IoTimerOutline size={"0.8rem"} />
       <p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
     </li>
   </ul>

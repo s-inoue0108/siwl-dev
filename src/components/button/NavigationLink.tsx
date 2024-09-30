@@ -17,7 +17,7 @@ const NavigationLink = ({ name, href, isExternal = false, isCurrent }: Props) =>
 		>
 			<span
 				class={`inline-flex items-center gap-1 pt-3 pb-2 border-b-4 ${
-					isCurrent ? "border-accent-foreground" : "border-background"
+					isCurrent ? "border-accent-base" : "border-background"
 				}`}
 			>
 				<span class="text-xl font-medium">{name}</span>

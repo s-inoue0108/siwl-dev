@@ -37,13 +37,13 @@ const ArticleCardLayerButton = ({ slug }: Props) => {
 		<button
 			type="button"
 			class={`relative ${
-				isOpen() ? "bg-accent-foreground" : "bg-muted-background"
-			} hover:bg-accent-foreground transition-colors duration-150 rounded-t-md w-8 h-[calc(2rem-1px)]`}
+				isOpen() ? "bg-accent-base" : "bg-muted-background"
+			} hover:bg-accent-base transition-colors duration-150 rounded-t-md w-8 h-[calc(2rem-1px)]`}
 			onClick={() => setIsOpen(!isOpen())}
 		>
 			<div
 				class={`transition-colors duration-150 absolute top-[calc(50%+1px)] left-1/2 -translate-x-1/2 -translate-y-1/2 ${
-					isOpen() ? "text-accent-background" : "text-muted-foreground"
+					isOpen() ? "text-accent-vivid" : "text-muted-foreground"
 				}`}
 			>
 				<IoPricetags size={"1rem"} />

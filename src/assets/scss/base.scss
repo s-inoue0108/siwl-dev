@@ -4,26 +4,30 @@
 
 @layer base {
 	.light {
-		--background: #f9f9f9; // ベースの背景色
-		--foreground: #030303; // ベースの文字色
+		--opacity: 1;
 
-		--muted: #e4e8fa; // 補足要素の背景色
-		--muted-foreground: #4b5563; // 補足要素の文字色
+		--background: 249, 249, 249; // ベースの背景色
+		--foreground: 3, 3, 3; // ベースの文字色
 
-		--accent: #4020d0;
-		--accent-foreground: #b79aed;
+		--muted: 228, 232, 250; // 補足要素の背景色
+		--muted-foreground: 75, 85, 99; // 補足要素の文字色
+
+		--accent-vivid: 120, 82, 220;
+		--accent-base: 183, 154, 237;
 	}
 
 	// ダークモード時の配色
 	.dark {
-		--background: #040818;
-		--foreground: #fcfcfc;
+		--opacity: 1;
 
-		--muted: #141830;
-		--muted-foreground: #868893;
+		--background: 4, 8, 24;
+		--foreground: 252, 252, 252;
 
-		--accent: #4020d0;
-		--accent-foreground: #7749c3;
+		--muted: 20, 24, 48;
+		--muted-foreground: 134, 136, 147;
+
+		--accent-vivid: 64, 32, 208;
+		--accent-base: 120, 82, 220;
 	}
 }
 
