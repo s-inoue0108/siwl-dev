@@ -20,12 +20,13 @@ const categories = await getCollection("category");
     <article class="flex flex-col gap-8 lg:w-[65%]">
       <Breadcrumbs />
       <h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
-      <p class="mx-auto text-justify text-muted-foreground">
-        <a href="https://zenn.dev/tech-or-idea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sky hover:underline">
+      <p class="mx-auto text-muted-foreground">
+        <span class="sm:text-lg">{meta.description}</span>
+        <a href="https://zenn.dev/tech-or-idea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sky sm:text-lg hover:underline">
           <span>Zennの投稿カテゴリ</span>
           <TbExternalLink />
         </a>
-        <span>に倣って記事を分類しています。</span>
+        <span class="sm:text-lg">に倣って記事を分類しています。</span>
       </p>
       <ul class="pt-2 flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-4">
         {categories.map(({ id, data }) => (
@@ -47,7 +48,7 @@ const categories = await getCollection("category");
                     </div>
                   }
                 </div>
-                <p class="mx-auto px-5 pb-2 font-medium">
+                <p class="mx-auto px-5 pb-3 font-medium">
                   {data.description}
                 </p>
               </div>

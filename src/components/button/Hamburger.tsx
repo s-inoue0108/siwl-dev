@@ -23,6 +23,7 @@ const Hamburger = ({ size = "1.2rem", isBorder = false }: Props) => {
 		}
 		setIsOpenMenu(!isOpenMenu());
 	};
+
 	return (
 		<button
 			type="button"

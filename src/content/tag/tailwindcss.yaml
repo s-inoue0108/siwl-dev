@@ -1,3 +1,4 @@
 isDraft: false
 name: Tailwind CSS
 belong: tech
+icon: ./icons/tailwindcss.svg

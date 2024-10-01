@@ -1,11 +1,7 @@
 import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
-import LinkButton from "../button/LinkButton";
-import { IoLogoGithub, IoLogoTwitter } from "solid-icons/io";
-import { SiZenn } from "solid-icons/si";
 import SearchInput from "../form/SearchInput";
 import { isOpenMenu } from "../../utils/store/isOpenMenu";
-// import ProfileCard from "../card/ProfileCard";
 
 interface Props {
 	appName: string;
@@ -32,29 +28,6 @@ const Sidebar = ({ appName }: Props) => {
 							{/* width: 1.8 + 0.75rem = 2.55rem */}
 							<SwitchTheme size="1.8rem" isBorder={true} />
 						</li>
-						{/* <ul class="pt-8 flex flex-col items-center gap-6">
-							<li>
-								<LinkButton
-									href={props.gitHubUrl}
-									isExternal={true}
-									Icon={<IoLogoGithub size="1.6rem" />}
-								/>
-							</li>
-							<li>
-								<LinkButton
-									href={props.xUrl}
-									isExternal={true}
-									Icon={<IoLogoTwitter size="1.6rem" />}
-								/>
-							</li>
-							<li>
-								<LinkButton
-									href={props.zennUrl}
-									isExternal={true}
-									Icon={<SiZenn size="1.6rem" />}
-								/>
-							</li>
-						</ul> */}
 					</ul>
 				</nav>
 			</header>

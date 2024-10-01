@@ -4,6 +4,7 @@ import OpenSearchInput from "../button/OpenSearchInput";
 import NavigationLink from "../button/NavigationLink";
 import LinkButton from "../button/LinkButton";
 import { IoLogoRss } from "solid-icons/io";
+import SearchInput from "../form/SearchInput";
 
 interface Props {
 	appName: string;
@@ -13,7 +14,7 @@ interface Props {
 const Header = ({ appName, currentPath }: Props) => {
 	return (
 		<header class="sticky top-0 lg:left-[3.95rem] w-full lg:w-[calc(100%-3.95rem)] h-9 sm:h-12 lg:h-16 bg-background border-b-[0.5px] border-muted-foreground z-50">
-			<nav class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 lg:px-[1.975rem]">
+			<nav class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 lg:px-[1.975rem] xl:px-[3.95rem]">
 				<a href="/">
 					<h1 class="sm:text-lg md:text-2xl lg:text-4xl font-extrabold">{appName}</h1>
 				</a>
@@ -49,6 +50,10 @@ const Header = ({ appName, currentPath }: Props) => {
 						<LinkButton Icon={<IoLogoRss size="1.6rem" />} href="/rss.xml" isExternal={true} />
 					</li>
 				</ul>
+				<div class="hidden lg:flex flex-col items-center">
+					<SearchInput mount="header" />
+					<div id="search-modal-header" class="fixed top-16" />
+				</div>
 			</nav>
 		</header>
 	);

@@ -20,9 +20,13 @@ const tags = await getCollection("tag", ({ data }) => {
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
     <article class="flex flex-col gap-8 lg:w-[65%]">
       <Breadcrumbs count={tags.length} />
-      <ul>
+      <h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
+      <p class="mx-auto text-muted-foreground sm:text-lg">
+        {meta.description}
+      </p>
+      <ul class="flex flex-wrap items-center gap-2 lg:gap-4">
         {
-          tags.length > 0 && tags.map(({ id, data }) => (
+          tags.length > 0 && tags.map(({ id }) => (
             <li>
               <TagCard id={id} />
             </li>

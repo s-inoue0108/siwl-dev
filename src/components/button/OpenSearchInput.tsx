@@ -1,14 +1,40 @@
 import { IoClose, IoSearch } from "solid-icons/io";
-import { createSignal } from "solid-js";
+import { isOpenSearchModal, setIsOpenSearchModal } from "../../utils/store/isOpenSearchModal";
+import SearchInput from "../form/SearchInput";
+import { Portal, Show } from "solid-js/web";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const OpenSearchInput = () => {
-	const [isOpen, setIsOpen] = createSignal(false);
-	const open = () => setIsOpen(true);
-	const close = () => setIsOpen(false);
+	const toggleOpen = () => {
+		const content = document.getElementById("content")!;
+		if (isOpenSearchModal()) {
+			enableBodyScroll(content);
+			content.style.opacity = "1";
+			content.style.pointerEvents = "auto";
+			content.style.userSelect = "auto";
+		} else {
+			disableBodyScroll(content, { reserveScrollBarGap: true });
+			content.style.opacity = "0.05";
+			content.style.pointerEvents = "none";
+			content.style.userSelect = "none";
+		}
+		setIsOpenSearchModal(!isOpenSearchModal());
+	};
+
 	return (
-		<button type="button" onMouseEnter={open} onMouseLeave={close}>
-			{isOpen() ? <IoClose size="1.2rem" /> : <IoSearch size="1.2rem" />}
-		</button>
+		<div class="relative">
+			<button type="button" onClick={toggleOpen}>
+				{isOpenSearchModal() ? <IoClose size="1.2rem" /> : <IoSearch size="1.2rem" />}
+			</button>
+			<Portal mount={document.body}>
+				<Show when={isOpenSearchModal()}>
+					<div class="z-50 w-full h-full p-4 fixed top-9 sm:top-12 lg:top-16 left-0 overflow-y-auto">
+						<SearchInput mount="below" />
+					</div>
+				</Show>
+			</Portal>
+			<div id="search-modal-mobile" class="fixed top-0 left-0 w-full" />
+		</div>
 	);
 };
 

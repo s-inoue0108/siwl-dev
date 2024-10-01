@@ -17,8 +17,8 @@ const category = await getEntry("category", data.category.id);
 
 <section id={`article-card-${slug}`}>
 	<div class="flex flex-col sm:flex-row gap-2">
-		<a href={`/blog/articles/${slug}`} class=`sm:w-64 h-36 hover:opacity-80 transition-opacity duration-150 rounded-md ${category.data.colors.bg}`>
-			<div class="relative w-full h-full p-6">
+		<a href={`/blog/articles/${slug}`} class=`sm:w-80 h-28 sm:h-[11.25rem] hover:opacity-80 transition-opacity duration-150 rounded-md ${category.data.colors.bg}`>
+			<div class="relative w-full h-full">
 				{
 					<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
 						<span class="text-4xl lg:text-4xl">{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}</span>
@@ -28,7 +28,7 @@ const category = await getEntry("category", data.category.id);
 			</div>
 		</a>
 		<div class="w-full flex flex-col border-b-2 border-muted-background">
-			<div class="relative h-32 sm:h-full">
+			<div class="relative h-28 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
 						{data.tags &&
@@ -41,7 +41,7 @@ const category = await getEntry("category", data.category.id);
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
 					<a href={`/blog/articles/${slug}`} class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`>
-						<h1 class="font-extrabold text-xl lg:text-2xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
+						<h1 class="font-extrabold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
 							{data.title}
 						</h1>
 					</a>

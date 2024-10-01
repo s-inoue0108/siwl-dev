@@ -1,5 +1,5 @@
 import { IoChevronUp } from "solid-icons/io";
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import { allCategories } from "../../utils/store/collections";
 import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 
@@ -24,7 +24,7 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 					<IoChevronUp class={isOpen() ? "rotate-180" : ""} />
 				</button>
 			</div>
-			{isOpen() && (
+			<Show when={isOpen()}>
 				<ul class="pt-2 flex flex-row-reverse justify-center items-center gap-4">
 					{allCategories.map(({ id, data }) => (
 						<li class="w-full">
@@ -54,7 +54,7 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 						</li>
 					))}
 				</ul>
-			)}
+			</Show>
 		</section>
 	);
 };
