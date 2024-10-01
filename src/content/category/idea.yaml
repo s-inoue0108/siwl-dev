@@ -1,2 +1,9 @@
-name: "Idea"
+name: Idea
 description: キャリアや資格など、プログラミングに直接関係しない内容をつぶやくカテゴリです。
+colors:
+  text: "text-accent-base"
+  textHover: "hover:text-accent-base"
+  bg: "bg-accent-base"
+  bgHover: "hover:bg-accent-base"
+  border: "border-accent-base"
+  borderHover: "hover:border-accent-base"

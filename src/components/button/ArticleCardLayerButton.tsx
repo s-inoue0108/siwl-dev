@@ -4,9 +4,10 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
 	article: CollectionEntry<"article">;
+	category: CollectionEntry<"category">;
 }
 
-const ArticleCardLayerButton = ({ article }: Props) => {
+const ArticleCardLayerButton = ({ article, category }: Props) => {
 	const [isOpen, setIsOpen] = createSignal(false);
 
 	createEffect(() => {
@@ -38,12 +39,8 @@ const ArticleCardLayerButton = ({ article }: Props) => {
 			type="button"
 			class={`relative ${
 				isOpen()
-					? `${article.data.category.id === "tech" ? "bg-accent-base" : "bg-accent-sub-base"}`
-					: `bg-muted-background ${
-							article.data.category.id === "tech"
-								? "hover:bg-accent-base"
-								: "hover:bg-accent-sub-base"
-					  }`
+					? `${category.data.colors.bg}`
+					: `bg-muted-background ${category.data.colors.bgHover}`
 			} transition-colors duration-150 rounded-t-lg w-16 h-8 translate-y-[2px]`}
 			onClick={() => setIsOpen(!isOpen())}
 		>

@@ -19,6 +19,14 @@ const categoryCollection = defineCollection({
   schema: z.object({
     name: z.string(),
     description: z.string().optional(),
+    colors: z.object({
+      text: z.string(),
+      textHover: z.string(),
+      bg: z.string(),
+      bgHover: z.string(),
+      border: z.string(),
+      borderHover: z.string(),
+    }),
   })
 });
 

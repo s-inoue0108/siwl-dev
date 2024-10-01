@@ -25,28 +25,22 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 				</button>
 			</div>
 			{isOpen() && (
-				<ul class="pt-2 flex justify-center items-center gap-4">
+				<ul class="pt-2 flex flex-row-reverse justify-center items-center gap-4">
 					{allCategories.map(({ id, data }) => (
 						<li class="w-full">
 							<a
 								href={`/blog/categories/${id}/1`}
 								class={`${
 									new RegExp(`^/blog/categories/${id}/`).test(currentPath)
-										? `${
-												id === "tech"
-													? "bg-accent-base border-accent-base text-foreground"
-													: "bg-accent-sub-base border-accent-sub-base text-foreground"
-										  }`
-										: `${id === "tech" ? "text-accent-base" : "text-accent-sub-base"}`
+										? `${id === "tech" ? "text-accent-sub-base" : "text-accent-base"}`
+										: `${data.colors.text}`
 								} cursor-pointer ${
-									id === "tech"
-										? "hover:bg-accent-base border-accent-base"
-										: "hover:bg-accent-sub-base border-accent-sub-base"
-								} border w-full hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-lg px-1`}
+									data.colors.bgHover
+								} w-full hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-lg px-1`}
 							>
 								<div class="relative w-full h-[96px] sm:h-[128px]">
 									{
-										<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
+										<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
 											<span class="text-4xl lg:text-4xl">
 												{id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
 											</span>

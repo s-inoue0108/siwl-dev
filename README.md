@@ -1,8 +1,10 @@
 # SIWL.dev
 
-![SIWL.dev](/siwl-logo.svg)
+![SIWL.dev](https://siwl-v4.vercel.app/siwl-logo.svg)
 
-# コンテンツの追加・編集・削除
+[https://siwl-v4.vercel.app](https://siwl-v4.vercel.app)
+
+# コンテンツの編集
 
 # siwl CLI
 
@@ -12,13 +14,13 @@
 $ siwl <action> <model> <filename>
 ```
 
-### `<model>`
+## `<model>`
 
 `article` または `tag` を指定します。
 
-### `<action>`
+## `<action>`
 
-#### 共通のもの
+### 共通のもの
 
 以下のコマンドは `<model>` `<filename>` を指定せず実行します。
 開発サーバの起動、公開設定の反映などがあります。
@@ -34,6 +36,7 @@ $ siwl <action> <model> <filename>
 ### 引数をとるもの
 
 コンテンツの追加・削除・編集などのコマンドがあります。
+`<model>` には `article`、`tag`、`bookmark` を選択できます。
 
 | `<action>`                  | 説明                                                                                                |
 | :-------------------------- | :-------------------------------------------------------------------------------------------------- |

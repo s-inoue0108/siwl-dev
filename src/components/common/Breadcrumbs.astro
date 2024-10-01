@@ -53,7 +53,7 @@ const subset = route.getSubsetPageMeta();
       category && (
         <li class="pt-[2px]">
           <a href={`/blog/categories/${category.id}/1`} 
-            class={`cursor-pointer ${category.id === "tech" ? "hover:bg-accent-base" : "hover:bg-accent-sub-base"} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
+            class={`cursor-pointer ${category.data.colors.bgHover} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
           >
             <div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
               {

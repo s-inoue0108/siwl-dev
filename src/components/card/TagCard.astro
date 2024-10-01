@@ -15,7 +15,7 @@ const tag = await getEntry("tag", id);
 <div>
 	<a href={`/blog/tags/${id}/1`} class={`${
 		isLink
-		? `cursor-pointer ${tag.data.belong.id === "tech" ? "hover:bg-accent-base" : "hover:bg-accent-sub-base"} hover:text-foreground transition`
+		? `cursor-pointer ${tag.data.belong.id === "tech" ? "hover:bg-accent-sub-base" : "hover:bg-accent-base"} hover:text-foreground transition`
 		: "pointer-events-none"
 		} inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
 	>

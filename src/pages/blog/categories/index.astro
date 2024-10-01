@@ -6,6 +6,8 @@ import ProfileCard from "../../../components/card/ProfileCard.astro";
 import TagCardsPanel from "../../../components/large/TagCardsPanel";
 import CategoriesPanel from "../../../components/large/CategoriesPanel";
 import { AllowedRoutes } from "../../../utils/common/route";
+import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import { TbExternalLink } from "solid-icons/tb";
 
 const route = new AllowedRoutes(Astro.url.pathname);
 const { meta } = route.getSubsetPageMeta();
@@ -17,14 +19,41 @@ const categories = await getCollection("category");
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
     <article class="flex flex-col gap-8 lg:w-[65%]">
       <Breadcrumbs />
-      <ul>
-        {
-          categories.map(({ id, data }) => (
-            <li>
-              {data.name}
-            </li>
-          ))
-        }
+      <h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
+      <p class="mx-auto text-justify text-muted-foreground">
+        <a href="https://zenn.dev/tech-or-idea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sky hover:underline">
+          <span>Zennの投稿カテゴリ</span>
+          <TbExternalLink />
+        </a>
+        <span>に倣って記事を分類しています。</span>
+      </p>
+      <ul class="pt-2 flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-4">
+        {categories.map(({ id, data }) => (
+          <li class="w-full">
+            <a
+              href={`/blog/categories/${id}/1`}
+              class={`${data.colors.bg} text-foreground cursor-pointer w-full hover:opacity-70 transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-lg px-1`}
+            >
+              <div class="flex flex-col items-center w-full h-[180px] sm:h-[210px]">
+                <div class="relative w-full h-full">
+                  {
+                    <div class="absolute top-8 left-1/2 -translate-x-1/2 flex md:flex-col items-center gap-4 lg:gap-2">
+                      <span class="text-4xl lg:text-4xl">
+                        {id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
+                      </span>
+                      <span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">
+                        {data.name}
+                      </span>
+                    </div>
+                  }
+                </div>
+                <p class="mx-auto px-5 pb-2 font-medium">
+                  {data.description}
+                </p>
+              </div>
+            </a>
+          </li>
+        ))}
       </ul>
     </article>
     <aside class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
