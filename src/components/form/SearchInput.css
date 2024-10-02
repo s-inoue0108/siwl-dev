@@ -1,8 +1,0 @@
-.search-modal-enter-active,
-.search-modal-exit-active {
-	transition: opacity 0.3s;
-}
-.search-modal-enter,
-.search-modal-exit-to {
-	opacity: 0;
-}

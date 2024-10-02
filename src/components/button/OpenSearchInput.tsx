@@ -1,8 +1,9 @@
 import { IoClose, IoSearch } from "solid-icons/io";
-import { isOpenSearchModal, setIsOpenSearchModal } from "../../utils/store/isOpenSearchModal";
+import { isOpenSearchModal, setIsOpenSearchModal } from "../../utils/store/search";
 import SearchInput from "../form/SearchInput";
 import { Portal, Show } from "solid-js/web";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import SearchResult from "../form/SearchResult";
 
 const OpenSearchInput = () => {
 	const toggleOpen = () => {
@@ -29,11 +30,13 @@ const OpenSearchInput = () => {
 			<Portal mount={document.body}>
 				<Show when={isOpenSearchModal()}>
 					<div class="z-50 w-full h-full p-4 fixed top-9 sm:top-12 lg:top-16 left-0 overflow-y-auto">
-						<SearchInput mount="below" />
+						<SearchInput />
+						<div class="pt-4 pb-8">
+							<SearchResult />
+						</div>
 					</div>
 				</Show>
 			</Portal>
-			<div id="search-modal-mobile" class="fixed top-0 left-0 w-full" />
 		</div>
 	);
 };

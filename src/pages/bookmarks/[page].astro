@@ -22,15 +22,15 @@ const { meta } = route.getRootPageMeta();
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
     <Breadcrumbs />
+    <article class="min-h-[calc(100dvh-2.25rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
     {
       page.data.map(({ data }) => {
         return (
-          <article class="flex flex-col gap-8 lg:w-[65%]">
-            <h1 class="text-3xl font-bold">{data.name}</h1>
-            <a href={data.url} class="text-lg font-medium">{data.description}</a>
-          </article>
+          <h1 class="text-3xl font-bold">{data.name}</h1>
+          <a href={data.url} class="text-lg font-medium">{data.description}</a>
         );
       })
     }
+    </article>
 	</section>
 </Base>

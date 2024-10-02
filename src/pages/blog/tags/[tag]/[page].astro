@@ -43,7 +43,7 @@ const { meta } = route.getSubsetPageMeta();
 
 <Base title={`${meta.name} | ${tag.data.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
   <section class="pt-8 w-full flex flex-col lg:flex-row">
-    <article class="flex flex-col gap-8 lg:w-[65%]">
+    <article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
       <Breadcrumbs count={page.data.length} tag={tag} />
       <ArticleCardsPanel articles={page.data} />
     </article>

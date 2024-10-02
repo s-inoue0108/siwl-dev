@@ -13,15 +13,11 @@ const NavigationLink = ({ name, href, isExternal = false, isCurrent }: Props) =>
 			href={href}
 			target={isExternal ? "_blank" : "_self"}
 			rel={isExternal ? "noopener noreferrer" : undefined}
-			class="hover:bg-muted-background transition-colors duration-150 px-3 py-2 rounded-xl"
+			class={`${
+				isCurrent ? "bg-gradient-to-r from-accent-sub-base to-accent-base" : "bg-transparent"
+			} hover:bg-muted-background transition duration-150 px-3 py-2 rounded-full`}
 		>
-			<span
-				class={`inline-flex items-center gap-1 ${
-					isCurrent
-						? "bg-gradient-to-r from-accent-sub-base to-accent-base px-4 py-1 rounded-xl"
-						: "bg-transparent"
-				}`}
-			>
+			<span class={`inline-flex items-center gap-1`}>
 				<span class={`text-xl ${isCurrent ? "font-bold" : "font-medium"}`}>{name}</span>
 				{isExternal && <TbExternalLink />}
 			</span>
