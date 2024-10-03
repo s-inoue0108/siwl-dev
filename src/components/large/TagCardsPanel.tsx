@@ -1,9 +1,7 @@
 import { createSignal, Show } from "solid-js";
-import { Transition } from "solid-transition-group";
 import { IoChevronUp, IoClose, IoPricetag } from "solid-icons/io";
 import { BsThreeDots } from "solid-icons/bs";
 import { allTags } from "../../utils/store/collections";
-import "./TagCardsPanel.css";
 
 interface Props {
 	currentPath?: string;
@@ -65,43 +63,35 @@ const TagCardsPanel = ({ currentPath = "", limit = 10 }: Props) => {
 						))}
 					{allTags &&
 						allTags.slice(limit).map(({ id, data }) => (
-							<Transition name="tag-cards-panel-more">
-								<Show when={isMore()}>
-									<li>
-										<a
-											href={`/blog/tags/${id}/1`}
-											class={`${
-												new RegExp(`^/blog/tags/${id}/`).test(currentPath)
-													? `${
-															data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
-													  } text-foreground`
-													: "text-muted-foreground"
-											} cursor-pointer ${
-												data.belong.id === "tech"
-													? "hover:bg-accent-sub-base"
-													: "hover:bg-accent-base"
-											} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
-										>
-											<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
-												{data.icon ? (
-													<img
-														src={data.icon.src}
-														width={data.icon.width}
-														height={data.icon.height}
-														alt={data.name}
-														class="w-full h-full object-contain"
-													/>
-												) : (
-													<IoPricetag />
-												)}
-											</div>
-											<span class="cursor-pointer text-sm lg:text-lg font-semibold">
-												{data.name}
-											</span>
-										</a>
-									</li>
-								</Show>
-							</Transition>
+							<li class={`${isMore() ? "" : "hidden"}`}>
+								<a
+									href={`/blog/tags/${id}/1`}
+									class={`${
+										new RegExp(`^/blog/tags/${id}/`).test(currentPath)
+											? `${
+													data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
+											  } text-foreground`
+											: "text-muted-foreground"
+									} cursor-pointer ${
+										data.belong.id === "tech" ? "hover:bg-accent-sub-base" : "hover:bg-accent-base"
+									} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
+								>
+									<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+										{data.icon ? (
+											<img
+												src={data.icon.src}
+												width={data.icon.width}
+												height={data.icon.height}
+												alt={data.name}
+												class="w-full h-full object-contain"
+											/>
+										) : (
+											<IoPricetag />
+										)}
+									</div>
+									<span class="cursor-pointer text-sm lg:text-lg font-semibold">{data.name}</span>
+								</a>
+							</li>
 						))}
 				</ul>
 				{allTags.length > limit && (

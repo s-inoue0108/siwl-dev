@@ -2,6 +2,7 @@ import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/isOpenSidebar";
 import { AllowedRoutes } from "../../utils/common/route";
+import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
 
 interface Props {
 	appName: string;
@@ -35,27 +36,33 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 					</ul>
 				</nav>
 			</header>
-			<hr class="w-full border-[0.5px] border-muted-foreground mt-16" />
-			<ul class="flex flex-col items-start gap-4 pt-4">
+			<hr
+				class={`w-full border-[0.5px] mt-16 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
+			/>
+			<ul class="flex flex-col items-start gap-4 lg:gap-6 pt-4">
 				{metas.map(({ name, rootpath, subsets }) => (
 					<li>
-						<div class="flex items-center gap-2">
-							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base rounded-full w-[0.4rem] h-[1.1rem]"></div>
-							<a href={rootpath} class="text-2xl font-semibold hover:opacity-70" data-astro-reload>
+						<div class="flex items-center gap-2 lg:gap-3">
+							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base rounded-full w-[0.4rem] h-[1.1rem] lg:w-[0.6rem] lg:h-[1.8rem]"></div>
+							<a
+								href={rootpath}
+								class="text-2xl sm:text-3xl lg:text-4xl font-semibold hover:opacity-70"
+								data-astro-reload
+							>
 								{name}
 							</a>
 						</div>
 						{subsets.length > 0 && (
-							<ul class="flex flex-col items-start gap-2 pt-4 pl-4">
+							<ul class="flex flex-col items-start gap-2 lg:gap-3 pt-4 lg:pt-6 pl-4 lg:pl-6">
 								{subsets
 									.filter((subset) => subset.name !== "Articles")
 									.map((subset) => (
 										<li>
 											<div class="flex items-center gap-2">
-												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] rounded-full"></div>
+												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 												<a
 													href={subset.rootpath}
-													class="text-lg hover:opacity-70"
+													class="text-lg sm:text-xl lg:text-2xl hover:opacity-70"
 													data-astro-reload
 												>
 													{subset.name}
@@ -68,7 +75,41 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 					</li>
 				))}
 			</ul>
-			<hr class="w-full border-[0.5px] border-muted-foreground mt-4" />
+			<hr
+				class={`w-full border-[0.5px] mt-6 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
+			/>
+			<ul class="flex items-center gap-4 lg:gap-6 pt-8">
+				<li>
+					<a
+						href={import.meta.env.GITHUB_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl lg:text-3xl"
+					>
+						<SiGithub />
+					</a>
+				</li>
+				<li>
+					<a
+						href={import.meta.env.X_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl lg:text-3xl"
+					>
+						<SiTwitter />
+					</a>
+				</li>
+				<li>
+					<a
+						href={import.meta.env.ZENN_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl lg:text-3xl"
+					>
+						<SiZenn />
+					</a>
+				</li>
+			</ul>
 		</aside>
 	);
 };

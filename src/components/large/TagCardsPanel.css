@@ -1,8 +1,0 @@
-.tag-cards-panel-more-enter-active,
-.tag-cards-panel-more-exit-active {
-	transition: opacity 0.3s;
-}
-.tag-cards-panel-more-enter,
-.tag-cards-panel-more-exit-to {
-	opacity: 0;
-}
