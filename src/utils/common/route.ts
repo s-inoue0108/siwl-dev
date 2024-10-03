@@ -5,6 +5,13 @@ export class AllowedRoutes {
   // /pages ルートの設定
   private static _ROUTE_CONFIG = [
     {
+      name: "Home",
+      matchers: [/^\/$/,],
+      rootpath: "/",
+      description: "プログラミングについての情報を発信しています。",
+      subsets: [],
+    },
+    {
       name: "Blog",
       matchers: [/^\/blog\/[0-9]+/,],
       rootpath: "/blog/1",
@@ -41,13 +48,6 @@ export class AllowedRoutes {
       ],
     },
     {
-      name: "Bookmarks",
-      matchers: [/^\/bookmarks\/[0-9]+/],
-      rootpath: "/bookmarks/1",
-      description: "よく利用するサイト等のリンクを掲載しています。",
-      subsets: [],
-    },
-    {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
@@ -59,6 +59,13 @@ export class AllowedRoutes {
       matchers: [/^\/works/],
       rootpath: "/works",
       description: "過去の制作物や、実績などを紹介しています。",
+      subsets: [],
+    },
+    {
+      name: "Bookmarks",
+      matchers: [/^\/bookmarks\/[0-9]+/],
+      rootpath: "/bookmarks/1",
+      description: "よく利用するサイト等のリンクを掲載しています。",
       subsets: [],
     },
     {
@@ -99,8 +106,16 @@ export class AllowedRoutes {
   }
 
   // rootページのメタ情報
-  getRootPageMeta = () => {
+  getRootPageMeta = (routeName?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"]) => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
+
+    if (routeName) {
+      const meta = AllowedRoutes._ROUTE_CONFIG.find(({ name }) => {
+        return name === routeName;
+      });
+      if (!meta) throw new Error(`Invalid route: ${routeName}`);
+      return { meta, isRoot: true };
+    }
 
     const meta = AllowedRoutes._ROUTE_CONFIG.find(({ matchers, subsets }) => {
       const isMatchRoot = matchers.some((matcher) => {
@@ -132,12 +147,29 @@ export class AllowedRoutes {
     return { meta, isRoot };
   }
 
+  // rootページのすべてのメタ情報
+  getRootPageMetaAll = (omitRouteNames?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"][]) => {
+    if (omitRouteNames && omitRouteNames.length > 0) {
+      return AllowedRoutes._ROUTE_CONFIG.filter(({ name }) => {
+        return omitRouteNames.every((routeName) => {
+          return routeName !== name;
+        });
+      });
+    }
+    return AllowedRoutes._ROUTE_CONFIG;
+  }
+
   // サブページのメタ情報
-  getSubsetPageMeta = () => {
+  getSubsetPageMeta = (rootRouteName?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"]) => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
 
-    const { meta } = this.getRootPageMeta();
+    if (rootRouteName) {
+      const { meta } = this.getRootPageMeta(rootRouteName);
+      if (meta.subsets.length < 1) return { meta: getOmit(meta, "subsets"), isRoot: true };
+      return { metas: meta.subsets, isRoot: false };
+    }
 
+    const { meta } = this.getRootPageMeta();
     if (meta.subsets.length < 1) return { meta: getOmit(meta, "subsets"), isRoot: true };
 
     const subsetMeta = meta.subsets.find(({ matchers }) => {

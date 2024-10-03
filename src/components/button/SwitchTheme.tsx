@@ -7,7 +7,7 @@ interface Props {
 	isBorder?: boolean;
 }
 
-const SwitchTheme = ({ size = "1.2rem", isBorder = false }: Props) => {
+const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
 	const switchTheme = () => {
 		setIsDark(!isDark());
 		const rootClass = document.documentElement.classList;
@@ -40,7 +40,7 @@ const SwitchTheme = ({ size = "1.2rem", isBorder = false }: Props) => {
 			onClick={switchTheme}
 			class={`${
 				isBorder &&
-				"p-[0.375rem] border-[1px] border-muted-foreground rounded-md transition hover:bg-accent-base hover:border-accent-base"
+				"p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background"
 			}`}
 		>
 			{isDark() ? <IoMoon size={size} /> : <IoSunny size={size} />}

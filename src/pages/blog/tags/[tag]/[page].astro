@@ -25,7 +25,10 @@ export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
       data.tags.length > 0 &&
       data.tags.map(({ id }) => id).includes(tag.id)
 			);
-		});
+		}).sort((a, b) => {
+      return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+    });
+    
 		return paginate(filteredArticles, {
 			params: { tag: tag.id },
 			pageSize: 10,

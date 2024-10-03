@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import ProfileImage from "../../assets/images/profile-image.jpg";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si"
+import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import Age from "./Age";
+import ExperienceYears from "./ExperienceYears";
 ---
 
 <section class="relative w-screen -mx-4 sm:w-full sm:mx-0 lg:rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
@@ -20,18 +22,14 @@ import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si"
 			</h1>
 		</div>
 		<p class="text-muted-foreground font-medium">
-			<span>
-				21
-			</span>
+			<Age client:load />
 			<span>
 				歳、
 			</span>
 			<span>
 				エンジニア
 			</span>
-			<span>
-				0	
-			</span>	
+			<ExperienceYears client:load />	
 			<span>
 				年生。
 			</span>

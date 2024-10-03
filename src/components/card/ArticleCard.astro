@@ -41,7 +41,7 @@ const category = await getEntry("category", data.category.id);
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
 					<a href={`/blog/articles/${slug}`} class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`>
-						<h1 class="font-extrabold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
+						<h1 class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
 							{data.title}
 						</h1>
 					</a>

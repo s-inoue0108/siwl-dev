@@ -1,28 +1,33 @@
 import { IoMenu, IoClose } from "solid-icons/io";
-import { isOpenMenu, setIsOpenMenu } from "../../utils/store/isOpenMenu";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
+import { onCleanup } from "solid-js";
+import { isOpenSidebar, setIsOpenSidebar } from "../../utils/store/isOpenSidebar";
 
 interface Props {
 	size?: string | number;
 	isBorder?: boolean;
 }
 
-const Hamburger = ({ size = "1.2rem", isBorder = false }: Props) => {
+const Hamburger = ({ size = "1.4rem", isBorder = false }: Props) => {
 	const toggleOpen = () => {
-		const content = document.getElementById("content")!;
-		if (isOpenMenu()) {
-			enableBodyScroll(content);
-			content.style.opacity = "1";
-			content.style.pointerEvents = "auto";
-			content.style.userSelect = "auto";
+		const dom = document.getElementById("content-wrapper")!;
+		if (isOpenSidebar()) {
+			enableBodyScroll(dom);
+			dom.style.opacity = "1";
+			dom.style.pointerEvents = "auto";
+			dom.style.userSelect = "auto";
 		} else {
-			disableBodyScroll(content, { reserveScrollBarGap: true });
-			content.style.opacity = "0.2";
-			content.style.pointerEvents = "none";
-			content.style.userSelect = "none";
+			disableBodyScroll(dom, { reserveScrollBarGap: true });
+			dom.style.opacity = "0.2";
+			dom.style.pointerEvents = "none";
+			dom.style.userSelect = "none";
 		}
-		setIsOpenMenu(!isOpenMenu());
+		setIsOpenSidebar(!isOpenSidebar());
 	};
+
+	onCleanup(() => {
+		setIsOpenSidebar(false);
+	});
 
 	return (
 		<button
@@ -30,10 +35,12 @@ const Hamburger = ({ size = "1.2rem", isBorder = false }: Props) => {
 			onClick={toggleOpen}
 			class={`${
 				isBorder &&
-				"p-[0.375rem] border-[1px] border-muted-foreground rounded-md transition hover:bg-accent-base hover:border-accent-base"
-			} ${isOpenMenu() && "bg-accent-base border-0"}`}
+				`p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background ${
+					isOpenSidebar() && "bg-foreground text-muted-background"
+				}`
+			}`}
 		>
-			{isOpenMenu() ? <IoClose size={size} /> : <IoMenu size={size} />}
+			{isOpenSidebar() ? <IoClose size={size} /> : <IoMenu size={size} />}
 		</button>
 	);
 };
