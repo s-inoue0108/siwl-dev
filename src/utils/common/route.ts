@@ -106,16 +106,8 @@ export class AllowedRoutes {
   }
 
   // rootページのメタ情報
-  getRootPageMeta = (routeName?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"]) => {
+  getRootPageMeta = () => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
-
-    if (routeName) {
-      const meta = AllowedRoutes._ROUTE_CONFIG.find(({ name }) => {
-        return name === routeName;
-      });
-      if (!meta) throw new Error(`Invalid route: ${routeName}`);
-      return { meta, isRoot: true };
-    }
 
     const meta = AllowedRoutes._ROUTE_CONFIG.find(({ matchers, subsets }) => {
       const isMatchRoot = matchers.some((matcher) => {
@@ -160,14 +152,8 @@ export class AllowedRoutes {
   }
 
   // サブページのメタ情報
-  getSubsetPageMeta = (rootRouteName?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"]) => {
+  getSubsetPageMeta = () => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
-
-    if (rootRouteName) {
-      const { meta } = this.getRootPageMeta(rootRouteName);
-      if (meta.subsets.length < 1) return { meta: getOmit(meta, "subsets"), isRoot: true };
-      return { metas: meta.subsets, isRoot: false };
-    }
 
     const { meta } = this.getRootPageMeta();
     if (meta.subsets.length < 1) return { meta: getOmit(meta, "subsets"), isRoot: true };
