@@ -1,6 +1,6 @@
 ---
 isDraft: true
-title: "TEST TEST TEST"
+title: "MDX TEST"
 category: tech
 tags: [js, ts, astro, solid, sass]
 description: "TESTSTSTSTSTSTSTSTTSTSTSTSTSTSTTSTSTSTSTSTあああああああああああああああああああああああああああああああああああああああああああああああああああ"
@@ -8,18 +8,63 @@ publishDate: 2024-09-25
 updateDate: 2024-09-27
 ---
 
-# aaa
+import H1 from "../../components/mdx/H1.astro";
+import H2 from "../../components/mdx/H2.astro";
+import H3 from "../../components/mdx/H3.astro";
+import AnchorExternal from "../../components/mdx/AnchorExternal.astro";
 
-CONTENT CONTENT CONTENT CONTENT
+export const components = {
+    h1: H1,
+    h2: H2,
+    h3: H3,
+}
 
-## aaa - test
+# GFMを使う
 
-CONTENT CONTENT CONTENT CONTENT
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, nemo!
+これはテストです テスト
 
-# bbb
+# Anchor
 
-CONTENT CONTENT CONTENT CONTENT
+[MDX](https://mdxjs.com "title")
 
-## bbb - test
+## Autolink literals
 
-CONTENT CONTENT CONTENT CONTENT
+www.example.com, https://example.com, and contact@example.com.
+
+### Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+## Tasklist
+
+* [ ] to do
+* [x] done
+
+## Math
+
+これはインライン数式です $ f(x) = e^x $ は指数関数です。
+
+$$
+f(t) = \sum_{n = 0}^\infty \frac{1}{n!} \left. \frac{d^{n}f(t)}{dt^n}\right|_{t = 0}
+$$
+
+## Code
+
+`inline code`
+
+```ts:outline
+const ts = "TypeScript";
+console.log(ts);
+```

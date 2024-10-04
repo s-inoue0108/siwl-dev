@@ -1,30 +1,17 @@
-import { IoChevronUp } from "solid-icons/io";
-import { createSignal, Show } from "solid-js";
 import { allCategories } from "../../utils/store/collections";
 import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import Panel from "./Panel";
 
 interface Props {
 	currentPath?: string;
 }
 
 const CategoriesPanel = ({ currentPath = "" }: Props) => {
-	const [isOpen, setIsOpen] = createSignal(true);
 	return (
-		<section class="px-4 py-2 bg-muted-background w-screen -mx-4 sm:w-full sm:mx-0 sm:rounded-xl flex flex-col gap-2 lg:gap-4 shadow-lg">
-			<div class="w-full flex justify-between items-center">
-				<a href="/blog/categories" class="flex items-center gap-3 lg:gap-4">
-					<div class="w-2 h-[1.5rem] lg:h-[1.8rem] bg-gradient-to-b from-accent-sub-base to-accent-base rounded-full" />
-					<h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">Categories</h1>
-				</a>
-				<button
-					type="button"
-					onClick={() => setIsOpen(!isOpen())}
-					class="text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
-				>
-					<IoChevronUp class={isOpen() ? "rotate-180" : ""} />
-				</button>
-			</div>
-			<Show when={isOpen()}>
+		<Panel
+			title="Categories"
+			href="/blog/categories"
+			Content={
 				<ul class="pt-2 flex flex-row-reverse justify-center items-center gap-4">
 					{allCategories.map(({ id, data }) => (
 						<li class="w-full">
@@ -54,8 +41,8 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 						</li>
 					))}
 				</ul>
-			</Show>
-		</section>
+			}
+		/>
 	);
 };
 

@@ -1,0 +1,12 @@
+---
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h1 id={id} class="mt-8 mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background">
+	<span class="bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent">#</span>
+	<slot />
+</h1>

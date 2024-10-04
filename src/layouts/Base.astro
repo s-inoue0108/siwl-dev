@@ -16,8 +16,11 @@ import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/700.css";
 import "@fontsource/montserrat/800.css";
 import "@fontsource/montserrat/900.css";
+// Code fonts
 import "@fontsource/source-code-pro/400.css";
 import "@fontsource/source-code-pro/400-italic.css";
+import "@fontsource/source-code-pro/700.css";
+import "@fontsource/source-code-pro/700-italic.css";
 // Components
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
@@ -125,7 +128,7 @@ const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env
 		<!--title -->
 		<title>{title}</title>
 	</head>
-  <body class="max-w-screen overflow-x-clip">
+  <body class="font-body max-w-screen overflow-x-clip">
 		<div id="content-wrapper">
 			<Header appName={import.meta.env.APP_NAME} currentPath={Astro.url.pathname} client:load />
 			<main id="content" class="bg-background text-foreground min-h-screen px-4 sm:px-24 lg:pl-[calc(4rem+3.95rem)] lg:pr-16 2xl:pl-[calc()]">
@@ -139,13 +142,15 @@ const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env
 
 <!--main css -->
 <style is:global lang="scss">
+	html {
+		scroll-behavior: smooth;
+	}
+
 	body {
-		font-family: "Montserrat", "Noto sans JP", "sans-serif";
 		line-break: strict;
 		word-break: break-word;
 		overflow-wrap: break-word;
 		word-wrap: break-word;
-		scroll-behavior: smooth;
 
 		&::-webkit-scrollbar {
 			width: 12px;

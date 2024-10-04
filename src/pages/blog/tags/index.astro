@@ -1,6 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
-import TagCard from "../../../components/card/TagCard.astro";
+import ClassifyCard from "../../../components/card/ClassifyCard.astro";
 import { getCollection } from "astro:content";
 import Breadcrumbs from "../../../components/common/Breadcrumbs.astro";
 import ProfileCard from "../../../components/card/ProfileCard.astro";
@@ -26,9 +26,9 @@ const tags = await getCollection("tag", ({ data }) => {
       </p>
       <ul class="flex flex-wrap items-center gap-2 lg:gap-4">
         {
-          tags.length > 0 && tags.map(({ id }) => (
+          tags.length > 0 && tags.map((tag) => (
             <li>
-              <TagCard id={id} />
+              <ClassifyCard collection={tag} />
             </li>
           ))
         }
@@ -36,7 +36,7 @@ const tags = await getCollection("tag", ({ data }) => {
     </article>
     <aside class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
       <ProfileCard />
-      <div class="lg:sticky lg:top-24 flex flex-col sm:gap-8">
+      <div class="lg:sticky lg:top-8 flex flex-col sm:gap-8">
         <CategoriesPanel client:visible />
         <TagCardsPanel client:visible />
       </div>

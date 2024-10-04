@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import { IoPricetag, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+
+interface Props {
+  collection: CollectionEntry<"category" | "tag">;
+  isLink?: boolean;
+}
+
+const { collection, isLink = true } = Astro.props;
+---
+
+<>
+	{
+    collection.collection === "category" && (
+    <a href={`/blog/categories/${collection.id}/1`} class={`${
+		isLink
+		? `cursor-pointer bg-muted-background ${collection.data.colors.bgHover} transition-colors duration-150`
+		: "pointer-events-none"
+		} inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
+	>
+		<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+			{
+				collection.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />
+			}
+		</div>
+		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold`}>
+			{collection.data.name}
+		</span>
+	</a>
+    )
+  }
+  {
+    collection.collection === "tag" && (
+    <a href={`/blog/tags/${collection.id}/1`} class={`${
+		isLink
+		? `cursor-pointer bg-muted-background ${collection.data.belong.id === "tech" ? "hover:bg-accent-sub-base" : "hover:bg-accent-base"} transition-colors duration-150`
+		: "pointer-events-none"
+		} inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
+	>
+		<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
+			{
+				collection.data.icon ? (
+					<Image
+						src={collection.data.icon}
+						width={20}
+						height={20}
+						alt={collection.data.name}
+						class="w-full h-full object-contain"
+					/>
+				) : (
+				<IoPricetag />
+			)
+			}
+		</div>
+		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold`}>
+			{collection.data.name}
+		</span>
+	</a>
+    )
+  }
+</>

@@ -23,10 +23,10 @@
     "@fontsource/source-code-pro": "^5.0.17",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.15.9",
-    "body-scroll-lock": "^4.0.0-beta.0",
     "fuse.js": "^7.0.0",
     "katex": "^0.16.9",
     "rehype-katex": "^7.0.1",
+    "remark-flexible-code-titles": "^1.2.0",
     "remark-math": "^6.0.0",
     "remark-toc": "^9.0.0",
     "satori": "^0.10.13",
@@ -38,7 +38,6 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@types/body-scroll-lock": "^3.1.2",
     "@types/grecaptcha": "^3.0.8",
     "@types/katex": "^0.16.7",
     "destyle.css": "^4.0.1",

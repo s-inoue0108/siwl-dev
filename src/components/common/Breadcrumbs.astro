@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { IoChevronForward, IoDesktopOutline, IoBulbOutline, IoGitCommitOutline } from "solid-icons/io";
+import { IoChevronForward, IoGitCommitOutline } from "solid-icons/io";
 import { AllowedRoutes } from "../../utils/common/route";
-import TagCard from "../card/TagCard.astro";
+import ClassifyCard from "../card/ClassifyCard.astro";
 
 interface Props {
   count?: number;
@@ -52,18 +52,7 @@ const subset = route.getSubsetPageMeta();
     {
       category && (
         <li class="pt-[2px]">
-          <a href={`/blog/categories/${category.id}/1`} 
-            class={`cursor-pointer ${category.data.colors.bgHover} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] text-muted-foreground rounded-md px-1`}
-          >
-            <div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
-              {
-                category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />
-              }
-            </div>
-            <span class={`cursor-pointer text-sm lg:text-lg font-semibold`}>
-              {category.data.name}
-            </span>
-          </a>
+          <ClassifyCard collection={category} />
         </li>
       )
     }
@@ -71,7 +60,7 @@ const subset = route.getSubsetPageMeta();
     {
       tag && (
         <li class="pt-[2px]">
-          <TagCard id={tag.id} />
+          <ClassifyCard collection={tag} />
         </li>
       )
     }

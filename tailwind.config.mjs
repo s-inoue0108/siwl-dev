@@ -3,6 +3,10 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		extend: {
+			fontFamily: {
+				body: ["Montserrat", "Noto Sans JP", "sans-serif"],
+				code: ["Source Code Pro", "monospace"],
+			},
 			colors: {
 				background: "rgba(var(--background), var(--opacity))",
 				foreground: "rgba(var(--foreground), var(--opacity))",
@@ -15,6 +19,7 @@ export default {
 					base: "rgba(var(--accent-base), var(--opacity))",
 					"sub-base": "rgba(var(--accent-sub-base), var(--opacity))",
 				},
+				tranparent: "transparent",
 			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",
@@ -41,6 +46,7 @@ export default {
 		},
 		colors: {
 			sky: "#38bdf8",
+			purple: "#a855f7",
 			emerald: "#76d5b4",
 			lime: "#bef264",
 		},

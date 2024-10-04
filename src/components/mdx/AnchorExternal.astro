@@ -1,0 +1,17 @@
+---
+import { IoArrowUp } from "solid-icons/io";
+
+interface Props {
+  href: string;
+  title?: string;
+}
+
+const { href, title = "" } = Astro.props;
+---
+
+<>
+  <a href={href} title={title} target="_blank" rel="noopener noreferrer" class="w-fit text-sky visited:text-purple inline-flex items-center hover:underline">
+    <slot />
+    <IoArrowUp class="rotate-45" />
+  </a>
+</>

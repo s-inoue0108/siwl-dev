@@ -17,7 +17,7 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 		<aside
 			class={`fixed top-0 left-0 pt-4 px-4 lg:px-8 w-3/4 sm:w-[360px] transition duration-300 ${
 				!isOpenSidebar() && "-translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
-			} bg-muted-background min-h-dvh z-[100]`}
+			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
 		>
 			<header>
 				<nav class="pt-6">
@@ -42,11 +42,11 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 			<ul class="flex flex-col items-start gap-4 lg:gap-6 pt-4">
 				{metas.map(({ name, rootpath, subsets }) => (
 					<li>
-						<div class="flex items-center gap-2 lg:gap-3">
-							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base rounded-full w-[0.4rem] h-[1.1rem] lg:w-[0.6rem] lg:h-[1.8rem]"></div>
+						<div class="flex items-center gap-2 lg:gap-4">
+							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base rounded-md w-[0.4rem] h-[1.1rem] lg:h-[2rem]"></div>
 							<a
 								href={rootpath}
-								class="text-2xl sm:text-3xl lg:text-4xl font-semibold hover:opacity-70"
+								class="text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
 								data-astro-reload
 							>
 								{name}
@@ -62,7 +62,7 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 												<a
 													href={subset.rootpath}
-													class="text-lg sm:text-xl lg:text-2xl hover:opacity-70"
+													class="font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
 													data-astro-reload
 												>
 													{subset.name}

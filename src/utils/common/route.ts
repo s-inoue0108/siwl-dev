@@ -105,7 +105,7 @@ export class AllowedRoutes {
     });
   }
 
-  // rootページのメタ情報
+  // rootページのメタ情報（current）
   getRootPageMeta = () => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
 
@@ -139,6 +139,18 @@ export class AllowedRoutes {
     return { meta, isRoot };
   }
 
+  // rootページのメタ情報（fromName）
+  getRootPageMetaFromName = (name: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"]) => {
+    if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
+    const meta = AllowedRoutes._ROUTE_CONFIG.find((route) => {
+      return route.name === name;
+    });
+
+    if (!meta) throw new Error(`Invalid path: ${this._path}`);
+
+    return meta;
+  }
+
   // rootページのすべてのメタ情報
   getRootPageMetaAll = (omitRouteNames?: typeof AllowedRoutes._ROUTE_CONFIG[number]["name"][]) => {
     if (omitRouteNames && omitRouteNames.length > 0) {
@@ -151,7 +163,7 @@ export class AllowedRoutes {
     return AllowedRoutes._ROUTE_CONFIG;
   }
 
-  // サブページのメタ情報
+  // サブページのメタ情報（current）
   getSubsetPageMeta = () => {
     if (!this.isAllowedPath()) throw new Error(`Invalid path: ${this._path}`);
 

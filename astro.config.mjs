@@ -5,8 +5,10 @@ import partytown from "@astrojs/partytown";
 import solid from "@astrojs/solid-js";
 import mdx from "@astrojs/mdx";
 
+// Remark/Rehype Plugins
 import remarkToc from "remark-toc";
 import remarkMath from "remark-math";
+import remarkCodeTitles from "remark-flexible-code-titles";
 import rehypeKatex from "rehype-katex";
 
 import tailwind from "@astrojs/tailwind";
@@ -37,9 +39,14 @@ export default defineConfig({
 		mdx({
 			syntaxHighlight: "shiki",
 			shikiConfig: { theme: "dracula" },
-			remarkPlugins: [remarkMath, remarkToc],
+			remarkPlugins: [remarkMath, remarkToc, remarkCodeTitles],
 			rehypePlugins: [rehypeKatex],
-			remarkRehype: { footnoteLabel: "Footnotes" },
+			remarkRehype: {
+				footnoteLabelTagName: "h1",
+				footnoteLabel: "Footnotes",
+				footnoteBackLabel: "Return to content",
+			},
+			gfm: true,
 		}),
 		tailwind(),
 	],

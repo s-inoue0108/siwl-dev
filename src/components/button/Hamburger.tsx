@@ -1,7 +1,7 @@
 import { IoMenu, IoClose } from "solid-icons/io";
-import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { onCleanup } from "solid-js";
 import { isOpenSidebar, setIsOpenSidebar } from "../../utils/store/isOpenSidebar";
+import { backfaceFixed } from "../../utils/common/utilfuncs";
 
 interface Props {
 	size?: string | number;
@@ -12,12 +12,12 @@ const Hamburger = ({ size = "1.4rem", isBorder = false }: Props) => {
 	const toggleOpen = () => {
 		const dom = document.getElementById("content-wrapper")!;
 		if (isOpenSidebar()) {
-			enableBodyScroll(dom);
+			// backfaceFixed(true);
 			dom.style.opacity = "1";
 			dom.style.pointerEvents = "auto";
 			dom.style.userSelect = "auto";
 		} else {
-			disableBodyScroll(dom, { reserveScrollBarGap: true });
+			// backfaceFixed(false);
 			dom.style.opacity = "0.2";
 			dom.style.pointerEvents = "none";
 			dom.style.userSelect = "none";

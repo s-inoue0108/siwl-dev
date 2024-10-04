@@ -6,18 +6,17 @@
 	.light {
 		--opacity: 1;
 
-		--background: 249, 249, 249; // ベースの背景色
-		--foreground: 3, 3, 3; // ベースの文字色
+		--background: 249, 249, 249;
+		--foreground: 3, 3, 3;
 
-		--muted: 228, 232, 250; // 補足要素の背景色
-		--muted-foreground: 75, 85, 99; // 補足要素の文字色
+		--muted: 228, 232, 250;
+		--muted-foreground: 75, 85, 99;
 
 		--accent-vivid: 120, 82, 220;
 		--accent-base: 183, 154, 237;
 		--accent-sub-base: 82, 152, 236;
 	}
 
-	// ダークモード時の配色
 	.dark {
 		--opacity: 1;
 

@@ -3,16 +3,14 @@ import { IoClose, IoSearch } from "solid-icons/io";
 import { isOpenModal, setIsOpenModal } from "../../utils/store/modal";
 import SearchInput from "../form/SearchInput";
 import { Portal, Show } from "solid-js/web";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import SearchResult from "../form/SearchResult";
 import { setKeyword } from "../../utils/store/search";
+import { backfaceFixed } from "../../utils/common/utilfuncs";
 
 const SearchModal = () => {
 	onMount(() => {
 		window.addEventListener("resize", () => {
 			const content = document.getElementById("content")!;
-
-			enableBodyScroll(content);
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
@@ -28,12 +26,12 @@ const SearchModal = () => {
 	const toggleOpen = () => {
 		const content = document.getElementById("content")!;
 		if (isOpenModal()) {
-			// enableBodyScroll(content);
+			backfaceFixed(true);
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
 		} else {
-			// disableBodyScroll(content, { reserveScrollBarGap: true });
+			backfaceFixed(false);
 			content.style.opacity = "0.05";
 			content.style.pointerEvents = "none";
 			content.style.userSelect = "none";

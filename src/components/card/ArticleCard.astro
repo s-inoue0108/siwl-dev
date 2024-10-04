@@ -1,9 +1,9 @@
 ---
 import { type CollectionEntry } from "astro:content";
-import TagCard from "./TagCard.astro";
-import { IoGitCommit, IoTimer, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import ClassifyCard from "./ClassifyCard.astro";
+import { IoGitCommit, IoTimerOutline, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
-import { getEntry } from "astro:content";
+import { getEntry, getEntries } from "astro:content";
 
 interface Props {
 	article: CollectionEntry<"article">;
@@ -13,6 +13,7 @@ const { article } = Astro.props;
 const { slug, data } = article;
 
 const category = await getEntry("category", data.category.id);
+const tags = await getEntries(data.tags ? data.tags : []);
 ---
 
 <section id={`article-card-${slug}`}>
@@ -31,10 +32,10 @@ const category = await getEntry("category", data.category.id);
 			<div class="relative h-28 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
-						{data.tags &&
-							data.tags.map(({ id }) => (
+						{tags &&
+							tags.map((tag) => (
 								<li>
-									<TagCard id={id} />
+									<ClassifyCard collection={tag} />
 								</li>
 							))}
 					</ul>
@@ -63,7 +64,7 @@ const category = await getEntry("category", data.category.id);
 						</time>
 					</a>
 					<li class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
-						<IoTimer />
+						<IoTimerOutline />
 						<p class="text-xs sm:text-sm tracking-wider">{`${10} min`}</p>
 					</li>
 				</ul>

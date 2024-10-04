@@ -1,27 +1,30 @@
 ---
-import { Image } from "astro:assets";
-import { type CollectionEntry } from "astro:content";
-import { IoGitMergeOutline, IoGitCommitOutline, IoTimerOutline } from "solid-icons/io";
-import TagCard from "../card/TagCard.astro";
+import { type CollectionEntry, getEntry, getEntries } from "astro:content";
+import { IoGitMerge, IoGitCommit, IoTimerOutline, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import ClassifyCard from "../card/ClassifyCard.astro";
 interface Props {
   slug: CollectionEntry<"article">["slug"];
   data: CollectionEntry<"article">["data"];
 }
 
 const { slug, data } = Astro.props;
+
+const category = await getEntry("category", data.category.id);
+const tags = await getEntries(data.tags ? data.tags : []);
 ---
 
 <section>
-  <figure class="w-screen -mx-4 lg:w-2/3 lg:mx-0">
-    <Image src={`/blog/thambnail/${slug}.png`} width={1280} height={720} alt={data.title} class="lg:rounded-xl" transition:name={`thambnail-${slug}`} />
-  </figure>
-  <ul class="flex justify-between items-center pt-1">
-    <ul class="flex items-center gap-4">
-      <a href={`/blog/archive/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`} class="text-accent-base inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
-        <IoGitCommitOutline class="rotate-90" />
+  <div class={`border-l-8 ${category.id === "tech" ? "border-accent-sub-base" : "border-accent-base"} px-4 lg:px-6 -mx-4 sm:w-full sm:mx-0`}>
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl tracking-wide font-bold" transition:name={`title-${slug}`}>
+      {data.title}
+    </h1>
+    <ul class="flex items-center gap-4 pt-4 sm:pt-8">
+      <a href={`/blog/archives/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`} 
+        class="text-muted-foreground inline-flex items-center gap-1 lg:gap-2">
+        <IoGitCommit class="rotate-90" />
         <time
           datetime={data.publishDate.toISOString()}
-          class="text-xs lg:text-lg text-muted-foreground tracking-wider"
+          class="text-sm lg:text-lg font-semibold"
         >
           {data.publishDate.toLocaleDateString("ja-JP", {
             year: "numeric",
@@ -32,36 +35,38 @@ const { slug, data } = Astro.props;
       </a>
       {
         data.updateDate && (
-          <li class="text-accent-base inline-flex items-center gap-1 lg:gap-2 text-[0.8rem] lg:text-[1.6rem]">
-          <IoGitMergeOutline />
-          <time
-            datetime={data.updateDate.toISOString()}
-            class="text-xs lg:text-lg text-muted-foreground tracking-wider"
-          >
-            {data.updateDate.toLocaleDateString("ja-JP", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          </time>
-        </li>
+          <li class="text-muted-foreground inline-flex items-center gap-1 lg:gap-2">
+            <IoGitMerge />
+            <time
+              datetime={data.updateDate.toISOString()}
+              class="text-sm lg:text-lg font-semibold"
+            >
+              {data.updateDate.toLocaleDateString("ja-JP", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+            </time>
+          </li>
         )
       }
+      <li class="text-muted-foreground inline-flex items-center gap-1 lg:gap-2">
+        <IoTimerOutline />
+        <p class="text-sm lg:text-lg font-semibold">{`${10} min`}</p>
+      </li>
     </ul>
-    <li class="text-accent-base inline-flex items-center gap-1">
-      <IoTimerOutline size={"0.8rem"} />
-      <p class="text-xs text-muted-foreground tracking-wider">{`${300} chars`}</p>
+  </div>
+  <ul class="inline-flex flex-wrap items-center gap-2 pt-8 lg:pt-12">
+    <li>
+      <ClassifyCard collection={category} />
     </li>
-  </ul>
-  <h1 class="text-3xl font-bold tracking-wide pt-6" transition:name={`title-${slug}`}>{data.title}</h1>
-  <p class="text-muted-foreground pt-6">{data.description}</p>
-  <ul class="inline-flex flex-wrap items-center gap-2 pt-6">
     {
-      data.tags && data.tags.map(({ id }) => (
+      tags && tags.map((tag) => (
         <li>
-          <TagCard id={id} />
+          <ClassifyCard collection={tag} />
         </li>
       ))
     }
   </ul>
+  <p class="text-muted-foreground font-medium leading-relaxed pt-4 lg:text-lg xl:text-xl 2xl:text-2xl">{data.description}</p>
 </section>
