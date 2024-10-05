@@ -8,18 +8,7 @@ publishDate: 2024-09-25
 updateDate: 2024-09-27
 ---
 
-import H1 from "../../components/mdx/H1.astro";
-import H2 from "../../components/mdx/H2.astro";
-import H3 from "../../components/mdx/H3.astro";
-import AnchorExternal from "../../components/mdx/AnchorExternal.astro";
-
-export const components = {
-    h1: H1,
-    h2: H2,
-    h3: H3,
-}
-
-# GFMを使う
+# GFM を使う
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, nemo!
 これはテストです テスト
@@ -44,13 +33,13 @@ A note[^1]
 
 ## Table
 
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
+| a   | b   |   c |  d  |
+| --- | :-- | --: | :-: |
 
 ## Tasklist
 
-* [ ] to do
-* [x] done
+- [ ] to do
+- [x] done
 
 ## Math
 
@@ -68,3 +57,13 @@ $$
 const ts = "TypeScript";
 console.log(ts);
 ```
+
+# Quote
+
+> TEST
+>
+> ```js:test
+> const test = "";
+> ```
+
+## Callout

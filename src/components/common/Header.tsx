@@ -20,21 +20,21 @@ const Header = ({ appName, currentPath }: Props) => {
 	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy Policy"]);
 
 	const [direction, setDirection] = createSignal<"up" | "down">("up");
-	let beforeScrollPosition = 0,
-		nowScrollPosition = 0;
+	let beforePosition = 0,
+		nowPosition = 0;
 
 	// スクロール方向を検知する処理
 	const handleScroll = () => {
-		nowScrollPosition = document.documentElement.scrollTop;
+		nowPosition = document.documentElement.scrollTop;
 
-		if (beforeScrollPosition === nowScrollPosition) return;
-		if (beforeScrollPosition < nowScrollPosition) {
+		if (beforePosition === nowPosition) return;
+		if (beforePosition < nowPosition) {
 			setDirection("down");
 		} else {
 			setDirection("up");
 		}
 
-		beforeScrollPosition = nowScrollPosition;
+		beforePosition = nowPosition;
 	};
 
 	createEffect(() => {

@@ -43,7 +43,7 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 				{metas.map(({ name, rootpath, subsets }) => (
 					<li>
 						<div class="flex items-center gap-2 lg:gap-4">
-							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base rounded-md w-[0.4rem] h-[1.1rem] lg:h-[2rem]"></div>
+							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[0.4rem] h-[1.1rem] lg:w-2 lg:h-[1.7rem]"></div>
 							<a
 								href={rootpath}
 								class="text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"

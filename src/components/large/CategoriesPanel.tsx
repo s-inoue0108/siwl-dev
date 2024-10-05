@@ -1,6 +1,7 @@
 import { allCategories } from "../../utils/store/collections";
 import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import Panel from "./Panel";
+import { allArticles } from "../../utils/store/collections";
 
 interface Props {
 	currentPath?: string;
@@ -19,7 +20,7 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 								href={`/blog/categories/${id}/1`}
 								class={`${
 									new RegExp(`^/blog/categories/${id}/`).test(currentPath)
-										? `${id === "tech" ? "text-accent-sub-base" : "text-accent-base"}`
+										? `${id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"}`
 										: `${data.colors.text}`
 								} cursor-pointer ${
 									data.colors.bgHover

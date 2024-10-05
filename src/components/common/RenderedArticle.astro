@@ -1,0 +1,66 @@
+---
+// at https://zenn.dev/rorisutarou/articles/ec3871ec55693d
+// at https://zenn.dev/jy8752/articles/0b842e7f380fb8
+import lib from "zenn-markdown-html";
+import { Decorator } from "../../utils/cheerio";
+
+interface Props {
+  body: string;
+}
+
+type MarkdownHtml = (text: string) => string
+type MarkdownHtmlAtBuild = { default: MarkdownHtml }
+
+let markdownToHtml: MarkdownHtml = lib
+
+if (typeof lib !== 'function') {
+  markdownToHtml = (lib as MarkdownHtmlAtBuild).default
+}
+
+const { body } = Astro.props;
+const html = markdownToHtml(body);
+
+const decorator = new Decorator(html);
+const decoratedHtml = await decorator.getDecoratedHtml();
+---
+
+<>
+  <div set:html={decoratedHtml} id="article-content" />
+</>
+
+<style is:global>
+  #article-content {
+    /* paragraphs */
+    p {
+      @apply tracking-wide leading-relaxed lg:text-[1.125rem] xl:text-[1.25rem];
+    }
+    /* anchor */
+    a[class*="link"] {
+      @apply text-sky visited:text-purple hover:underline;
+    }
+
+    /* code block */
+    .remark-code-title {
+      @apply mt-8 text-base px-2 py-1 mb-1 rounded-t-lg font-semibold bg-[#282a36] text-[#fcfcfc];
+    }
+    .remark-code-title + pre {
+      @apply mt-0 mb-8 rounded-t-none rounded-b-lg overflow-x-auto p-2;
+    }
+    .remark-code-title + pre code {
+      @apply font-code text-sm lg:text-base xl:text-lg;
+    }
+
+    p > code {
+      @apply font-code text-sm lg:text-base xl:text-lg bg-muted-background px-1 py-[0.125rem] rounded-md;
+    }
+
+    /* math block */
+    .katex {
+      @apply lg:text-lg xl:text-xl;
+    }
+    .katex-display {
+      @apply lg:text-lg xl:text-2xl overflow-x-auto overflow-y-clip;
+    }
+  }
+  
+</style>

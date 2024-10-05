@@ -8,55 +8,45 @@ publishDate: 2024-10-04
 updateDate: 2024-10-04
 ---
 
-import H1 from "../../components/mdx/H1.astro";
-import H2 from "../../components/mdx/H2.astro";
-import H3 from "../../components/mdx/H3.astro";
-import AnchorExternal from "../../components/mdx/AnchorExternal.astro";
-
-export const components = {
-    h1: H1,
-    h2: H2,
-    h3: H3,
-}
-
 # ツールの紹介
 
 ## 概要
 
-{/* <div class="iframely-embed" data-embedded-url="https://playlist-asset-generator.vercel.app/"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://playlist-asset-generator.vercel.app/" data-iframely-url="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fplaylist-asset-generator.vercel.app%2F&key=878c5bef402f0b2911bf6d4ce6261abd">Playlist Asset Generator</a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script> */}
+<div class="iframely-embed" data-embedded-url="https://playlist-asset-generator.vercel.app/"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://playlist-asset-generator.vercel.app/" data-iframely-url="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fplaylist-asset-generator.vercel.app%2F&key=878c5bef402f0b2911bf6d4ce6261abd">Playlist Asset Generator</a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
 
-**ブラウザのみで動作**し、楽曲のメタデータを含むCSVとアルバムやシングルのカバー画像（JPEG）の組からSVGを生成します。
+**ブラウザのみで動作**し、楽曲のメタデータを含む CSV とアルバムやシングルのカバー画像（JPEG）の組から SVG を生成します。
 
-> **CSVのフォーマット**
-> カンマ区切りです。各カラムはFLACファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
-> ```csv:ヘッダー
+> CSV はカンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
+>
+> ```csv
 > FILENAME,ARTIST,TITLE,ALBUM,GENRE,TRACKNUMBER,DATE,ALBUMARTIST,COMPOSER,FLACPATH
 > ```
-> このうち、画像生成に利用しているのはARTIST, TITLE, ALBUM, DATEの4つですが、ロードするCSVにはすべてのカラムを欠損のないように含める必要があります。セルは空白でも構いません。
+>
+> このうち、画像生成に利用しているのは ARTIST, TITLE, ALBUM, DATE の 4 つですが、ロードする CSV にはすべてのカラムを欠損のないように含める必要があります。セルは空白でも構いません。
 
 ## プレビュー
 
-![スクリーンショット2024-09-16224713.png](https://si-library.assets.newt.so/v1/75aa4953-1198-4f81-ad94-b169c89dc1df/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882024-09-16224713.png) **caption:ドラッグ & ドロップのUI**
+![スクリーンショット2024-09-16224713.png](https://si-library.assets.newt.so/v1/75aa4953-1198-4f81-ad94-b169c89dc1df/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882024-09-16224713.png) **caption:ドラッグ & ドロップの UI**
 
 # アプローチと技術選定
 
-プレイした楽曲のメタデータ（タイトル、アーティスト名、アルバム名など）を格納したCSVの列とカバー画像の組から生成することを考えました。
+プレイした楽曲のメタデータ（タイトル、アーティスト名、アルバム名など）を格納した CSV の列とカバー画像の組から生成することを考えました。
 
-楽曲をFLACやALACのような形式で管理している場合、ファイルにメタデータが付属しています。したがって、楽曲ファイル（FLACを利用しました）そのものからデータを取り出すインタフェースまでTypeScriptで構築することを試みましたが、~~面倒そうだったので~~ 諦めました。
+<br />
 
-FLACファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC公式のコマンドツールを使うことでFLACファイルの中身をCLIで読み出すことができます）。
+楽曲を FLAC や ALAC のような形式で管理している場合、ファイルにメタデータが付属しています。したがって、楽曲ファイル（FLAC を利用しました）そのものからデータを取り出すインタフェースまで TypeScript で構築することを試みましたが、~~面倒そうだったので~~ 諦めました。
 
-## UIライブラリ
+FLAC ファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC 公式のコマンドツールを使うことで FLAC ファイルの中身を CLI で読み出すことができます）。
 
-Vite を利用することとし、UI構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
+## UI ライブラリ
 
-> **info:参考記事**
-> [SolidJSが使いやすい | Zenn](https://zenn.dev/nakasyou/articles/20231020_solidjs)
-> [次のプロジェクトSolidJSで作りませんか？ | Qiita](https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea)
+Vite を利用することとし、UI 構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
 
-SolidJSはReactによく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特にHooksまわりは、`useState`（**SolidJSでは `createSignal`**）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
+> **info:参考記事** > [SolidJS が使いやすい | Zenn](https://zenn.dev/nakasyou/articles/20231020_solidjs) > [次のプロジェクト SolidJS で作りませんか？ | Qiita](https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea)
 
-```ts:stateをtsファイルに切り出す
+SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（**SolidJS では `createSignal`**）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
+
+```ts:state
 import { createSignal } from "solid-js";
 
 export const [state, setState] = createSignal();
@@ -65,15 +55,15 @@ export const [state, setState] = createSignal();
 
 ## 画像生成
 
-Vercel が開発している [satori](https://github.com/vercel/satori) を使用し、SVGをクライアントサイドで生成できるようにしました。
+Vercel が開発している [satori](https://github.com/vercel/satori) を使用し、SVG をクライアントサイドで生成できるようにしました。
 
 # 実装
 
-## ドラッグ & ドロップを行うUI
+## ドラッグ & ドロップを行う UI
 
-CSVをドロップする部分のみ書きます。`csv()` を外部ファイルにステートとして保存します。
+CSV をドロップする部分のみ書きます。`csv()` を外部ファイルにステートとして保存します。
 
-```ts:csv
+```ts:csvステート
 import { createSignal } from "solid-js";
 
 export const [csv, setCsv] = createSignal("");
@@ -102,7 +92,7 @@ const drop = async (e: DragEvent) => {
 ```
 
 `isDroped()` はステートであり、ファイルがドロップされた後にドロップゾーンをロックする役割を果たします。
-また、`getTextFromFile` メソッドは FileReader API を使用してCSVを `string` として読みだしています。
+また、`getTextFromFile` メソッドは FileReader API を使用して CSV を `string` として読みだしています。
 
 ```ts:getTextFromFile
 const getTextFromFile = (file: File, encoding: string = "utf-8") => {
@@ -120,9 +110,9 @@ const getTextFromFile = (file: File, encoding: string = "utf-8") => {
 };
 ```
 
-## CSVのParse
+## CSV の Parse
 
-JSでCSVを取り扱うベストプラクティスはこれといったものがなさそうです。安直ですが、行を改行文字で、列をコンマで区切って取り出したデータをオブジェクト配列にマッピングすることでパースします。
+JS で CSV を取り扱うベストプラクティスはこれといったものがなさそうです。安直ですが、行を改行文字で、列をコンマで区切って取り出したデータをオブジェクト配列にマッピングすることでパースします。
 
 ```ts:parser.ts
 // キーとその型を定義
@@ -154,9 +144,9 @@ export const parser = (csv: string) => {
 }
 ```
 
-## CSVからプレビュー用のテーブルを作る
+## CSV からプレビュー用のテーブルを作る
 
-`parser()` の返り値の型は `{.....}[]` ですが、JSXに展開する場合は2次元配列 `[.....][]` のほうがおそらく扱いやすいです。そのための変換を行います（~~二度手間感はぬぐえませんが~~） 。
+`parser()` の返り値の型は `{.....}[]` ですが、JSX に展開する場合は 2 次元配列 `[.....][]` のほうがおそらく扱いやすいです。そのための変換を行います（~~二度手間感はぬぐえませんが~~） 。
 
 ```ts:tableData
 import { createMemo } from "solid-js";
@@ -168,9 +158,9 @@ const tableData = createMemo(() => {
 });
 ```
 
-`createMemo` はReactの `useRef`、Vueの `computed` に相当するフックのようです。すなわち、コールバックに含まれるステートの値が変更された場合にのみ再計算を行います。
+`createMemo` は React の `useRef`、Vue の `computed` に相当するフックのようです。すなわち、コールバックに含まれるステートの値が変更された場合にのみ再計算を行います。
 
-ステートの値に関わらず、更新があった場合に毎回再計算を行うのであれば、SolidJSでは単にメソッドを書くだけでよいようです。
+ステートの値に関わらず、更新があった場合に毎回再計算を行うのであれば、SolidJS では単にメソッドを書くだけでよいようです。
 
 ```ts:tableData
 const tableData = () => {
@@ -205,9 +195,9 @@ const tableData = () => {
 </table>
 ```
 
-## satoriによる画像生成
+## satori による画像生成
 
-今回はクライアントサイドで処理してしまいます。UIはJSXで実装していますが、satoriでもJSXを用いようとしてうまくいかなかったので、DOMはオブジェクトで記述しています。
+今回はクライアントサイドで処理してしまいます。UI は JSX で実装していますが、satori でも JSX を用いようとしてうまくいかなかったので、DOM はオブジェクトで記述しています。
 
 ```ts:satoriによる画像生成
 export const generateSvg = async (entry) => {
@@ -238,7 +228,7 @@ export const generateSvg = async (entry) => {
           data: noto400,
           weight: 400,
 	  style: "normal",
-        },		
+        },
       ],
     }
   );
@@ -246,7 +236,7 @@ export const generateSvg = async (entry) => {
 }
 ```
 
-フォントは `/public` へ配置し、Fetch APIで読み込んでいます。上記のメソッドを実行するボタンも作っておきます。
+フォントは `/public` へ配置し、Fetch API で読み込んでいます。上記のメソッドを実行するボタンも作っておきます。
 
 ```tsx:画像生成ボタン
 // 外部に実装しておきます: const [svgs, setSvgs] = createSignal([]);
@@ -269,7 +259,7 @@ export default function GenerateBtn() {
 
 ## 画像プレビューとダウンロード
 
-せっかくなのでモーダルで実装してみます。調べてみると、SolidJSにはモーダルを手軽に実装するためのAPIが提供されています。
+せっかくなのでモーダルで実装してみます。調べてみると、SolidJS にはモーダルを手軽に実装するための API が提供されています。
 
 ```tsx:モーダル
 import { Portal } from "solid-js/web";
@@ -290,7 +280,7 @@ export default function Modal() {
 }
 ```
 
-このようにすることで `svgs()` に要素が格納されているときのみモーダルが表示されます。最後にSVGをダウンロードするボタンを作ります。
+このようにすることで `svgs()` に要素が格納されているときのみモーダルが表示されます。最後に SVG をダウンロードするボタンを作ります。
 
 ```tsx:ダウンロードボタン
 // 外部に実装しておきます: const [svgs, setSvgs] = createSignal([]);

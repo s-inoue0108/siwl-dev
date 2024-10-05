@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
-    "@astrojs/mdx": "^3.1.7",
     "@astrojs/partytown": "^2.1.2",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
@@ -23,25 +22,25 @@
     "@fontsource/source-code-pro": "^5.0.17",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.15.9",
+    "cheerio": "^1.0.0",
     "fuse.js": "^7.0.0",
     "katex": "^0.16.9",
-    "rehype-katex": "^7.0.1",
-    "remark-flexible-code-titles": "^1.2.0",
-    "remark-math": "^6.0.0",
-    "remark-toc": "^9.0.0",
     "satori": "^0.10.13",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.23",
     "solid-transition-group": "^0.2.3",
     "swiper": "^11.1.1",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "zenn-embed-elements": "^0.1.157",
+    "zenn-markdown-html": "^0.1.157"
   },
   "devDependencies": {
     "@types/grecaptcha": "^3.0.8",
     "@types/katex": "^0.16.7",
     "destyle.css": "^4.0.1",
     "sass": "^1.71.1",
+    "shiki": "^1.21.0",
     "tsx": "^4.19.1"
   }
 }

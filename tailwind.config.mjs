@@ -20,6 +20,10 @@ export default {
 					"sub-base": "rgba(var(--accent-sub-base), var(--opacity))",
 				},
 				tranparent: "transparent",
+				sky: "#38bdf8",
+				purple: "#a855f7",
+				emerald: "#76d5b4",
+				lime: "#bef264",
 			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",
@@ -43,12 +47,6 @@ export default {
 					},
 				},
 			},
-		},
-		colors: {
-			sky: "#38bdf8",
-			purple: "#a855f7",
-			emerald: "#76d5b4",
-			lime: "#bef264",
 		},
 	},
 	plugins: [],
