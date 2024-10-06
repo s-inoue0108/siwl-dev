@@ -21,7 +21,7 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 								class={`${
 									new RegExp(`^/blog/categories/${id}/`).test(currentPath)
 										? `${id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"}`
-										: `${data.colors.text}`
+										: `${id === "tech" ? "text-accent-sub-base" : "text-accent-base"}`
 								} cursor-pointer ${
 									data.colors.bgHover
 								} w-full hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-lg px-1`}

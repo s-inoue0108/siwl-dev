@@ -16,7 +16,7 @@ const { collection, isLink = true } = Astro.props;
     collection.collection === "category" && (
     <a href={`/blog/categories/${collection.id}/1`} class={`${
 		isLink
-		? `cursor-pointer bg-muted-background ${collection.data.colors.bgHover} transition-colors duration-150`
+		? `cursor-pointer ${collection.data.colors.bg} hover:opacity-70 transition-opacity duration-150`
 		: "pointer-events-none"
 		} inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
 	>

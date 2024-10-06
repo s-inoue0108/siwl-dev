@@ -14,6 +14,10 @@ const { meta } = route.getSubsetPageMeta();
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
     <article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
       <Breadcrumbs />
+      <h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
+      <p class="mx-auto text-muted-foreground sm:text-lg">
+        {meta.description}
+      </p>
     </article>
     <aside class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
       <ProfileCard />

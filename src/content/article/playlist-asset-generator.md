@@ -12,7 +12,7 @@ updateDate: 2024-10-04
 
 ## 概要
 
-<div class="iframely-embed" data-embedded-url="https://playlist-asset-generator.vercel.app/"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://playlist-asset-generator.vercel.app/" data-iframely-url="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fplaylist-asset-generator.vercel.app%2F&key=878c5bef402f0b2911bf6d4ce6261abd">Playlist Asset Generator</a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+https://playlist-asset-generator.vercel.app
 
 **ブラウザのみで動作**し、楽曲のメタデータを含む CSV とアルバムやシングルのカバー画像（JPEG）の組から SVG を生成します。
 

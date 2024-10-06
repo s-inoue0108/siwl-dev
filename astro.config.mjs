@@ -4,12 +4,18 @@ import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
 import solid from "@astrojs/solid-js";
 
-// Remark/Rehype Plugins
-// import remarkDirective from "remark-directive";
-// import remarkToc from "remark-toc";
-// import remarkMath from "remark-math";
-// import remarkCodeTitles from "remark-flexible-code-titles";
-// import rehypeKatex from "rehype-katex";
+// Remark/Rehype Plugins from third-party
+import remarkDirective from "remark-directive";
+import remarkMath from "remark-math";
+import remarkCodeTitles from "remark-flexible-code-titles";
+// @ts-ignore
+import rlc from "remark-link-card";
+import rehypeRaw from "rehype-raw";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeKatex from "rehype-katex";
+
+// from made
+import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -41,6 +47,17 @@ export default defineConfig({
 	],
 
 	markdown: {
+		syntaxHighlight: "shiki",
+		shikiConfig: {
+			theme: "dracula-soft",
+		},
+		remarkPlugins: [[rlc, { shortenUrl: true }], remarkDirective, remarkMath, remarkCodeTitles],
+		rehypePlugins: [
+			rehypeRaw,
+			[rehypeExternalLinks, { target: "_blank" }],
+			rehypeHeadings,
+			rehypeKatex,
+		],
 		remarkRehype: {
 			footnoteLabelTagName: "h1",
 			footnoteLabel: "Footnotes",

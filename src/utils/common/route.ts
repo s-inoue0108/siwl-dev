@@ -42,7 +42,7 @@ export class AllowedRoutes {
           name: "Archives",
           matchers: [/^\/blog\/archives/, /^\/blog\/archives\/[0-9]{4}-[0-9]{1,2}/],
           rootpath: "/blog/archives",
-          description: "記事のアーカイブ、スタッツを公開しています。",
+          description: "過去の記事を時系列順にまとめています。",
           subsets: [],
         },
       ],

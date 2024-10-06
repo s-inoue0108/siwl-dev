@@ -4,9 +4,8 @@ import Toc from "../../../components/large/Toc";
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from 'astro:content';
 import ProfileCard from "../../../components/card/ProfileCard.astro";
-// KaTeX CSS
+// KeTeX
 import "katex/dist/katex.min.css";
-import RenderedArticle from "../../../components/common/RenderedArticle.astro";
 
 export const getStaticPaths = async () => {
 
@@ -20,7 +19,7 @@ export const getStaticPaths = async () => {
 }
 
 const { article } = Astro.props;
-const { headings } = await article.render();
+const { Content, headings } = await article.render();
 ---
 <Base title={`${article.data.title} | ${import.meta.env.APP_NAME}`} 
       description={article.data.description ?? ""} 
@@ -32,7 +31,9 @@ const { headings } = await article.render();
       <div class="lg:hidden">
         <Toc headings={headings} client:visible />
       </div>
-      <RenderedArticle body={article.body} />
+      <div id="article-content">
+        <Content />
+      </div>
     </article>
     <aside class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
       <ProfileCard />
@@ -42,3 +43,77 @@ const { headings } = await article.render();
     </aside>
   </section>
 </Base>
+
+<style is:global>
+  #article-content {
+    /* paragraphs */
+    p {
+      @apply tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+    }
+
+    /* anchor */
+    a:not(.heading, .rlc-container) {
+      @apply text-sky visited:text-purple hover:underline;
+    }
+
+    /* link card */
+    .rlc-container {
+      @apply my-4 lg:my-8 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background hover:bg-muted-background transition-colors duration-200;
+    }
+
+    .rlc-info {
+      @apply flex flex-col p-2 justify-between gap-1 w-3/4 h-full;
+    }
+
+    .rlc-title {
+      @apply font-semibold lg:text-lg max-h-12 truncate
+    }
+
+    .rlc-description {
+      @apply text-xs text-muted-foreground truncate;
+    }
+
+    .rlc-url-container {
+      @apply flex items-center gap-1;
+    }
+
+    .rlc-url {
+      @apply font-code font-medium tracking-tight text-xs text-muted-foreground;
+    }
+
+    .rlc-image-container {
+      @apply w-1/4 h-full;
+    }
+
+    .rlc-image-container img {
+      @apply bg-background w-full h-full object-cover rounded-r-[calc(0.75rem-1px)];
+    }
+
+    /* code block */
+    .remark-code-title {
+      @apply mt-8 mb-1 text-base p-2 rounded-t-lg font-semibold bg-[#282a36] text-[#fcfcfc];
+    }
+    .remark-code-title + pre {
+      @apply p-2 rounded-b-lg overflow-x-auto;
+    }
+    .remark-code-title + pre code {
+      @apply font-code text-sm lg:text-base xl:text-lg;
+    }
+
+    p > code {
+      @apply font-code text-sm lg:text-base xl:text-lg bg-muted-background px-1 py-[0.125rem] rounded-md;
+    }
+
+    /* math block */
+    .katex {
+      @apply lg:text-[1.2rem] xl:text-[1.32rem];
+    }
+    .katex-display {
+      @apply overflow-x-auto overflow-y-clip;
+    }
+
+    .katex-display > .katex {
+      @apply lg:text-[1.2rem] xl:text-[1.32rem];
+    }
+  }
+</style>

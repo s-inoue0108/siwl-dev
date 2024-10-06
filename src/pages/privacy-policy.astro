@@ -4,14 +4,13 @@ import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
 import { AllowedRoutes } from "../utils/common/route";
 import Toc from "../components/large/Toc";
-import RenderedArticle from "../components/common/RenderedArticle.astro";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 
 const privacyPolicy = await getEntry("fixed", "privacy-policy");
 
-const { headings } = await privacyPolicy.render();
+const { Content, headings } = await privacyPolicy.render();
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
@@ -21,12 +20,42 @@ const { headings } = await privacyPolicy.render();
       <div class="lg:hidden">
         <Toc headings={headings} client:visible />
       </div>
-      <RenderedArticle body={privacyPolicy.body} />
+      <div id="article-content">
+        <Content />
+      </div>
     </article>
     <aside class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
-      <div class="lg:sticky lg:top-24 hidden lg:flex flex-col sm:gap-8">
+      <div class="lg:sticky lg:top-8 hidden lg:flex flex-col sm:gap-8">
         <Toc headings={headings} client:visible />
       </div>
     </aside>
   </section>
 </Base>
+
+<style is:global>
+  #article-content {
+    /* paragraphs */
+    p {
+      @apply tracking-wide leading-relaxed lg:text-[1.125rem] xl:text-[1.25rem];
+    }
+    /* anchor */
+    a[class*="link"] {
+      @apply text-sky visited:text-purple hover:underline;
+    }
+
+    /* code block */
+    .remark-code-title {
+      @apply mt-8 mb-1 text-base p-2 rounded-t-lg font-semibold bg-[#282a36] text-[#fcfcfc];
+    }
+    .remark-code-title + pre {
+      @apply p-2 rounded-b-lg overflow-x-auto;
+    }
+    .remark-code-title + pre code {
+      @apply font-code text-sm lg:text-base xl:text-lg;
+    }
+
+    p > code {
+      @apply font-code text-sm lg:text-base xl:text-lg bg-muted-background px-1 py-[0.125rem] rounded-md;
+    }
+  }
+</style>
