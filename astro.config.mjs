@@ -16,6 +16,7 @@ import rehypeKatex from "rehype-katex";
 
 // from made
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
+import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -54,13 +55,14 @@ export default defineConfig({
 		remarkPlugins: [[rlc, { shortenUrl: true }], remarkDirective, remarkMath, remarkCodeTitles],
 		rehypePlugins: [
 			rehypeRaw,
-			[rehypeExternalLinks, { target: "_blank" }],
+			[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
+			rehypeInlineAnchor,
 			rehypeHeadings,
 			rehypeKatex,
 		],
 		remarkRehype: {
 			footnoteLabelTagName: "h1",
-			footnoteLabel: "Footnotes",
+			footnoteLabel: "脚注",
 			footnoteBackLabel: "Return to content",
 		},
 		gfm: true,

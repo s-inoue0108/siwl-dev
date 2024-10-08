@@ -25,7 +25,7 @@ const { collection, isLink = true } = Astro.props;
 				collection.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />
 			}
 		</div>
-		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold`}>
+		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold whitespace-nowrap`}>
 			{collection.data.name}
 		</span>
 	</a>
@@ -54,7 +54,7 @@ const { collection, isLink = true } = Astro.props;
 			)
 			}
 		</div>
-		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold`}>
+		<span class={`${isLink ? "cursor-pointer" : "pointer-events-none"} text-sm lg:text-lg font-semibold whitespace-nowrap`}>
 			{collection.data.name}
 		</span>
 	</a>

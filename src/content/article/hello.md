@@ -6,51 +6,37 @@ tags: [js, ts, astro, solid, sass]
 description: 利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25
 updateDate: 2024-09-27
+relatedArticles: [renewal-note, ipa-fe-1]
 ---
 
 # Link
 
 ## Bare links
 
-Bare links are converted to link cards.
-
-http://example.com/
-
-<br />
-
 https://www.npmjs.com/package/remark-link-card
-
-<br />
-
-https://zenn.dev/kusuke/articles/05bc1590966cb4
-
-<br />
-
-<https://si-library.net/>
-
-<br />
 
 <https://www.npmjs.com/package/remark-link-card>
 
 ## Inline links
 
-Inline links are **not** converted to link cards.
+[example](http://example.com/) はインラインリンクです。
 
-[example](http://example.com/) is inline link
+http://example.com/ はインラインリンクです。
 
-[remark-link-card](https://www.npmjs.com/package/remark-link-card) is inline link
+[相対パスによるリンク](/blog/articles/renewal-note) は内部インラインリンクです。
 
 ## Multiple links in one line
 
 If there are multiple links in one line, they will **not** be converted to link cards.
 
-http://example.com/ http://example.com/ http://example.com/
-
 # Footnote
 
 A note[^1]
 
+A second note[^2]
+
 [^1]: Big note.
+[^2]: small note.
 
 # Strikethrough
 

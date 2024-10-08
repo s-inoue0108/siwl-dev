@@ -1,5 +1,5 @@
 import { type APIContext } from "astro";
-import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getCollection, getEntries, getEntry, type CollectionEntry } from "astro:content";
 import { getImageResponse } from "../../../utils/api/generateImage";
 
 export const getStaticPaths = async () => {

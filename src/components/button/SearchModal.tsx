@@ -26,12 +26,12 @@ const SearchModal = () => {
 	const toggleOpen = () => {
 		const content = document.getElementById("content")!;
 		if (isOpenModal()) {
-			backfaceFixed(true);
+			backfaceFixed(false);
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
 		} else {
-			backfaceFixed(false);
+			backfaceFixed(true);
 			content.style.opacity = "0.05";
 			content.style.pointerEvents = "none";
 			content.style.userSelect = "none";

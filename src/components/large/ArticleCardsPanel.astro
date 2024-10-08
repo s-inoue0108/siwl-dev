@@ -2,7 +2,7 @@
 import { type CollectionEntry } from "astro:content";
 import type { Page } from "astro";
 import ArticleCard from "../card/ArticleCard.astro";
-import NoItem from "../NoItem.astro";
+import NoItem from "../common/NoItem.astro";
 
 interface Props {
 	articles: CollectionEntry<"article">[] | Page["data"];

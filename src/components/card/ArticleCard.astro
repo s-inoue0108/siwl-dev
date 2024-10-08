@@ -18,13 +18,22 @@ const tags = await getEntries(data.tags ? data.tags : []);
 
 <section id={`article-card-${slug}`}>
 	<div class="flex flex-col sm:flex-row gap-2">
-		<a href={`/blog/articles/${slug}`} class=`sm:w-80 h-28 sm:h-[11.25rem] hover:opacity-80 transition-opacity duration-150 rounded-md ${category.data.colors.bg}`>
+		<a
+			href={`/blog/articles/${slug}`}
+			class=`sm:w-80 h-28 sm:h-[11.25rem] hover:opacity-80 transition-opacity duration-150 rounded-md ${category.data.colors.bg}`
+		>
 			<div class="relative w-full h-full">
 				{
-					<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
-						<span class="text-4xl lg:text-4xl">{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}</span>
-						<span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">{category.data.name}</span>
-					</div>
+					(
+						<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
+							<span class="text-4xl lg:text-4xl">
+								{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
+							</span>
+							<span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">
+								{category.data.name}
+							</span>
+						</div>
+					)
 				}
 			</div>
 		</a>
@@ -32,17 +41,25 @@ const tags = await getEntries(data.tags ? data.tags : []);
 			<div class="relative h-28 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
-						{tags &&
-							tags.map((tag) => (
-								<li>
-									<ClassifyCard collection={tag} />
-								</li>
-							))}
+						{
+							tags &&
+								tags.map((tag) => (
+									<li>
+										<ClassifyCard collection={tag} />
+									</li>
+								))
+						}
 					</ul>
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
-					<a href={`/blog/articles/${slug}`} class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`>
-						<h1 class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip" transition:name={`title-${article.slug}`}>
+					<a
+						href={`/blog/articles/${slug}`}
+						class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`
+					>
+						<h1
+							class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip"
+							transition:name={`title-${article.slug}`}
+						>
 							{data.title}
 						</h1>
 					</a>
@@ -50,22 +67,29 @@ const tags = await getEntries(data.tags ? data.tags : []);
 			</div>
 			<div class="flex justify-between items-end">
 				<ul class="flex items-center gap-4 pl-2 pb-1">
-					<a href={`/blog/archives/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`} class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
+					<a
+						href={`/blog/archives/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`}
+						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
+					>
 						<IoGitCommit class="rotate-90" />
 						<time
 							datetime={data.publishDate.toISOString()}
 							class="text-xs sm:text-sm tracking-wider"
 						>
-							{data.publishDate.toLocaleDateString("ja-JP", {
-								year: "numeric",
-								month: "2-digit",
-								day: "2-digit",
-							})}
+							{
+								data.publishDate.toLocaleDateString("ja-JP", {
+									year: "numeric",
+									month: "2-digit",
+									day: "2-digit",
+								})
+							}
 						</time>
 					</a>
-					<li class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]">
+					<li
+						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
+					>
 						<IoTimerOutline />
-						<p class="text-xs sm:text-sm tracking-wider">{`${10} min`}</p>
+						<div class="text-xs sm:text-sm tracking-wider">{`${10} min`}</div>
 					</li>
 				</ul>
 				<ArticleCardLayerButton article={article} category={category} client:load />

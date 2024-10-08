@@ -47,4 +47,24 @@
 		/* Chrome, Safari 対応 */
 		display: none;
 	}
+
+	.scrollbar::-webkit-scrollbar {
+		width: 12px;
+		background: rgba(var(--background), var(--opacity));
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(var(--muted-foreground), var(--opacity));
+		border-radius: 8px;
+	}
+
+	.toc-scrollbar::-webkit-scrollbar {
+		width: 12px;
+		background: rgba(var(--muted), var(--opacity));
+	}
+
+	.toc-scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(var(--muted-foreground), var(--opacity));
+		border-radius: 8px;
+	}
 }

@@ -11,7 +11,7 @@ const articleCollection = defineCollection({
     tags: z.array(reference("tag")).optional(),
     publishDate: z.date(),
     updateDate: z.date().optional(),
-    relatedArticle: z.array(reference("blog")).optional(),
+    relatedArticles: z.array(reference("article")).optional(),
   }),
 });
 

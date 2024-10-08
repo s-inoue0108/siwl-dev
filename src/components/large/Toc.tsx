@@ -60,7 +60,7 @@ const Toc = ({ headings }: Props) => {
 			title="Contents"
 			href="#"
 			Content={
-				<ul class="flex flex-col gap-2">
+				<ul class="flex flex-col gap-2 max-h-[60dvh] overflow-y-auto toc-scrollbar">
 					<For
 						each={headingWithIsActives()}
 						fallback={<div class="text-center font-semibold text-muted-foreground">Loading...</div>}

@@ -38,11 +38,11 @@ $ siwl <action> <filename> <model>
 
 | modal      | description                                                                  | filetype |
 | :--------- | :--------------------------------------------------------------------------- | :------- |
-| `article`  | ブログ記事を扱います。                                                       | md       |
+| `article`  | ブログ記事を扱います。                                                       | MARKDOWN |
 | `tag`      | ブログのタグを扱います。                                                     | YAML     |
 | `bookmark` | Web ページのブックマークを扱います。                                         | YAML     |
 | `work`     | ポートフォリオページの制作物を扱います。                                     | YAML     |
-| `fixed`    | プライバシーポリシー、ニュースレターなど、固定表示するコンテンツを扱います。 | md       |
+| `fixed`    | プライバシーポリシー、ニュースレターなど、固定表示するコンテンツを扱います。 | MARKDOWN |
 
 > [!TIP]
 > 何も指定していない場合は `article` を参照します。
@@ -77,8 +77,57 @@ $ siwl <action> <filename> <model>
 | `publish <filename> <model> ` | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
 | `list <model>`                | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
 
-# 記事のマークアップ
+# Markdown の構文
 
-GitHub-Flavored Markdown をベースに、KaTeX をはじめとした拡張構文が存在します。
+GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
 
-## md で使用できる装飾コンポーネント
+## リンク
+
+### リンクカード
+
+行に URL のみを記載すると自動でリンクカードに変換します。
+
+```md
+https://example.com
+
+<https://example.com>
+```
+
+### インラインリンク
+
+通常の名前付きリンクや、行に URL 以外の文字列がある場合にはリンクカードに変換されません。また、相対パスで始まるリンクは内部リンクとなります。
+
+```md
+[例](https://example.com) はインラインリンクです。
+
+https://example.com はインラインリンクです。
+
+[これは相対パスなので、内部](/blog/1) インラインリンクです。
+```
+
+## コードブロック
+
+````md
+```language:title
+"This is the CODE."
+```
+````
+
+> [!NOTE]
+> 利用可能な `language` の一覧 - https://shiki.matsu.io/languages
+
+## 数式
+
+```md
+<!--インライン-->
+
+$ f(x) = e^x $
+
+<!--ディスプレイ-->
+
+$$
+\mathcal{L}[f(t)](s) = \int_0^\infty f(t)e^{-st} dt.
+$$
+```
+
+マクロ $ \\RR $ はボールド体の R を出力します。

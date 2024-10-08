@@ -6,7 +6,7 @@ import ProfileCard from "../../../components/card/ProfileCard.astro";
 import TagCardsPanel from "../../../components/large/TagCardsPanel";
 import CategoriesPanel from "../../../components/large/CategoriesPanel";
 import { AllowedRoutes } from "../../../utils/common/route";
-import { IoDesktopOutline, IoBulbOutline, IoArrowUp } from "solid-icons/io";
+import { IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 
 const route = new AllowedRoutes(Astro.url.pathname);
 const { meta } = route.getSubsetPageMeta();
@@ -21,9 +21,8 @@ const categories = await getCollection("category");
       <h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
       <p class="mx-auto text-muted-foreground">
         <span class="sm:text-lg">{meta.description}</span>
-        <a href="https://zenn.dev/tech-or-idea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sky sm:text-lg hover:underline">
-          <span>Zennのカテゴリ</span>
-          <IoArrowUp class="rotate-45" />
+        <a href="https://zenn.dev/tech-or-idea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sky visited:text-purple sm:text-lg hover:underline">
+          <span>Zennのカテゴリ↗</span>
         </a>
         <span class="sm:text-lg">に倣って記事を分類しています。</span>
       </p>

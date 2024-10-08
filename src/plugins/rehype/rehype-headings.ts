@@ -28,7 +28,7 @@ export default function rehypeHeadings() {
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h1-${value}`;
-        node.properties.className = "mt-8 mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background";
+        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background";
 
       } else if (node.tagName === 'h2') {
 
@@ -54,7 +54,7 @@ export default function rehypeHeadings() {
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h2-${value}`;
-        node.properties.className = "mt-8 mb-4 text-xl sm:text-2xl lg:text-3xl font-bold flex items-center gap-2 w-full pb-1 border-b border-muted-background";
+        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-xl sm:text-2xl lg:text-3xl font-bold flex items-center gap-2 w-full pb-1 border-b border-muted-background";
 
       } else if (node.tagName === 'h3') {
 
@@ -80,7 +80,7 @@ export default function rehypeHeadings() {
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h3-${value}`;
-        node.properties.className = "mt-8 mb-4 text-lg sm:text-xl lg:text-2xl font-bold flex items-center gap-2 w-full";
+        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-lg sm:text-xl lg:text-2xl font-bold flex items-center gap-2 w-full";
 
       } else {
         return;

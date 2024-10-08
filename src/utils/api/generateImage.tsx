@@ -1,11 +1,15 @@
 import fs from "fs";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
+
 export const getImageResponse = async (title: string): Promise<Response> => {
 	const montserratRegular = fs.readFileSync("src/assets/fonts/Montserrat-Regular.ttf");
 	const montserratBold = fs.readFileSync("src/assets/fonts/Montserrat-Bold.ttf");
 	const notoSansJPRegular = fs.readFileSync("src/assets/fonts/NotoSansJP-Regular.ttf");
 	const notoSansJPBold = fs.readFileSync("src/assets/fonts/NotoSansJP-Bold.ttf");
+
+	const siwl = fs.readFileSync("src/assets/images/siwl-logo.svg").toString("base64");
+	const profileImage = fs.readFileSync("src/assets/images/profile-image.jpg").toString("base64");
 
 	const width = 1280;
 	const height = 720;
@@ -19,38 +23,112 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 					width: "100%",
 					height: "100%",
 					fontFamily: "Montserrat, Noto Sans JP, sans-serif",
-					backgroundImage: "linear-gradient(90deg, #4f35af 0%, #8960D9 50%, #7749C3 100%)",
+					backgroundImage:
+						"linear-gradient(90deg, rgb(30, 70, 180), rgb(82, 152, 236), rgb(183, 154, 237), rgb(120, 82, 220))",
 				},
 				children: [
 					{
-						type: "h1",
+						type: "section",
 						props: {
 							style: {
-								width: "100%",
-								color: "#fcfcfc",
-								fontWeight: "700",
-								fontSize: "6rem",
-								padding: "0.5rem 2rem",
-							},
-							children: `${title}`,
-						},
-					},
-					{
-						type: "img",
-						props: {
-							style: {
-								width: "720px",
-								height: "720px",
 								position: "absolute",
+								width: "1184px",
+								height: "624px",
 								top: "50%",
 								left: "50%",
 								transform: "translate(-50%, -50%)",
-								opacity: "0.1",
+								backgroundColor: "#fcfcfc",
+								borderRadius: "16px",
+								boxShadow: "4px 4px 4px 4px rgba(0, 0, 0, 0.3)",
+								padding: "0 32px",
 							},
-							src: `${import.meta.env.APP_URL}/src/assets/images/siwl-logo-white.svg`,
-							width: "720px",
-							height: "720px",
-							alt: "logo",
+							children: [
+								{
+									type: "h1",
+									props: {
+										style: {
+											width: "100%",
+											color: "#030303",
+											fontWeight: "700",
+											fontSize: "4.6rem",
+										},
+										children: `${title}`,
+									},
+								},
+								{
+									type: "img",
+									props: {
+										style: {
+											position: "absolute",
+											bottom: "-64px",
+											left: "32px",
+										},
+										src: `data:image/svg+xml;base64,${siwl}`,
+										width: 320,
+										height: 320,
+										alt: "siwl.dev",
+									},
+								},
+								{
+									type: "div",
+									props: {
+										style: {
+											position: "absolute",
+											bottom: "32px",
+											right: "32px",
+											display: "flex",
+											alignItems: "center",
+											gap: "1.6rem",
+										},
+										children: [
+											{
+												type: "div",
+												props: {
+													style: {
+														display: "block",
+														position: "relative",
+														width: "4.6rem",
+														height: "4.6rem",
+														backgroundImage:
+															"linear-gradient(90deg, rgb(30, 70, 180), rgb(82, 152, 236), rgb(183, 154, 237), rgb(120, 82, 220))",
+														borderRadius: "9999px",
+													},
+												},
+											},
+											{
+												type: "img",
+												props: {
+													style: {
+														position: "absolute",
+														top: "50%",
+														left: "0.3rem",
+														transform: "translateY(-50%)",
+														width: "4rem",
+														height: "4rem",
+														objectFit: "cover",
+														borderRadius: "9999px",
+													},
+													src: `data:image/jpeg;base64,${profileImage}`,
+													width: 1008,
+													height: 756,
+													alt: "siwl.dev",
+												},
+											},
+											{
+												type: "p",
+												props: {
+													style: {
+														color: "#030303",
+														fontWeight: "400",
+														fontSize: "3.45rem",
+													},
+													children: "Shota Inoue",
+												},
+											},
+										],
+									},
+								},
+							],
 						},
 					},
 				],

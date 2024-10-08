@@ -69,6 +69,15 @@ export const getExperienceYears = () => {
   return diff < 0 ? 0 : diff;
 }
 
+// Get Months
+export const getMonths = (nameLength: "long" | "short" = "long") => {
+  const arr = [];
+  for (let m = 1; m <= 12; m++) {
+    arr.push({ value: m.toString().padStart(2, "0"), name: new Date(0, m - 1).toLocaleString('en', { month: nameLength }) });
+  }
+  return arr;
+}
+
 // https://zenn.dev/tak_dcxi/articles/bbdb6cd9305ba4
 // ドキュメントの書字方向を取得し、縦書きかどうかを判定
 const isVerticalWritingMode = (): boolean => {

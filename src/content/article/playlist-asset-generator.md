@@ -2,7 +2,7 @@
 isDraft: false
 title: DJプレイリストから動画制作用のアセットを生成するツールを作ってみた
 category: tech
-tags: [ts, solid, sass]
+tags: [ts, solid, sass, dj]
 description: DJ MIXプレイを録音して、動画として残したいことがあります。今回は、プレイした楽曲のメタデータから動画制作用のSVGアセットを出力するツールをSolidJSで制作してみました。
 publishDate: 2024-10-04
 updateDate: 2024-10-04
@@ -18,7 +18,7 @@ https://playlist-asset-generator.vercel.app
 
 > CSV はカンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
 >
-> ```csv
+> ```csv:CSV
 > FILENAME,ARTIST,TITLE,ALBUM,GENRE,TRACKNUMBER,DATE,ALBUMARTIST,COMPOSER,FLACPATH
 > ```
 >

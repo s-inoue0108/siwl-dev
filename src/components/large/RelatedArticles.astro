@@ -1,0 +1,39 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { IoNewspaper } from "solid-icons/io";
+import NoItem from "../common/NoItem.astro";
+import { getEntries } from "astro:content";
+import ArticleCardsPanel from "./ArticleCardsPanel.astro";
+
+interface Props {
+	relatedArticles: CollectionEntry<"article">["data"]["relatedArticles"];
+}
+
+const { relatedArticles } = Astro.props;
+const articles = relatedArticles ? await getEntries(relatedArticles) : [];
+---
+
+<>
+	<svg width="0" height="0">
+		<linearGradient id="gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+			<stop stop-color="rgba(var(--accent-sub-base), var(--opacity))" offset="0%"></stop>
+			<stop stop-color="rgba(var(--accent-base), var(--opacity))" offset="100%"></stop>
+		</linearGradient>
+	</svg>
+	<h1
+		id="h1-related-articles"
+		class="mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background"
+	>
+		<a href="#h1-related-articles" class="heading">
+			<IoNewspaper style={{ fill: "url(#gradient)" }} />
+		</a>
+		<span>関連記事</span>
+	</h1>
+	{
+		articles && articles.length > 0 ? (
+			<ArticleCardsPanel articles={articles} />
+		) : (
+			<NoItem message="記事がありません" />
+		)
+	}
+</>
