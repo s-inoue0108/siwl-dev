@@ -3,13 +3,15 @@ import { SiFacebook, SiMisskey, SiTwitter, SiHatenabookmark } from "solid-icons/
 import Panel from "./Panel";
 
 interface Props {
+	appName: string;
+	appUrl: string;
 	title: CollectionEntry<"article">["data"]["title"];
 	slug: CollectionEntry<"article">["slug"];
 }
 
-const Shares = ({ title, slug }: Props) => {
-	const text = encodeURIComponent(`${title} | ${import.meta.env.APP_NAME}`);
-	const url = `${import.meta.env.APP_URL}/blog/article/${slug}`;
+const Shares = ({ appName, appUrl, title, slug }: Props) => {
+	const text = encodeURIComponent(`${title} | ${appName}`);
+	const url = `${appUrl}/blog/article/${slug}`;
 
 	const facebookLink = `https://www.facebook.com/share.php?u=${url}`;
 	const xLink = `https://x.com/share?url=${url}&text=${text}&via=si_library_net`;
