@@ -1,8 +1,8 @@
 # SIWL.dev
 
-![SIWL.dev](https://siwl-v4.vercel.app/siwl-logo.svg)
+![SIWL.dev](https://siwl.dev/siwl-logo.svg)
 
-[https://siwl-v4.vercel.app](https://siwl-v4.vercel.app)
+[https://siwl.dev](https://siwl.dev)
 
 # ルーティング
 

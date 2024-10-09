@@ -26,7 +26,7 @@ export default defineConfig({
 		port: 3000,
 	},
 
-	site: "https://s-inoue0108.github.io",
+	site: "https://siwl.dev",
 
 	integrations: [
 		solid(),
