@@ -15,7 +15,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
-// from made
+// Remark/Rehype Plugins from made
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 

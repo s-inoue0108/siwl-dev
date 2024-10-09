@@ -6,6 +6,10 @@
 
 # ルーティング
 
+## ホスティング
+
+[Cloudflare](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
+
 ## プロジェクトディレクトリの構成
 
 ## ページルート
