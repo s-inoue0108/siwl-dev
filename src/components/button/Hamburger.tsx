@@ -10,16 +10,23 @@ interface Props {
 
 const Hamburger = ({ size = "1.4rem", isBorder = false }: Props) => {
 	const toggleOpen = () => {
+		const header = document.getElementById("header")!;
 		const content = document.getElementById("content")!;
 
 		if (isOpenSidebar()) {
 			backfaceFixed(false);
+			header.style.opacity = "1";
+			header.style.pointerEvents = "auto";
+			header.style.userSelect = "auto";
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
 		} else {
 			backfaceFixed(true);
-			content.style.opacity = "0.05";
+			header.style.opacity = "0.2";
+			header.style.pointerEvents = "none";
+			header.style.userSelect = "none";
+			content.style.opacity = "0.2";
 			content.style.pointerEvents = "none";
 			content.style.userSelect = "none";
 		}

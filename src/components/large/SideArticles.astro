@@ -34,9 +34,9 @@ const getSideArticles = async (
 const { prev, next } = await getSideArticles(articles, slug);
 ---
 
-<ul class="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8">
+<ul class="mt-16 flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8">
 	<li
-		class={`w-full lg:w-[calc(50%-1rem)] h-20 border ${prev ? "border-muted-background hover:bg-muted-background" : "border-background"} transition-colors duration-150 rounded-xl`}
+		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${prev ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
 	>
 		{
 			prev && (
@@ -45,20 +45,20 @@ const { prev, next } = await getSideArticles(articles, slug);
 						<div class="relative w-[1.6rem] h-20">
 							<IoChevronBack class="absolute left-1 top-1/2 -translate-y-1/2 text-2xl" />
 						</div>
-						<div class="px-1 font-semibold">{prev.data.title}</div>
+						<div class="px-1 font-semibold whitespace-pre-wrap truncate">{prev.data.title}</div>
 					</div>
 				</a>
 			)
 		}
 	</li>
 	<li
-		class={`w-full lg:w-[calc(50%-1rem)] h-20 border ${next ? "border-muted-background hover:bg-muted-background" : "border-background"} transition-colors duration-150 rounded-xl`}
+		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${next ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
 	>
 		{
 			next && (
 				<a href={`/blog/articles/${next.slug}`}>
 					<div class="relative flex justify-between items-center gap-2">
-						<div class="px-1 font-semibold">{next.data.title}</div>
+						<div class="px-1 font-semibold whitespace-pre-wrap truncate">{next.data.title}</div>
 						<div class="relative w-[1.6rem] h-20">
 							<IoChevronForward class="absolute right-1 top-1/2 -translate-y-1/2 text-2xl" />
 						</div>

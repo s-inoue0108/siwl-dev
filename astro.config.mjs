@@ -26,7 +26,7 @@ export default defineConfig({
 		port: 3000,
 	},
 
-	site: import.meta.env.APP_URL,
+	site: "https://s-inoue0108.github.io",
 
 	integrations: [
 		solid(),

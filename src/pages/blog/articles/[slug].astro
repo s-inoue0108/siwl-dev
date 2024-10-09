@@ -38,21 +38,21 @@ const { Content, headings } = await article.render();
 			<div id="article-content">
 				<Content />
 				<RelatedArticles relatedArticles={article.data.relatedArticles} />
+				<div class="lg:hidden">
+					<Shares
+						appName={import.meta.env.APP_NAME}
+						appUrl={import.meta.env.APP_URL}
+						title={article.data.title}
+						slug={article.slug}
+						client:visible
+					/>
+				</div>
+				<SideArticles slug={article.slug} />
 			</div>
-			<SideArticles slug={article.slug} />
 		</article>
 		<aside
 			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
 		>
-			<div class="lg:hidden">
-				<Shares
-					appName={import.meta.env.APP_NAME}
-					appUrl={import.meta.env.APP_URL}
-					title={article.data.title}
-					slug={article.slug}
-					client:visible
-				/>
-			</div>
 			<ProfileCard />
 			<div class="lg:sticky lg:top-8 hidden lg:flex flex-col items-end sm:gap-4">
 				<Toc headings={headings} client:visible />
@@ -92,15 +92,19 @@ const { Content, headings } = await article.render();
 		}
 
 		.rlc-description {
-			@apply text-xs text-muted-foreground truncate;
+			@apply text-xs text-muted-foreground whitespace-pre-wrap max-h-4 lg:max-h-12 truncate overflow-clip;
 		}
 
 		.rlc-url-container {
 			@apply flex items-center gap-1;
 		}
 
+		.rlc-favicon {
+			@apply w-3 h-3;
+		}
+
 		.rlc-url {
-			@apply font-code font-medium tracking-tight text-xs text-muted-foreground;
+			@apply font-code font-semibold tracking-tight text-xs text-muted-foreground;
 		}
 
 		.rlc-image-container {

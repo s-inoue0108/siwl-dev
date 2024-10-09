@@ -49,6 +49,10 @@ https://github.com/x64Bits/solid-icons
 
 # ホスティング・CI/CD
 
+## GitHub Pages
+
+https://docs.astro.build/ja/guides/deploy/github/
+
 # 参考にした記事たち
 
 https://zenn.dev/ricora/articles/5a170c17933c3f

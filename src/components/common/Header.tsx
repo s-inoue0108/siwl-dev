@@ -43,6 +43,7 @@ const Header = ({ appName, currentPath }: Props) => {
 
 	return (
 		<header
+			id="header"
 			class={`sticky top-0 ${
 				direction() === "up" ? "translate-y-0" : "-translate-y-full"
 			} transition duration-300 lg:relative lg:translate-y-0 lg:left-[3.95rem] w-screen lg:w-[calc(100%-3.95rem)] h-12 sm:h-14 lg:h-16 bg-background border-b border-muted-background z-50`}

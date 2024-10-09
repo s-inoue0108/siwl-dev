@@ -19,23 +19,21 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 				!isOpenSidebar() && "-translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
 			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
 		>
-			<header>
-				<nav class="pt-6">
-					<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
-						{appName}
-					</a>
-					<ul class="absolute top-4 right-[0.7rem] flex flex-col items-center gap-4">
-						<li>
-							{/* width: 1.8 + 0.75rem = 2.55rem */}
-							<Hamburger size="1.8rem" isBorder={true} />
-						</li>
-						<li>
-							{/* width: 1.8 + 0.75rem = 2.55rem */}
-							<SwitchTheme size="1.8rem" isBorder={true} />
-						</li>
-					</ul>
-				</nav>
-			</header>
+			<nav class="pt-6">
+				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
+					{appName}
+				</a>
+				<ul class="absolute top-4 right-[0.7rem] flex flex-col items-center gap-4">
+					<li>
+						{/* width: 1.8 + 0.75rem = 2.55rem */}
+						<Hamburger size="1.8rem" isBorder={true} />
+					</li>
+					<li>
+						{/* width: 1.8 + 0.75rem = 2.55rem */}
+						<SwitchTheme size="1.8rem" isBorder={true} />
+					</li>
+				</ul>
+			</nav>
 			<hr
 				class={`w-full border-[0.5px] mt-16 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
 			/>
