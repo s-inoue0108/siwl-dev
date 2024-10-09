@@ -8,6 +8,12 @@ publishDate: 2024-10-06
 updateDate: 2024-10-06
 ---
 
+# ランタイム
+
+## pnpm
+
+https://zenn.dev/kunimasu/articles/97dbdc6c6aff3a
+
 # フレームワーク
 
 ## Astro
