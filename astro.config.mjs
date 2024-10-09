@@ -27,6 +27,7 @@ export default defineConfig({
 	},
 
 	site: "https://s-inoue0108.github.io",
+	outDir: "./docs",
 
 	integrations: [
 		solid(),
