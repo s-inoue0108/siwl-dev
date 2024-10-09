@@ -11,7 +11,7 @@ interface Props {
 
 const Shares = ({ appName, appUrl, title, slug }: Props) => {
 	const text = encodeURIComponent(`${title} | ${appName}`);
-	const url = `${appUrl}/blog/article/${slug}`;
+	const url = `${appUrl}/blog/articles/${slug}`;
 
 	const facebookLink = `https://www.facebook.com/share.php?u=${url}`;
 	const xLink = `https://x.com/share?url=${url}&text=${text}&via=si_library_net`;

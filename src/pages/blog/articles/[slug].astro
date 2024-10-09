@@ -9,6 +9,7 @@ import "katex/dist/katex.min.css";
 import PageTopButton from "../../../components/button/PageTopButton";
 import RelatedArticles from "../../../components/large/RelatedArticles.astro";
 import Shares from "../../../components/large/Shares";
+import SideArticles from "../../../components/large/SideArticles.astro";
 
 export const getStaticPaths = async () => {
 	const articles = await getCollection("article");
@@ -38,6 +39,7 @@ const { Content, headings } = await article.render();
 				<Content />
 				<RelatedArticles relatedArticles={article.data.relatedArticles} />
 			</div>
+			<SideArticles slug={article.slug} />
 		</article>
 		<aside
 			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"

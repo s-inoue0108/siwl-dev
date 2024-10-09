@@ -29,11 +29,13 @@ const articles = relatedArticles ? await getEntries(relatedArticles) : [];
 		</a>
 		<span>関連記事</span>
 	</h1>
-	{
-		articles && articles.length > 0 ? (
-			<ArticleCardsPanel articles={articles} />
-		) : (
-			<NoItem message="記事がありません" />
-		)
-	}
+	<section class="mt-8 mb-16 lg:mt-16 lg:mb-32">
+		{
+			articles && articles.length > 0 ? (
+				<ArticleCardsPanel articles={articles} />
+			) : (
+				<NoItem message="記事がありません" />
+			)
+		}
+	</section>
 </>
