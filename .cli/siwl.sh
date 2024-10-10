@@ -16,6 +16,11 @@ elif [ "$ACTION" = "build" ]; then
     pnpm -s run build
 elif [ "$ACTION" = "preview" ]; then
     pnpm -s run preview
+elif [ "$ACTION" = "apply" ]; then
+    git switch main
+    git stash
+    git pull origin main
+    git stash pop
 elif [ "$ACTION" = "deploy" ]; then
     git switch edit
     git add .
