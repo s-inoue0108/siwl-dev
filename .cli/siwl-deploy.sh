@@ -8,28 +8,21 @@ echo "create deployment - $DATE"
 echo "running..."
 
 # push: edit branch
-git switch edit &
->/dev/null
-git add . &
->/dev/null
-git commit -m "edit: $DATE" &
->/dev/null
-git push origin edit &
->/dev/null
+git switch edit
+git add .
+git commit -m "edit: $DATE"
+git push origin edit
 
 # sync: main branch
-# git switch main &> /dev/null
-# git stash &> /dev/null
-# git pull origin main &> /dev/null
-# git stash pop &> /dev/null
+# git switch main
+# git stash
+# git pull origin main
+# git stash pop
 
 # merge: edit to main
-git merge edit &
->/dev/null
-git push origin main &
->/dev/null
-git switch edit &
->/dev/null
+git merge edit
+git push origin main
+git switch edit
 
 cd "$ROOTDIR"/src/content
 
