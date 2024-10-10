@@ -8,12 +8,6 @@ publishDate: 2024-10-06
 updateDate: 2024-10-10
 ---
 
-# ランタイム
-
-## pnpm
-
-https://zenn.dev/kunimasu/articles/97dbdc6c6aff3a
-
 # フレームワーク
 
 ## Astro
@@ -26,10 +20,16 @@ https://astro.build/
 
 https://www.solidjs.com/
 
-UI フレームワークとして**SolidJS** を用いました。
+UI フレームワークとして **SolidJS** を用いました。
 JSX を用いるため React によく似ていますが、仮想 DOM を用いないことや、フックの記述などに React に勝るシンプルさがあると思いました。React のエコシステムが必要ないのであれば十分に選択肢に入ると思います。
 
-# スタイリング
+# コンテンツ管理
+
+以前は Headless CMS を使っていましたが、手元にコンテンツを置いておきたい気持ちがあったので Astro の **Content Collections** を用いることにしました。
+
+https://docs.astro.build/en/guides/content-collections/
+
+# 全体のスタイリングとデザイン
 
 ## Tailwind CSS
 
@@ -47,17 +47,71 @@ React Icons の SolidJS 版にあたるライブラリです。おそらくサ�
 
 https://github.com/x64Bits/solid-icons
 
-# コンテンツ管理
+# 記事のスタイリングとデザイン
 
-以前は Headless CMS を使っていましたが、自由度が低いため Astro の [**Content Collections**](https://docs.astro.build/en/guides/content-collections/) を用いることにしました。
+Astro は MDX を扱うことができますが、互換性の低さなどから従来通り Markdown を採用することにしました。
 
-> MDX を採用しなかった理由
+## remark/rehype
 
-# ホスティング・CI/CD
+記事ページのスタイリングには **remark/rehype** という処理系を利用しています。
+多くのプラグインが存在しています（[remark](https://github.com/remarkjs/remark/blob/main/doc/plugins.md), [rehype](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)）。
 
-## GitHub Pages
+<br />
 
-https://docs.astro.build/ja/guides/deploy/github/
+これらは Unified という Markdown <-> HTML 韓の構文解析を行う枠組みの一環として存在します。
+
+https://unifiedjs.com/
+
+# OG 画像生成
+
+## satori
+
+Vercel が開発する、JSX から SVG を生成するライブラリです。内部的に React に依存しているのかわかりませんが、JSX がうまく使えなかったのでオブジェクトで記述しています。
+
+https://github.com/vercel/satori
+
+## Resvg
+
+SVG を PNG に変換してくれるライブラリです。Astro で用いる場合には[以下を記述しないとビルド時にエラー](https://github.com/yisibl/resvg-js/issues/175)が出ます。
+
+```js:astro.config.mjs
+export const defineConfig({
+    vite: {
+        ssr: {
+            external: ["@resvg/resvg-js"],
+        },
+        optimizeDeps: {
+            exclude: ["@resvg/resvg-js"],
+        },
+    },
+});
+```
+
+https://github.com/yisibl/resvg-js
+
+# ホスティング
+
+## Cloudflare
+
+独自ドメインの管理を Cloudflare で行っている都合上、ホスティングも Cloudflare で行うことにしました。以前は Vercel を使っていましたが、難なく乗り換えることができました。
+
+https://www.cloudflare.com/ja-jp/
+
+# CLI
+
+Astro の Content Collections ではローカルの Markdown や JSON, YAML を扱うことになるため、一連のファイル操作をターミナルから行うことができると非常に便利です。せっかくなので作ってみることにしました。
+
+## Commander.js
+
+Node.js のコマンドライン引数を扱うライブラリです。メソッドチェインを駆使して簡単に CLI を構築することができます。
+
+https://github.com/tj/commander.js
+
+## Chalk
+
+Node.js で実装したコマンドラインに文字色や背景色をつけることができます。[こちらの記事](https://qiita.com/n0bisuke/items/60241944d7c9fb656af5) によれば、Node.js v21.7.0 以降ではビルトインの機能で同様のことができるようですが、まだ LTS でないのでこのライブラリを使いました。
+
+https://github.com/chalk/chalk
 
 # 参考にした記事たち
 
