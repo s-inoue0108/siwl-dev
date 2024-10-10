@@ -7,22 +7,34 @@ DATE=$(date "+%F")
 echo $DATE
 
 # push: edit branch
-git switch edit
-git add .
-git commit -m "edit: $DATE"
-git push origin edit
+git switch edit &
+>/dev/null
+git add . &
+>/dev/null
+git commit -m "edit: $DATE" &
+>/dev/null
+git push origin edit &
+>/dev/null
 
 # sync: main branch
-git switch main
-git stash
-git pull origin main
-git stash pop
+git switch main &
+>/dev/null
+git stash &
+>/dev/null
+git pull origin main &
+>/dev/null
+git stash pop &
+>/dev/null
 
 # merge: edit to main
-git merge edit
-git push origin main
-git switch edit
+git merge edit &
+>/dev/null
+git push origin main &
+>/dev/null
+git switch edit &
+>/dev/null
 
 cd "$ROOTDIR"/src/content
 
+echo "Complete!"
 echo "deployments: https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b"
