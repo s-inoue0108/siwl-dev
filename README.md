@@ -28,13 +28,37 @@
 ];
 ```
 
-# SIWL Contents CLI
+# CLI 環境
 
-コンテンツ管理を行うための CLI です。`/cli` に実行ファイルがあります。
+コンテンツ管理を行うための CLI です。Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
+
+> [!WARN]
+> Node.js 環境およびトランスパイルのために `tsx` を必要とします。
+
+> [!WARN]
+> プロジェクトのルートディレクトリで実行してください。
+
+## パッケージマネージャによる実行
+
+`package.json` にあるエイリアス `tsx .cli/siwl.ts` を実行します。`npm`, `yarn`, `pnpm` などを用います。
 
 ```bash
-$ siwl <action> <filename> <model>
+$ pnpm run siwl <action> -f <filename> -m <model>
 ```
+
+## シェルスクリプトによる実行
+
+以下のエイリアスを `~/.bash_profile` に記載することで、`.cli/siwl.sh` を実行することができます。
+
+```bash
+alias siwl="source <local-dir>/.cli/siwl.sh"
+```
+
+```bash
+$ siwl <action> -f <filename> -m <model>
+```
+
+# CLI コマンド
 
 ## `<model>`
 
@@ -58,12 +82,12 @@ $ siwl <action> <filename> <model>
 以下のコマンドは `<model>` `<filename>` を **_指定せず_** 実行します。
 開発サーバの起動、公開設定の反映などがあります。
 
-| action   | description                                                                                                                                                     |
-| :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `serve`  | 開発サーバを起動し、localhost にアクセスします。                                                                                                                |
-| `deploy` | `edit` リモートブランチにすべての変更内容を反映し、`main` ブランチにマージします。[^1] 自動でデプロイを実行し、新しいアプリケーションインスタンスを作成します。 |
-| `log`    | 変更履歴を表示します。                                                                                                                                          |
-| `help`   | ヘルプを表示します。                                                                                                                                            |
+| action     | description                                                                                                                                                     |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `serve`    | 開発サーバを起動し、localhost にアクセスします。                                                                                                                |
+| `deploy`   | `edit` リモートブランチにすべての変更内容を反映し、`main` ブランチにマージします。[^1] 自動でデプロイを実行し、新しいアプリケーションインスタンスを作成します。 |
+| `log`      | 変更履歴を表示します。                                                                                                                                          |
+| `help, -h` | ヘルプを表示します。                                                                                                                                            |
 
 [^1]: `git switch edit -> git add . -> git commit -m "edit: message" -> git push origin edit -> git switch main -> git merge edit -> git push origin main -> git switch edit`
 
@@ -72,14 +96,14 @@ $ siwl <action> <filename> <model>
 以下のコマンドは `<model>` や `<filename>` を **_指定して_** 実行します。
 コンテンツの追加・削除・編集などのコマンドがあります。
 
-| action                        | description                                                                                                                                                  |
-| :---------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add <filename> <model>`      | `/content/<model>/` に `<filename>.md` または `<filename>.yaml` を追加し、スキーマを初期化します。                                                           |
-| `remove <filename> <model>`   | `/content/<model>/` から `<filename>.md` または `<filename>.yaml` を削除します。                                                                             |
-| `open <filename> <model>`     | `<filename>.md` または `<filename>.yaml` を Visual Studio code で開きます。                                                                                  |
-| `draft <filename> <model> `   | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `true` に変更し、下書き設定に戻します。                                                   |
-| `publish <filename> <model> ` | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
-| `list <model>`                | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
+| action                             | description                                                                                                                                                  |
+| :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add -f <filename> -m <model>`     | `/content/<model>/` に `<filename>.md` または `<filename>.yaml` を追加し、スキーマを初期化します。                                                           |
+| `rm -f <filename> -m <model>`      | `/content/<model>/` から `<filename>.md` または `<filename>.yaml` を削除します。                                                                             |
+| `open -f <filename> -m <model>`    | `<filename>.md` または `<filename>.yaml` を Visual Studio code で開きます。                                                                                  |
+| `draft -f <filename> -m <model>`   | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `true` に変更し、下書き設定に戻します。                                                   |
+| `publish -f <filename> -m <model>` | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
+| `list -m <model>`                  | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
 
 # Markdown の構文
 

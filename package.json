@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "siwl": "tsx .cli/siwl.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -45,7 +46,8 @@
   "devDependencies": {
     "@types/grecaptcha": "^3.0.8",
     "@types/hast": "^3.0.4",
-    "@types/sharp": "^0.32.0",
+    "@types/node": "^22.7.5",
+    "commander": "^12.1.0",
     "destyle.css": "^4.0.1",
     "sass": "^1.71.1",
     "tsx": "^4.19.1"
