@@ -2,15 +2,42 @@
 
 ![SIWL.dev](https://siwl.dev/siwl-logo.svg)
 
-[https://siwl.dev](https://siwl.dev)
+- [https://siwl.dev](https://siwl.dev)
+- [Cloudflare Dashboard](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
+
+# 記事を書く
+
+1. プロジェクトのターミナルで以下を実行します：
+
+```bash
+$ siwl add -f <filename>
+```
+
+2. 開発サーバを起動します：
+
+```bash
+$ pnpm run dev
+```
+
+3. `src/content/<filename>.md` のスキーマと内容を編集します。
+
+4. 記事を公開設定にします：
+
+```bash
+$ siwl publish -f <filename>
+```
+
+5. 変更を反映します：
+
+```bash
+$ git add .
+$ git commit -m "edit: <filename>"
+$ git push origin main
+# あるいは
+$ siwl-deploy
+```
 
 # ルーティング
-
-## ホスティング
-
-[Cloudflare](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
-
-## プロジェクトディレクトリの構成
 
 ## ページルート
 
@@ -38,66 +65,50 @@ Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行
 
 `package.json` にあるエイリアス `tsx .cli/siwl.ts` を実行します。`npm`, `yarn`, `pnpm` などを用います。
 
+**実行：**
+
 ```bash
-$ pnpm run siwl <action> -flag1 <cmd1> -flag2 <cmd2>
+$ pnpm run siwl <action> -f <filename> -m <model>
 ```
 
 ## シェルスクリプトによる実行
 
 以下のエイリアスを `~/.bash_profile` に記載することで、`.cli/siwl.sh` を実行することができます。
 
-> [!WARNING] Warning
-> VSCode の `code` コマンド, `pnpm` および `git` を使用します。
-
 ```bash
 alias siwl="source <local-dir>/.cli/siwl.sh"
 ```
 
+**実行：**
+
 ```bash
-$ siwl <action> -flag1 <cmd1> -flag2 <cmd2>
+$ siwl <action> -f <filename> -m <model>
 ```
 
-## 汎用コマンド
+## CLI コマンド
 
-> [!WARNING] Warning
-> `serve`, `deploy` はシェルスクリプトからしか実行できません。
+プロジェクト内の任意のディレクトリから実行可能です。
 
-| action                | description                                                                                                                                                           |
-| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dev\|serve -h`       | 開発サーバを起動します。`-h` オプションをつけるとエクスポートを実行します。                                                                                           |
-| `build`               | ローカルでビルドを実行します。                                                                                                                                        |
-| `preview`             | ローカルで実行したビルドをプレビューします。                                                                                                                          |
-| `deploy -m <message>` | `edit` リモートブランチにすべての変更内容を反映し、`main` ブランチにマージします。[^1] 本番環境へのデプロイを実行し、新しいアプリケーションインスタンスを作成します。 |
-| `help\|-h`            | ヘルプを表示します。                                                                                                                                                  |
+### 利用可能な `<model>`
 
-[^1]: `git switch edit -> git add . -> git commit -m "edit: <message>" -> git push origin edit -> git switch main -> git merge edit -> git push origin main -> git switch edit`
-
-## Content Management CLI
-
-> [!WARNING] Warning
-> `open` はシェルスクリプトからしか実行できません。
-
-| action                                | description                                                                                                                                                  |
-| :------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add\|new -f <filename> -m <model>`   | `/content/<model>/` に `<filename>.md` または `<filename>.yaml` を追加し、スキーマを初期化します。                                                           |
-| `rm\|remove -f <filename> -m <model>` | `/content/<model>/` から `<filename>.md` または `<filename>.yaml` を削除します。                                                                             |
-| `open -f <filename> -m <model>`       | `<filename>.md` または `<filename>.yaml` を Visual Studio code で開きます。                                                                                  |
-| `draft -f <filename> -m <model>`      | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `true` に変更し、下書き設定に戻します。                                                   |
-| `publish -f <filename> -m <model>`    | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
-| `ls\|list -m <model>`                 | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
-
-## `<model>`
-
-`/content/config.ts` にスキーマ定義があります。
-
-| modal      | description                          | filetype |
-| :--------- | :----------------------------------- | :------- |
-| `article`  | ブログ記事を扱います。               | MARKDOWN |
-| `tag`      | ブログのタグを扱います。             | YAML     |
-| `bookmark` | Web ページのブックマークを扱います。 | YAML     |
+| model    | description                    | filetype |
+| :------- | :----------------------------- | :------- |
+| article  | ブログの記事を扱います。       | MARKDOWN |
+| tag      | ブログのタグを扱います。       | YAML     |
+| bookmark | ブックマークリンクを扱います。 | YAML     |
 
 > [!TIP] Tip
-> `-m <model>` へ何も指定していない場合は `article` モデルを参照します。
+> `-m <model>` へ何も指定していない場合や、typo の場合は `article` モデルを参照します。
+
+### `<action>`
+
+| action       | option                     | description                                                                                                |
+| :----------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `add\|new`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
+| `rm\|delete` | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を削除します。                                                 |
+| `draft`      | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を下書きにもどします。                                         |
+| `publish`    | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を公開設定にし、`article` の場合はタイムスタンプを更新します。 |
+| `ls\|list`   | `-m <model>`               | `src/content/<model>/` を公開状態を含めて一覧表示します。                                                  |
 
 # Markdown の構文
 

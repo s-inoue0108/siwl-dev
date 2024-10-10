@@ -1,11 +1,11 @@
 ---
-isDraft: true
+isDraft: false
 title: Astro, SolidJS でブログをリニューアルしました
 category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: Astro + SolidJSでブログをリニューアルしましたので、その覚え書きです。利用した技術や、気になった点をまとめます。
 publishDate: 2024-10-06
-updateDate: 2024-10-06
+updateDate: 2024-10-10
 ---
 
 # ランタイム

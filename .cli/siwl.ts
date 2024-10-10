@@ -2,6 +2,7 @@
 // "pnpm run siwl" for ailias, or "pnpm -s dlx tsx .cli/siwl.ts <cmd> --opt" for direct run
 
 import fs from "fs";
+import chalk from "chalk";
 
 import { Command } from "commander";
 const program = new Command();
@@ -36,7 +37,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.md`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.md already exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.md already exists!`));
         process.exit(1);
       }
 
@@ -51,7 +52,7 @@ program
         }).replaceAll('/', '-')}\nrelatedArticles: []\n---`,
         (err) => {
           if (err) throw err;
-          console.log(`added ${model}/${filename}.md`);
+          console.log(`added ${chalk.green(`${model}/${filename}.md`)}`);
           process.exit(0);
         });
 
@@ -60,7 +61,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
         process.exit(1);
       }
 
@@ -69,7 +70,7 @@ program
         `isDraft: true\nname: \nbelong: tech\nicon: ./icons/\n`,
         (err) => {
           if (err) throw err;
-          console.log(`added ${model}/${filename}.yaml`);
+          console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
 
@@ -78,7 +79,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
         process.exit(1);
       }
 
@@ -87,7 +88,7 @@ program
         `isDraft: true\nname: \ndescription: \nurl: \n`,
         (err) => {
           if (err) throw err;
-          console.log(`added ${model}/${filename}.yaml`);
+          console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
     }
@@ -96,7 +97,7 @@ program
 // rm
 program
   .command("rm")
-  .alias("remove")
+  .alias("delete")
   .description("remove a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
@@ -108,28 +109,28 @@ program
     if (model === "article") {
       fs.unlink(`./src/content/${model}/${filename}.md`, (err) => {
         if (err) {
-          console.log(`	\x1b[33m${model}/${filename}.md does not exist!`);
+          console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
           process.exit(1);
         };
-        console.log(`removed ${model}/${filename}.md`);
+        console.log(`removed ${chalk.red(`${model}/${filename}.md`)}`);
         process.exit(0);
       });
     } else if (model === "tag") {
       fs.unlink(`./src/content/${model}/${filename}.yaml`, (err) => {
         if (err) {
-          console.log(`	\x1b[33m${model}/${filename}.yaml does not exist!`);
+          console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
           process.exit(1);
         };
-        console.log(`removed ${model}/${filename}.yaml`);
+        console.log(`removed ${chalk.red(`${model}/${filename}.yaml`)}`);
         process.exit(0);
       });
     } else {
       fs.unlink(`./src/content/${model}/${filename}.yaml`, (err) => {
         if (err) {
-          console.log(`	\x1b[33m${model}/${filename}.yaml does not exist!`);
+          console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
           process.exit(1);
         };
-        console.log(`removed ${model}/${filename}.yaml`);
+        console.log(`removed ${chalk.red(`${model}/${filename}.yaml`)}`);
         process.exit(0);
       });
     }
@@ -150,7 +151,7 @@ program
 
       const file = `./src/content/${model}/${filename}.md`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.md does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
         process.exit(1);
       }
 
@@ -159,7 +160,7 @@ program
         const newData = data.replace(/isDraft: false/, 'isDraft: true');
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`drafted ${model}/${filename}.md`);
+          console.log(`drafted ${chalk.blue(`${model}/${filename}.md`)}`);
           process.exit(0);
         });
       });
@@ -168,7 +169,7 @@ program
 
       const file = `./src/content/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
       }
 
@@ -177,7 +178,7 @@ program
         const newData = data.replace(/isDraft: false/, 'isDraft: true');
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`drafted ${model}/${filename}.yaml`);
+          console.log(`drafted ${chalk.blue(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
       });
@@ -186,7 +187,7 @@ program
 
       const file = `./src/content/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
       }
 
@@ -195,7 +196,7 @@ program
         const newData = data.replace(/isDraft: false/, 'isDraft: true');
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`drafted ${model}/${filename}.yaml`);
+          console.log(`drafted ${chalk.blue(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
       });
@@ -218,7 +219,7 @@ program
 
       const file = `./src/content/${model}/${filename}.md`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.md does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
         process.exit(1);
       }
 
@@ -230,7 +231,7 @@ program
         }).replaceAll('/', '-')}`);
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`published ${model}/${filename}.md`);
+          console.log(`published ${chalk.magenta(`${model}/${filename}.md`)}`);
           process.exit(0);
         });
       });
@@ -239,7 +240,7 @@ program
 
       const file = `./src/content/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
       }
 
@@ -248,7 +249,7 @@ program
         const newData = data.replace(/isDraft: true/, 'isDraft: false');
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`published ${model}/${filename}.yaml`);
+          console.log(`published ${chalk.magenta(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
       });
@@ -257,7 +258,7 @@ program
 
       const file = `./src/content/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
       }
 
@@ -266,7 +267,7 @@ program
         const newData = data.replace(/isDraft: true/, 'isDraft: false');
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
-          console.log(`published ${model}/${filename}.yaml`);
+          console.log(`published ${chalk.magenta(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
       });
@@ -283,10 +284,16 @@ program
   .action((cmd) => {
     const model = getModel(cmd);
 
-    fs.readdir(`./src/content/${model}/`, (_, files) => {
-      files.forEach(file => {
-        console.log(file.replace(".md", "").replace(".yaml", ""));
-      });
+    fs.readdir(`./src/content/${model}/`, { withFileTypes: true }, (_, dirents) => {
+      console.log(`${chalk.bgWhiteBright(`${model.toUpperCase()}`)} (${chalk.blue("drafted")}/${chalk.magenta("published")})`);
+      for (const dirent of dirents) {
+        if (dirent.isDirectory()) continue;
+        fs.readFile(`./src/content/${model}/${dirent.name}`, 'utf8', (err, data) => {
+          if (err) throw err;
+          const isDraft = data.search(/isDraft: true/) === -1 ? false : true;
+          console.log(`${isDraft ? chalk.blue("*") : chalk.magenta("*")} ${dirent.name.replace(".md", "").replace(".yaml", "")}`);
+        })
+      }
     });
   });
 

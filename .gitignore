@@ -23,7 +23,7 @@ pnpm-debug.log*
 .idea/
 
 # VSCode Config
-.vscode
+.vscode/
 
 #VSCode workspace
 *.code-workspace
