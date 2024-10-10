@@ -1,5 +1,5 @@
 ---
-isDraft: true
+isDraft: false
 title: コマンドのテストです
 category: tech
 tags: [astro, sass]

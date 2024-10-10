@@ -2,7 +2,6 @@
 // "pnpm run siwl" for ailias, or "pnpm -s dlx tsx .cli/siwl.ts <cmd> --opt" for direct run
 
 import fs from "fs";
-import { stdin as input, stdout as output } from "node:process";
 
 import { Command } from "commander";
 const program = new Command();

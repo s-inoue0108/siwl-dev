@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ACTION=$1
 FLAG_1=$2
 COMMAND_1=$3
