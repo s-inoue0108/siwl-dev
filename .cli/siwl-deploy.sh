@@ -1,8 +1,10 @@
 #!/bin/sh
 
-cd /d/Astro/siwl-dev/
+ROOTDIR=/d/Astro/siwl-dev/
+
+cd $ROOTDIR
 DATE=$(date "+%F")
-echo $d
+echo $DATE
 
 # push: edit branch
 git switch edit
@@ -19,5 +21,8 @@ git stash pop
 # merge: edit to main
 git merge edit
 git push origin main
+git switch edit
 
-cd /d/Astro/siwl-dev/src/content
+cd "$ROOTDIR"/src/content
+
+echo "deployments: https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b"
