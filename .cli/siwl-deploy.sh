@@ -13,13 +13,8 @@ git add .
 git commit -m "edit: $DATE"
 git push origin edit
 
-# sync: main branch
-# git switch main
-# git stash
-# git pull origin main
-# git stash pop
-
 # merge: edit to main
+git switch main
 git merge edit
 git push origin main
 git switch edit
