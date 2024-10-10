@@ -17,14 +17,14 @@ git push origin edit &
 >/dev/null
 
 # sync: main branch
-git switch main &
->/dev/null
-git stash &
->/dev/null
-git pull origin main &
->/dev/null
-git stash pop &
->/dev/null
+# git switch main &
+# >/dev/null
+# git stash &
+# >/dev/null
+# git pull origin main &
+# >/dev/null
+# git stash pop &
+# >/dev/null
 
 # merge: edit to main
 git merge edit &
