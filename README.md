@@ -28,82 +28,79 @@
 ];
 ```
 
-# CLI 環境
+# CLI
 
-コンテンツ管理を行うための CLI です。Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
+コンテンツ管理を行うための CLI です。
 
-> [!WARN]
-> Node.js 環境およびトランスパイルのために `tsx` を必要とします。
-
-> [!WARN]
+> [!WARNING]
 > プロジェクトのルートディレクトリで実行してください。
 
 ## パッケージマネージャによる実行
 
+Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
+
 `package.json` にあるエイリアス `tsx .cli/siwl.ts` を実行します。`npm`, `yarn`, `pnpm` などを用います。
 
 ```bash
-$ pnpm run siwl <action> -f <filename> -m <model>
+$ pnpm run siwl <action> -flag1 <cmd1> -flag2 <cmd2>
 ```
 
 ## シェルスクリプトによる実行
 
 以下のエイリアスを `~/.bash_profile` に記載することで、`.cli/siwl.sh` を実行することができます。
 
+> [!WARNING] Warning
+> VSCode の `code` コマンド, `pnpm` および `git` を使用します。
+
 ```bash
 alias siwl="source <local-dir>/.cli/siwl.sh"
 ```
 
 ```bash
-$ siwl <action> -f <filename> -m <model>
+$ siwl <action> -flag1 <cmd1> -flag2 <cmd2>
 ```
 
-# CLI コマンド
+## 汎用コマンド
+
+> [!WARNING] Warning
+> `serve`, `deploy` はシェルスクリプトからしか実行できません。
+
+| action                | description                                                                                                                                                           |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dev\|serve -h`       | 開発サーバを起動します。`-h` オプションをつけるとエクスポートを実行します。                                                                                           |
+| `build`               | ローカルでビルドを実行します。                                                                                                                                        |
+| `preview`             | ローカルで実行したビルドをプレビューします。                                                                                                                          |
+| `deploy -m <message>` | `edit` リモートブランチにすべての変更内容を反映し、`main` ブランチにマージします。[^1] 本番環境へのデプロイを実行し、新しいアプリケーションインスタンスを作成します。 |
+| `help\|-h`            | ヘルプを表示します。                                                                                                                                                  |
+
+[^1]: `git switch edit -> git add . -> git commit -m "edit: <message>" -> git push origin edit -> git switch main -> git merge edit -> git push origin main -> git switch edit`
+
+## Content Management CLI
+
+> [!WARNING] Warning
+> `open` はシェルスクリプトからしか実行できません。
+
+| action                                | description                                                                                                                                                  |
+| :------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add\|new -f <filename> -m <model>`   | `/content/<model>/` に `<filename>.md` または `<filename>.yaml` を追加し、スキーマを初期化します。                                                           |
+| `rm\|remove -f <filename> -m <model>` | `/content/<model>/` から `<filename>.md` または `<filename>.yaml` を削除します。                                                                             |
+| `open -f <filename> -m <model>`       | `<filename>.md` または `<filename>.yaml` を Visual Studio code で開きます。                                                                                  |
+| `draft -f <filename> -m <model>`      | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `true` に変更し、下書き設定に戻します。                                                   |
+| `publish -f <filename> -m <model>`    | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
+| `ls\|list -m <model>`                 | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
 
 ## `<model>`
 
 `/content/config.ts` にスキーマ定義があります。
 
-| modal      | description                                                                  | filetype |
-| :--------- | :--------------------------------------------------------------------------- | :------- |
-| `article`  | ブログ記事を扱います。                                                       | MARKDOWN |
-| `tag`      | ブログのタグを扱います。                                                     | YAML     |
-| `bookmark` | Web ページのブックマークを扱います。                                         | YAML     |
-| `work`     | ポートフォリオページの制作物を扱います。                                     | YAML     |
-| `fixed`    | プライバシーポリシー、ニュースレターなど、固定表示するコンテンツを扱います。 | MARKDOWN |
+| modal      | description                          | filetype |
+| :--------- | :----------------------------------- | :------- |
+| `article`  | ブログ記事を扱います。               | MARKDOWN |
+| `tag`      | ブログのタグを扱います。             | YAML     |
+| `bookmark` | Web ページのブックマークを扱います。 | YAML     |
 
-> [!TIP]
-> 何も指定していない場合は `article` を参照します。
-
-## `<action>`
-
-### 共通のもの
-
-以下のコマンドは `<model>` `<filename>` を **_指定せず_** 実行します。
-開発サーバの起動、公開設定の反映などがあります。
-
-| action     | description                                                                                                                                                     |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `serve`    | 開発サーバを起動し、localhost にアクセスします。                                                                                                                |
-| `deploy`   | `edit` リモートブランチにすべての変更内容を反映し、`main` ブランチにマージします。[^1] 自動でデプロイを実行し、新しいアプリケーションインスタンスを作成します。 |
-| `log`      | 変更履歴を表示します。                                                                                                                                          |
-| `help, -h` | ヘルプを表示します。                                                                                                                                            |
-
-[^1]: `git switch edit -> git add . -> git commit -m "edit: message" -> git push origin edit -> git switch main -> git merge edit -> git push origin main -> git switch edit`
-
-### 引数をとるもの
-
-以下のコマンドは `<model>` や `<filename>` を **_指定して_** 実行します。
-コンテンツの追加・削除・編集などのコマンドがあります。
-
-| action                             | description                                                                                                                                                  |
-| :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add -f <filename> -m <model>`     | `/content/<model>/` に `<filename>.md` または `<filename>.yaml` を追加し、スキーマを初期化します。                                                           |
-| `rm -f <filename> -m <model>`      | `/content/<model>/` から `<filename>.md` または `<filename>.yaml` を削除します。                                                                             |
-| `open -f <filename> -m <model>`    | `<filename>.md` または `<filename>.yaml` を Visual Studio code で開きます。                                                                                  |
-| `draft -f <filename> -m <model>`   | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `true` に変更し、下書き設定に戻します。                                                   |
-| `publish -f <filename> -m <model>` | `<filename>.md` または `<filename>.yaml` の `isDraft` プロパティを `false` に変更し、公開設定にします。`updateDate` プロパティのタイムスタンプを更新します。 |
-| `list -m <model>`                  | `<model>` を一覧表示します。下書き設定になっているコンテンツはハイライト表示します。                                                                         |
+> [!TIP] Tip
+> `-m <model>` へ何も指定していない場合は `article` モデルを参照します。
 
 # Markdown の構文
 

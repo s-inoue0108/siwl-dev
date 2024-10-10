@@ -37,7 +37,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.md`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.md already exists!\n\x1b[39mplease run "siwl open -f ${filename}" to open.`);
+        console.log(`	\x1b[33m${model}/${filename}.md already exists!`);
         process.exit(1);
       }
 
@@ -51,7 +51,7 @@ program
           day: "2-digit"
         }).replaceAll('/', '-')}\nrelatedArticles: []\n---`,
         (err) => {
-          if (err) { throw err; }
+          if (err) throw err;
           console.log(`added ${model}/${filename}.md`);
           process.exit(0);
         });
@@ -61,7 +61,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!\n\x1b[39mplease run "siwl open -f ${filename} -m tag" to open.`);
+        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!`);
         process.exit(1);
       }
 
@@ -69,7 +69,7 @@ program
       fs.writeFile(file,
         `isDraft: true\nname: \nbelong: tech\nicon: ./icons/\n`,
         (err) => {
-          if (err) { throw err; }
+          if (err) throw err;
           console.log(`added ${model}/${filename}.yaml`);
           process.exit(0);
         });
@@ -79,7 +79,7 @@ program
       // ファイル
       const file = `./src/content/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
-        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!\n\x1b[39mplease run "siwl open -f ${filename} -m bookmark" to open.`);
+        console.log(`	\x1b[33m${model}/${filename}.yaml already exists!`);
         process.exit(1);
       }
 
@@ -87,7 +87,7 @@ program
       fs.writeFile(file,
         `isDraft: true\nname: \ndescription: \nurl: \n`,
         (err) => {
-          if (err) { throw err; }
+          if (err) throw err;
           console.log(`added ${model}/${filename}.yaml`);
           process.exit(0);
         });
@@ -135,6 +135,145 @@ program
       });
     }
   });
+
+// draft
+program
+  .command("draft")
+  .description("drafting a content")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .action((cmd) => {
+
+    const filename = getFilename(cmd);
+    const model = getModel(cmd);
+
+    if (model === "article") {
+
+      const file = `./src/content/${model}/${filename}.md`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.md does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: false/, 'isDraft: true');
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`drafted ${model}/${filename}.md`);
+          process.exit(0);
+        });
+      });
+
+    } else if (model === "tag") {
+
+      const file = `./src/content/${model}/${filename}.yaml`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: false/, 'isDraft: true');
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`drafted ${model}/${filename}.yaml`);
+          process.exit(0);
+        });
+      });
+
+    } else {
+
+      const file = `./src/content/${model}/${filename}.yaml`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: false/, 'isDraft: true');
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`drafted ${model}/${filename}.yaml`);
+          process.exit(0);
+        });
+      });
+
+    }
+  })
+
+// publish
+program
+  .command("publish")
+  .description("publishing a content")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .action((cmd) => {
+
+    const filename = getFilename(cmd);
+    const model = getModel(cmd);
+
+    if (model === "article") {
+
+      const file = `./src/content/${model}/${filename}.md`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.md does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}/, `updateDate: ${new Date().toLocaleDateString("ja-JP", {
+          year: "numeric", month: "2-digit",
+          day: "2-digit"
+        }).replaceAll('/', '-')}`);
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`published ${model}/${filename}.md`);
+          process.exit(0);
+        });
+      });
+
+    } else if (model === "tag") {
+
+      const file = `./src/content/${model}/${filename}.yaml`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: true/, 'isDraft: false');
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`published ${model}/${filename}.yaml`);
+          process.exit(0);
+        });
+      });
+
+    } else {
+
+      const file = `./src/content/${model}/${filename}.yaml`;
+      if (!fs.existsSync(file)) {
+        console.log(`	\x1b[33m${model}/${filename}.yaml does not exists!`);
+        process.exit(1);
+      }
+
+      fs.readFile(file, 'utf8', (err, data) => {
+        if (err) throw err;
+        const newData = data.replace(/isDraft: true/, 'isDraft: false');
+        fs.writeFile(file, newData, (err) => {
+          if (err) throw err;
+          console.log(`published ${model}/${filename}.yaml`);
+          process.exit(0);
+        });
+      });
+
+    }
+  })
 
 // list
 program

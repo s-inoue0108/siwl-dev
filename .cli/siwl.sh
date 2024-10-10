@@ -4,8 +4,12 @@ COMMAND_1=$3
 FLAG_2=$4
 COMMAND_2=$5
 
-if [ ["$ACTION" = "dev"] && ["$ACTION" = "serve"] ]; then
-    pnpm -s run dev
+if [ "$ACTION" = "dev" ] || [ "$ACTION" = "serve" ]; then
+    if [ "$FLAG_1" = "-h" ] || [ "$FLAG_1" = "--host" ]; then
+        pnpm -s run dev --host
+    else
+        pnpm -s run dev
+    fi
 elif [ "$ACTION" = "build" ]; then
     pnpm -s run build
 elif [ "$ACTION" = "preview" ]; then
@@ -13,7 +17,7 @@ elif [ "$ACTION" = "preview" ]; then
 elif [ "$ACTION" = "deploy" ]; then
     git switch edit
     git add .
-    if ["$FLAG_1" = "-m"]; then
+    if [ "$FLAG_1" = "-m" ] || [ "$FLAG_1" = "--message" ]; then
         git commit -m "edit: $COMMAND_1"
     else
         git commit -m ""
@@ -25,4 +29,4 @@ elif [ "$ACTION" = "deploy" ]; then
     git switch edit
 fi
 
-pnpm -s run siwl ${ACTION} ${COMMAND_1} ${FILENAME} ${FLAG_2} ${COMMAND_2}
+pnpm -s run siwl ${ACTION} ${FLAG_1} ${COMMAND_1} ${FLAG_2} ${COMMAND_2}
