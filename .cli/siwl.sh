@@ -110,6 +110,7 @@ function process() {
         pnpm -s run siwl ls
     else
         echo "Command is invalid."
+        echo "Check: https://github.com/s-inoue0108/siwl-dev/blob/main/README.md#cli"
     fi
 }
 
