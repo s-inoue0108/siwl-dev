@@ -9,16 +9,16 @@ updateDate: 2024-10-08
 relatedArticles: []
 ---
 
-# 参考サイト
+## 参考サイト
 
 https://digipress.info/tech/circular-progress-bar-with-count-up/
 
-# 方針
+## 方針
 
 参考サイトのように SVG を使って実装します。
 Vue を利用することで、SVg のプロパティである `stroke-dashoffset` をリアクティブに扱い、スクロールイベントに応じてその値を更新しようという考えです。
 
-# 実装
+## 実装
 
 `<circle>` の半径を $ r $ とするとき、その円周の長さ $ L $（`circumference`）は、
 

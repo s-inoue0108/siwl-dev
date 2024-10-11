@@ -8,9 +8,9 @@ publishDate: 2024-10-04
 updateDate: 2024-10-04
 ---
 
-# ツールの紹介
+## ツールの紹介
 
-## 概要
+### 概要
 
 https://playlist-asset-generator.vercel.app
 
@@ -24,11 +24,11 @@ https://playlist-asset-generator.vercel.app
 >
 > このうち、画像生成に利用しているのは ARTIST, TITLE, ALBUM, DATE の 4 つですが、ロードする CSV にはすべてのカラムを欠損のないように含める必要があります。セルは空白でも構いません。
 
-## プレビュー
+### プレビュー
 
 ![スクリーンショット2024-09-16224713.png](https://si-library.assets.newt.so/v1/75aa4953-1198-4f81-ad94-b169c89dc1df/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882024-09-16224713.png) **caption:ドラッグ & ドロップの UI**
 
-# アプローチと技術選定
+## アプローチと技術選定
 
 プレイした楽曲のメタデータ（タイトル、アーティスト名、アルバム名など）を格納した CSV の列とカバー画像の組から生成することを考えました。
 
@@ -38,7 +38,7 @@ https://playlist-asset-generator.vercel.app
 
 FLAC ファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC 公式のコマンドツールを使うことで FLAC ファイルの中身を CLI で読み出すことができます）。
 
-## UI ライブラリ
+### UI ライブラリ
 
 Vite を利用することとし、UI 構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
 
@@ -53,13 +53,13 @@ export const [state, setState] = createSignal();
 // Reactとは異なり、ステートはメソッドとして呼び出す: state()
 ```
 
-## 画像生成
+### 画像生成
 
 Vercel が開発している [satori](https://github.com/vercel/satori) を使用し、SVG をクライアントサイドで生成できるようにしました。
 
-# 実装
+## 実装
 
-## ドラッグ & ドロップを行う UI
+### ドラッグ & ドロップを行う UI
 
 CSV をドロップする部分のみ書きます。`csv()` を外部ファイルにステートとして保存します。
 
@@ -110,7 +110,7 @@ const getTextFromFile = (file: File, encoding: string = "utf-8") => {
 };
 ```
 
-## CSV の Parse
+### CSV の Parse
 
 JS で CSV を取り扱うベストプラクティスはこれといったものがなさそうです。安直ですが、行を改行文字で、列をコンマで区切って取り出したデータをオブジェクト配列にマッピングすることでパースします。
 
@@ -144,7 +144,7 @@ export const parser = (csv: string) => {
 }
 ```
 
-## CSV からプレビュー用のテーブルを作る
+### CSV からプレビュー用のテーブルを作る
 
 `parser()` の返り値の型は `{.....}[]` ですが、JSX に展開する場合は 2 次元配列 `[.....][]` のほうがおそらく扱いやすいです。そのための変換を行います（~~二度手間感はぬぐえませんが~~） 。
 
@@ -195,7 +195,7 @@ const tableData = () => {
 </table>
 ```
 
-## satori による画像生成
+### satori による画像生成
 
 今回はクライアントサイドで処理してしまいます。UI は JSX で実装していますが、satori でも JSX を用いようとしてうまくいかなかったので、DOM はオブジェクトで記述しています。
 
@@ -257,7 +257,7 @@ export default function GenerateBtn() {
 }
 ```
 
-## 画像プレビューとダウンロード
+### 画像プレビューとダウンロード
 
 せっかくなのでモーダルで実装してみます。調べてみると、SolidJS にはモーダルを手軽に実装するための API が提供されています。
 
