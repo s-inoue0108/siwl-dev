@@ -1,12 +1,12 @@
 ---
 isDraft: true
 title: "Markdownのテスト"
-category: tech
-tags: [js, ts, astro, solid, sass]
+category: idea
+tags: []
 description: 利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25
 updateDate: 2024-10-10
-relatedArticles: [renewal-note, ipa-fe-1]
+relatedArticles: [renewal-note]
 ---
 
 # Link

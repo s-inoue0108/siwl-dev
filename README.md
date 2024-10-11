@@ -16,10 +16,16 @@ $ siwl add -f <filename>
 2. 開発サーバを起動します：
 
 ```bash
+# using pnpm
 $ pnpm run dev
 ```
 
-3. `src/content/<filename>.md` のスキーマと内容を編集します。
+3. `src/content/article/<filename>.md` のスキーマと内容を編集します。
+
+```bash
+# current: src/content
+$ code article/<filename>.md
+```
 
 4. 記事を公開設定にします：
 
@@ -30,11 +36,16 @@ $ siwl publish -f <filename>
 5. 変更を反映します：
 
 ```bash
+$ siwldeploy
+or
+$ git switch edit
 $ git add .
-$ git commit -m "edit: <filename>"
+$ git commit -m "edit article"
+$ git push origin edit
+$ git switch main
+$ git merge edit
 $ git push origin main
-# あるいは
-$ siwl-deploy
+$ git switch edit
 ```
 
 # ルーティング
@@ -55,7 +66,7 @@ $ siwl-deploy
 ];
 ```
 
-# CLI
+# Content Management CLI
 
 コンテンツ管理を行うための CLI です。
 
@@ -63,29 +74,37 @@ $ siwl-deploy
 
 Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
 
-`package.json` にあるエイリアス `tsx .cli/siwl.ts` を実行します。`npm`, `yarn`, `pnpm` などを用います。
+`package.json` にある NPM スクリプト `tsx .cli/siwl.ts` を実行します。
 
-**実行：**
+**Content Management CLI の実行：**
 
 ```bash
+# using pnpm
 $ pnpm run siwl <action> -f <filename> -m <model>
 ```
 
 ## シェルスクリプトによる実行
 
-以下のエイリアスを `~/.bash_profile` に記載することで、`.cli/siwl.sh` を実行することができます。
+以下のエイリアスを設定することで、`.cli/siwl.sh` および `.cli/siwl-deploy.sh` を簡単に実行することができます。
 
 ```bash
 alias siwl="source <local-dir>/.cli/siwl.sh"
+alias siwldeploy="source <local-dir>/.cli/siwl-deploy.sh"
 ```
 
-**実行：**
+**Content Management CLI の実行：**
 
 ```bash
 $ siwl <action> -f <filename> -m <model>
 ```
 
-## CLI コマンド
+**デプロイ：**
+
+```bash
+$ siwldeploy
+```
+
+## Content Management CLI のコマンド
 
 プロジェクト内の任意のディレクトリから実行可能です。
 
@@ -95,10 +114,10 @@ $ siwl <action> -f <filename> -m <model>
 | :------- | :----------------------------- | :------- |
 | article  | ブログの記事を扱います。       | MARKDOWN |
 | tag      | ブログのタグを扱います。       | YAML     |
-| bookmark | ブックマークリンクを扱います。 | YAML     |
+| bookmark | Web ページのリンクを扱います。 | YAML     |
 
 > [!TIP] Tip
-> `-m <model>` へ何も指定していない場合や、typo の場合は `article` モデルを参照します。
+> `<model>` が未指定あるいは typo の場合は `article` モデルを参照します。
 
 ### `<action>`
 
