@@ -56,6 +56,8 @@ function parse() {
     shift $(expr "${OPTIND}" - 1)
     if [ $# -eq 1 ]; then
         CMD="$@"
+    else
+        echo "Command is invalid."
     fi
 }
 
@@ -98,8 +100,8 @@ function process() {
         pnpm -s run siwl -h
     elif $IS_V; then
         pnpm -s run siwl -v
-    elif [[ -v "$CMD" ]]; then
-        pnpm -s run siwl $CMD
+    elif [ $CMD == "ls" ]; then
+        pnpm -s run siwl ls
     else
         echo "Command is invalid."
     fi
