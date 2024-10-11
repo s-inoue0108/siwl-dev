@@ -1,4 +1,4 @@
 isDraft: false
 name: Nuxt
 belong: tech
-icon: ./icons/nuxt.svg
+icon: ../../assets/icons/nuxt.svg

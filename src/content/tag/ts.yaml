@@ -1,4 +1,4 @@
 isDraft: false
 name: TypeScript
 belong: tech
-icon: ./icons/typescript.svg
+icon: ../../assets/icons/typescript.svg

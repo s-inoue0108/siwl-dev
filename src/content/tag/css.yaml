@@ -1,4 +1,4 @@
 isDraft: false
 name: CSS
 belong: tech
-icon: ./icons/css.svg
+icon: ../../assets/icons/css.svg

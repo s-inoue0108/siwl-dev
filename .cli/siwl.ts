@@ -8,10 +8,10 @@ import { Command } from "commander";
 const program = new Command();
 
 const getModel = (cmd: any) => {
-  const isModel = (arg: string | undefined): arg is ("article" | "tag" | "bookmark") => {
-    return arg === "article" || arg === "tag" || arg === "bookmark" ? true : false;
+  const isModel = (arg: string | undefined): arg is ("article" | "tag" | "bookmark" | "work") => {
+    return arg === "article" || arg === "tag" || arg === "bookmark" || arg === "work" ? true : false;
   }
-  const model: "article" | "tag" | "bookmark" = isModel(cmd.model) ? cmd.model : "article";
+  const model: "article" | "tag" | "bookmark" | "work" = isModel(cmd.model) ? cmd.model : "article";
   return model;
 }
 
@@ -26,7 +26,7 @@ program
   .alias("new")
   .description("add a new content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -67,14 +67,14 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `isDraft: true\nname: \nbelong: tech\nicon: ./icons/\n`,
+        `isDraft: true\nname: \nbelong: tech\nicon: ../../assets/icons/\n`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
 
-    } else {
+    } else if (model === "bookmark") {
 
       // ファイル
       const file = `./src/content/${model}/${filename}.yaml`;
@@ -91,6 +91,23 @@ program
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
+    } else {
+
+      // ファイル
+      const file = `./src/content/${model}/${filename}.yaml`;
+      if (fs.existsSync(file)) {
+        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
+        process.exit(1);
+      }
+
+      // 書き込み
+      fs.writeFile(file,
+        `isDraft: true\ntitle: \ndescription: \nurl: \nimages: []\n`,
+        (err) => {
+          if (err) throw err;
+          console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
+          process.exit(0);
+        });
     }
   });
 
@@ -100,7 +117,7 @@ program
   .alias("delete")
   .description("remove a content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -113,15 +130,6 @@ program
           process.exit(1);
         };
         console.log(`removed ${chalk.red(`${model}/${filename}.md`)}`);
-        process.exit(0);
-      });
-    } else if (model === "tag") {
-      fs.unlink(`./src/content/${model}/${filename}.yaml`, (err) => {
-        if (err) {
-          console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
-          process.exit(1);
-        };
-        console.log(`removed ${chalk.red(`${model}/${filename}.yaml`)}`);
         process.exit(0);
       });
     } else {
@@ -165,24 +173,6 @@ program
         });
       });
 
-    } else if (model === "tag") {
-
-      const file = `./src/content/${model}/${filename}.yaml`;
-      if (!fs.existsSync(file)) {
-        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
-        process.exit(1);
-      }
-
-      fs.readFile(file, 'utf8', (err, data) => {
-        if (err) throw err;
-        const newData = data.replace(/isDraft: false/, 'isDraft: true');
-        fs.writeFile(file, newData, (err) => {
-          if (err) throw err;
-          console.log(`drafted ${chalk.blue(`${model}/${filename}.yaml`)}`);
-          process.exit(0);
-        });
-      });
-
     } else {
 
       const file = `./src/content/${model}/${filename}.yaml`;
@@ -209,7 +199,7 @@ program
   .command("publish")
   .description("publishing a content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -232,24 +222,6 @@ program
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
           console.log(`published ${chalk.magenta(`${model}/${filename}.md`)}`);
-          process.exit(0);
-        });
-      });
-
-    } else if (model === "tag") {
-
-      const file = `./src/content/${model}/${filename}.yaml`;
-      if (!fs.existsSync(file)) {
-        console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
-        process.exit(1);
-      }
-
-      fs.readFile(file, 'utf8', (err, data) => {
-        if (err) throw err;
-        const newData = data.replace(/isDraft: true/, 'isDraft: false');
-        fs.writeFile(file, newData, (err) => {
-          if (err) throw err;
-          console.log(`published ${chalk.magenta(`${model}/${filename}.yaml`)}`);
           process.exit(0);
         });
       });
@@ -280,7 +252,7 @@ program
   .command("ls")
   .alias("list")
   .description("view content list")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
+  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
   .action((cmd) => {
     const model = getModel(cmd);
 
