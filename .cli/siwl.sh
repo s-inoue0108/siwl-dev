@@ -9,6 +9,7 @@ function main() {
     local IS_M=false
     local IS_D=false
     local IS_B=false
+    local IS_S=false
     local IS_T=false
     local IS_V=false
     local IS_H=false
@@ -25,7 +26,7 @@ function main() {
 
 function parse() {
     OPTIND=1
-    while getopts "dtvhib:f:m:" OPT; do
+    while getopts "dtvhisb:f:m:" OPT; do
         case $OPT in
         f)
             IS_F=true
@@ -41,6 +42,9 @@ function parse() {
         b)
             IS_B=true
             BRANCH=$OPTARG
+            ;;
+        s)
+            IS_S=true
             ;;
         t)
             IS_T=true
@@ -80,10 +84,8 @@ function process() {
         cd $ROOTDIR
         DATE=$(date "+%F")
         echo "create deployment - $BRANCH / $DATE"
-        echo "running..."
 
         # push
-        git switch $BRANCH
         git add .
         git commit -m "$DATE"
         git push origin $BRANCH
@@ -98,6 +100,15 @@ function process() {
 
         echo "Complete!"
         echo "deployments: https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b/pages/view/siwl-dev"
+    elif $IS_S; then
+        ROOTDIR=/d/Astro/siwl-dev
+        cd $ROOTDIR
+        echo "sync"
+
+        # pull
+        git stash
+        git pull origin main
+        git stash pop
     elif $IS_F && $IS_M; then
         pnpm -s run siwl $CMD -f ${FILENAME} -m ${MODEL}
     elif $IS_F; then
