@@ -10,9 +10,9 @@ updateDate: 2024-10-11
 
 ## ツールの紹介
 
-### 概要
-
 https://playlist-asset-generator.vercel.app
+
+### 概要
 
 **ブラウザのみで動作**し、楽曲のメタデータを含む CSV とアルバムやシングルのカバー画像（JPEG）の組から SVG を生成します。
 
@@ -44,12 +44,6 @@ https://playlist-asset-generator.vercel.app
 
 Vite を利用することとし、UI 構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
 
-> [!info] 参考
->
-> https://zenn.dev/nakasyou/articles/20231020_solidjs
->
-> https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea
-
 SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（**SolidJS では `createSignal`**）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
 
 ```ts:state
@@ -58,6 +52,12 @@ import { createSignal } from "solid-js";
 export const [state, setState] = createSignal();
 // Reactとは異なり、ステートはメソッドとして呼び出す: state()
 ```
+
+#### SolidJS:参考
+
+https://zenn.dev/nakasyou/articles/20231020_solidjs
+
+https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea
 
 ### 画像生成
 
