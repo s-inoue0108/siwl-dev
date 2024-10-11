@@ -15,7 +15,7 @@ relatedArticles: [renewal-note]
 
 https://www.npmjs.com/package/remark-link-card
 
-<https://www.npmjs.com/package/remark-link-card>
+<https://siwl.dev/blog/articles/renewal-note>
 
 ### Inline links
 
@@ -77,20 +77,27 @@ const ts = "TypeScript";
 console.log(ts);
 ```
 
-## Quote
+## Callout
 
-> [!NOTE]
-> This
-> is
-> Quote.
+> This is normal quote.
 
-### Callout
+> [!note]
+> This is note.
 
-### Directive
+> [!info]
+> This is info.
 
-Lorem:br
-ipsum.
+> [!important]
+> This is important.
 
-::hr{.red}
+> [!warn]
+> This is warn.
 
-A :i[lovely] language know as :abbr[HTML]{title="HyperText Markup Language"}.
+> [!alert]
+> This is alert.
+
+> [!tip]
+> This is tip.
+
+> [!math]
+> This is math.

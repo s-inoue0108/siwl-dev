@@ -5,7 +5,7 @@ category: tech
 tags: [ts, solid, sass, dj]
 description: DJ MIXプレイを録音して、動画として残したいことがあります。今回は、プレイした楽曲のメタデータから動画制作用のSVGアセットを出力するツールをSolidJSで制作してみました。
 publishDate: 2024-10-04
-updateDate: 2024-10-04
+updateDate: 2024-10-11
 ---
 
 ## ツールの紹介
@@ -16,7 +16,8 @@ https://playlist-asset-generator.vercel.app
 
 **ブラウザのみで動作**し、楽曲のメタデータを含む CSV とアルバムやシングルのカバー画像（JPEG）の組から SVG を生成します。
 
-> CSV はカンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
+> [!important] CSV について
+> カンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
 >
 > ```csv:CSV
 > FILENAME,ARTIST,TITLE,ALBUM,GENRE,TRACKNUMBER,DATE,ALBUMARTIST,COMPOSER,FLACPATH
@@ -36,13 +37,18 @@ https://playlist-asset-generator.vercel.app
 
 楽曲を FLAC や ALAC のような形式で管理している場合、ファイルにメタデータが付属しています。したがって、楽曲ファイル（FLAC を利用しました）そのものからデータを取り出すインタフェースまで TypeScript で構築することを試みましたが、~~面倒そうだったので~~ 諦めました。
 
-FLAC ファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC 公式のコマンドツールを使うことで FLAC ファイルの中身を CLI で読み出すことができます）。
+> [!tip]
+> FLAC ファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC 公式のコマンドツールを使うことで FLAC ファイルの中身を CLI で読み出すことができます）。
 
 ### UI ライブラリ
 
 Vite を利用することとし、UI 構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
 
-> **info:参考記事** > [SolidJS が使いやすい | Zenn](https://zenn.dev/nakasyou/articles/20231020_solidjs) > [次のプロジェクト SolidJS で作りませんか？ | Qiita](https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea)
+> [!info] 参考
+>
+> https://zenn.dev/nakasyou/articles/20231020_solidjs
+>
+> https://qiita.com/tonio0720/items/ad2c33d9bea57435f5ea
 
 SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（**SolidJS では `createSignal`**）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
 

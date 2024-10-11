@@ -16,6 +16,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
 // Remark/Rehype Plugins from made
+import { remarkCallout } from "./src/plugins/remark/remark-callout";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
@@ -51,7 +52,13 @@ export default defineConfig({
 		shikiConfig: {
 			theme: "dracula-soft",
 		},
-		remarkPlugins: [[rlc, { shortenUrl: true }], remarkDirective, remarkMath, remarkCodeTitles],
+		remarkPlugins: [
+			[rlc, { shortenUrl: true }],
+			remarkDirective,
+			remarkCallout,
+			remarkMath,
+			remarkCodeTitles,
+		],
 		rehypePlugins: [
 			rehypeRaw,
 			[rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] }],
@@ -60,7 +67,7 @@ export default defineConfig({
 			rehypeKatex,
 		],
 		remarkRehype: {
-			footnoteLabelTagName: "h1",
+			footnoteLabelTagName: "h2",
 			footnoteLabel: "脚注",
 			footnoteBackLabel: "Return to content",
 		},

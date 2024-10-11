@@ -25,9 +25,12 @@ JSX を用いるため React によく似ていますが、仮想 DOM を用い�
 
 ## コンテンツ管理
 
-以前は Headless CMS を使っていましたが、手元にコンテンツを置いておきたい気持ちがあったので Astro の **Content Collections** を用いることにしました。
+以前は Headless CMS を使っていましたが、手元にコンテンツを置いておきたい気持ちがあったので Astro の **Content Collections** を用い、Markdown で記事を管理することにしました。
 
 https://docs.astro.build/en/guides/content-collections/
+
+> [!tip] MDX を採用しなかった理由
+> [MDX](https://mdxjs.com/) は Markdown 中での JSX の使用を可能にする規格で、Markdown では不可能な表現を可能にします。MDX はインタラクティブな要素（ボタンなど）を埋め込む場合に有用ですが、単に装飾したいだけであれば後述する remark/rehype を利用することで Markdown でも豊富な表現が可能です。したがって、（Markdown と比べて）互換性に乏しい MDX の採用は見送りました。
 
 ## 全体のスタイリングとデザイン
 
@@ -48,8 +51,6 @@ React Icons の SolidJS 版にあたるライブラリです。おそらくサ�
 https://github.com/x64Bits/solid-icons
 
 ## 記事のスタイリングとデザイン
-
-Astro は MDX を扱うことができますが、互換性の低さなどから従来通り Markdown を採用することにしました。
 
 ### remark/rehype
 

@@ -22,8 +22,6 @@ export default {
 				tranparent: "transparent",
 				sky: "#38bdf8",
 				purple: "#a855f7",
-				emerald: "#76d5b4",
-				lime: "#bef264",
 			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",

@@ -196,6 +196,26 @@ https://example.com はインラインリンクです。
 > [!NOTE]
 > 利用可能な `language` の一覧 - https://shiki.matsu.io/languages
 
+## コールアウト
+
+`title` は省略可能です。省略した場合 `type` の内容がタイトルになります。
+
+```md
+> [!type] title
+> text text text
+> text text text
+```
+
+| type      | description      |
+| :-------- | :--------------- |
+| note      | 確認事項         |
+| info      | 付帯する情報     |
+| important | 重要事項         |
+| warn      | 警告             |
+| alert     | 強い警告         |
+| tip       | 補足             |
+| math      | 数学の定理、公式 |
+
 ## 数式
 
 ```md
