@@ -5,7 +5,7 @@ category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: Astro + SolidJSでブログをリニューアルしましたので、その覚え書きです。利用した技術や、気になった点をまとめます。
 publishDate: 2024-10-06
-updateDate: 2024-10-10
+updateDate: 2024-10-11
 ---
 
 # フレームワーク
@@ -54,13 +54,51 @@ Astro は MDX を扱うことができますが、互換性の低さなどから
 ## remark/rehype
 
 記事ページのスタイリングには **remark/rehype** という処理系を利用しています。
-多くのプラグインが存在しています（[remark](https://github.com/remarkjs/remark/blob/main/doc/plugins.md), [rehype](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)）。
+既存の多くのプラグインが存在しています（[remark](https://github.com/remarkjs/remark/blob/main/doc/plugins.md), [rehype](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)）。
 
 <br />
 
-これらは Unified という Markdown <-> HTML 韓の構文解析を行う枠組みの一環として存在します。
+これらは Unified という Markdown - HTML 間の構文解析を行う枠組みの一環として存在します。
 
 https://unifiedjs.com/
+
+プラグインは自前で実装することも可能です。例えば、このブログの `<h1>` タグは以下のような rehype プラグインを用意してスタイリングしています。
+
+```ts:rehype.ts
+import type { ElementContent, Root } from 'hast';
+import { visit } from 'unist-util-visit';
+
+export default function rehypeHeading() {
+    return (tree: Root) => {
+        visit(tree, 'element', (node) => {
+            if (node.tagName !== 'h1') return;
+            const { value } = node.children[0] as { type: "text", value: string };
+            if (!value || typeof value !== 'string') return;
+
+            const hashElm = {
+            type: "element",
+            tagName: "a",
+            properties: {
+                href: `#h1-${value}`,
+                className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+            },
+            children: [{ type: "text", value: "#" }],
+            } satisfies ElementContent;
+
+            const titleElm = {
+            type: "element",
+            tagName: "span",
+            properties: {},
+            children: [{ type: "text", value }],
+            } satisfies ElementContent;
+
+            node.children = [hashElm, titleElm];
+            node.properties.id = `h1-${value}`;
+            node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background";
+        });
+    }
+}
+```
 
 # OG 画像生成
 
