@@ -15,6 +15,7 @@ function main() {
     local IS_I=false
     local CMD=""
 
+    local BRANCH=""
     local FILENAME=""
     local MODEL=""
 
@@ -24,7 +25,7 @@ function main() {
 
 function parse() {
     OPTIND=1
-    while getopts "dbtvhif:m:" OPT; do
+    while getopts "dtvhib:f:m:" OPT; do
         case $OPT in
         f)
             IS_F=true
@@ -39,6 +40,7 @@ function parse() {
             ;;
         b)
             IS_B=true
+            BRANCH=$OPTARG
             ;;
         t)
             IS_T=true
@@ -70,23 +72,21 @@ function process() {
         echo "testing..."
         # pnpm -s run test
     elif $IS_B; then
+        # if [ "$BRANCH" != "main" ] || [ "$BRANCH" != "edit" ] || [ "$BRANCH" != "develop" ]; then
+        #     echo "invalid branch: $BRANCH"
+        #     exit 0
+        # fi
         ROOTDIR=/d/Astro/siwl-dev
         cd $ROOTDIR
         DATE=$(date "+%F")
-        echo "create deployment - $DATE"
+        echo "create deployment - $BRANCH / $DATE"
         echo "running..."
 
-        # push: edit branch
-        git switch edit
+        # push
+        git switch $BRANCH
         git add .
-        git commit -m "edit: $DATE"
-        git push origin edit
-
-        # merge: edit to main
-        git switch main
-        git merge edit
-        git push origin main
-        git switch edit
+        git commit -m "$DATE"
+        git push origin $BRANCH
 
         cd "$ROOTDIR"/src/content
 
