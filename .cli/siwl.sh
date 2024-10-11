@@ -92,6 +92,7 @@ function process() {
         git switch main
         git merge $BRANCH
         git push origin main
+        git switch $BRANCH
 
         cd "$ROOTDIR"/src/content
 
