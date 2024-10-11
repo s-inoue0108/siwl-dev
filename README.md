@@ -10,14 +10,15 @@
 1. プロジェクトのターミナルで以下を実行します：
 
 ```bash
-$ siwl add -f <filename>
+$ siwl -f <filename> add
 ```
 
 2. 開発サーバを起動します：
 
 ```bash
-# using pnpm
-$ pnpm run dev
+$ siwl -d
+# or
+pnpm run dev
 ```
 
 3. `src/content/article/<filename>.md` のスキーマと内容を編集します。
@@ -30,14 +31,14 @@ $ code article/<filename>.md
 4. 記事を公開設定にします：
 
 ```bash
-$ siwl publish -f <filename>
+$ siwl -f <filename> publish
 ```
 
 5. 変更を反映します：
 
 ```bash
-$ siwldeploy
-or
+$ siwl -b
+# or
 $ git switch edit
 $ git add .
 $ git commit -m "edit article"
@@ -66,68 +67,50 @@ $ git switch edit
 ];
 ```
 
-# Content Management CLI
+# CLI
 
-コンテンツ管理を行うための CLI です。
-
-## パッケージマネージャによる実行
+## Content Management CLI
 
 Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
 
-`package.json` にある NPM スクリプト `tsx .cli/siwl.ts` を実行します。
-
-**Content Management CLI の実行：**
+以下で NPM スクリプト `tsx .cli/siwl.ts` を実行します。
 
 ```bash
 # using pnpm
-$ pnpm run siwl <action> -f <filename> -m <model>
+$ pnpm run siwl <action> -opt
 ```
 
-## シェルスクリプトによる実行
-
-以下のエイリアスを設定することで、`.cli/siwl.sh` および `.cli/siwl-deploy.sh` を簡単に実行することができます。
-
-```bash
-alias siwl="source <local-dir>/.cli/siwl.sh"
-alias siwldeploy="source <local-dir>/.cli/siwl-deploy.sh"
-```
-
-**Content Management CLI の実行：**
-
-```bash
-$ siwl <action> -f <filename> -m <model>
-```
-
-**デプロイ：**
-
-```bash
-$ siwldeploy
-```
-
-## Content Management CLI のコマンド
-
-プロジェクト内の任意のディレクトリから実行可能です。
-
-### 利用可能な `<model>`
-
-| model    | description                    | filetype |
-| :------- | :----------------------------- | :------- |
-| article  | ブログの記事を扱います。       | MARKDOWN |
-| tag      | ブログのタグを扱います。       | YAML     |
-| bookmark | Web ページのリンクを扱います。 | YAML     |
-
-> [!TIP] Tip
-> `<model>` が未指定あるいは typo の場合は `article` モデルを参照します。
-
-### `<action>`
-
-| action       | option                     | description                                                                                                |
+| `<action>`   | `-opt`                     | description                                                                                                |
 | :----------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `add\|new`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
 | `rm\|delete` | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を削除します。                                                 |
 | `draft`      | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を下書きにもどします。                                         |
 | `publish`    | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を公開設定にし、`article` の場合はタイムスタンプを更新します。 |
 | `ls\|list`   | `-m <model>`               | `src/content/<model>/` を公開状態を含めて一覧表示します。                                                  |
+|              | `-h`                       | Content Management CLI のヘルプを表示します。                                                              |
+|              | `-v`                       | Content Management CLI のバージョンを表示します。                                                          |
+
+> [!TIP] Tip
+> `-m <model>` が未指定あるいは typo の場合は `article` モデルを参照します。
+
+> [!TIP] Tip
+> `<action> -h` でコマンド毎のヘルプを表示します。
+
+## Content Management CLI + 汎用オプション
+
+エイリアス `alias siwl="source <local-dir>/.cli/siwl.sh"` を `~/.bashrc` へ設定することで、`.cli/siwl.sh` を簡単に実行することができます。
+
+```bash
+$ siwl -opt <action>
+```
+
+このエイリアスは Content Management CLI のほかに、以下の汎用オプションを提供します。
+
+| `-opt` | description                                                                                 |
+| :----- | :------------------------------------------------------------------------------------------ |
+| `-d`   | 開発サーバを起動します。                                                                    |
+| `-b`   | `origin/edit`, `origin/main` への `$ git push` を実行し、ビルドとデプロイを自動で行います。 |
+| `-t`   | e2e テストを実行します。                                                                    |
 
 # Markdown の構文
 
