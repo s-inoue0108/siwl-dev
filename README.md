@@ -80,15 +80,15 @@ Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行
 $ pnpm run siwl <action> -opt
 ```
 
-| `<action>`   | `-opt`                     | description                                                                                                |
-| :----------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `add\|new`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
-| `rm\|delete` | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を削除します。                                                 |
-| `draft`      | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を下書きにもどします。                                         |
-| `publish`    | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を公開設定にし、`article` の場合はタイムスタンプを更新します。 |
-| `ls\|list`   | `-m <model>`               | `src/content/<model>/` を公開状態を含めて一覧表示します。                                                  |
-|              | `-h`                       | Content Management CLI のヘルプを表示します。                                                              |
-|              | `-v`                       | Content Management CLI のバージョンを表示します。                                                          |
+| `<action>`     | `-opt`                     | description                                                                                                |
+| :------------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `add\|new`     | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
+| `remove\|rm`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を削除します。                                                 |
+| `draft\|dft`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を下書きにもどします。                                         |
+| `publish\|pub` | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を公開設定にし、`article` の場合はタイムスタンプを更新します。 |
+| `list\|ls`     | `-m <model>`               | `src/content/<model>/` を公開状態を含めて一覧表示します。                                                  |
+|                | `-h`                       | Content Management CLI のヘルプを表示します。                                                              |
+|                | `-v`                       | Content Management CLI のバージョンを表示します。                                                          |
 
 > [!TIP] Tip
 > `-m <model>` が未指定あるいは typo の場合は `article` モデルを参照します。

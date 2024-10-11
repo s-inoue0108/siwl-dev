@@ -113,8 +113,8 @@ program
 
 // rm
 program
-  .command("rm")
-  .alias("delete")
+  .command("remove")
+  .alias("rm")
   .description("remove a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
@@ -147,6 +147,7 @@ program
 // draft
 program
   .command("draft")
+  .alias("dft")
   .description("drafting a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark"')
@@ -197,6 +198,7 @@ program
 // publish
 program
   .command("publish")
+  .alias("pub")
   .description("publishing a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
@@ -249,8 +251,8 @@ program
 
 // list
 program
-  .command("ls")
-  .alias("list")
+  .command("list")
+  .alias("ls")
   .description("view content list")
   .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
   .action((cmd) => {
