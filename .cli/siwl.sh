@@ -56,8 +56,6 @@ function parse() {
     shift $(expr "${OPTIND}" - 1)
     if [ $# -eq 1 ]; then
         CMD="$@"
-    else
-        echo "Command is invalid."
     fi
 }
 
