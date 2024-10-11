@@ -111,6 +111,7 @@ $ siwl -opt <action>
 | `-d`   | 開発サーバを起動します。                                                                    |
 | `-b`   | `origin/edit`, `origin/main` への `$ git push` を実行し、ビルドとデプロイを自動で行います。 |
 | `-t`   | e2e テストを実行します。                                                                    |
+| `-i`   | Web サイトの関連情報を表示します。                                                          |
 
 # Markdown の構文
 

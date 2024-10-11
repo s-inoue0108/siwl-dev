@@ -12,6 +12,7 @@ function main() {
     local IS_T=false
     local IS_V=false
     local IS_H=false
+    local IS_I=false
     local CMD=""
 
     local FILENAME=""
@@ -23,7 +24,7 @@ function main() {
 
 function parse() {
     OPTIND=1
-    while getopts "dbtvhf:m:" OPT; do
+    while getopts "dbtvhif:m:" OPT; do
         case $OPT in
         f)
             IS_F=true
@@ -47,6 +48,9 @@ function parse() {
             ;;
         h)
             IS_H=true
+            ;;
+        i)
+            IS_I=true
             ;;
         \?)
             echo "This is unexpected option."
@@ -98,6 +102,10 @@ function process() {
         pnpm -s run siwl -h
     elif $IS_V; then
         pnpm -s run siwl -v
+    elif $IS_I; then
+        echo "https://siwl.dev"
+        echo "https://github.com/s-inoue0108/siwl-dev"
+        echo "https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b/pages/view/siwl-dev"
     elif [ $CMD == "ls" ]; then
         pnpm -s run siwl ls
     else
