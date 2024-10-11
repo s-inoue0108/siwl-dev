@@ -5,9 +5,11 @@
 - [https://siwl.dev](https://siwl.dev)
 - [Cloudflare Dashboard](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
 
-# 記事を書く
+# 記事の書き方
 
-1. プロジェクトのターミナルで以下を実行します：
+## 新しく記事を書く
+
+1. 記事を追加します：
 
 ```bash
 $ siwl -f <filename> add
@@ -31,22 +33,63 @@ $ code article/<filename>.md
 4. 記事を公開設定にします：
 
 ```bash
-$ siwl -f <filename> publish
+$ siwl -f <filename> pub
 ```
 
 5. 変更を反映します：
 
 ```bash
-$ siwl -b
+$ siwl -b <branch>
 # or
-$ git switch edit
+$ git switch <branch>
 $ git add .
 $ git commit -m "edit article"
-$ git push origin edit
+$ git push origin <branch>
 $ git switch main
-$ git merge edit
+$ git merge <branch>
 $ git push origin main
-$ git switch edit
+$ git switch <branch>
+```
+
+## 既存の記事を更新する
+
+1. 記事の公開状態を更新します：
+
+```bash
+# 下書きにする
+$ siwl -f <filename> dft
+# 公開する
+$ siwl -f <filename> pub
+```
+
+3. 開発サーバを起動します：
+
+```bash
+$ siwl -d
+# or
+pnpm run dev
+```
+
+4. 記事の内容を更新します：
+
+```bash
+# current: src/content
+$ code article/<filename>.md
+```
+
+5. 変更を反映します：
+
+```bash
+$ siwl -b <branch>
+# or
+$ git switch <branch>
+$ git add .
+$ git commit -m "edit article"
+$ git push origin <branch>
+$ git switch main
+$ git merge <branch>
+$ git push origin main
+$ git switch <branch>
 ```
 
 # ルーティング
