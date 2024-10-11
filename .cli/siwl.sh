@@ -72,10 +72,10 @@ function process() {
         echo "testing..."
         # pnpm -s run test
     elif $IS_B; then
-        # if [ "$BRANCH" != "main" ] || [ "$BRANCH" != "edit" ] || [ "$BRANCH" != "develop" ]; then
-        #     echo "invalid branch: $BRANCH"
-        #     exit 0
-        # fi
+        if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "edit" ] && [ "$BRANCH" != "develop" ]; then
+            echo "invalid branch: $BRANCH"
+            exit 0
+        fi
         ROOTDIR=/d/Astro/siwl-dev
         cd $ROOTDIR
         DATE=$(date "+%F")
@@ -87,6 +87,11 @@ function process() {
         git add .
         git commit -m "$DATE"
         git push origin $BRANCH
+
+        # merge and deploy
+        git switch main
+        git merge $BRANCH
+        git push origin main
 
         cd "$ROOTDIR"/src/content
 
