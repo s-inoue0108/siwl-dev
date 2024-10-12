@@ -9,14 +9,14 @@ export async function GET(context: APIContext) {
 
 	return rss({
 		title: import.meta.env.APP_NAME,
-		description: "Webプログラミングについての情報を発信しています。",
+		description: "プログラミングについての情報を発信しています。",
 		site: context.site ?? import.meta.env.APP_URL,
 		items: articles.map(({ slug, data }) => ({
 			title: data.title,
 			pubDate: data.publishDate,
 			description: data.description ?? "",
 
-			link: `/blog/article/${slug}`,
+			link: `/blog/articles/${slug}`,
 		})),
 	});
 }
