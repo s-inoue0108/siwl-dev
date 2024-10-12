@@ -1,4 +1,4 @@
 isDraft: false
 name: Solid
 belong: tech
-icon: ../../assets/icons/solid.svg
+icon: ./icons/solid.svg

@@ -40,33 +40,26 @@ const tags = await getEntries(data.tags ? data.tags : []);
 		<div class="w-full flex flex-col border-b-2 border-muted-background">
 			<div class="relative h-28 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
-					<ul class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
-						{
-							tags &&
-								tags.map((tag) => (
-									<li>
-										<ClassifyCard collection={tag} />
-									</li>
-								))
-						}
-					</ul>
+					<div class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
+						{tags && tags.map((tag) => <ClassifyCard collection={tag} />)}
+					</div>
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute bg-background">
 					<a
 						href={`/blog/articles/${slug}`}
 						class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`
 					>
-						<h1
+						<h2
 							class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip"
 							transition:name={`title-${article.slug}`}
 						>
 							{data.title}
-						</h1>
+						</h2>
 					</a>
 				</div>
 			</div>
 			<div class="flex justify-between items-end">
-				<ul class="flex items-center gap-4 pl-2 pb-1">
+				<div class="flex items-center gap-4 pl-2 pb-1">
 					<a
 						href={`/blog/archives/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`}
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
@@ -85,13 +78,13 @@ const tags = await getEntries(data.tags ? data.tags : []);
 							}
 						</time>
 					</a>
-					<li
+					<div
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
 					>
 						<IoTimerOutline />
 						<div class="text-xs sm:text-sm tracking-wider">{`${10} min`}</div>
-					</li>
-				</ul>
+					</div>
+				</div>
 				<ArticleCardLayerButton article={article} category={category} client:load />
 			</div>
 		</div>

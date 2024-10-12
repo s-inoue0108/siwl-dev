@@ -50,7 +50,10 @@ export default defineConfig({
 	markdown: {
 		syntaxHighlight: "shiki",
 		shikiConfig: {
-			theme: "dracula-soft",
+			themes: {
+				light: "slack-ochin",
+				dark: "slack-dark",
+			},
 		},
 		remarkPlugins: [
 			[rlc, { shortenUrl: true }],
@@ -67,7 +70,7 @@ export default defineConfig({
 			rehypeKatex,
 		],
 		remarkRehype: {
-			footnoteLabelTagName: "h2",
+			footnoteLabelTagName: "h4",
 			footnoteLabel: "脚注",
 			footnoteBackLabel: "Return to content",
 		},

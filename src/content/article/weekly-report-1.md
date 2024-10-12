@@ -1,5 +1,5 @@
 ---
-isDraft: false
+isDraft: true
 title: 週報@2024-10-06
 category: idea
 tags: [report]

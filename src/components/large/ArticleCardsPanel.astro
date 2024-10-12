@@ -12,20 +12,19 @@ const { articles } = Astro.props;
 ---
 
 <>
-	{articles.length > 0 ? (
-		<ul class="flex flex-col items-center gap-8">
-			{articles.map((article) => (
-				<li class="w-full">
-					<ArticleCard article={article} />
-				</li>
-			))}
-		</ul>
-	) : (
-		<div class="pt-12 sm:pt-24">
-			<NoItem message="記事がありません" />
-		</div>
-	)
-}
+	{
+		articles.length > 0 ? (
+			<div class="flex flex-col items-center gap-8">
+				{articles.map((article) => (
+					<div class="w-full">
+						<ArticleCard article={article} />
+					</div>
+				))}
+			</div>
+		) : (
+			<div class="pt-12 sm:pt-24">
+				<NoItem message="記事がありません" />
+			</div>
+		)
+	}
 </>
-
-

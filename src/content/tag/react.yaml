@@ -1,4 +1,4 @@
 isDraft: false
 name: React
 belong: tech
-icon: ../../assets/icons/react.svg
+icon: ./icons/react.svg

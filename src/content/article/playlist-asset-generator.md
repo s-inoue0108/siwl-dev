@@ -5,7 +5,7 @@ category: tech
 tags: [ts, solid, sass, dj]
 description: DJ MIXプレイを録音して、動画として残したいことがあります。今回は、プレイした楽曲のメタデータから動画制作用のSVGアセットを出力するツールをSolidJSで制作してみました。
 publishDate: 2024-10-04
-updateDate: 2024-10-11
+updateDate: 2024-10-13
 ---
 
 ## ツールの紹介
@@ -27,7 +27,7 @@ https://playlist-asset-generator.vercel.app
 
 ### プレビュー
 
-![スクリーンショット2024-09-16224713.png](https://si-library.assets.newt.so/v1/75aa4953-1198-4f81-ad94-b169c89dc1df/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%882024-09-16224713.png) **caption:ドラッグ & ドロップの UI**
+![playlist-asset-generator](./images//playlist-asset-generator.png)
 
 ## アプローチと技術選定
 
@@ -42,9 +42,11 @@ https://playlist-asset-generator.vercel.app
 
 ### UI ライブラリ
 
-Vite を利用することとし、UI 構築には好奇心から [SolidJS](https://www.solidjs.com/) を使ってみました。
+Vite を利用することとし、UI 構築には好奇心から**SolidJS**を使ってみました。
 
-SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（**SolidJS では `createSignal`**）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
+https://www.solidjs.com/
+
+SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（SolidJS では `createSignal`）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
 
 ```ts:state
 import { createSignal } from "solid-js";
@@ -53,7 +55,7 @@ export const [state, setState] = createSignal();
 // Reactとは異なり、ステートはメソッドとして呼び出す: state()
 ```
 
-#### SolidJS:参考
+#### SolidJSの参考記事
 
 https://zenn.dev/nakasyou/articles/20231020_solidjs
 

@@ -34,8 +34,8 @@ const getSideArticles = async (
 const { prev, next } = await getSideArticles(articles, slug);
 ---
 
-<ul class="mt-16 flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8">
-	<li
+<div class="mt-16 flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8">
+	<div
 		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${prev ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
 	>
 		{
@@ -50,8 +50,8 @@ const { prev, next } = await getSideArticles(articles, slug);
 				</a>
 			)
 		}
-	</li>
-	<li
+	</div>
+	<div
 		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${next ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
 	>
 		{
@@ -66,5 +66,5 @@ const { prev, next } = await getSideArticles(articles, slug);
 				</a>
 			)
 		}
-	</li>
-</ul>
+	</div>
+</div>

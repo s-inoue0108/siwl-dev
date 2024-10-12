@@ -78,6 +78,11 @@ const { Content, headings } = await article.render();
 			@apply tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 		}
 
+		/* list */
+		ul {
+			@apply list-inside list-disc;
+		}
+
 		/* link card */
 		.rlc-container {
 			@apply my-4 lg:my-8 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background bg-muted-background/50 hover:bg-muted-background transition duration-200;
@@ -138,11 +143,11 @@ const { Content, headings } = await article.render();
 		}
 
 		.callout-note {
-			@apply bg-slate-500/30 border border-slate-500;
+			@apply bg-muted-foreground/30 border border-muted-foreground;
 		}
 
 		.callout-title-note {
-			@apply text-slate-500;
+			@apply text-muted-foreground;
 		}
 
 		.callout-info {
@@ -195,14 +200,14 @@ const { Content, headings } = await article.render();
 
 		/* code block */
 		.remark-code-title {
-			@apply mt-8 mb-1 text-base p-2 rounded-t-lg font-semibold bg-[#282a36] text-[#fcfcfc];
+			@apply mt-8 mb-1 text-base p-2 rounded-t-lg font-semibold bg-muted-background/50 text-muted-foreground;
 		}
 		.remark-code-title + pre {
 			@apply p-2 mb-8 rounded-b-lg overflow-x-auto;
 		}
 		.remark-code-title + pre::-webkit-scrollbar {
 			height: 12px;
-			background: #282a36;
+			background: transparent;
 			border-bottom-left-radius: 0.5rem;
 			border-bottom-right-radius: 0.5rem;
 		}
@@ -221,7 +226,15 @@ const { Content, headings } = await article.render();
 
 		/* inline code */
 		p > code {
-			@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background px-1 py-[0.125rem] rounded-md;
+			@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+		}
+
+		.astro-code {
+			background-color: rgba(var(--muted), 0.5) !important;
+		}
+
+		.astro-code span {
+			background-color: transparent !important;
 		}
 
 		/* hr */

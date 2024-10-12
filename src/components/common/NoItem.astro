@@ -9,14 +9,10 @@ const { message } = Astro.props;
 ---
 
 <section class="w-full">
-	<ul class="text-muted-foreground flex flex-col items-center gap-8 lg:gap-16">
-		<li>
-			<span class="text-7xl sm:text-9xl">
-				<BsExclamationCircleFill />
-			</span>
-		</li>
-		<li>
-			<div class="font-extrabold text-3xl sm:text-5xl">{message}</div>
-		</li>
-	</ul>
+	<div class="text-muted-foreground flex flex-col items-center gap-8 lg:gap-16">
+		<span class="text-7xl sm:text-9xl">
+			<BsExclamationCircleFill />
+		</span>
+		<div class="font-extrabold text-3xl sm:text-5xl">{message}</div>
+	</div>
 </section>

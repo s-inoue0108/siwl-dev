@@ -75,22 +75,22 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-.progress-wrapper {
-  width: 42px;
-  height: 42px;
+  .progress-wrapper {
+    width: 42px;
+    height: 42px;
 
-  .bg {
-    stroke: #ffffff;
-    fill: #ffffff;
-  }
+    .bg {
+      stroke: #ffffff;
+      fill: #ffffff;
+    }
 
-  .bar {
-    stroke-linecap: butt;
-    stroke-width: 16px;
-    stroke: $rose;   // #fb7185
-    stroke-dasharray: v-bind(circumference);
-    stroke-dashoffset: v-bind(progress);
+    .bar {
+      stroke-linecap: butt;
+      stroke-width: 16px;
+      stroke: $rose;   // #fb7185
+      stroke-dasharray: v-bind(circumference);
+      stroke-dashoffset: v-bind(progress);
+    }
   }
-}
 </style>
 ```

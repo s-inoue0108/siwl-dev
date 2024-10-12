@@ -16,7 +16,7 @@ export default function rehypeHeadings() {
             href: `#h2-${value}`,
             className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
-          children: [{ type: "text", value: "#" }],
+          children: [{ type: "text", value: "##" }],
         } satisfies ElementContent;
 
         const titleElm = {
@@ -42,7 +42,7 @@ export default function rehypeHeadings() {
             href: `#h3-${value}`,
             className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
-          children: [{ type: "text", value: "##" }],
+          children: [{ type: "text", value: "###" }],
         } satisfies ElementContent;
 
         const titleElm = {
@@ -68,7 +68,7 @@ export default function rehypeHeadings() {
             href: `#h4-${value}`,
             className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
-          children: [{ type: "text", value: "###" }],
+          children: [{ type: "text", value: "####" }],
         } satisfies ElementContent;
 
         const titleElm = {

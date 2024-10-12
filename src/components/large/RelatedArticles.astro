@@ -20,15 +20,15 @@ const articles = relatedArticles ? await getEntries(relatedArticles) : [];
 			<stop stop-color="rgba(var(--accent-base), var(--opacity))" offset="100%"></stop>
 		</linearGradient>
 	</svg>
-	<h1
-		id="h1-related-articles"
+	<h2
+		id="h2-related-articles"
 		class="mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background"
 	>
-		<a href="#h1-related-articles" class="heading">
+		<a href="#h2-related-articles" class="heading">
 			<IoNewspaper style={{ fill: "url(#gradient)" }} />
 		</a>
 		<span>関連記事</span>
-	</h1>
+	</h2>
 	<section class="mt-8 mb-16 lg:mt-16 lg:mb-32">
 		{
 			articles && articles.length > 0 ? (

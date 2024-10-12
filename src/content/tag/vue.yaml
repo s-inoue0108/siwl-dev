@@ -1,4 +1,4 @@
 isDraft: false
 name: Vue
 belong: tech
-icon: ../../assets/icons/vue.svg
+icon: ./icons/vue.svg

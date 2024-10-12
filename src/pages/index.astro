@@ -3,9 +3,10 @@ import ArticleCardsPanel from "../components/large/ArticleCardsPanel.astro";
 import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { AllowedRoutes } from "../utils/common/route";
+import { Image } from "astro:assets";
 
 const articles = await getCollection("article", ({ data }) => {
-  return import.meta.env.PROD ? data.isDraft === false : true;
+	return import.meta.env.PROD ? data.isDraft === false : true;
 });
 
 const routes = new AllowedRoutes(Astro.url.pathname);
@@ -13,7 +14,11 @@ const { meta } = routes.getRootPageMeta();
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<section class="w-full flex flex-col">
-		<ArticleCardsPanel articles={articles.slice(0, 6)} />
+	<section class="mt-[100vh] w-full flex flex-col">
+		<ArticleCardsPanel
+			articles={articles
+				.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+				.slice(0, 5)}
+		/>
 	</section>
 </Base>

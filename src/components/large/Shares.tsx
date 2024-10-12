@@ -22,48 +22,40 @@ const Shares = ({ appName, appUrl, title, slug }: Props) => {
 			title="Share"
 			isShowToggleButton={false}
 			Content={
-				<ul class="flex items-center gap-6">
-					<li>
-						<a
-							href={facebookLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
-						>
-							<SiFacebook />
-						</a>
-					</li>
-					<li>
-						<a
-							href={xLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
-						>
-							<SiTwitter />
-						</a>
-					</li>
-					<li>
-						<a
-							href={hatenaLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
-						>
-							<SiHatenabookmark />
-						</a>
-					</li>
-					<li>
-						<a
-							href={misskeyLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-muted-foreground text-lg sm:text-xl lg:text-2xl hover:text-foreground transition-colors duration-150"
-						>
-							<SiMisskey />
-						</a>
-					</li>
-				</ul>
+				<div class="flex items-center gap-6">
+					<a
+						href={facebookLink}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
+					>
+						<SiFacebook />
+					</a>
+					<a
+						href={xLink}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
+					>
+						<SiTwitter />
+					</a>
+					<a
+						href={hatenaLink}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150"
+					>
+						<SiHatenabookmark />
+					</a>
+					<a
+						href={misskeyLink}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-muted-foreground text-lg sm:text-xl lg:text-2xl hover:text-foreground transition-colors duration-150"
+					>
+						<SiMisskey />
+					</a>
+				</div>
 			}
 		/>
 	);

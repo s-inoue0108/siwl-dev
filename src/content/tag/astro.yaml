@@ -1,4 +1,4 @@
 isDraft: false
 name: Astro
 belong: tech
-icon: ../../assets/icons/astro.svg
+icon: ./icons/astro.svg

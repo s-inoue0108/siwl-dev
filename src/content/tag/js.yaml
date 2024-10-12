@@ -1,4 +1,4 @@
 isDraft: false
 name: JavaScript
 belong: tech
-icon: ../../assets/icons/javascript.svg
+icon: ./icons/javascript.svg
