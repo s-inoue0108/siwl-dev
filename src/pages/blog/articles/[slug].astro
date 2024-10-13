@@ -143,6 +143,26 @@ const { Content, headings } = await article.render();
 			@apply mb-4;
 		}
 
+		table {
+			@apply table min-w-[1px] max-w-full mx-auto tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+
+			thead {
+				@apply bg-muted-background/50;
+			}
+
+			tr {
+				@apply border-collapse border-b border-muted-background;
+			}
+
+			th {
+				@apply p-2 lg:px-4;
+			}
+
+			td {
+				@apply text-muted-foreground p-2 lg:px-4;
+			}
+		}
+
 		/* blockquote */
 		blockquote {
 			@apply block border-l-8 border-muted-background px-4 py-2 w-full h-fit my-4 lg:my-8;
@@ -151,6 +171,14 @@ const { Content, headings } = await article.render();
 		/* callout */
 		.callout {
 			@apply block px-4 py-2 w-full h-fit rounded-xl my-4 lg:my-8;
+
+			.remark-code-title {
+				@apply bg-muted-background;
+			}
+
+			.astro-code {
+				background-color: rgba(var(--muted), 1) !important;
+			}
 		}
 
 		.callout-title {

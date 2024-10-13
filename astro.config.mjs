@@ -15,8 +15,8 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
 // Remark/Rehype Plugins from made
-import remarkLocalImage from "./src/plugins/remark/remark-local-image";
 import remarkCallout from "./src/plugins/remark/remark-callout";
+import remarkFigureCaption from "./src/plugins/remark/remark-figure-caption";
 import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
 import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
 import remarkGistEmbed from "./src/plugins/remark/remark-gist-embed";
@@ -54,15 +54,15 @@ export default defineConfig({
 		syntaxHighlight: "shiki",
 		shikiConfig: {
 			themes: {
-				light: "slack-ochin",
-				dark: "slack-dark",
+				light: "snazzy-light",
+				dark: "ayu-dark",
 			},
 		},
 		remarkPlugins: [
-			remarkLocalImage,
 			remarkTwitterEmbed,
 			remarkYoutubeEmbed,
 			remarkGistEmbed,
+			remarkFigureCaption,
 			remarkCallout,
 			remarkMath,
 			remarkCodeTitles,

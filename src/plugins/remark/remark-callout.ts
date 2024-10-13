@@ -118,7 +118,7 @@ export default function remarkCallout() {
   }
 }
 
-export type CalloutMeta = {
+type CalloutMeta = {
   type: CalloutType
   title?: string
 }
@@ -130,12 +130,12 @@ export type CalloutMeta = {
  * const callout = parseCallout("[!info");   // undefined
  * ```
  */
-export const parseCallout = (text: string | null | undefined): CalloutMeta | undefined => {
+const parseCallout = (text: string | null | undefined): CalloutMeta | undefined => {
   if (text == null) return;
 
   const match = text.trim().match(/^\[!(?<type>.+)\]\s?(?<title>.+)?$/);
 
-  if (match?.groups?.type == null) return undefined;
+  if (match?.groups?.type == null) return;
   const isCalloutType = (type: string): type is CalloutType => {
     return type as CalloutType !== undefined;
   }
@@ -148,7 +148,7 @@ export const parseCallout = (text: string | null | undefined): CalloutMeta | und
   }
 }
 
-export const calloutIcons = {
+const calloutIcons = {
   quote: '<svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="1em" width="1em" style="overflow: visible; color: currentcolor;"><path fill="currentColor" d="M3.516 7a3.5 3.5 0 1 1-3.5 3.5L0 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464 5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.548-.043zm9 0a3.5 3.5 0 1 1-3.5 3.5L9 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464 5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.549-.043z"></path></svg>',
   note: '<svg fill="none" stroke-width="0" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" viewBox="0 0 24 24" height="1em" width="1em" style="overflow: visible; color: currentcolor;"><path fill="currentColor" fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"></path></svg>',
   info: '<svg fill="none" stroke-width="0" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" viewBox="0 0 24 24" height="1em" width="1em" style="overflow: visible; color: currentcolor;"><path fill="currentColor" fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"></path></svg>',
@@ -159,4 +159,4 @@ export const calloutIcons = {
   math: '<svg fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-math-integral-x" width="1em" height="1em" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible; color: currentcolor;"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 19a2 2 0 0 0 2 2c2 0 2 -4 3 -9s1 -9 3 -9a2 2 0 0 1 2 2"></path><path d="M14 12l6 6"></path><path d="M14 18l6 -6"></path></svg>'
 }
 
-export type CalloutType = keyof typeof calloutIcons
+type CalloutType = keyof typeof calloutIcons
