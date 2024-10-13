@@ -28,7 +28,7 @@ https://playlist-asset-generator.vercel.app
 ### プレビュー
 
 ![playlist-asset-generator](./images//playlist-asset-generator.png)
-*プレビュー*
+*[!image] プレビュー*
 
 ## アプローチと技術選定
 
