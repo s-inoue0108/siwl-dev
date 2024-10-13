@@ -21,7 +21,7 @@ export class AllowedRoutes {
           name: "Categories",
           matchers: [/^\/blog\/categories/, /^\/blog\/categories\/[tech|idea]+\/[0-9]+/,],
           rootpath: "/blog/categories",
-          description: "カテゴリーの一覧を掲載しています。",
+          description: "カテゴリの一覧を掲載しています。",
           subsets: [],
         },
         {
@@ -51,7 +51,7 @@ export class AllowedRoutes {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "Shota Inoueのプロフィールや、サイトの情報を掲載しています。",
+      description: "Shota Inoueのプロフィールや、当サイトの情報を掲載しています。",
       subsets: [],
     },
     {
@@ -65,21 +65,21 @@ export class AllowedRoutes {
       name: "Bookmarks",
       matchers: [/^\/bookmarks\/[0-9]+/],
       rootpath: "/bookmarks/1",
-      description: "よく利用するサイト等のリンクを掲載しています。",
+      description: "よく利用するサイトのリンクを掲載しています。",
       subsets: [],
     },
     {
       name: "Contact",
       matchers: [/^\/contact/],
       rootpath: "/contact",
-      description: "サイトに関するご意見や、お問い合わせを受け付けております。",
+      description: "当サイトに関するご意見や、お問い合わせを受け付けております。",
       subsets: [],
     },
     {
-      name: "Privacy Policy",
+      name: "Privacy policy",
       matchers: [/^\/privacy-policy/],
       rootpath: "/privacy-policy",
-      description: "サイトのプライバシーポリシーを掲載しています。",
+      description: "当サイトのプライバシーポリシーを掲載しています。",
       subsets: [],
     },
   ] as const

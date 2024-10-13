@@ -123,6 +123,20 @@ Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行
 $ pnpm run siwl <action> -opt
 ```
 
+### 利用可能な `<model>`
+
+| `<model>`  | description                  | filetype |
+| :--------- | :--------------------------- | :------- |
+| `article`  | ブログの記事                 | MARKDOWN |
+| `tag`      | ブログのタグ                 | YAML     |
+| `bookmark` | Webページのブックマーク      | YAML     |
+| `work`     | ポートフォリオページの制作物 | YAML     |
+
+> [!IMPORTANT]
+> `<model>` が未指定あるいは typo の場合は `article` モデルを参照します。
+
+### 利用可能な `<action>`
+
 | `<action>`     | `-opt`                     | description                                                                                                |
 | :------------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `add\|new`     | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
@@ -133,10 +147,7 @@ $ pnpm run siwl <action> -opt
 |                | `-h`                       | Content Management CLI のヘルプを表示します。                                                              |
 |                | `-v`                       | Content Management CLI のバージョンを表示します。                                                          |
 
-> [!TIP] Tip
-> `-m <model>` が未指定あるいは typo の場合は `article` モデルを参照します。
-
-> [!TIP] Tip
+> [!TIP]
 > `<action> -h` でコマンド毎のヘルプを表示します。
 
 ## Content Management CLI + 汎用オプション
@@ -160,6 +171,9 @@ $ siwl -opt <action>
 # Markdown の構文
 
 GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
+
+> [!TIP]
+> 詳細は https://siwl.dev/articles/markdown-syntax-guide にあります。
 
 ## リンク
 
@@ -194,7 +208,7 @@ https://example.com はインラインリンクです。
 ````
 
 > [!NOTE]
-> 利用可能な `language` の一覧 - https://shiki.matsu.io/languages
+> 利用可能な `language` の一覧は https://shiki.matsu.io/languages にあります。
 
 ## コールアウト
 
@@ -226,8 +240,9 @@ $ f(x) = e^x $
 <!--ディスプレイ-->
 
 $$
-\mathcal{L}[f(t)](s) = \int_0^\infty f(t)e^{-st} dt.
+\mathcal{L}[f(t)](s) = \int_0^\infty f(t)e^{-st} dt
 $$
 ```
 
-マクロ $ \\RR $ はボールド体の R を出力します。
+> [!NOTE]
+> マクロ `\RR` はボールド体（黒板太字）の R を出力します。

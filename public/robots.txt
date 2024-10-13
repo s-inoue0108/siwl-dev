@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://si-library.net/sitemap-index.xml
+Sitemap: https://siwl.dev/sitemap-index.xml

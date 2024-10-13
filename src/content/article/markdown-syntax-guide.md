@@ -140,8 +140,8 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 ## 表
 
 ```md:表
-| a   | b   |   c |  d  |
-| --- | :-- | --: | :-: |
+| a   | b    |    c |   d   |
+| --- | :--- | ---: | :---: |
 ```
 
 ## コードブロック
@@ -181,45 +181,44 @@ const displayTextType = (text: string) => {
 ### 通常の引用
 
 ```md:通常の引用
-> This is normal quote.
+> 通常の引用
 ```
 
-> This is normal quote.
+> 通常の引用
 
 ### コールアウト
 
 ```md:コールアウト
 > [!type]
-> ここは
-> コールアウト
-> ブロックです
+> text text text
 
 > [!type] title
-> ここは
-> コールアウト
-> ブロックです
+> text text text
 ```
 
+> [!quote]
+> text text text
+
 > [!note]
-> This is note.
+> text text text
 
 > [!info]
-> This is info.
+> text text text
 
 > [!important]
-> This is important.
+> text text text
 
 > [!warn]
-> This is warn.
+> text text text
 
 > [!alert]
-> This is alert.
+> text text text
 
 > [!tip]
-> This is tip.
+> text text text
 
 > [!math]
-> This is math.
+> text text text
 
 ## 数式
 

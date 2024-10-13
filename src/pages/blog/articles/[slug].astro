@@ -142,12 +142,20 @@ const { Content, headings } = await article.render();
 			}
 		}
 
+		.callout-quote {
+			@apply bg-muted-background/50 border border-muted-background;
+		}
+
+		.callout-title-quote {
+			@apply text-foreground;
+		}
+
 		.callout-note {
-			@apply bg-muted-foreground/30 border border-muted-foreground;
+			@apply bg-muted-background/50 border border-muted-background;
 		}
 
 		.callout-title-note {
-			@apply text-muted-foreground;
+			@apply text-foreground;
 		}
 
 		.callout-info {

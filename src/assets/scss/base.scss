@@ -55,7 +55,6 @@
 
 	.scrollbar::-webkit-scrollbar-thumb {
 		background: rgba(var(--muted), var(--opacity));
-		border-radius: 8px;
 	}
 
 	.toc-scrollbar::-webkit-scrollbar {
@@ -65,6 +64,5 @@
 
 	.toc-scrollbar::-webkit-scrollbar-thumb {
 		background: rgba(var(--muted-foreground), var(--opacity));
-		border-radius: 8px;
 	}
 }
