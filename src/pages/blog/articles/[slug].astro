@@ -83,6 +83,19 @@ const { Content, headings } = await article.render();
 			@apply list-inside list-disc;
 		}
 
+		ol {
+			@apply list-inside list-decimal;
+		}
+
+		ol > li::marker {
+			@apply font-semibold;
+		}
+
+		ul > li,
+		ol > li {
+			@apply tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		}
+
 		/* link card */
 		.rlc-container {
 			@apply my-4 lg:my-8 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background bg-muted-background/50 hover:bg-muted-background transition duration-200;
@@ -260,6 +273,12 @@ const { Content, headings } = await article.render();
 
 		.katex-display > .katex {
 			@apply lg:text-[1.2rem] xl:text-[1.32rem];
+		}
+
+		/* iframe */
+		p > iframe {
+			@apply w-full h-fit;
+			aspect-ratio: 16 / 9;
 		}
 	}
 </style>

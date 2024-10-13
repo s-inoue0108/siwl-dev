@@ -116,12 +116,12 @@ $ git switch <branch>
 
 Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
 
-以下で NPM スクリプト `tsx .cli/siwl.ts` を実行します。
-
 ```bash
 # using pnpm
 $ pnpm run siwl <action> -opt
 ```
+
+以上は NPM スクリプト `tsx /.cli/siwl.ts` を実行します。
 
 ### 利用可能な `<model>`
 
@@ -152,11 +152,18 @@ $ pnpm run siwl <action> -opt
 
 ## Content Management CLI + 汎用オプション
 
-エイリアス `alias siwl="source <local-dir>/.cli/siwl.sh"` を `~/.bashrc` へ設定することで、`.cli/siwl.sh` を簡単に実行することができます。
+`/.cli/siwl.ts` をフォークした `/.cli/siwl.sh` を実行します。
 
 ```bash
 $ siwl -opt <action>
 ```
+
+> [!IMPORTANT]
+> 以上のコマンドを実行するためには、次のエイリアスを `~/.bashrc` に設定する必要があります。
+> 
+> ```bash
+> alias siwl="source <local-dir>/.cli/siwl.sh"
+> ```
 
 このエイリアスは Content Management CLI のほかに、以下の汎用オプションを提供します。
 

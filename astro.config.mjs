@@ -16,7 +16,9 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
 // Remark/Rehype Plugins from made
-import { remarkCallout } from "./src/plugins/remark/remark-callout";
+import remarkCallout from "./src/plugins/remark/remark-callout";
+import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
+import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
@@ -56,11 +58,13 @@ export default defineConfig({
 			},
 		},
 		remarkPlugins: [
-			[rlc, { shortenUrl: true }],
+			remarkTwitterEmbed,
+			remarkYoutubeEmbed,
 			remarkDirective,
 			remarkCallout,
 			remarkMath,
 			remarkCodeTitles,
+			[rlc, { shortenUrl: true }],
 		],
 		rehypePlugins: [
 			rehypeRaw,

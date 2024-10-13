@@ -3,7 +3,7 @@
 import type { Root, BlockContent, DefinitionContent, Paragraph } from "mdast";
 import { visit } from "unist-util-visit";
 
-export const remarkCallout = () => {
+export default function remarkCallout() {
   return (tree: Root) => {
     visit(tree, "blockquote", (node) => {
       const paragraphNode = node.children[0];

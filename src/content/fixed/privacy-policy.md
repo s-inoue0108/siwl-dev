@@ -5,9 +5,11 @@ publishDate: 2024-10-04
 updateDate: 2024-10-11
 ---
 
-**SIWL.dev**（以下「**当サイト**」とします） は、プログラミングなどの内容をブログコンテンツとして発信することを目的に作成された Web サイトです。ご利用に際し、以下の内容をご一読ください。
+**SIWL.dev**（以下「**当サイト**」とします） は、プログラミングなどの内容をブログコンテンツとして発信することを目的に作成された Web サイトです。
 
 https://siwl.dev
+
+閲覧に際し、以下の内容をご一読ください。
 
 ## プライバシー・個人情報
 
@@ -23,7 +25,7 @@ https://siwl.dev
 
 ### アクセス解析ツールについて
 
-当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」「Google Search Console」および Vercel 社の「Vercel Web Analytics」を利用しています。
+当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」「Google Search Console」および Cloudflare 社の Web Analytics を利用しています。
 
 これらのアクセス解析ツールでは、トラフィックデータの収集のためにクッキー（Cookie）を使用しております。トラフィックデータは匿名で収集されており、個人を特定するものではありません。
 

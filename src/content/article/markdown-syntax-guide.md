@@ -31,7 +31,7 @@ relatedArticles: [renewal-note]   # "$ siwl ls"
 ```
 
 > [!warn] 利用できる見出しについて
-> `<h1>` , `<h5>` , `<h6>` は通常使用できません。
+> `<h1>` , `<h5>` , `<h6>` は使用できません。
 
 ## リスト
 
@@ -44,6 +44,11 @@ relatedArticles: [renewal-note]   # "$ siwl ls"
   - li-2-2
 ```
 
+- li-1 aaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああ
+- li-2
+  - li-2-1
+  - li-2-2
+
 ### 番号付き
 
 ```md:番号付き
@@ -52,6 +57,11 @@ relatedArticles: [renewal-note]   # "$ siwl ls"
   1. oi-2-1
   2. oi-2-2
 ```
+
+1. oi-1　aaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああ
+2. oi-2
+  1. oi-2-1
+  2. oi-2-2
 
 ## テキストのスタイル
 
@@ -252,6 +262,22 @@ $$
 ## 埋め込み
 
 ### YouTube
+
+```md:YouTubeの埋め込み
+https://www.youtube.com/watch?v=dZm1KBob4NI
+```
+
+https://www.youtube.com/watch?v=dZm1KBob4NI
+
+### Twitter (X)
+
+```md:Twitterの埋め込み
+https://x.com/anime_oshinoko/status/1842874944361050158
+<!-- or -->
+https://twitter.com/anime_oshinoko/status/1842874944361050158
+```
+
+https://x.com/anime_oshinoko/status/1842874944361050158
 
 ### GitHub
 
