@@ -6,7 +6,6 @@ import solid from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
 
 // Remark/Rehype Plugins from third-party
-import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import remarkCodeTitles from "remark-flexible-code-titles";
 // @ts-ignore
@@ -16,9 +15,11 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 
 // Remark/Rehype Plugins from made
+import remarkLocalImage from "./src/plugins/remark/remark-local-image";
 import remarkCallout from "./src/plugins/remark/remark-callout";
 import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
 import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
+import remarkGistEmbed from "./src/plugins/remark/remark-gist-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
@@ -58,9 +59,10 @@ export default defineConfig({
 			},
 		},
 		remarkPlugins: [
+			remarkLocalImage,
 			remarkTwitterEmbed,
 			remarkYoutubeEmbed,
-			remarkDirective,
+			remarkGistEmbed,
 			remarkCallout,
 			remarkMath,
 			remarkCodeTitles,

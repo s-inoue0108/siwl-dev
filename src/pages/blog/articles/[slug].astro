@@ -133,6 +133,16 @@ const { Content, headings } = await article.render();
 			@apply bg-background w-full h-full object-cover rounded-r-[calc(0.75rem-1px)];
 		}
 
+		/* image */
+		img {
+			@apply rounded-xl lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-4;
+		}
+
+		/* caption */
+		figcaption {
+			@apply mb-4;
+		}
+
 		/* blockquote */
 		blockquote {
 			@apply block border-l-8 border-muted-background px-4 py-2 w-full h-fit my-4 lg:my-8;
@@ -277,7 +287,7 @@ const { Content, headings } = await article.render();
 
 		/* iframe */
 		p > iframe {
-			@apply w-full h-fit;
+			@apply w-full h-fit xl:w-2/3 2xl:w-1/2 mx-auto rounded-xl;
 			aspect-ratio: 16 / 9;
 		}
 	}

@@ -28,8 +28,6 @@ export default function remarkTwitterEmbed() {
 
         const url = textNode.value;
 
-        console.log(url)
-
         transformer.push(async () => {
           const embed = await fetchEmbed(url);
           const iframeNode = {

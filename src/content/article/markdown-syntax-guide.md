@@ -113,6 +113,8 @@ relatedArticles: [renewal-note]   # "$ siwl ls"
 
 ### むき出しのリンク
 
+URLが独立した行にある場合にのみ変換されます。
+
 ```md:むき出しのリンク
 https://siwl.dev/blog/articles/renewal-note
 
@@ -137,11 +139,17 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 
 [相対パスによるリンク](/blog/articles/renewal-note) は内部リンクです。
 
-## 画像
+## ローカル画像
+
+`./images/` に格納することを推奨します。
 
 ```md:画像
 ![プロフィール画像](./images/profile-image.jpg)
 *プロフィール画像*
+
+<!--or-->
+
+![プロフィール画像](./images/profile-image.jpg) *プロフィール画像*
 ```
 
 ![プロフィール画像](./images/profile-image.jpg)
@@ -165,6 +173,8 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 `inline code`
 
 ### タイトル付きコードブロック
+
+タイトルは必須です。
 
 ````md:タイトル付きコードブロック
 ```ts:TypeScriptによる例
@@ -205,6 +215,8 @@ const displayTextType = (text: string) => {
 > [!type] title
 > text text text
 ```
+
+`type` は以下の例が利用できます。
 
 > [!quote]
 > text text text
@@ -261,13 +273,15 @@ $$
 
 ## 埋め込み
 
+URLが独立した行にある場合、かつURLの形式が例の通りである場合に変換されます。
+
 ### YouTube
 
 ```md:YouTubeの埋め込み
-https://www.youtube.com/watch?v=dZm1KBob4NI
+https://www.youtube.com/watch?v=sTxY93pA1zI
 ```
 
-https://www.youtube.com/watch?v=dZm1KBob4NI
+https://www.youtube.com/watch?v=sTxY93pA1zI
 
 ### Twitter (X)
 
@@ -279,6 +293,10 @@ https://twitter.com/anime_oshinoko/status/1842874944361050158
 
 https://x.com/anime_oshinoko/status/1842874944361050158
 
-### GitHub
+### GitHub Gist
 
-### Spotify
+```md:Gist
+https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
+```
+
+https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
