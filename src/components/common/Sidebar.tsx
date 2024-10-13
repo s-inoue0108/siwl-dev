@@ -11,7 +11,7 @@ interface Props {
 
 const Sidebar = ({ appName, currentPath }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
-	const metas = routes.getRootPageMetaAll(["Home", "Privacy Policy"]);
+	const metas = routes.getRootPageMetaAll(["Home", "Privacy policy"]);
 
 	return (
 		<aside
