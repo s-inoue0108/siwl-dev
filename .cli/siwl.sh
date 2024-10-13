@@ -13,7 +13,6 @@ function main() {
     local IS_T=false
     local IS_V=false
     local IS_H=false
-    local IS_I=false
     local CMD=""
 
     local BRANCH=""
@@ -54,9 +53,6 @@ function parse() {
             ;;
         h)
             IS_H=true
-            ;;
-        i)
-            IS_I=true
             ;;
         \?)
             echo "This is unexpected option."
@@ -116,13 +112,14 @@ function process() {
     elif $IS_M; then
         pnpm -s run siwl $CMD -m ${MODEL}
     elif $IS_H; then
-        pnpm -s run siwl -h
-    elif $IS_V; then
-        pnpm -s run siwl -v
-    elif $IS_I; then
+        echo "<SIWL.dev>"
         echo "https://siwl.dev"
         echo "https://github.com/s-inoue0108/siwl-dev"
         echo "https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b/pages/view/siwl-dev"
+        echo ""
+        pnpm -s run siwl -h
+    elif $IS_V; then
+        pnpm -s run siwl -v
     elif [ $CMD == "ls" ]; then
         pnpm -s run siwl ls
     else
