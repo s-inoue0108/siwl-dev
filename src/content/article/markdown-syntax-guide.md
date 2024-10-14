@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25
-updateDate: 2024-10-13
+updateDate: 2024-10-14
 relatedArticles: []
 ---
 
@@ -174,10 +174,6 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 ![プロフィール画像](./images/profile-image.jpg)
 
 *[!image] 画像の例*
-
-<!--or-->
-
-![プロフィール画像](./images/profile-image.jpg)
 ```
 
 ![プロフィール画像](./images/profile-image.jpg)
