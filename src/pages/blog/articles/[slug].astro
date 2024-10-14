@@ -35,7 +35,7 @@ const { Content, headings } = await article.render();
 			<div class="lg:hidden">
 				<Toc headings={headings} client:visible />
 			</div>
-			<div id="article-content">
+			<section id="article-content">
 				<Content />
 				<RelatedArticles relatedArticles={article.data.relatedArticles} />
 				<div class="lg:hidden">
@@ -48,7 +48,7 @@ const { Content, headings } = await article.render();
 					/>
 				</div>
 				<SideArticles slug={article.slug} />
-			</div>
+			</section>
 		</article>
 		<aside
 			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
@@ -80,11 +80,11 @@ const { Content, headings } = await article.render();
 
 		/* list */
 		ul {
-			@apply list-inside list-disc;
+			@apply pl-4 list-outside list-disc my-8;
 		}
 
 		ol {
-			@apply list-inside list-decimal;
+			@apply pl-4 list-outside list-decimal my-8;
 		}
 
 		ol > li::marker {
@@ -93,7 +93,20 @@ const { Content, headings } = await article.render();
 
 		ul > li,
 		ol > li {
-			@apply tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+			@apply py-1 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		}
+
+		ul > li > ul {
+			@apply pl-4 py-1 my-0;
+		}
+
+		ol > li > ol {
+			@apply pl-6 py-0 my-0;
+		}
+
+		/* footnote ol */
+		ol > li[id^="user-content-fn"] p {
+			@apply inline;
 		}
 
 		/* link card */
@@ -181,15 +194,15 @@ const { Content, headings } = await article.render();
 			@apply block px-4 py-2 w-full h-fit rounded-xl my-4 lg:my-8;
 
 			code {
-				@apply bg-muted-background;
+				@apply bg-background;
 			}
 
 			.remark-code-title {
-				@apply bg-muted-background;
+				@apply bg-background;
 			}
 
 			.astro-code {
-				background-color: rgba(var(--muted), 1) !important;
+				background-color: rgba(var(--background), 1) !important;
 			}
 		}
 

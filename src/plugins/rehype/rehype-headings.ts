@@ -14,7 +14,7 @@ export default function rehypeHeadings() {
           tagName: "a",
           properties: {
             href: `#h2-${value}`,
-            className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+            className: "heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
           children: [{ type: "text", value: "##" }],
         } satisfies ElementContent;
@@ -22,13 +22,15 @@ export default function rehypeHeadings() {
         const titleElm = {
           type: "element",
           tagName: "span",
-          properties: {},
+          properties: {
+            className: "whitespace-nowrap",
+          },
           children: [{ type: "text", value }],
         } satisfies ElementContent;
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h2-${value}`;
-        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background";
+        node.properties.className = "w-full overflow-x-auto mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 pb-2 border-b border-muted-background";
 
       } else if (node.tagName === 'h3') {
 
@@ -40,7 +42,7 @@ export default function rehypeHeadings() {
           tagName: "a",
           properties: {
             href: `#h3-${value}`,
-            className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+            className: "heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
           children: [{ type: "text", value: "###" }],
         } satisfies ElementContent;
@@ -48,13 +50,15 @@ export default function rehypeHeadings() {
         const titleElm = {
           type: "element",
           tagName: "span",
-          properties: {},
+          properties: {
+            className: "whitespace-nowrap",
+          },
           children: [{ type: "text", value }],
         } satisfies ElementContent;
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h3-${value}`;
-        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-xl sm:text-2xl lg:text-3xl font-bold flex items-center gap-2 w-full pb-1 border-b border-muted-background";
+        node.properties.className = "w-full overflow-x-auto mt-8 mb-4 lg:mt-16 lg:mb-8 text-xl sm:text-2xl lg:text-3xl font-bold flex items-center gap-2 pb-1 border-b border-muted-background";
 
       } else if (node.tagName === 'h4') {
 
@@ -66,7 +70,7 @@ export default function rehypeHeadings() {
           tagName: "a",
           properties: {
             href: `#h4-${value}`,
-            className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+            className: "heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
           },
           children: [{ type: "text", value: "####" }],
         } satisfies ElementContent;
@@ -74,13 +78,15 @@ export default function rehypeHeadings() {
         const titleElm = {
           type: "element",
           tagName: "span",
-          properties: {},
+          properties: {
+            className: "whitespace-nowrap",
+          },
           children: [{ type: "text", value }],
         } satisfies ElementContent;
 
         node.children = [hashElm, titleElm];
         node.properties.id = `h4-${value}`;
-        node.properties.className = "mt-8 mb-4 lg:mt-16 lg:mb-8 text-lg sm:text-xl lg:text-2xl font-bold flex items-center gap-2 w-full";
+        node.properties.className = "w-full overflow-x-auto mt-8 mb-4 lg:mt-16 lg:mb-8 text-lg sm:text-xl lg:text-2xl font-bold flex items-center gap-2";
 
       } else {
         return;

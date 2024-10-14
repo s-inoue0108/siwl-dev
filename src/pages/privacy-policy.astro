@@ -21,7 +21,7 @@ const { Content, headings } = await privacyPolicy.render();
 			<div class="lg:hidden">
 				<Toc headings={headings} client:visible />
 			</div>
-			<div id="article-content">
+			<section id="article-content">
 				<Content />
 				<hr />
 				<p>
@@ -31,7 +31,7 @@ const { Content, headings } = await privacyPolicy.render();
 						}</i
 					>
 				</p>
-			</div>
+			</section>
 		</article>
 		<aside
 			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
@@ -52,11 +52,11 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* list */
 		ul {
-			@apply list-inside list-disc;
+			@apply pl-4 list-outside list-disc my-8;
 		}
 
 		ol {
-			@apply list-inside list-decimal;
+			@apply pl-4 list-outside list-decimal my-8;
 		}
 
 		ol > li::marker {
@@ -65,7 +65,20 @@ const { Content, headings } = await privacyPolicy.render();
 
 		ul > li,
 		ol > li {
-			@apply tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+			@apply py-1 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		}
+
+		ul > li > ul {
+			@apply pl-4 py-1 my-0;
+		}
+
+		ol > li > ol {
+			@apply pl-6 py-0 my-0;
+		}
+
+		/* footnote ol */
+		ol > li[id^="user-content-fn"] p {
+			@apply inline;
 		}
 
 		/* link card */
@@ -105,6 +118,44 @@ const { Content, headings } = await privacyPolicy.render();
 			@apply bg-background w-full h-full object-cover rounded-r-[calc(0.75rem-1px)];
 		}
 
+		/* image */
+		p > img {
+			@apply rounded-xl lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-4;
+		}
+
+		/* caption */
+		p > figcaption {
+			@apply mb-4;
+		}
+
+		table {
+			@apply table min-w-[1px] max-w-full mx-auto tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+
+			thead {
+				@apply bg-muted-background/50;
+			}
+
+			tr {
+				@apply border-collapse border-b border-muted-background;
+
+				code {
+					@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+				}
+
+				.katex {
+					@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
+				}
+			}
+
+			th {
+				@apply p-2 lg:px-4;
+			}
+
+			td {
+				@apply text-muted-foreground p-2 lg:px-4;
+			}
+		}
+
 		/* blockquote */
 		blockquote {
 			@apply block border-l-8 border-muted-background px-4 py-2 w-full h-fit my-4 lg:my-8;
@@ -113,6 +164,18 @@ const { Content, headings } = await privacyPolicy.render();
 		/* callout */
 		.callout {
 			@apply block px-4 py-2 w-full h-fit rounded-xl my-4 lg:my-8;
+
+			code {
+				@apply bg-background;
+			}
+
+			.remark-code-title {
+				@apply bg-background;
+			}
+
+			.astro-code {
+				background-color: rgba(var(--background), 1) !important;
+			}
 		}
 
 		.callout-title {
