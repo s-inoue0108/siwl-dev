@@ -112,10 +112,14 @@ function process() {
     elif $IS_M; then
         pnpm -s run siwl $CMD -m ${MODEL}
     elif $IS_H; then
-        echo "<SIWL.dev>"
+        echo "[SIWL.dev]"
         echo "https://siwl.dev"
+        echo "[GitHub]"
         echo "https://github.com/s-inoue0108/siwl-dev"
+        echo "[Deployments]"
         echo "https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b/pages/view/siwl-dev"
+        echo "[Contact Form]"
+        echo "https://docs.google.com/forms/d/1Zxo_7-OUUfw8pjO1k-7yELuQrGw5I17Osp3IZnfc_LI/edit"
         echo ""
         pnpm -s run siwl -h
     elif $IS_V; then

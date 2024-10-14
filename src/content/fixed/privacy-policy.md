@@ -25,9 +25,9 @@ https://siwl.dev
 
 ### アクセス解析ツールについて
 
-当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」「Google Search Console」および Cloudflare 社の Web Analytics を利用しています。
+当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」を利用しています。詳しくは以下をご覧ください。
 
-これらのアクセス解析ツールでは、トラフィックデータの収集のためにクッキー（Cookie）を使用しております。トラフィックデータは匿名で収集されており、個人を特定するものではありません。
+https://policies.google.com/technologies/partner-sites?hl=ja
 
 ## 免責事項
 

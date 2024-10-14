@@ -19,10 +19,46 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 				!isOpenSidebar() && "-translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
 			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
 		>
-			<nav class="pt-6">
-				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
+			<nav>
+				<a
+					href="/"
+					class="text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-transparent"
+					data-astro-reload
+				>
 					{appName}
 				</a>
+				<ul class="flex absolute items-center gap-4 xl:gap-6 pt-6">
+					<li>
+						<a
+							href={import.meta.env.GITHUB_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl"
+						>
+							<SiGithub />
+						</a>
+					</li>
+					<li>
+						<a
+							href={import.meta.env.X_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl"
+						>
+							<SiTwitter />
+						</a>
+					</li>
+					<li>
+						<a
+							href={import.meta.env.ZENN_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl"
+						>
+							<SiZenn />
+						</a>
+					</li>
+				</ul>
 				<ul class="absolute top-4 right-[0.7rem] flex flex-col items-center gap-4">
 					<li>
 						{/* width: 1.8 + 0.75rem = 2.55rem */}
@@ -35,16 +71,16 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 				</ul>
 			</nav>
 			<hr
-				class={`w-full border-[0.5px] mt-16 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
+				class={`w-full border-[0.5px] mt-24 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
 			/>
-			<ul class="flex flex-col items-start gap-4 lg:gap-6 pt-4">
+			<ul class="flex flex-col items-start gap-4 lg:gap-6 pt-8">
 				{metas.map(({ name, rootpath, subsets }) => (
 					<li>
-						<div class="flex items-center gap-2 lg:gap-4">
-							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[0.4rem] h-[1.1rem] lg:w-2 lg:h-[1.7rem]"></div>
+						<div class="flex items-center gap-3 xl:gap-4">
+							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 							<a
 								href={rootpath}
-								class="text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
+								class="tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
 								data-astro-reload
 							>
 								{name}
@@ -56,11 +92,11 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 									.filter((subset) => subset.name !== "Articles")
 									.map((subset) => (
 										<li>
-											<div class="flex items-center gap-2">
+											<div class="flex items-center gap-3 xl:gap-4">
 												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 												<a
 													href={subset.rootpath}
-													class="font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
+													class="tracking-wide font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
 													data-astro-reload
 												>
 													{subset.name}
@@ -72,41 +108,6 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 						)}
 					</li>
 				))}
-			</ul>
-			<hr
-				class={`w-full border-[0.5px] mt-6 ${isOpenSidebar() ? "border-foreground" : "opacity-0"}`}
-			/>
-			<ul class="flex items-center gap-4 lg:gap-6 pt-8">
-				<li>
-					<a
-						href={import.meta.env.GITHUB_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-xl lg:text-3xl"
-					>
-						<SiGithub />
-					</a>
-				</li>
-				<li>
-					<a
-						href={import.meta.env.X_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-xl lg:text-3xl"
-					>
-						<SiTwitter />
-					</a>
-				</li>
-				<li>
-					<a
-						href={import.meta.env.ZENN_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-xl lg:text-3xl"
-					>
-						<SiZenn />
-					</a>
-				</li>
 			</ul>
 		</aside>
 	);

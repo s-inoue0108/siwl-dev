@@ -8,7 +8,14 @@ const { meta } = routes.getSubsetPageMeta();
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<section class="pt-8 w-full flex flex-col lg:flex-row">
-    <Breadcrumbs />
+	<section class="pt-8 w-full flex flex-col">
+		<Breadcrumbs />
+		<div class="p-8 text-foreground bg-[#f9f9f9] w-fit mx-auto rounded-xl">
+			<iframe
+				src="https://docs.google.com/forms/d/e/1FAIpQLSfiTSvqXBZUWdYXGoNWy8ZO8wCopJh7VvSS-ZM0gpNELFfQtQ/viewform?embedded=true"
+				width="640"
+				height="1360">Loading...</iframe
+			>
+		</div>
 	</section>
 </Base>
