@@ -67,7 +67,7 @@ const Toc = ({ headings }: Props) => {
 					>
 						{(h) => {
 							return (
-								<li class="border-b-[0.5px] sm:border-0 border-muted-background">
+								<li>
 									<a
 										href={`#h${h.depth}-${encodeURIComponent(h.text.replace(/#/g, ""))}`}
 										class={`${
