@@ -5,9 +5,9 @@
 - [https://siwl.dev](https://siwl.dev)
 - [Cloudflare Dashboard](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
 
-# 記事の書き方
+## 記事の書き方
 
-## 新しく記事を書く
+### 新しく記事を書く
 
 1. 記事を追加します：
 
@@ -51,7 +51,7 @@ $ git push origin main
 $ git switch <branch>
 ```
 
-## 既存の記事を更新する
+### 既存の記事を更新する
 
 1. 記事の公開状態を更新します：
 
@@ -92,9 +92,9 @@ $ git push origin main
 $ git switch <branch>
 ```
 
-# ルーティング
+## ルーティング
 
-## ページルート
+### ページルート
 
 `/utils/route.ts` の `_ROUTE_CONFIG` でページルートとメタ情報を管理しています。以下は例です。
 
@@ -110,9 +110,9 @@ $ git switch <branch>
 ];
 ```
 
-# CLI
+## CLI
 
-## Content Management CLI
+### Content Management CLI
 
 Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
 
@@ -123,7 +123,7 @@ $ pnpm run siwl <action> -opt
 
 以上は NPM スクリプト `tsx /.cli/siwl.ts` を実行します。
 
-### 利用可能な `<model>`
+#### 利用可能な `<model>`
 
 | `<model>`  | description                  | filetype |
 | :--------- | :--------------------------- | :------- |
@@ -135,7 +135,7 @@ $ pnpm run siwl <action> -opt
 > [!IMPORTANT]
 > `<model>` が未指定あるいは typo の場合は `article` モデルを参照します。
 
-### 利用可能な `<action>`
+#### 利用可能な `<action>`
 
 | `<action>`     | `-opt`                     | description                                                                                                |
 | :------------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -150,7 +150,7 @@ $ pnpm run siwl <action> -opt
 > [!TIP]
 > `<action> -h` でコマンド毎のヘルプを表示します。
 
-## Content Management CLI + 汎用オプション
+### Content Management CLI + 汎用オプション
 
 `/.cli/siwl.ts` をフォークした `/.cli/siwl.sh` を実行します。
 
@@ -167,89 +167,22 @@ $ siwl -opt <action>
 
 このエイリアスは Content Management CLI のほかに、以下の汎用オプションを提供します。
 
-| `-opt`        | description                                                                              |
-| :------------ | :--------------------------------------------------------------------------------------- |
-| `-d`          | 開発サーバを起動します。                                                                 |
-| `-b <branch>` | `origin/<branch>`へ変更を push し、`origin/main` へマージします。                        |
-| `-s`          | 現在のローカルブランチの内容を `origin/main` の内容で同期します。                        |
-| `-t`          | e2e テストを実行します。                                                                 |
-| `-h`          | プロジェクトに関連する Web ページの情報と、Content Management CLI のヘルプを表示します。 |
+| `-opt`                       | description                                                                              |
+| :--------------------------- | :--------------------------------------------------------------------------------------- |
+| `-d`                         | 開発サーバを起動します。                                                                 |
+| `-b <branch>`                | `origin/<branch>`へ変更を push し、`origin/main` へマージします。                        |
+| `-s`                         | 現在のローカルブランチの内容を `origin/main` の内容で同期します。                        |
+| `-e <service> -f <filename>` | Markdown を `<service>` の形式へ変換し、エクスポートします。                             |
+| `-t`                         | e2e テストを実行します。                                                                 |
+| `-h`                         | プロジェクトに関連する Web ページの情報と、Content Management CLI のヘルプを表示します。 |
 
-# Markdown の構文
+## Markdown の構文
 
 GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
 
 > [!TIP]
 > 詳細は https://siwl.dev/articles/markdown-syntax-guide にあります。
 
-## リンク
+## Zenn への投稿
 
-### リンクカード
-
-行に URL のみを記載すると自動でリンクカードに変換します。
-
-```md
-https://example.com
-
-<https://example.com>
-```
-
-### インラインリンク
-
-通常の名前付きリンクや、行に URL 以外の文字列がある場合にはリンクカードに変換されません。また、相対パスで始まるリンクは内部リンクとなります。
-
-```md
-[例](https://example.com) はインラインリンクです。
-
-https://example.com はインラインリンクです。
-
-[これは相対パスなので、内部](/blog/1) インラインリンクです。
-```
-
-## コードブロック
-
-````md
-```language:title
-"This is the CODE."
-```
-````
-
-> [!NOTE]
-> 利用可能な `language` の一覧は https://shiki.matsu.io/languages にあります。
-
-## コールアウト
-
-`title` は省略可能です。省略した場合 `type` の内容がタイトルになります。
-
-```md
-> [!type] title
-> text text text
-> text text text
-```
-
-| type      | description      |
-| :-------- | :--------------- |
-| note      | 確認事項         |
-| info      | 付帯する情報     |
-| important | 重要事項         |
-| warn      | 警告             |
-| alert     | 強い警告         |
-| tip       | 補足             |
-| math      | 数学の定理、公式 |
-
-## 数式
-
-```md
-<!--インライン-->
-
-$ f(x) = e^x $
-
-<!--ディスプレイ-->
-
-$$
-\mathcal{L}[f(t)](s) = \int_0^\infty f(t)e^{-st} dt
-$$
-```
-
-> [!NOTE]
-> マクロ `\RR` はボールド体（黒板太字）の R を出力します。
+`$ siwl -e zenn -f <filename>` を実行すると、[Zenn](https://zenn.dev) のリポジトリへ Markdown を輸送することができます。

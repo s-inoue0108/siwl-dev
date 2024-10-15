@@ -1,17 +1,12 @@
 ---
 isDraft: false
-title: Astro, SolidJS でブログをリニューアルしました
+title: Astro, SolidJS で個人ブログを制作しました
 category: tech
 tags: [astro, solid, ts, tailwindcss]
-description: Astro + SolidJSでブログをリニューアルしましたので、その覚え書きです。利用した技術についてまとめます。
+description: 覚え書きです。利用した技術についてまとめます。
 publishDate: 2024-10-06
 updateDate: 2024-10-14
 ---
-
-## 制作の動機
-
-非情報系の大学生ながら個人的に Web 制作に取り組んでおり、卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
-特に、精力的に取り組んできた Web フロントエンドの分野でいくつか触ってみたい技術があり、また、以前作ったブログのリプレイスを行うも不満が残る部分が多かったため、いっそ新しく作り直そうということで制作に至りました。
 
 ## 採用した技術
 
@@ -21,7 +16,7 @@ updateDate: 2024-10-14
 
 https://astro.build/
 
-静的サイトであるので、SSG に適した **Astro** を採用しました。パフォーマンスに優れるうえ、シンプルで非常に扱いやすいです。
+静的サイトであるので、SSG に適した **Astro** を採用しました。パフォーマンスに優れるうえ、シンプルで非常に扱いやすいと感じます。
 
 #### SolidJS
 
@@ -44,10 +39,12 @@ https://docs.astro.build/en/guides/content-collections/
 
 https://github.github.com/gfm/
 
-> [!note] MDX を採用しなかった理由
-> Astro ではインテグレーションを追加するだけで **[MDX](https://mdxjs.com/)** を簡単に取り入れることができます。
-> 
-> MDX は Markdown 中で JSX を使用することができ、Markdown より高度な表現を可能にします。MDX はインタラクティブな要素（ボタンなど）を埋め込む場合に有用と思いますが、単なる装飾であれば後述する remark/rehype を利用することで Markdown でも豊富な表現が可能です。したがって、（Markdown と比べて）互換性に乏しい MDX の採用は見送りました。
+:::message
+**MDX について**
+
+Astro ではインテグレーションを追加するだけで **[MDX](https://mdxjs.com/)** を簡単に取り入れることができます。
+MDX は Markdown 中で JSX を使用することができ、インタラクティブな要素（ボタンなど）を埋め込む場合に有用と思いますが、単なる装飾であれば後述する remark/rehype を利用することで Markdown でも豊富な表現が可能です。したがって、（Markdown と比べて）互換性に乏しい MDX の採用は見送りました。
+:::
 
 ### 全体のスタイリングとデザイン
 
@@ -57,14 +54,13 @@ https://tailwindcss.com/
 
 流行りものです。Astro や Vue のシングルファイルコンポーネントでは CSS あるいは SASS を採用していましたが、SolidJS でこれらを用いる場合 CSS Modules を扱うことになるため、スタイルが分離することを嫌ったかたちです。
 
-<br />
-
 ダークモード対応しやすい点が結構お気に入りです。
 
-> [!note] CSS-in-JS について
-> **CSS-in-JS** は SolidJS でも使うことができますが、選択肢の少なさや、そもそもスタイルとテンプレートを同一ファイルで管理するというだけの目的であれば Tailwind CSS のほうが使いやすく感じたため、見送りました。
-> 
-> https://zenn.dev/kmdmnak/articles/4ceb4e655c451a のように、Emotion をはじめとした Runtime CSS-in-JS はパフォーマンスに優れないという指摘もよく見かけます。
+:::message
+**CSS-in-JS について**
+
+CSS-in-JS は SolidJS でも使うことができますが、選択肢の少なさや、そもそもスタイルとテンプレートを同一ファイルで管理することが目的であれば Tailwind CSS のほうが使いやすく感じたため、見送りました。
+:::
 
 #### Solid Icons
 
@@ -210,10 +206,10 @@ https://jahir.dev/blog/astro-reading-time
 
 ## 今後の展望
 
-実際にモノをつくってみて、Web 制作は非常に奥が深いと感じています。
-便利なフレームワークや、先人たちの知恵が詰まったコードスニペットで下駄を履かせてもらったとしても、まだまだ分からない部分は多いです。
+個人で1年半ほど学習・活動してきましたが、実際にモノをつくってみて、Web 制作は非常に奥が深いと感じています。
+便利なフレームワークや、先人の知恵が詰まったコードスニペットで下駄を履かせてもらったとしても、まだまだ分からない部分は多いです。
 
-せっかく自分の Web サイトがあるのですから、これからはコツコツ記事を書いて知見をためていきたいと思っています。
+せっかく自分の Web サイトを持てたので、これからはコツコツ記事を書いて知見をためていきたいと思っています。
 
 ## 参考記事
 
@@ -226,7 +222,5 @@ https://zenn.dev/deer/articles/d3b104ac97711d
 Tailwind CSS でカスタムカラーを用いたダークモード対応を設定する方法が紹介されています。
 
 https://zenn.dev/chot/articles/7885c407aab52d
-
-https://pote-chil.com/posts/astro-rehype-plugin
 
 Remark/Rehype プラグインを作成する際に参考にさせていただきました。
