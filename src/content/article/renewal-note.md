@@ -197,13 +197,19 @@ https://github.com/chalk/chalk
 CLI は npm スクリプトとして実行できるようにしてありますが、もう少し簡便に使えるように Shellscript から制御できるようにしてあります。
 加えて、Git など定型的な操作をコマンド1つで行えるようにもしました。
 
-## 工夫点
+## 工夫点や特記事項
 
 ### 読了時間の追加
 
 [Astro の公式](https://docs.astro.build/en/recipes/reading-time/)に実装例がありますが、当サイトでは Content Collections を用いているため以下の記事の実装を用いました。
 
 https://jahir.dev/blog/astro-reading-time
+
+### グローバルステート
+
+[こちら](https://zenn.dev/nakasyou/articles/20231020_solidjs#state%E3%81%8C%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E5%A4%96%E3%81%A7%E3%82%82%E4%BD%BF%E3%81%88%E3%82%8B%EF%BC%81) で述べられているように、SolidJS の大きな特徴として **state がコンポーネント外でも宣言できる**というものがあります。よって、状態管理ライブラリを必要とせずとも state を `.ts` ファイルに隔離し、複数のコンポーネントから参照・更新をすることができます。
+\
+このブログにおいては、記事検索のための `input` 要素を含むUIをデバイスのサイズに応じて出しわけているのですが、バインドするキーワードをグローバルステートにしています。
 
 ## 今後の展望
 
