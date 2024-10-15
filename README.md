@@ -179,8 +179,11 @@ $ siwl -opt <action>
 
 GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
 
-> [!TIP]
+> [!NOTE]
 > 詳細は https://siwl.dev/articles/markdown-syntax-guide にあります。
+
+> [!TIP]
+> ZennのMarkdown記法: https://zenn.dev/zenn/articles/markdown-guide
 
 ### 見出し
 
@@ -190,7 +193,7 @@ GitHub-Flavored Markdown をベースに、拡張構文を導入しています�
 #### レベル3
 ```
 
-> [!TIP] 利用できる見出しについて
+> [!WARNING] 利用できる見出しについて
 > `<h1>`, `<h5>`, `<h6>` は使用できません。
 
 ### リスト
@@ -211,6 +214,195 @@ GitHub-Flavored Markdown をベースに、拡張構文を導入しています�
 2. ol-2
 3. 1. ol-3-1
    2. ol-3-2
+```
+
+### インラインスタイル
+
+#### 強調
+
+```md
+これは **強調** されます。
+```
+
+#### 取り消し線
+
+```md
+~取り消し線~ がつきます。
+
+<!--or-->
+
+~~取り消し線~~ がつきます。
+```
+
+#### イタリック
+
+```md
+これは *イタリック* になります。
+```
+
+### 文末脚注
+
+```md
+これは脚注です[^1]。
+
+<!--footnote-->
+[^1]: ここに脚注がきます。
+```
+
+### 区切り線
+
+```md:区切り線
+---
+```
+
+### リンク
+
+#### むき出しのリンク
+
+URLが独立した行にある場合にのみ変換されます。
+
+```md
+https://siwl.dev/blog/articles/renewal-note
+
+<!--or-->
+
+<https://siwl.dev/blog/articles/renewal-note>
+```
+
+#### インラインリンク
+
+```md
+[リニューアルノート](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
+
+https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
+
+[相対パスによるリンク](/blog/articles/renewal-note) は内部リンクです。
+```
+
+### 画像
+
+画像ファイルは `./images/` に格納することを推奨します。キャプションをつける場合は1行空けます。
+
+```md
+![プロフィール画像](./images/profile-image.jpg)
+
+*[!image] 画像の例*
+```
+
+### 表
+
+キャプションをつける場合は1行空けます。
+
+```md
+*[!table] テーブルの例*
+
+| a     | b     |     c |   d   |
+| ----- | :---- | ----: | :---: |
+| aaaaa | bbbbb | ccccc | ddddd |
+| aaaa  | bbbb  |  cccc | dddd  |
+| aaa   | bbb   |   ccc |  ddd  |
+```
+
+### コード
+
+[https://shiki.matsu.io/languages](Shiki) を使用しています。
+
+#### インラインコード
+
+```md:インラインコード
+`inline code`
+```
+
+#### タイトル付きコードブロック
+
+タイトルは必須です。
+
+````md
+```ts:TypeScriptによる例
+const text: string = "Hello, world!";
+
+const displayTextType = (text: string) => {
+  if (typeof text !== "string") return;
+  console.log("text type is string");
+}
+```
+````
+
+### 引用
+
+#### 通常の引用
+
+```md
+> 通常の引用
+```
+
+#### コールアウト
+
+title は省略可能です。
+
+```md
+> [!type] title
+>
+> text text text
+```
+
+| type        | description      | color   |
+| :---------- | :--------------- | :------ |
+| `quote`     | 強調したい引用   | default |
+| `note`      | 補足             | default |
+| `info`      | 付帯する情報     | blue    |
+| `important` | 重要事項         | violet  |
+| `warn`      | 警告             | amber   |
+| `alert`     | 強い警告         | red     |
+| `tip`       | 小ネタ           | green   |
+| `math`      | 数学の公式や定理 | orange  |
+
+### 数式
+
+$ \KaTeX $ を使用しています。詳細は https://katex.org/docs/supported, https://katex.org/docs/support_table
+
+#### インライン数式
+
+```md
+$ f(x) = e^x $ はインライン数式です。
+```
+
+#### 別行立て数式
+
+```tex
+$$
+f(t) = \sum_{n = 0}^\infty \frac{t^n}{n!} \left. \frac{d^{n}f(t)}{dt^n}\right|_{t = 0}
+$$
+```
+
+### 埋め込み
+
+URLが独立した行にある場合、かつURLの形式が以下に示す例の通りである場合に変換されます。
+
+#### YouTube
+
+```md
+<!--https://www.youtube.com/watch?v=<query>-->
+https://www.youtube.com/watch?v=sTxY93pA1zI
+```
+
+#### Twitter (X)
+
+```md
+<!--https://x.com/<user>/status/<query>-->
+https://x.com/astrodotbuild/status/1844403385375862824
+
+<!-- or -->
+
+<!--https://twitter.com/<user>/status/<query>-->
+https://twitter.com/astrodotbuild/status/1844403385375862824
+```
+
+#### GitHub Gist
+
+```md:Gist
+<!--https://gist.github.com/<user>/<query>-->
+https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
 ```
 
 ## Zenn への投稿
