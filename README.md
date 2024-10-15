@@ -182,6 +182,37 @@ GitHub-Flavored Markdown をベースに、拡張構文を導入しています�
 > [!TIP]
 > 詳細は https://siwl.dev/articles/markdown-syntax-guide にあります。
 
+### 見出し
+
+```md
+## レベル1
+### レベル2
+#### レベル3
+```
+
+> [!TIP] 利用できる見出しについて
+> `<h1>`, `<h5>`, `<h6>` は使用できません。
+
+### リスト
+
+#### 列挙
+
+```md
+- ul-1
+- ul-2
+  - ul-2-1
+  - ul-2-2
+```
+
+#### 番号付き
+
+```md
+1. ol-1
+2. ol-2
+3. 1. ol-3-1
+   2. ol-3-2
+```
+
 ## Zenn への投稿
 
 `$ siwl -e zenn -f <filename>` を実行すると、[Zenn](https://zenn.dev) のリポジトリへ Markdown を輸送することができます。
