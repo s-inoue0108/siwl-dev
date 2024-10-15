@@ -64,7 +64,7 @@ const readingTime = getReadingTime(body);
 			<div class="flex justify-between items-end">
 				<div class="flex items-center gap-4 pl-2 pb-1">
 					<a
-						href={`/blog/archives/${data.publishDate.getFullYear()}-${data.publishDate.getMonth() + 1}`}
+						href={`/blog/archives/${data.publishDate.getFullYear()}-${`${data.publishDate.getMonth() + 1}`.padStart(2, "0")}`}
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
 					>
 						<IoGitCommit class="rotate-90" />
