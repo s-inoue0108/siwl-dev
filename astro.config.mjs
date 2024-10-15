@@ -8,6 +8,7 @@ import tailwind from "@astrojs/tailwind";
 // Remark/Rehype Plugins from third-party
 import remarkMath from "remark-math";
 import remarkCodeTitles from "remark-flexible-code-titles";
+import remarkBreaks from "remark-breaks";
 // @ts-ignore
 import rlc from "remark-link-card";
 import rehypeRaw from "rehype-raw";
@@ -59,6 +60,7 @@ export default defineConfig({
 			},
 		},
 		remarkPlugins: [
+			remarkBreaks,
 			remarkTwitterEmbed,
 			remarkYoutubeEmbed,
 			remarkGistEmbed,

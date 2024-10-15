@@ -8,7 +8,7 @@ export const getReadingTime = (text: string): string | undefined => {
   try {
     const { minutes } = calculateReadingTime(toString(fromMarkdown(text)));
     if (minutes && minutes > 0) {
-      return `${Math.ceil(minutes)} min read`;
+      return `${Math.ceil(minutes)} min`;
     }
     return undefined;
   } catch (e) {
