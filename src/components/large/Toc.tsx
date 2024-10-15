@@ -81,7 +81,7 @@ const Toc = ({ headings }: Props) => {
 												? "bg-gradient-to-b from-accent-sub-base to-accent-base bg-clip-text text-transparent"
 												: "text-muted-foreground"
 										} ${
-											h.depth === 2 ? "" : h.depth === 3 ? "pl-4" : "pl-8"
+											h.depth === 2 ? "" : h.depth === 3 ? "pl-4" : "pl-6"
 										} hover:text-foreground inline-flex items-center gap-2`}
 									>
 										<span
@@ -89,7 +89,7 @@ const Toc = ({ headings }: Props) => {
 												h.isActive
 													? "bg-gradient-to-b from-accent-sub-base to-accent-base"
 													: "bg-muted-foreground"
-											} w-[0.375rem] h-[0.375rem] rounded-full`}
+											} ${h.depth < 4 ? "w-[0.375rem] h-[0.375rem] rounded-full" : ""}`}
 										/>
 										<span
 											class={`${
