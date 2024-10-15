@@ -1,4 +1,5 @@
 import { IoChevronUp } from "solid-icons/io";
+import { BiRegularLoaderAlt } from "solid-icons/bi";
 import { createSignal, Show, type JSXElement } from "solid-js";
 
 interface Props {
@@ -32,7 +33,17 @@ const Panel = ({ Content, title, href, isShowToggleButton = true }: Props) => {
 					</button>
 				)}
 			</div>
-			<Show when={isOpen()}>{Content}</Show>
+			<Show
+				when={isOpen()}
+				fallback={
+					<div class="flex items-center gap-2 mx-auto font-semibold text-muted-foreground">
+						<BiRegularLoaderAlt class="animate-spin" />
+						Loading...
+					</div>
+				}
+			>
+				{Content}
+			</Show>
 		</section>
 	);
 };

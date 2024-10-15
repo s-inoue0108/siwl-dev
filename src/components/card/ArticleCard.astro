@@ -1,19 +1,22 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import ClassifyCard from "./ClassifyCard.astro";
-import { IoGitCommit, IoTimerOutline, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import { IoGitCommit, IoTimer, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
 import { getEntry, getEntries } from "astro:content";
+import { getReadingTime } from "../../utils/common/getreadingtime";
 
 interface Props {
 	article: CollectionEntry<"article">;
 }
 
 const { article } = Astro.props;
-const { slug, data } = article;
+const { slug, data, body } = article;
 
 const category = await getEntry("category", data.category.id);
 const tags = await getEntries(data.tags ? data.tags : []);
+
+const readingTime = getReadingTime(body);
 ---
 
 <section id={`article-card-${slug}`}>
@@ -81,8 +84,8 @@ const tags = await getEntries(data.tags ? data.tags : []);
 					<div
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
 					>
-						<IoTimerOutline />
-						<div class="text-xs sm:text-sm tracking-wider">{`${10} min`}</div>
+						<IoTimer />
+						<div class="text-xs sm:text-sm tracking-wider">{readingTime}</div>
 					</div>
 				</div>
 				<ArticleCardLayerButton article={article} category={category} client:load />
