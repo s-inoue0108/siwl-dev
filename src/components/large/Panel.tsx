@@ -33,17 +33,7 @@ const Panel = ({ Content, title, href, isShowToggleButton = true }: Props) => {
 					</button>
 				)}
 			</div>
-			<Show
-				when={isOpen()}
-				fallback={
-					<div class="flex items-center gap-2 mx-auto font-semibold text-muted-foreground">
-						<BiRegularLoaderAlt class="animate-spin" />
-						Loading...
-					</div>
-				}
-			>
-				{Content}
-			</Show>
+			<Show when={isOpen()}>{Content}</Show>
 		</section>
 	);
 };
