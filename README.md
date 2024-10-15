@@ -180,7 +180,7 @@ $ siwl -opt <action>
 GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
 
 > [!NOTE]
-> 詳細は https://siwl.dev/articles/markdown-syntax-guide にあります。
+> 詳細は https://siwl.dev/blog/articles/markdown-syntax-guide にあります。
 
 > [!TIP]
 > ZennのMarkdown記法: https://zenn.dev/zenn/articles/markdown-guide
