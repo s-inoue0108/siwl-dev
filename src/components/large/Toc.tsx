@@ -1,6 +1,7 @@
 import type { MarkdownHeading } from "astro";
 import Panel from "./Panel";
 import { createSignal, createEffect, createMemo, onMount, For } from "solid-js";
+import { BiRegularLoaderAlt } from "solid-icons/bi";
 
 interface Props {
 	headings: MarkdownHeading[];
@@ -63,7 +64,12 @@ const Toc = ({ headings }: Props) => {
 				<ul class="flex flex-col gap-2 max-h-[60dvh] overflow-y-auto toc-scrollbar">
 					<For
 						each={headingWithIsActives()}
-						fallback={<div class="text-center font-semibold text-muted-foreground">Loading...</div>}
+						fallback={
+							<div class="flex items-center gap-2 mx-auto font-semibold text-muted-foreground">
+								<BiRegularLoaderAlt class="animate-spin" />
+								Loading...
+							</div>
+						}
 					>
 						{(h) => {
 							return (

@@ -1,6 +1,6 @@
 import { IoSunny, IoMoon } from "solid-icons/io";
-import { isDark, setIsDark } from "../../utils/store/isDark";
-import { onMount } from "solid-js";
+import { BiRegularLoaderAlt } from "solid-icons/bi";
+import { onMount, createSignal, Show } from "solid-js";
 
 interface Props {
 	size?: string | number;
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
+	const [isDark, setIsDark] = createSignal<boolean | null>(null);
 	const switchTheme = () => {
 		setIsDark(!isDark());
 		const rootClass = document.documentElement.classList;
@@ -43,7 +44,12 @@ const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
 				"p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background"
 			}`}
 		>
-			{isDark() ? <IoMoon size={size} /> : <IoSunny size={size} />}
+			<Show
+				when={isDark() !== null}
+				fallback={<BiRegularLoaderAlt size={size} class="animate-spin" />}
+			>
+				{isDark() ? <IoMoon size={size} /> : <IoSunny size={size} />}
+			</Show>
 		</button>
 	);
 };
