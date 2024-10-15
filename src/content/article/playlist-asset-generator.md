@@ -17,6 +17,7 @@ https://playlist-asset-generator.vercel.app
 **ブラウザのみで動作**し、楽曲のメタデータを含む CSV とアルバムやシングルのカバー画像（JPEG）の組から SVG を生成します。
 
 > [!important] CSV について
+> 
 > カンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
 >
 > ```csv:CSV
@@ -40,6 +41,7 @@ https://playlist-asset-generator.vercel.app
 楽曲を FLAC や ALAC のような形式で管理している場合、ファイルにメタデータが付属しています。したがって、楽曲ファイル（FLAC を利用しました）そのものからデータを取り出すインタフェースまで TypeScript で構築することを試みましたが、~~面倒そうだったので~~ 諦めました。
 
 > [!tip]
+> 
 > FLAC ファイルからデータを取り出す処理はシェルスクリプトで実装しています（[metaflac](https://xiph.org/flac/documentation_tools_metaflac.html) という FLAC 公式のコマンドツールを使うことで FLAC ファイルの中身を CLI で読み出すことができます）。
 
 ### UI ライブラリ

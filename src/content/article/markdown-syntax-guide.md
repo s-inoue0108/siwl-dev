@@ -27,6 +27,7 @@ relatedArticles: [renewal-note]   # optional
 ```
 
 > [!tip] CLIについて
+> 
 > CLIを使用すると、`isDraft`, `publishDate` および `updateDate` の内容を変更することができます。
 >
 > ```bash:記事の追加
@@ -260,6 +261,7 @@ title は省略可能です。
 
 ```md:コールアウト
 > [!type] title
+>
 > text text text
 ```
 
@@ -279,27 +281,35 @@ title は省略可能です。
 <br />
 
 > [!quote]
+> 
 > text text text
 
 > [!note]
+> 
 > text text text
 
 > [!info]
+> 
 > text text text
 
 > [!important]
+> 
 > text text text
 
 > [!warn]
+> 
 > text text text
 
 > [!alert]
+> 
 > text text text
 
 > [!tip]
+> 
 > text text text
 
 > [!math]
+> 
 > text text text
 
 ## 数式

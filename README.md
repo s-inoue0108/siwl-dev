@@ -173,7 +173,6 @@ $ siwl -opt <action>
 | `-b <branch>`                | `origin/<branch>`へ変更を push し、`origin/main` へマージします。                        |
 | `-s`                         | 現在のローカルブランチの内容を `origin/main` の内容で同期します。                        |
 | `-e <service> -f <filename>` | Markdown を `<service>` の形式へ変換し、エクスポートします。                             |
-| `-t`                         | e2e テストを実行します。                                                                 |
 | `-h`                         | プロジェクトに関連する Web ページの情報と、Content Management CLI のヘルプを表示します。 |
 
 ## Markdown の構文
