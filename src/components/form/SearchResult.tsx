@@ -1,4 +1,4 @@
-import { For, onCleanup } from "solid-js";
+import { For } from "solid-js";
 import { createMemo } from "solid-js";
 import { SearchClient } from "../../utils/api/fuse";
 import { allArticles } from "../../utils/store/collections";

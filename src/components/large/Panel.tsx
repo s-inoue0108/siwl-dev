@@ -1,5 +1,4 @@
 import { IoChevronUp } from "solid-icons/io";
-import { BiRegularLoaderAlt } from "solid-icons/bi";
 import { createSignal, Show, type JSXElement } from "solid-js";
 
 interface Props {
