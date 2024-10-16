@@ -1,4 +1,4 @@
-import type { ElementContent, Root } from 'hast';
+import type { Root } from 'hast';
 import { visit } from 'unist-util-visit';
 
 export default function rehypeInlineAnchor() {
