@@ -1,14 +1,28 @@
 ---
-import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import Base from "../layouts/Base.astro";
 import { AllowedRoutes } from "../utils/common/route";
+import { Image } from "astro:assets";
+import ProfileImage from "../assets/images/profile-image.jpg";
+import TokyoNightScape from "../assets/images/tokyo-night-scape.jpeg";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<section class="pt-8 w-full flex flex-col lg:flex-row">
-    <Breadcrumbs />
+	<Image
+		src={TokyoNightScape}
+		alt="Profile Image"
+		class="w-full h-fit lg:h-1/2 object-contain lg:object-cover lg:object-middle absolute top-0 left-0 z-0 select-none"
+	/>
+	<div
+		class="p-8 w-full bg-background/50 absolute top-[20%] lg:top-1/4 left-1/2 -translate-x-1/2 -translate-y-[20%] lg:-translate-y-1/4"
+	>
+		<h2 class="tracking-wider text-center text-5xl lg:text-7xl whitespace-nowrap font-extrabold">
+			About
+		</h2>
+	</div>
+	<section class="w-full flex flex-col lg:flex-row">
+		<div></div>
 	</section>
 </Base>

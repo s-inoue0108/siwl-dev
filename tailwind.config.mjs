@@ -23,6 +23,9 @@ export default {
 				sky: "#38bdf8",
 				purple: "#a855f7",
 			},
+			objectPosition: {
+				middle: "50% 75%",
+			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",
 				inversion: "inversion 1s linear",

@@ -22,9 +22,6 @@ const tags = await getCollection("tag", ({ data }) => {
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
 			<Breadcrumbs count={tags.length} />
 			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
-			<p class="mx-auto text-muted-foreground sm:text-lg">
-				{meta.description}
-			</p>
 			<ul class="flex flex-wrap items-center gap-2 lg:gap-4">
 				{
 					tags.length > 0 ? (

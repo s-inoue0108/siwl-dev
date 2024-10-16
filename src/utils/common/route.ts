@@ -51,14 +51,7 @@ export class AllowedRoutes {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "Shota Inoueのプロフィールや、当サイトの情報を掲載しています。",
-      subsets: [],
-    },
-    {
-      name: "Works",
-      matchers: [/^\/works/],
-      rootpath: "/works",
-      description: "過去の制作物や、実績などを紹介しています。",
+      description: "当サイト管理人のプロフィールや制作物を掲載しています。",
       subsets: [],
     },
     {
