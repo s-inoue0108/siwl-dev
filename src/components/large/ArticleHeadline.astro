@@ -3,6 +3,7 @@ import { type CollectionEntry, getEntry, getEntries } from "astro:content";
 import { IoGitMerge, IoGitCommit, IoTimer } from "solid-icons/io";
 import ClassifyCard from "../card/ClassifyCard.astro";
 import { getReadingTime } from "../../utils/common/getreadingtime";
+
 interface Props {
 	slug: CollectionEntry<"article">["slug"];
 	data: CollectionEntry<"article">["data"];
