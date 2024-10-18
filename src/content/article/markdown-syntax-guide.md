@@ -20,8 +20,8 @@ title: Markdown記法の一覧   # require
 category: tech   # require [tech or idea]
 tags: [html, css, js]   # optional
 description: このブログで利用可能なMarkdown記法をまとめています。 # optional
-publishDate: yyyy-mm-dd   # require
-updateDate: yyyy-mm-dd   # optional
+publishDate: yyyy-MM-ddTHH:mm:ss+09:00   # require
+updateDate: yyyy-MM-ddTHH:mm:ss+09:00   # optional
 relatedArticles: [renewal-note]   # optional
 ---
 ```
