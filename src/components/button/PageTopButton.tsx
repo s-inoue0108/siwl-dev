@@ -2,7 +2,7 @@ import { IoChevronUp } from "solid-icons/io";
 
 const PageTopButton = () => {
 	return (
-		<div class="w-32 h-full border border-muted-background bg-muted-background/50 rounded-xl shadow-lg">
+		<div class="w-32 h-full border border-muted-background bg-muted-background/30 rounded-xl shadow-lg">
 			<button
 				type="button"
 				onClick={() => window.scrollTo({ top: 0 })}

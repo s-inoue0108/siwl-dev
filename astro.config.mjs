@@ -54,10 +54,7 @@ export default defineConfig({
 	markdown: {
 		syntaxHighlight: "shiki",
 		shikiConfig: {
-			themes: {
-				light: "snazzy-light",
-				dark: "ayu-dark",
-			},
+			theme: "ayu-dark",
 		},
 		remarkPlugins: [
 			remarkBreaks,

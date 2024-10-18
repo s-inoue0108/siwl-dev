@@ -11,7 +11,7 @@ interface Props {
 const Panel = ({ Content, title, href, isShowToggleButton = true }: Props) => {
 	const [isOpen, setIsOpen] = createSignal(true);
 	return (
-		<section class="px-4 py-2 sm:border sm:border-muted-background sm:bg-muted-background/50 w-screen -mx-4 sm:w-full sm:mx-0 sm:rounded-xl flex flex-col gap-2 lg:gap-4 sm:shadow-lg">
+		<section class="px-4 py-2 sm:border sm:border-muted-background sm:bg-muted-background/30 w-screen -mx-4 sm:w-full sm:mx-0 sm:rounded-xl flex flex-col gap-2 lg:gap-4 sm:shadow-lg">
 			<div class="w-full flex justify-between items-center border-b border-muted-background sm:border-0 pb-1">
 				<a
 					href={href}

@@ -92,20 +92,20 @@ export default function rehypeHeading() {
             if (!value || typeof value !== 'string') return;
 
             const hashElm = {
-            type: "element",
-            tagName: "a",
-            properties: {
-                href: `#h2-${value}`,
-                className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
-            },
-            children: [{ type: "text", value: "#" }],
+                type: "element",
+                tagName: "a",
+                properties: {
+                    href: `#h2-${value}`,
+                    className: "heading bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+                },
+                children: [{ type: "text", value: "#" }],
             } satisfies ElementContent;
 
             const titleElm = {
-            type: "element",
-            tagName: "span",
-            properties: {},
-            children: [{ type: "text", value }],
+                type: "element",
+                tagName: "span",
+                properties: {},
+                children: [{ type: "text", value }],
             } satisfies ElementContent;
 
             node.children = [hashElm, titleElm];
