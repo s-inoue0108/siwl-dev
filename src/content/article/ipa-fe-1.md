@@ -4,8 +4,8 @@ title: 基本情報技術者試験「2進数」
 category: idea
 tags: [ipa, ipa-fe]
 description: 基本情報技術者試験のテーマ「2進数」についてのノートです。
-publishDate: 2024-10-06
-updateDate: 2024-10-12
+publishDate: 2024-10-06T00:00:00+09:00
+updateDate: 2024-10-12T00:00:00+09:00
 ---
 
 ## 符号化

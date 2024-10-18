@@ -3,9 +3,10 @@
 
 import fs from "fs";
 import chalk from "chalk";
-
 import { Command } from "commander";
 const program = new Command();
+
+import { toISOStringWithTimezone } from "../src/utils/common/utilfuncs";
 
 const getModel = (cmd: any) => {
   const isModel = (arg: string | undefined): arg is ("article" | "tag" | "bookmark" | "work") => {
@@ -43,13 +44,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `---\nisDraft: true\ntitle: \ncategory: tech\ntags: []\ndescription: \npublishDate: ${new Date().toLocaleDateString("ja-JP", {
-          year: "numeric", month: "2-digit",
-          day: "2-digit"
-        }).replaceAll('/', '-')}\nupdateDate: ${new Date().toLocaleDateString("ja-JP", {
-          year: "numeric", month: "2-digit",
-          day: "2-digit"
-        }).replaceAll('/', '-')}\nrelatedArticles: []\n---`,
+        `---\nisDraft: true\ntitle: \ncategory: tech\ntags: []\ndescription: \npublishDate: ${toISOStringWithTimezone(new Date())}\nupdateDate: ${toISOStringWithTimezone(new Date())}}\nrelatedArticles: []\n---`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.md`)}`);
@@ -217,10 +212,7 @@ program
 
       fs.readFile(file, 'utf8', (err, data) => {
         if (err) throw err;
-        const newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}/, `updateDate: ${new Date().toLocaleDateString("ja-JP", {
-          year: "numeric", month: "2-digit",
-          day: "2-digit"
-        }).replaceAll('/', '-')}`);
+        const newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `updateDate: ${toISOStringWithTimezone(new Date())}`);
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
           console.log(`published ${chalk.magenta(`${model}/${filename}.md`)}`);

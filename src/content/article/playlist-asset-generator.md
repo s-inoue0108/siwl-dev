@@ -4,8 +4,8 @@ title: DJプレイリストから動画制作用のアセットを生成する�
 category: tech
 tags: [ts, solid, sass, dj]
 description: DJ MIXプレイを録音して、動画として残したいことがあります。今回は、プレイした楽曲のメタデータから動画制作用のSVGアセットを出力するツールをSolidJSで制作してみました。
-publishDate: 2024-10-04
-updateDate: 2024-10-13
+publishDate: 2024-10-04T00:00:00+09:00
+updateDate: 2024-10-13T00:00:00+09:00
 ---
 
 ## ツールの紹介

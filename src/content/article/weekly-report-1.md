@@ -4,8 +4,8 @@ title: 週報@2024-10-06
 category: idea
 tags: [report]
 description: いろいろありました
-publishDate: 2024-10-06
-updateDate: 2024-10-06
+publishDate: 2024-10-06T00:00:00+09:00
+updateDate: 2024-10-06T00:00:00+09:00
 ---
 
 ## Keep

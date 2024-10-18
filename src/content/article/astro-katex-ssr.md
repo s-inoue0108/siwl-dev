@@ -4,8 +4,8 @@ title: Astro で KaTeX をプリレンダリングする
 category: tech
 tags: [astro, ts]
 description: Astro で remark/rehype を用いずに KaTeX をレンダリングする実装を行いました。
-publishDate: 2024-10-17
-updateDate: 2024-10-17
+publishDate: 2024-10-17T00:00:00+09:00
+updateDate: 2024-10-17T00:00:00+09:00
 relatedArticles: []
 ---
 

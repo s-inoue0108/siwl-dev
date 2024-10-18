@@ -4,8 +4,8 @@ title: Astro, SolidJS で個人ブログを制作しました
 category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: 覚え書きです。利用した技術についてまとめます。
-publishDate: 2024-10-06
-updateDate: 2024-10-15
+publishDate: 2024-10-06T00:00:00+09:00
+updateDate: 2024-10-18T21:25:01+09:00
 ---
 
 **S.Inoue** と申します。非情報系の大学生ながら個人的に Web 制作に取り組んでおり、大学卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
