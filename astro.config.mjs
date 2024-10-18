@@ -55,7 +55,7 @@ export default defineConfig({
 		syntaxHighlight: "shiki",
 		shikiConfig: {
 			themes: {
-				light: "slack-ochin",
+				light: "github-light",
 				dark: "ayu-dark",
 			},
 		},
