@@ -6,7 +6,9 @@ import Age from "./Age";
 import ExperienceYears from "./ExperienceYears";
 ---
 
-<section class="relative w-screen -mx-4 sm:w-full sm:mx-0 lg:rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
+<section
+	class="relative w-screen -mx-4 sm:w-full sm:mx-0 lg:rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg"
+>
 	<Image
 		src={ProfileImage}
 		alt="Profile Image"
@@ -16,52 +18,58 @@ import ExperienceYears from "./ExperienceYears";
 	/>
 	<div class="bg-background/80 z-10 p-4 rounded-xl flex flex-col items-center gap-4">
 		<div class="flex items-center gap-3 lg:gap-4">
-			<div class="w-2 h-5 lg:h-7 bg-gradient-to-b from-accent-sub-base to-accent-base" />
-			<h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">
-				Shota Inoue
-			</h1>
+			<div class="w-2 h-5 lg:h-7 bg-gradient-to-b from-accent-sub-base to-accent-base"></div>
+			<h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">Shota Inoue</h1>
 		</div>
 		<p class="text-muted-foreground font-medium">
 			<Age client:load />
-			<span>
-				歳、
-			</span>
-			<span>
-				エンジニア
-			</span>
-			<ExperienceYears client:load />	
-			<span>
-				年生。
-			</span>
+			<span> 歳、 </span>
+			<span> エンジニア </span>
+			<ExperienceYears client:load />
+			<span> 年生。</span>
 			<br />
-			<span>
-				数字は自動でインクリメントされます。
-			</span>
+			<span> 数字は勝手にインクリメントされます。</span>
 			<br />
-			<span>
-				フロントエンドの技術を学習中。
-			</span>
+			<span> フロントエンドが好きです。</span>
 		</p>
 		<ul class="w-full px-6 flex items-center justify-between">
 			<li>
-				<a href="/about" class="font-semibold tracking-wide bg-gradient-to-r from-accent-sub-base to-accent-base px-2 py-1 rounded-xl">
+				<a
+					href="/about"
+					class="font-semibold tracking-wide bg-gradient-to-r from-accent-sub-base to-accent-base px-2 py-1 rounded-xl"
+				>
 					Read more
 				</a>
 			</li>
 			<ul class="flex items-center gap-4">
 				<li>
-					<a href={import.meta.env.GITHUB_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
-						<SiGithub />
+					<a
+						href={import.meta.env.ZENN_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+					>
+						<SiZenn />
 					</a>
 				</li>
 				<li>
-					<a href={import.meta.env.X_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
+					<a
+						href={import.meta.env.X_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+					>
 						<SiTwitter />
 					</a>
 				</li>
 				<li>
-					<a href={import.meta.env.ZENN_URL} target="_blank" rel="noopener noreferrer" class="text-xl">
-						<SiZenn />
+					<a
+						href={import.meta.env.GITHUB_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+					>
+						<SiGithub />
 					</a>
 				</li>
 			</ul>

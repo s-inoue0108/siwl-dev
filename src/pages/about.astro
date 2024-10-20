@@ -1,27 +1,196 @@
 ---
 import Base from "../layouts/Base.astro";
 import { AllowedRoutes } from "../utils/common/route";
+import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
-import TokyoNightScape from "../assets/images/tokyo-night-scape.jpeg";
+import ProfileImage from "../assets/images/profile-image.jpg";
+import { SiGithub, SiTwitter, SiZenn } from "solid-icons/si";
+import ExperienceYears from "../components/card/ExperienceYears";
+import Age from "../components/card/Age";
+
+import IconTS from "../assets/icons/typescript.svg";
+import IconReact from "../assets/icons/react.svg";
+import IconVue from "../assets/icons/vue.svg";
+import IconNuxt from "../assets/icons/nuxt.svg";
+import IconAstro from "../assets/icons/astro.svg";
+import IconPython from "../assets/icons/python.svg";
+
+import IconSolid from "../assets/icons/solid.svg";
+import IconTailwind from "../assets/icons/tailwindcss.svg";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<Image
-		src={TokyoNightScape}
-		alt="Profile Image"
-		class="w-full h-fit lg:h-1/2 object-contain lg:object-cover lg:object-middle absolute top-0 left-0 z-0 select-none"
-	/>
-	<div
-		class="p-8 w-full bg-background/50 absolute top-[20%] lg:top-1/4 left-1/2 -translate-x-1/2 -translate-y-[20%] lg:-translate-y-1/4"
-	>
-		<h2 class="tracking-wider text-center text-5xl lg:text-7xl whitespace-nowrap font-extrabold">
-			About
-		</h2>
-	</div>
-	<section class="w-full flex flex-col lg:flex-row">
-		<div></div>
+	<section class="pt-8 w-full flex flex-col gap-8">
+		<Breadcrumbs />
+		<div
+			class="pt-8 xl:pt-16 flex flex-col sm:flex-row sm:justify-center items-center gap-8 xl:gap-24 2xl:gap-36"
+		>
+			<div
+				class="w-full sm:w-fit flex flex-col justify-center items-center gap-4 sm:gap-8 border-b sm:border-b-0 pb-8 sm:border-r sm:pr-8 xl:pr-36 2xl:pr-48 border-muted-background"
+			>
+				<Image
+					src={ProfileImage}
+					alt="Profile Image"
+					class="w-48 h-48 lg:w-64 lg:h-64 rounded-full object-cover"
+				/>
+				<h1 class="tracking-wide text-2xl lg:text-4xl font-extrabold">Shota Inoue</h1>
+				<ul class="flex items-center gap-4 xl:gap-6">
+					<li>
+						<a
+							href={import.meta.env.ZENN_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<SiZenn />
+						</a>
+					</li>
+					<li>
+						<a
+							href={import.meta.env.X_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<SiTwitter />
+						</a>
+					</li>
+					<li>
+						<a
+							href={import.meta.env.GITHUB_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<SiGithub />
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="flex flex-col gap-8">
+				<p
+					class="text-[1.125rem] lg:text-[1.875rem] leading-normal lg:leading-relaxed text-muted-foreground font-medium"
+				>
+					<Age client:load />
+					<span> 歳、 </span>
+					<span> エンジニア </span>
+					<ExperienceYears client:load />
+					<span> 年生。</span>
+					<br />
+					<span> 数字は勝手にインクリメントされます。</span>
+					<br />
+					<span> フロントエンドが好きです。</span>
+				</p>
+				<h2
+					class="text-muted-foreground font-extrabold text-[1.125rem] lg:text-[1.875rem] xl:text-[2.25rem]"
+				>
+					Skills...
+				</h2>
+				<div class="flex flex-wrap items-center gap-4">
+					<a href="https://typescriptlang.org/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconTS}
+							width={20}
+							height={20}
+							alt="TypeScript"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+					<a href="https://ja.react.dev/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconReact}
+							width={20}
+							height={20}
+							alt="React"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+					<a href="https://ja.vuejs.org/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconVue}
+							width={20}
+							height={20}
+							alt="Vue"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+					<a href="https://nuxt.com/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconNuxt}
+							width={20}
+							height={20}
+							alt="React"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+					<a href="https://astro.build/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconAstro}
+							width={20}
+							height={20}
+							alt="Astro"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+					<a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
+						<Image
+							src={IconPython}
+							width={20}
+							height={20}
+							alt="Python"
+							class="w-8 lg:w-16 lg:max-h-16 object-contain"
+						/>
+					</a>
+				</div>
+				<h2
+					class="text-muted-foreground font-extrabold text-[1.125rem] lg:text-[1.875rem] xl:text-[2.25rem]"
+				>
+					Used on this site is...
+				</h2>
+				<div class="flex flex-wrap items-center gap-4">
+					<div class="flex flex-wrap items-center gap-4">
+						<a href="https://typescriptlang.org/" target="_blank" rel="noopener noreferrer">
+							<Image
+								src={IconTS}
+								width={20}
+								height={20}
+								alt="TypeScript"
+								class="w-8 lg:w-16 lg:max-h-16 object-contain"
+							/>
+						</a>
+						<a href="https://astro.build/" target="_blank" rel="noopener noreferrer">
+							<Image
+								src={IconAstro}
+								width={20}
+								height={20}
+								alt="Astro"
+								class="w-8 lg:w-16 lg:max-h-16 object-contain"
+							/>
+						</a>
+						<a href="https://www.solidjs.com/" target="_blank" rel="noopener noreferrer">
+							<Image
+								src={IconSolid}
+								width={20}
+								height={20}
+								alt="Solid"
+								class="w-8 lg:w-16 lg:max-h-16 object-contain"
+							/>
+						</a>
+						<a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
+							<Image
+								src={IconTailwind}
+								width={20}
+								height={20}
+								alt="Solid"
+								class="w-8 lg:w-16 lg:max-h-16 object-contain"
+							/>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 </Base>

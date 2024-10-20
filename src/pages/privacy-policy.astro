@@ -256,7 +256,7 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* code block */
 		.remark-code-title {
-			@apply w-fit mt-8 text-base px-3 py-1 rounded-t-lg font-semibold bg-muted-background/30 text-muted-foreground;
+			@apply w-fit mt-8 text-muted-foreground text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background/30;
 		}
 		.remark-code-title + pre {
 			@apply p-2 mb-8 rounded-b-lg rounded-tr-lg overflow-x-auto;

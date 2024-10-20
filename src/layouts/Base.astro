@@ -140,7 +140,14 @@ const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env
 		</main>
 		<Footer currentPath={Astro.url.pathname} />
 
-		<Sidebar appName={import.meta.env.APP_NAME} currentPath={Astro.url.pathname} client:load />
+		<Sidebar
+			appName={import.meta.env.APP_NAME}
+			currentPath={Astro.url.pathname}
+			xUrl={import.meta.env.X_URL}
+			zennUrl={import.meta.env.ZENN_URL}
+			githubUrl={import.meta.env.GITHUB_URL}
+			client:load
+		/>
 	</body>
 </html>
 

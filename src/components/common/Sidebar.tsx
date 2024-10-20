@@ -7,9 +7,12 @@ import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
 interface Props {
 	appName: string;
 	currentPath: string;
+	xUrl: string;
+	zennUrl: string;
+	githubUrl: string;
 }
 
-const Sidebar = ({ appName, currentPath }: Props) => {
+const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
 	const metas = routes.getRootPageMetaAll(["Home", "Privacy policy"]);
 
@@ -20,42 +23,38 @@ const Sidebar = ({ appName, currentPath }: Props) => {
 			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
 		>
 			<nav>
-				<a
-					href="/"
-					class="text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-transparent"
-					data-astro-reload
-				>
+				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
 					{appName}
 				</a>
-				<ul class="flex absolute items-center gap-4 xl:gap-6 pt-6">
+				<ul class="flex absolute items-center gap-4 pt-8 xl:pt-6">
 					<li>
 						<a
-							href={import.meta.env.GITHUB_URL}
+							href={zennUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl"
+							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
-							<SiGithub />
+							<SiZenn />
 						</a>
 					</li>
 					<li>
 						<a
-							href={import.meta.env.X_URL}
+							href={xUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl"
+							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
 							<SiTwitter />
 						</a>
 					</li>
 					<li>
 						<a
-							href={import.meta.env.ZENN_URL}
+							href={githubUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl"
+							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
-							<SiZenn />
+							<SiGithub />
 						</a>
 					</li>
 				</ul>
