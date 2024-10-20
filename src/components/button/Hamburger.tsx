@@ -1,17 +1,27 @@
 import { IoMenu, IoClose } from "solid-icons/io";
 import { onCleanup } from "solid-js";
-import { isOpenSidebar, setIsOpenSidebar } from "../../utils/store/isOpenSidebar";
+import { isOpenSidebar, setIsOpenSidebar } from "../../utils/store/is-open-sidebar";
+import { isOpenToc, setIsOpenToc } from "../../utils/store/is-open-toc";
 import { backfaceFixed } from "../../utils/common/utilfuncs";
+import { isOpenSearch, setIsOpenSearch } from "../../utils/store/is-open-search";
 
 interface Props {
 	size?: string | number;
 	isBorder?: boolean;
 }
 
-const Hamburger = ({ size = "1.4rem", isBorder = false }: Props) => {
+const Hamburger = ({ size = "1.6rem", isBorder = false }: Props) => {
 	const toggleOpen = () => {
 		const header = document.getElementById("header")!;
 		const content = document.getElementById("content")!;
+
+		if (isOpenSearch()) {
+			setIsOpenSearch(false);
+		}
+
+		if (isOpenToc()) {
+			setIsOpenToc(false);
+		}
 
 		if (isOpenSidebar()) {
 			backfaceFixed(false);

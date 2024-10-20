@@ -31,13 +31,15 @@ import Footer from "../components/common/Footer";
 import Sidebar from "../components/common/Sidebar";
 // View Transitions
 import { ViewTransitions } from "astro:transitions";
+import type { MarkdownHeading } from "astro";
 
 interface Props {
 	title: string;
 	description: string;
 	ogImage?: URL;
+	headings?: MarkdownHeading[];
 }
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, headings } = Astro.props;
 const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env.APP_URL);
 ---
 
@@ -131,7 +133,12 @@ const ogImageUrl = ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env
 		<title>{title}</title>
 	</head>
 	<body class="font-body max-w-screen overflow-x-clip scrollbar">
-		<Header appName={import.meta.env.APP_NAME} currentPath={Astro.url.pathname} client:load />
+		<Header
+			appName={import.meta.env.APP_NAME}
+			currentPath={Astro.url.pathname}
+			headings={headings}
+			client:load
+		/>
 		<main
 			id="content"
 			class="bg-background text-foreground min-h-screen px-4 sm:px-24 lg:pl-[calc(4rem+3.95rem)] lg:pr-16 2xl:pl-[calc()]"

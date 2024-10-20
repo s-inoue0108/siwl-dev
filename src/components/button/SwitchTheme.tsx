@@ -7,7 +7,7 @@ interface Props {
 	isBorder?: boolean;
 }
 
-const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
+const SwitchTheme = ({ size = "1.6rem", isBorder = false }: Props) => {
 	const [isDark, setIsDark] = createSignal<boolean | null>(null);
 	const switchTheme = () => {
 		setIsDark(!isDark());

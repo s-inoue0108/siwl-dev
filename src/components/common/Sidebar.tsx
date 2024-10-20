@@ -1,8 +1,9 @@
 import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
-import { isOpenSidebar } from "../../utils/store/isOpenSidebar";
+import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
 import { AllowedRoutes } from "../../utils/common/route";
 import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import { IoLogoRss } from "solid-icons/io";
 
 interface Props {
 	appName: string;
@@ -55,6 +56,16 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
 							<SiGithub />
+						</a>
+					</li>
+					<li>
+						<a
+							href="/rss.xml"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<IoLogoRss />
 						</a>
 					</li>
 				</ul>

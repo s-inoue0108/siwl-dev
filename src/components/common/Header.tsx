@@ -1,4 +1,3 @@
-import SwitchTheme from "../button/SwitchTheme";
 import Hamburger from "../button/Hamburger";
 import SearchModal from "../button/SearchModal";
 import NavigationLink from "../button/NavigationLink";
@@ -9,13 +8,19 @@ import SearchResult from "../form/SearchResult";
 import { createSignal, Show, createEffect } from "solid-js";
 import { keyword } from "../../utils/store/search";
 import { AllowedRoutes } from "../../utils/common/route";
+import TocModal from "../button/TocModal";
+import SwitchTheme from "../button/SwitchTheme";
+import type { MarkdownHeading } from "astro";
+import { isOpenSearch } from "../../utils/store/is-open-search";
+import { isOpenToc } from "../../utils/store/is-open-toc";
 
 interface Props {
 	appName: string;
 	currentPath: string;
+	headings?: MarkdownHeading[];
 }
 
-const Header = ({ appName, currentPath }: Props) => {
+const Header = ({ appName, currentPath, headings }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
 	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy Policy"]);
 
@@ -25,6 +30,7 @@ const Header = ({ appName, currentPath }: Props) => {
 
 	// スクロール方向を検知する処理
 	const handleScroll = () => {
+		if (isOpenSearch() || isOpenToc()) return;
 		nowPosition = document.documentElement.scrollTop;
 
 		if (beforePosition === nowPosition) return;
@@ -52,16 +58,25 @@ const Header = ({ appName, currentPath }: Props) => {
 				<a href="/">
 					<h1 class="text-lg sm:text-xl md:text-2xl lg:text-4xl font-extrabold">{appName}</h1>
 				</a>
-				<ul class="lg:hidden flex items-center gap-4">
-					<li>
-						<SearchModal />
-					</li>
-					<li>
-						<SwitchTheme />
-					</li>
-					<li>
-						<Hamburger />
-					</li>
+				<ul class="lg:hidden flex items-center gap-6">
+					<ul class="flex items-center gap-4">
+						{/^\/blog\/articles\/[a-z0-9_-]+$/.test(currentPath) && (
+							<li>
+								<TocModal headings={headings} />
+							</li>
+						)}
+						<li>
+							<SearchModal />
+						</li>
+					</ul>
+					<ul class="flex items-center gap-3">
+						<li>
+							<SwitchTheme />
+						</li>
+						<li>
+							<Hamburger />
+						</li>
+					</ul>
 				</ul>
 				<ul class="hidden lg:flex items-center gap-4 2xl:gap-8">
 					{metas.map(({ name, rootpath, matchers }) => (

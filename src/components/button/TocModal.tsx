@@ -1,33 +1,38 @@
-import { onMount, onCleanup } from "solid-js";
-import { setIsOpenSearch, isOpenSearch } from "../../utils/store/is-open-search";
-import { IoClose, IoSearch } from "solid-icons/io";
-import SearchInput from "../form/SearchInput";
+import { onCleanup, onMount } from "solid-js";
 import { Portal, Show } from "solid-js/web";
-import SearchResult from "../form/SearchResult";
 import { isOpenToc, setIsOpenToc } from "../../utils/store/is-open-toc";
+import { IoClose } from "solid-icons/io";
+import { BiRegularTable } from "solid-icons/bi";
+import Toc from "../large/Toc";
+import { isOpenSearch, setIsOpenSearch } from "../../utils/store/is-open-search";
+import type { MarkdownHeading } from "astro";
 
-const SearchModal = () => {
+interface Props {
+	headings?: MarkdownHeading[];
+}
+
+const TocModal = ({ headings }: Props) => {
 	onMount(() => {
 		window.addEventListener("resize", () => {
 			const content = document.getElementById("content")!;
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
-			setIsOpenSearch(false);
+			setIsOpenToc(false);
 		});
 	});
 
 	onCleanup(() => {
-		setIsOpenSearch(false);
+		setIsOpenToc(false);
 	});
 
 	const toggleOpen = () => {
-		if (isOpenToc()) {
-			setIsOpenToc(false);
+		if (isOpenSearch()) {
+			setIsOpenSearch(false);
 		}
 
 		const content = document.getElementById("content")!;
-		if (isOpenSearch()) {
+		if (isOpenToc()) {
 			content.style.opacity = "1";
 			content.style.pointerEvents = "auto";
 			content.style.userSelect = "auto";
@@ -36,7 +41,7 @@ const SearchModal = () => {
 			content.style.pointerEvents = "none";
 			content.style.userSelect = "none";
 		}
-		setIsOpenSearch(!isOpenSearch());
+		setIsOpenToc(!isOpenToc());
 	};
 
 	return (
@@ -45,19 +50,16 @@ const SearchModal = () => {
 				type="button"
 				onClick={toggleOpen}
 				class={`${
-					isOpenSearch() ? "text-foreground" : "text-muted-foreground"
+					isOpenToc() ? "text-foreground" : "text-muted-foreground"
 				} text-sm flex items-center gap-1 font-semibold`}
 			>
-				{isOpenSearch() ? <IoClose /> : <IoSearch />}
-				Search
+				{isOpenToc() ? <IoClose /> : <BiRegularTable />}
+				Toc
 			</button>
 			<Portal mount={document.body}>
-				<Show when={isOpenSearch()}>
+				<Show when={isOpenToc()}>
 					<div class="z-50 w-full h-full p-4 fixed top-12 sm:top-14 lg:top-16 left-0 overflow-y-auto">
-						<SearchInput />
-						<div class="pt-4 pb-8">
-							<SearchResult />
-						</div>
+						{headings && <Toc headings={headings} />}
 					</div>
 				</Show>
 			</Portal>
@@ -65,4 +67,4 @@ const SearchModal = () => {
 	);
 };
 
-export default SearchModal;
+export default TocModal;
