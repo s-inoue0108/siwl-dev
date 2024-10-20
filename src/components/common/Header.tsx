@@ -17,7 +17,7 @@ interface Props {
 
 const Header = ({ appName, currentPath }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
-	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy policy"]);
+	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy Policy"]);
 
 	const [direction, setDirection] = createSignal<"up" | "down">("up");
 	let beforePosition = 0,

@@ -53,37 +53,39 @@ const { meta } = route.getSubsetPageMeta();
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
 			<Breadcrumbs count={articles.length} archive={{ year, month }} />
-			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{`${year}-${month}`}</h1>
-			<div class="flex justify-center">
-				<ul class="flex flex-col">
-					{
-						articles.map(({ slug, data }) => {
-							return (
-								<li class="w-full my-[-0.4rem] lg:my-[-0.5rem] 2xl:my-[-0.6rem]">
-									<div class="flex items-center gap-1">
-										<time
-											class="whitespace-nowrap font-code lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold text-muted-foreground"
-											datetime={data.publishDate.toISOString()}
-										>
-											{`${(data.publishDate.getMonth() + 1).toString().padStart(2, "0")}/${data.publishDate.getDate().toString().padStart(2, "0")}`}
-										</time>
-										<div class="text-muted-foreground text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl">
-											<IoGitCommitOutline class="rotate-90" />
-										</div>
-										<a
-											href={`/blog/articles/${slug}`}
-											class={`w-3/4 font-semibold truncate text-sm sm:text-base lg:text-lg xl:text-xl transition-colors duration-150
-                  ${data.category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"}`}
-										>
-											{data.title}
-										</a>
+			<h1 class="tracking-wide flex justify-center text-4xl lg:text-6xl font-extrabold">
+				{`${year}-${month}`}
+			</h1>
+			<ul class="flex flex-col">
+				{
+					articles.map(({ slug, data }) => {
+						return (
+							<li class="w-full my-[-0.4rem] lg:my-[-0.5rem] 2xl:my-[-0.6rem]">
+								<div class="flex items-center gap-1">
+									<time
+										class={`whitespace-nowrap tracking-wider w-12 lg:w-16 xl:w-20 2xl:w-24 lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold ${
+											data.category.id === "tech" ? "text-accent-sub-base" : "text-accent-base"
+										}`}
+										datetime={data.publishDate.toISOString()}
+									>
+										{`${(data.publishDate.getMonth() + 1).toString().padStart(2, "0")}/${data.publishDate.getDate().toString().padStart(2, "0")}`}
+									</time>
+									<div class="text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl">
+										<IoGitCommitOutline class="rotate-90" />
 									</div>
-								</li>
-							);
-						})
-					}
-				</ul>
-			</div>
+									<a
+										href={`/blog/articles/${slug}`}
+										class={`w-3/4 font-semibold truncate text-sm sm:text-base lg:text-lg xl:text-xl transition-colors duration-150
+								${data.category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"}`}
+									>
+										{data.title}
+									</a>
+								</div>
+							</li>
+						);
+					})
+				}
+			</ul>
 		</article>
 		<aside
 			class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"

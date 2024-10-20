@@ -69,7 +69,7 @@ export class AllowedRoutes {
       subsets: [],
     },
     {
-      name: "Privacy policy",
+      name: "Privacy Policy",
       matchers: [/^\/privacy-policy/],
       rootpath: "/privacy-policy",
       description: "当サイトのプライバシーポリシーを掲載しています。",

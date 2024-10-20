@@ -88,8 +88,8 @@ const ArchivesCalendar = ({ articles }: Props) => {
 										class={`${
 											numberOf.tech + numberOf.idea === 0
 												? "select-none pointer-events-none opacity-30"
-												: ""
-										} tracking-wide font-bold text-xl lg:text-2xl xl:text-3xl transition-colors duration-150`}
+												: "hover:opacity-70"
+										} tracking-wide font-bold text-xl lg:text-2xl xl:text-3xl transition-opacity duration-150`}
 									>
 										{name}
 									</a>
