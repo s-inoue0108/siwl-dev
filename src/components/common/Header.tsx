@@ -60,7 +60,7 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 				</a>
 				<ul class="lg:hidden flex items-center gap-6">
 					<ul class="flex items-center gap-4">
-						<Show when={headings && /^\/blog\/articles\/[a-z0-9_-]+$/.test(currentPath)}>
+						<Show when={headings}>
 							<li>
 								<TocModal headings={headings} />
 							</li>
