@@ -5,7 +5,7 @@ import LinkButton from "../button/LinkButton";
 import { IoLogoRss } from "solid-icons/io";
 import SearchInput from "../form/SearchInput";
 import SearchResult from "../form/SearchResult";
-import { createSignal, Show, createEffect, createMemo } from "solid-js";
+import { createSignal, Show, createEffect } from "solid-js";
 import { keyword } from "../../utils/store/search";
 import { AllowedRoutes } from "../../utils/common/route";
 import TocModal from "../button/TocModal";
@@ -21,8 +21,6 @@ interface Props {
 }
 
 const Header = ({ appName, currentPath, headings }: Props) => {
-	const path = createMemo(() => currentPath);
-
 	const routes = new AllowedRoutes(currentPath);
 	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy Policy"]);
 
@@ -62,7 +60,7 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 				</a>
 				<ul class="lg:hidden flex items-center gap-6">
 					<ul class="flex items-center gap-4">
-						<Show when={/^\/blog\/articles\/[a-z0-9_-]+$/.test(path())}>
+						<Show when={headings && /^\/blog\/articles\/[a-z0-9_-]+$/.test(currentPath)}>
 							<li>
 								<TocModal headings={headings} />
 							</li>
