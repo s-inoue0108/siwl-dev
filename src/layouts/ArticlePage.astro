@@ -127,7 +127,7 @@ const { title, description, ogImage, headings } = Astro.props;
 	<body class="font-body max-w-screen overflow-x-clip scrollbar">
 		<Header
 			appName={import.meta.env.APP_NAME}
-			currentPath={Astro.url.pathname}
+			currentPath={"/blog/1"}
 			headings={headings}
 			client:load
 		/>

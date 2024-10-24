@@ -5,6 +5,7 @@ import SearchInput from "../form/SearchInput";
 import { Portal, Show } from "solid-js/web";
 import SearchResult from "../form/SearchResult";
 import { isOpenToc, setIsOpenToc } from "../../utils/store/is-open-toc";
+import { setKeyword } from "../../utils/store/search";
 
 const SearchModal = () => {
 	onMount(() => {
@@ -18,6 +19,7 @@ const SearchModal = () => {
 	});
 
 	onCleanup(() => {
+		setKeyword("");
 		setIsOpenSearch(false);
 	});
 
