@@ -4,6 +4,8 @@
 
 - [https://siwl.dev](https://siwl.dev)
 - [Cloudflare Dashboard](https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b)
+- [Contact Form](https://docs.google.com/forms/d/1Zxo_7-OUUfw8pjO1k-7yELuQrGw5I17Osp3IZnfc_LI/edit)
+- [Zenn](https://zenn.dev/s_inoue0108)
 
 ## 記事の書き方
 
