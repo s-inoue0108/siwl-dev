@@ -5,7 +5,7 @@ category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: 覚え書きです。利用した技術についてまとめます。
 publishDate: 2024-10-06T00:00:00+09:00
-updateDate: 2024-10-18T21:25:01+09:00
+updateDate: 2024-10-28T17:47:52+09:00
 ---
 
 **S.Inoue** と申します。非情報系の大学生ながら個人的に Web 制作に取り組んでおり、大学卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
@@ -73,7 +73,7 @@ https://github.com/x64Bits/solid-icons
 
 Noto sans JP, Montserrat および Source Code Pro を用いています。これらは [Google Fonts](https://fonts.google.com/) から CDN で読み込むこともできますが、**Fontsource** を利用して `npm` パッケージとして扱っています。
 
-https://fontsource.org/
+https://github.com/fontsource/fontsource
 
 ### 記事のスタイリングとデザイン
 
@@ -224,9 +224,7 @@ https://jahir.dev/blog/astro-reading-time
 \
 せっかく自分の Web サイトを持てたので、これからはコツコツ記事を書いて知見をためていきたいと思っています。
 \
-**同じ記事を Zenn にも掲載しております。ぜひご覧ください↓**
-
-https://zenn.dev/s_inoue0108/articles/blog-renewal-note
+**[同じ記事を Zenn にも掲載しております](https://zenn.dev/s_inoue0108/articles/blog-renewal-note)。ぜひご覧ください。**
 
 ## 参考記事
 

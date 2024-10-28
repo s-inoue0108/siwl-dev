@@ -17,6 +17,13 @@ import IconPython from "../content/tag/icons/python.svg";
 
 import IconSolid from "../content/tag/icons/solid.svg";
 import IconTailwind from "../content/tag/icons/tailwindcss.svg";
+import { getCollection } from "astro:content";
+
+import WorkCard from "../components/card/WorkCard";
+
+const works = await getCollection("work", ({ data }) => {
+	return import.meta.env.PROD ? data.isDraft === false : true;
+});
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
@@ -26,7 +33,7 @@ const { meta } = routes.getSubsetPageMeta();
 	<section class="pt-8 w-full flex flex-col gap-8">
 		<Breadcrumbs />
 		<div
-			class="pt-8 xl:pt-16 flex flex-col sm:flex-row sm:justify-center items-center gap-8 xl:gap-24 2xl:gap-36"
+			class="pt-8 lg:pb-24 xl:pt-16 flex flex-col sm:flex-row sm:justify-center items-center gap-8 xl:gap-24 2xl:gap-36"
 		>
 			<div
 				class="w-full sm:w-fit flex flex-col justify-center items-center gap-4 sm:gap-8 border-b sm:border-b-0 pb-8 sm:border-r sm:pr-8 xl:pr-36 2xl:pr-48 border-muted-background"
@@ -36,7 +43,9 @@ const { meta } = routes.getSubsetPageMeta();
 					alt="Profile Image"
 					class="w-48 h-48 lg:w-64 lg:h-64 rounded-full object-cover"
 				/>
-				<h1 class="tracking-wide text-2xl lg:text-4xl font-extrabold">Shota Inoue</h1>
+				<h1 class="tracking-wider text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem] font-extrabold">
+					Shota Inoue
+				</h1>
 				<ul class="flex items-center gap-4 xl:gap-6">
 					<li>
 						<a
@@ -192,5 +201,22 @@ const { meta } = routes.getSubsetPageMeta();
 				</div>
 			</div>
 		</div>
+		<hr class="border-[0.5px] border-muted-background" />
+		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
+			Background
+		</h2>
+		<!--temp -->
+		<p>In Preparation...</p>
+		<!--temp -->
+		<hr class="border-[0.5px] border-muted-background" />
+		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
+			Works
+		</h2>
+		<!--temp -->
+		<p>In Preparation...</p>
+		<!--temp -->
+		<!-- <ul>
+			{works.map((work) => <WorkCard work={work} />)}
+		</ul> -->
 	</section>
 </Base>
