@@ -1,6 +1,6 @@
 ---
 isDraft: false
-title: "Vueでスクロールに同期したプログレスバーを実装する"
+title: Vueでスクロールに同期したプログレスバーを実装する
 category: tech
 tags: [ts, vue]
 description: Vue.jsとインラインSVGを使ってスクロールに同期した円形プログレスバーを実装しました。

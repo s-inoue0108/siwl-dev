@@ -250,6 +250,10 @@ program
   .action((cmd) => {
     const model = getModel(cmd);
 
+    const getSlug = (isDraft: boolean, slug: string) => {
+      return isDraft ? chalk.blue(slug) : chalk.magenta(slug);
+    }
+
     fs.readdir(`./src/content/${model}/`, { withFileTypes: true }, (_, dirents) => {
       console.log(`${chalk.bgWhiteBright(`${model.toUpperCase()}`)} (${chalk.blue("drafted")}/${chalk.magenta("published")})`);
       for (const dirent of dirents) {
@@ -257,7 +261,12 @@ program
         fs.readFile(`./src/content/${model}/${dirent.name}`, 'utf8', (err, data) => {
           if (err) throw err;
           const isDraft = data.search(/isDraft: true/) === -1 ? false : true;
-          console.log(`${isDraft ? chalk.blue("*") : chalk.magenta("*")} ${dirent.name.replace(".md", "").replace(".yaml", "")}`);
+          console.log(getSlug(isDraft, `* ${dirent.name.replace(".md", "").replace(".yaml", "")}`));
+          if (model === "article") {
+            const title = data.match(/title: (.*)/)![0].replace("title: ", "");
+            console.log(title);
+            console.log(``);
+          }
         })
       }
     });
