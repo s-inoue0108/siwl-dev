@@ -27,7 +27,7 @@ import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 // https://astro.build/config
 export default defineConfig({
 	server: {
-		port: 3000,
+		port: 8000,
 	},
 
 	site: "https://siwl.dev",
