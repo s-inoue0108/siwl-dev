@@ -13,7 +13,7 @@ relatedArticles: [rails-tutorial-2]
 
 - Windows 11 Home
 - Ruby >= 3.1.4
-- Ruby on Rails 7.0.3
+- Ruby on Rails 7.0.0
 
 ## Ruby のインストール
 
@@ -39,13 +39,15 @@ $ rails -v
 
 今回は Ruby on Rails `v7.0.0` をインストールしました。
 
-### 新規アプリケーションの作成
+### 新規プロジェクトの作成
 
-```bash:新規アプリケーションの作成
+今回は JSON API を作成するため、`--api` オプションをつけてプロジェクトを作成します。
+
+```bash:新規プロジェクトの作成
 $ mkdir RailsApp
 $ cd RailsApp
 # 作成
-$ rails new [app-name]
+$ rails new [app-name] --api
 ```
 
 ### サーバ起動
@@ -67,6 +69,8 @@ $ git push -u origin develop
 ## 参考
 
 https://prog-8.com/docs/rails-env-win
+
+https://railsguides.jp/api_app.html
 
 > [!info] Docker を利用する場合
 > 
