@@ -27,7 +27,7 @@ $ ruby -v
 
 ## Ruby on Rails の環境構築
 
-## インストール
+### インストール
 
 ```bash:インストール
 $ gem install rails -v 7
