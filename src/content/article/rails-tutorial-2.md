@@ -5,7 +5,7 @@ category: tech
 tags: [rails]
 description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第2回のこの記事では、Rails でモデルを作成し、マイグレーションを実行します。 
 publishDate: 2024-11-06T22:51:37+09:00
-updateDate: 2024-11-07T22:11:12+09:00
+updateDate: 2024-11-07T22:27:22+09:00
 relatedArticles: []
 ---
 
@@ -79,16 +79,6 @@ end
 ```bash:マイグレーション
 $ rails db:migrate
 ```
-
-## リレーション
-
-同様の手順で、ユーザを管理する `Users` テーブルを作成します。
-
-```bash:モデルの作成
-$ rails g model User name:string email:string is_admin:boolean
-```
-
-ここで、`Reagents` テーブルに最後に試薬を使用したユーザの id を格納する `last_user_id` を追加します。
 
 ## PostgreSQL を使う
 

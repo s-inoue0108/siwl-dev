@@ -1,11 +1,11 @@
 ---
-isDraft: true
+isDraft: false
 title: Ruby on Rails で API を作る（コントローラ編）
 category: tech
 tags: [rails]
 description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第3回のこの記事では、Rails でコントローラを作成し、ルーティングを実装します。 
 publishDate: 2024-11-07T12:22:19+09:00
-updateDate: 2024-11-07T12:22:19+09:00
+updateDate: 2024-11-07T22:27:27+09:00
 relatedArticles: []
 ---
 
@@ -33,8 +33,6 @@ end
 ```
 
 `index` メソッドは `Reagents` テーブルのすべてのレコードを JSON 形式で返却します。
-
-### CRUD 処理の実装
 
 ## ルーティング
 
@@ -77,9 +75,7 @@ end
 ```
 
 ```bash:ダミーデータを生成
-$ rails db:seeds
+$ rails db:seed
 ```
 
 `localhost:3000/api/v1/reagents` にアクセスするか、`$ curl localhost:3000/api/v1/reagents` を実行して動作を確認できます。
-
-## ビジネスロジックをどこに実装するか
