@@ -6,7 +6,7 @@ tags: [rails]
 description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。初回のこの記事では、ローカル環境に Ruby on Rails の環境を構築します。
 publishDate: 2024-11-02T21:48:19+09:00
 updateDate: 2024-11-06T22:51:27+09:00
-relatedArticles: [rails-tutorial-2]
+relatedArticles: []
 ---
 
 ## 筆者の環境
