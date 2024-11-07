@@ -1,11 +1,11 @@
 ---
-isDraft: true
-title: Ruby on Rails で API を作る（DB編）
+isDraft: false
+title: Ruby on Rails で API を作る（モデル編）
 category: tech
 tags: [rails]
-description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第2回のこの記事では、Rails の Active Record の扱いについて学習します。 
+description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第2回のこの記事では、Rails でモデルを作成し、マイグレーションを実行します。 
 publishDate: 2024-11-06T22:51:37+09:00
-updateDate: 2024-11-06T22:51:37+09:00
+updateDate: 2024-11-07T22:11:12+09:00
 relatedArticles: []
 ---
 
@@ -91,6 +91,10 @@ $ rails g model User name:string email:string is_admin:boolean
 ここで、`Reagents` テーブルに最後に試薬を使用したユーザの id を格納する `last_user_id` を追加します。
 
 ## PostgreSQL を使う
+
+以下の記事が参考になりました：
+
+https://qiita.com/Rairu_blog/items/d51795b350a2d1845308
 
 ## 参考
 

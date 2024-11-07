@@ -3,7 +3,7 @@ isDraft: true
 title: Ruby on Rails で API を作る（コントローラ編）
 category: tech
 tags: [rails]
-description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第3回のこの記事では、Rails の Active Controller とルーティングについて学習します。 
+description: 著名な Web バックエンドフレームワークである Ruby on Rails を学び、 API を作ります。第3回のこの記事では、Rails でコントローラを作成し、ルーティングを実装します。 
 publishDate: 2024-11-07T12:22:19+09:00
 updateDate: 2024-11-07T12:22:19+09:00
 relatedArticles: []
@@ -81,3 +81,5 @@ $ rails db:seeds
 ```
 
 `localhost:3000/api/v1/reagents` にアクセスするか、`$ curl localhost:3000/api/v1/reagents` を実行して動作を確認できます。
+
+## ビジネスロジックをどこに実装するか
