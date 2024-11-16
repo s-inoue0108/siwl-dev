@@ -5,7 +5,7 @@ category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: 覚え書きです。利用した技術についてまとめます。
 publishDate: 2024-10-06T00:00:00+09:00
-updateDate: 2024-10-28T17:47:52+09:00
+updateDate: 2024-11-16T23:09:46+09:00
 ---
 
 **S.Inoue** と申します。非情報系の大学生ながら個人的に Web 制作に取り組んでおり、大学卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
@@ -204,6 +204,14 @@ CLI は npm スクリプトとして実行できるようにしてあります�
 加えて、Git など定型的な操作をコマンド1つで行えるようにもしました。
 
 ## 工夫点や特記事項
+
+### View Transitions API
+
+Astro では、独自のディレクティブを使用して View Transtions API を手軽に実装できます。
+
+https://docs.astro.build/ja/guides/view-transitions/
+
+これを利用して、ブログの一覧表示ページ <-> 記事ページ間の遷移の際に記事のメタデータ部分をアニメーションさせています。
 
 ### 読了時間の追加
 

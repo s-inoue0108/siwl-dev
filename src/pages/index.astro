@@ -79,7 +79,43 @@ const { meta } = routes.getRootPageMeta();
 		</div>
 	</section>
 	<section class="lg:px-[40px] 2xl:px-[120px] w-full flex flex-col gap-12">
-		<h2 class="text-center lg:text-left text-4xl lg:text-6xl font-extrabold">Latest Articles</h2>
+		<div class="flex flex-col lg:flex-row justify-between items-center">
+			<h2 class="text-center lg:text-left text-4xl lg:text-6xl font-extrabold">Latest Articles</h2>
+			<ul class="hidden lg:flex items-center gap-6">
+				<li>
+					<a
+						href="/blog/1"
+						class="text-muted-foreground hover:text-foreground transition duration-150 font-medium text-xs sm:text-sm lg:text-lg"
+					>
+						<span>Top</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="/blog/categories"
+						class="text-muted-foreground hover:text-foreground transition duration-150 font-medium text-xs sm:text-sm lg:text-lg"
+					>
+						<span>Categories</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="/blog/tags"
+						class="text-muted-foreground hover:text-foreground transition duration-150 font-medium text-xs sm:text-sm lg:text-lg"
+					>
+						<span>Tags</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="/blog/archives"
+						class="text-muted-foreground hover:text-foreground transition duration-150 font-medium text-xs sm:text-sm lg:text-lg"
+					>
+						<span>Archives</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<ArticleCardsPanel
 			articles={articles
 				.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())

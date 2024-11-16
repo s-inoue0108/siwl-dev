@@ -20,7 +20,7 @@ export default function rehypeHeadings() {
                 tagName: "a",
                 properties: {
                   href: `#h2-${value}`,
-                  className: "text-[24px] lg:text-[30px] 2xl:text-[36px] heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+                  className: "text-[20px] lg:text-[24px] 2xl:text-[30px] heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
                 },
                 children: [{ type: "text", value: "## " }],
               } satisfies ElementContent,
@@ -29,7 +29,7 @@ export default function rehypeHeadings() {
           } satisfies ElementContent
         ];
         node.properties.id = `h2-${value}`;
-        node.properties.className = "w-full overflow-x-auto mt-12 mb-4 lg:mt-24 lg:mb-8 text-[30px] lg:text-[36px] 2xl:text-[42px] font-bold flex items-center gap-2 pb-2 border-b border-muted-background";
+        node.properties.className = "w-full overflow-x-auto mt-12 mb-4 lg:mt-24 lg:mb-8 text-[24px] lg:text-[30px] 2xl:text-[36px] font-bold flex items-center gap-2 pb-2 border-b border-muted-background";
 
       } else if (node.tagName === 'h3') {
 
@@ -47,7 +47,7 @@ export default function rehypeHeadings() {
                 tagName: "a",
                 properties: {
                   href: `#h3-${value}`,
-                  className: "text-[20px] lg:text-[24px] 2xl:text-[30px] heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
+                  className: "text-[18px] lg:text-[20px] 2xl:text-[24px] heading min-w-max whitespace-nowrap bg-gradient-to-r from-accent-sub-base to-accent-base bg-clip-text text-tranparent",
                 },
                 children: [
                   { type: "text", value: "### " }
@@ -58,7 +58,7 @@ export default function rehypeHeadings() {
           } satisfies ElementContent
         ];
         node.properties.id = `h3-${value}`;
-        node.properties.className = "w-full overflow-x-auto mt-9 mb-3 lg:mt-18 lg:mb-6 text-[24px] lg:text-[30px] 2xl:text-[36px] font-bold flex items-center gap-2";
+        node.properties.className = "w-full overflow-x-auto mt-9 mb-3 lg:mt-18 lg:mb-6 text-[20px] lg:text-[24px] 2xl:text-[30px] font-bold flex items-center gap-2";
 
       } else if (node.tagName === 'h4') {
 

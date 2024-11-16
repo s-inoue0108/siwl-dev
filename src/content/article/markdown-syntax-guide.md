@@ -5,8 +5,8 @@ category: tech
 tags: []
 description: このブログで利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2024-10-18T22:23:52+09:00
-relatedArticles: []
+updateDate: 2024-11-16T22:42:20+09:00
+relatedArticles: [renewal-note]
 ---
 
 ## フロントマター

@@ -39,37 +39,39 @@ const { prev, next } = await getSideArticles(
 );
 ---
 
-<div class="mt-16 flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8">
-	<div
-		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${prev ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
-	>
-		{
-			prev && (
-				<a href={`/blog/articles/${prev.slug}`}>
-					<div class="relative flex justify-between items-center gap-2">
-						<div class="relative w-[1.6rem] h-20">
-							<IoChevronBack class="absolute left-1 top-1/2 -translate-y-1/2 text-2xl" />
-						</div>
-						<div class="px-1 font-semibold whitespace-pre-wrap truncate">{prev.data.title}</div>
+<div class="mt-16 flex flex-col lg:flex-row lg:justify-between items-center gap-4 lg:gap-8">
+	{
+		prev && (
+			<a
+				href={`/blog/articles/${prev.slug}`}
+				class="w-full lg:w-[calc(50%-1rem)] h-20 border border-muted-background bg-muted-background/30 hover:bg-muted-background transition-colors duration-150 rounded-xl"
+			>
+				<div class="h-full flex justify-between items-center">
+					<div class="w-1/6 h-full bg-muted-background rounded-l-[11px] relative">
+						<IoChevronBack class="text-muted-foreground absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl" />
 					</div>
-				</a>
-			)
-		}
-	</div>
-	<div
-		class={`w-full lg:w-[calc(50%-1rem)] h-20 ${next ? "bg-muted-background hover:opacity-70" : "bg-background"} transition-opacity duration-150 rounded-xl`}
-	>
-		{
-			next && (
-				<a href={`/blog/articles/${next.slug}`}>
-					<div class="relative flex justify-between items-center gap-2">
-						<div class="px-1 font-semibold whitespace-pre-wrap truncate">{next.data.title}</div>
-						<div class="relative w-[1.6rem] h-20">
-							<IoChevronForward class="absolute right-1 top-1/2 -translate-y-1/2 text-2xl" />
-						</div>
+					<div class="w-5/6 h-full p-2">
+						<span class="text-muted-foreground font-semibold text-ellipsis">{prev.data.title}</span>
 					</div>
-				</a>
-			)
-		}
-	</div>
+				</div>
+			</a>
+		)
+	}
+	{
+		next && (
+			<a
+				href={`/blog/articles/${next.slug}`}
+				class="w-full lg:w-[calc(50%-1rem)] h-20 border border-muted-background bg-muted-background/30 hover:bg-muted-background transition-colors duration-150 rounded-xl"
+			>
+				<div class="h-full flex justify-between items-center">
+					<div class="w-5/6 h-full p-2">
+						<span class="text-muted-foreground font-semibold text-ellipsis">{next.data.title}</span>
+					</div>
+					<div class="w-1/6 h-full bg-muted-background rounded-r-[11px] relative">
+						<IoChevronForward class="text-muted-foreground absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl" />
+					</div>
+				</div>
+			</a>
+		)
+	}
 </div>

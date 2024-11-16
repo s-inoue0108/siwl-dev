@@ -196,7 +196,7 @@ const { Content, headings } = await article.render();
 			@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
 			code {
-				@apply bg-background;
+				@apply bg-background text-muted-foreground;
 			}
 
 			.remark-code-title {
@@ -312,7 +312,7 @@ const { Content, headings } = await article.render();
 
 		/* inline code */
 		p > code {
-			@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+			@apply text-muted-foreground font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
 		}
 
 		.astro-code {
