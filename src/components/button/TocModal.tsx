@@ -1,7 +1,7 @@
 import { onCleanup, onMount } from "solid-js";
 import { Portal, Show } from "solid-js/web";
 import { isOpenToc, setIsOpenToc } from "../../utils/store/is-open-toc";
-import { IoClose } from "solid-icons/io";
+import { IoClose, IoList } from "solid-icons/io";
 import { BiRegularTable } from "solid-icons/bi";
 import Toc from "../large/Toc";
 import { isOpenSearch, setIsOpenSearch } from "../../utils/store/is-open-search";
@@ -53,7 +53,7 @@ const TocModal = ({ headings }: Props) => {
 					isOpenToc() ? "text-foreground" : "text-muted-foreground"
 				} text-sm flex items-center gap-1 font-semibold`}
 			>
-				{isOpenToc() ? <IoClose /> : <BiRegularTable />}
+				{isOpenToc() ? <IoClose /> : <IoList />}
 				Toc
 			</button>
 			<Portal mount={document.body}>
