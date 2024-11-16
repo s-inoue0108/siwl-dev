@@ -9,20 +9,24 @@ updateDate: 2024-11-07T21:37:30+09:00
 relatedArticles: []
 ---
 
+## 参考
+
+https://zenn.dev/925rycki/articles/00098405e50107
+
 ## Devise の導入
 
 ```ruby:Gemfile
 gem "devise"
+gem "devise_token_auth"
+gen "devise-i18n"
+gen "rack-cors"
 ```
 
 ```bash:Gemの更新
 $ bundle install
 ```
 
-```bash:インストール
+```bash:インストールと初期化
 $ rails g devise:install
-```
-
-```bash:Userモデルの作成
-$ rails g devise User
+$ rails g devise_token_auth:install User auth
 ```
