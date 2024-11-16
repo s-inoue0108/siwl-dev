@@ -22,12 +22,14 @@ const articles = relatedArticles ? await getEntries(relatedArticles) : [];
 	</svg>
 	<h2
 		id="h2-related-articles"
-		class="mt-8 mb-4 lg:mt-16 lg:mb-8 text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center gap-2 w-full pb-2 border-b border-muted-background"
+		class="w-full overflow-x-auto mt-12 mb-4 lg:mt-24 lg:mb-8 text-[30px] lg:text-[36px] 2xl:text-[42px] font-bold flex items-center gap-2 pb-2 border-b border-muted-background"
 	>
-		<a href="#h2-related-articles" class="heading">
-			<IoNewspaper style={{ fill: "url(#gradient)" }} />
-		</a>
-		<span>関連記事</span>
+		<div class="flex items-center gap-3">
+			<a href="#h2-related-articles" class="heading min-w-max whitespace-nowrap">
+				<IoNewspaper style={{ fill: "url(#gradient)" }} />
+			</a>
+			関連記事
+		</div>
 	</h2>
 	<section class="mt-8 mb-16 lg:mt-16 lg:mb-32">
 		{

@@ -30,8 +30,8 @@ const Toc = ({ headings }: Props) => {
 	});
 
 	onMount(() => {
-		const headingOffsets = headings.map(({ text, depth }) => {
-			return document.getElementById(`h${depth}-${text.replace(/#/g, "")}`)?.offsetTop ?? 0;
+		const headingOffsets = headings.map(({ slug }) => {
+			return document.getElementById(slug)?.offsetTop ?? 0;
 		});
 		setOffsets(headingOffsets);
 	});
@@ -42,15 +42,15 @@ const Toc = ({ headings }: Props) => {
 		});
 
 		window.addEventListener("resize", () => {
-			const headingOffsets = headings.map(({ text, depth }) => {
-				return document.getElementById(`h${depth}-${text.replace(/#/g, "")}`)?.offsetTop ?? 0;
+			const headingOffsets = headings.map(({ slug }) => {
+				return document.getElementById(slug)?.offsetTop ?? 0;
 			});
 			setOffsets(headingOffsets);
 		});
 
 		document.addEventListener("resize", () => {
-			const headingOffsets = headings.map(({ text, depth }) => {
-				return document.getElementById(`h${depth}-${text.replace(/#/g, "")}`)?.offsetTop ?? 0;
+			const headingOffsets = headings.map(({ slug }) => {
+				return document.getElementById(slug)?.offsetTop ?? 0;
 			});
 			setOffsets(headingOffsets);
 		});
@@ -75,7 +75,7 @@ const Toc = ({ headings }: Props) => {
 							return (
 								<li>
 									<a
-										href={`#h${h.depth}-${encodeURIComponent(h.text.replace(/#/g, ""))}`}
+										href={`#${h.slug}`}
 										class={`${
 											h.isActive
 												? "bg-gradient-to-b from-accent-sub-base to-accent-base bg-clip-text text-transparent"

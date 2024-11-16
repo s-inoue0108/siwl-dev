@@ -87,7 +87,7 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* link card */
 		.rlc-container {
-			@apply my-4 lg:my-8 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
+			@apply my-8 lg:my-12 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
 		}
 
 		.rlc-info {
@@ -162,12 +162,12 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* blockquote */
 		blockquote {
-			@apply block border-l-8 border-muted-background px-4 py-2 w-full h-fit my-4 lg:my-8;
+			@apply block border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 lg:my-12;
 		}
 
 		/* callout */
 		.callout {
-			@apply block px-4 py-2 w-full h-fit rounded-xl my-4 lg:my-8;
+			@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
 			code {
 				@apply bg-background;
@@ -260,10 +260,10 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* code block */
 		.remark-code-title {
-			@apply w-fit mt-8 text-muted-foreground text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background/30;
+			@apply w-fit mt-8 lg:mt-12 text-muted-foreground text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background/30;
 		}
 		.remark-code-title + pre {
-			@apply p-2 mb-8 rounded-b-lg rounded-tr-lg overflow-x-auto;
+			@apply p-2 mb-8 lg:mb-12 rounded-b-lg rounded-tr-lg overflow-x-auto;
 		}
 		.remark-code-title + pre::-webkit-scrollbar {
 			height: 12px;
