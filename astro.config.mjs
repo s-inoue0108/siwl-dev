@@ -96,6 +96,7 @@ export default defineConfig({
 		},
 		ssr: {
 			external: ["@resvg/resvg-js"],
+			noExternal: ["swiper"],
 		},
 		optimizeDeps: {
 			exclude: ["@resvg/resvg-js"],

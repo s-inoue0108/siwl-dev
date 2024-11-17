@@ -2,3 +2,6 @@ isDraft: false
 title: Tech Blog
 description: 当サイトです。
 url: https://siwl.dev
+stacks: [Astro, SolidJS]
+keywords: [SSG, Markdown, Tailwind CSS]
+# images: []
