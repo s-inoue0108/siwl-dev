@@ -1,11 +1,11 @@
 ---
-isDraft: true
+isDraft: false
 title: Gaussian インプットファイルの例
 category: tech
 tags: [gaussian, comp-science]
 description: Gaussian のインプットファイルの例をまとめます。
 publishDate: 2024-11-26T13:58:00+09:00
-updateDate: 2024-11-26T13:58:00+09:00
+updateDate: 2024-11-26T14:09:24+09:00
 relatedArticles: []
 ---
 
