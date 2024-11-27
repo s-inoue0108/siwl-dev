@@ -5,7 +5,7 @@ category: tech
 tags: [gaussian, comp-science]
 description: Gaussian のインプットファイルの例をまとめます。
 publishDate: 2024-11-26T13:58:00+09:00
-updateDate: 2024-11-26T14:09:24+09:00
+updateDate: 2024-11-27T13:47:27+09:00
 relatedArticles: []
 ---
 
