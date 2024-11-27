@@ -5,7 +5,7 @@ category: tech
 tags: [gaussian, comp-science]
 description: Gaussian のインプットファイルの例をまとめます。
 publishDate: 2024-11-26T13:58:00+09:00
-updateDate: 2024-11-27T13:47:27+09:00
+updateDate: 2024-11-27T14:15:49+09:00
 relatedArticles: []
 ---
 
@@ -81,11 +81,13 @@ Title
 D 1 2 3 4 S 10 15.0000
 ```
 
+## 参考
+
 ### HPC によるマニュアル
 
 https://www.hpc.co.jp/chem/software/gaussian/help/keywords/opt/
 
-### 参考記事
+### その他の記事
 
 Python による Scan 計算結果の後処理例が記載されています。
 
