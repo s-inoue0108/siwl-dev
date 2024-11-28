@@ -1,5 +1,5 @@
 ---
-isDraft: false
+isDraft: true
 title: 基本情報技術者試験「2進数」
 category: idea
 tags: [ipa, ipa-fe]
