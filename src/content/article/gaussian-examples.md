@@ -5,7 +5,7 @@ category: tech
 tags: [gaussian, comp-science]
 description: Gaussian のインプットファイルの例をまとめます。
 publishDate: 2024-11-26T13:58:00+09:00
-updateDate: 2024-11-27T14:15:49+09:00
+updateDate: 2024-11-28T12:14:17+09:00
 relatedArticles: []
 ---
 
@@ -93,3 +93,20 @@ Python による Scan 計算結果の後処理例が記載されています。
 
 https://yamnor.me/2024-11-08-1904/
 
+## アウトプットファイルの解析
+
+### 計算が正常終了したか確認する
+
+```bash:計算が正常終了したか確認する
+$ tail filename.out
+# > Normal termination of...
+```
+
+### 振動数計算の結果を表示する
+
+```bash:振動数計算の結果を表示する
+$ grep "Frequencies" filename.out
+```
+
+
+## GaussView を使う
