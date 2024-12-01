@@ -41,13 +41,13 @@ $ rails -v
 
 ### 新規プロジェクトの作成
 
-今回は JSON API を作成するため、`--api` オプションをつけてプロジェクトを作成します。
+今回は JSON API を作成するため、`--api` オプションをつけてプロジェクトを作成します。データベースは PostgreSQL を使います。
 
 ```bash:新規プロジェクトの作成
 $ mkdir RailsApp
 $ cd RailsApp
 # 作成
-$ rails new [app-name] --api
+$ rails new [app-name] --api --database=postgresql
 ```
 
 ### サーバ起動
