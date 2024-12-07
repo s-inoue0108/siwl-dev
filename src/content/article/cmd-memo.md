@@ -2,10 +2,10 @@
 isDraft: false
 title: UNIX コマンドメモ
 category: tech
-tags: []
+tags: [shell]
 description: UNIX コマンドのメモです。
 publishDate: 2024-12-05T13:29:36+09:00
-updateDate: 2024-12-05T13:42:29+09:00
+updateDate: 2024-12-07T13:52:18+09:00
 relatedArticles: []
 ---
 

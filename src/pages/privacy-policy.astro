@@ -304,14 +304,14 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* math block */
 		.katex {
-			@apply lg:text-[1.2rem] xl:text-[1.32rem];
+			@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
 		}
 		.katex-display {
-			@apply overflow-x-auto overflow-y-clip;
+			@apply py-2 overflow-x-auto overflow-y-clip;
 		}
 
 		.katex-display > .katex {
-			@apply lg:text-[1.2rem] xl:text-[1.32rem];
+			@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
 		}
 
 		/* iframe */
