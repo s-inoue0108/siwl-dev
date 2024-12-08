@@ -285,7 +285,8 @@ const { Content, headings } = await privacyPolicy.render();
 		}
 
 		/* inline code */
-		p > code {
+		p > code,
+		li > code {
 			@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
 		}
 

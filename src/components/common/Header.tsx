@@ -34,7 +34,7 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 		nowPosition = document.documentElement.scrollTop;
 
 		if (beforePosition === nowPosition) return;
-		if (beforePosition < nowPosition) {
+		if (beforePosition < nowPosition + 1) {
 			setDirection("down");
 		} else {
 			setDirection("up");

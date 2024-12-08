@@ -7,7 +7,7 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
 
   const recaptchaRequestBody = new URLSearchParams({
     secret: import.meta.env.GOOGLE_RECAPTCHA_SECRET_KEY,
-    response: recaptchaToken   // token
+    response: recaptchaToken
   });
 
   // recaptcha APIへのリクエスト
@@ -29,9 +29,9 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
-        email: email,
-        content: content,
+        name,
+        email,
+        content,
       }),
     });
 
@@ -50,6 +50,5 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
   }
 
   // reCAPTCHA 検証失敗
-  const responseData = { error: "reCAPTCHA verification failed" };
-  return new Response(JSON.stringify(responseData), { status: 400 });
+  return new Response(null, { status: 400 });
 }
