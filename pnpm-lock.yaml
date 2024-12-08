@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.9.3
     version: 0.9.4(typescript@5.6.3)
   '@astrojs/cloudflare':
-    specifier: ^8.1.0
-    version: 8.1.0(astro@4.15.12)
+    specifier: ^9.2.1
+    version: 9.2.1(astro@4.15.12)
   '@astrojs/partytown':
     specifier: ^2.1.2
     version: 2.1.2
@@ -168,10 +168,10 @@ packages:
       - prettier-plugin-astro
     dev: false
 
-  /@astrojs/cloudflare@8.1.0(astro@4.15.12):
-    resolution: {integrity: sha512-RSkthOcw1/ZAA9PhSX9LEWRvbyLJ/vTJCv8nJ4LxBqMlR5j7Lt6LnQP0hI/LAlDHgnG1Hc4Hd7tB2SF85OivJw==}
+  /@astrojs/cloudflare@9.2.1(astro@4.15.12):
+    resolution: {integrity: sha512-IPsfuqy3r0OR0CvCdQw72J0iC4dhOW4WXByi2s3vAE3py8RQQtiyJXY8a4rAT/LRUz7WVlpzkm7FxORtmIeKVw==}
     peerDependencies:
-      astro: ^3.0.0 || ^4.0.0
+      astro: ^4.2.0
     dependencies:
       '@astrojs/underscore-redirects': 0.3.4
       '@cloudflare/workers-types': 4.20241205.0
