@@ -105,5 +105,20 @@ export default defineConfig({
 		optimizeDeps: {
 			exclude: ["@resvg/resvg-js"],
 		},
+		// define: {
+		// 	"process.env.APP_NAME": JSON.stringify(process.env.APP_NAME),
+		// 	"process.env.APP_URL": JSON.stringify(process.env.APP_URL),
+		// 	"process.env.GOOGLE_APPS_SCRIPT_URL": JSON.stringify(process.env.GOOGLE_APPS_SCRIPT_URL),
+		// 	"process.env.PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY": JSON.stringify(
+		// 		process.env.PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY
+		// 	),
+		// 	"process.env.GOOGLE_RECAPTCHA_SECRET_KEY": JSON.stringify(
+		// 		process.env.GOOGLE_RECAPTCHA_SECRET_KEY
+		// 	),
+		// 	"process.env.GITHUB_URL": JSON.stringify(process.env.GITHUB_URL),
+		// 	"process.env.X_URL": JSON.stringify(process.env.X_URL),
+		// 	"process.env.ZENN_URL": JSON.stringify(process.env.ZENN_URL),
+		// 	"process.env.X_OWNER": JSON.stringify(process.env.X_OWNER),
+		// },
 	},
 });

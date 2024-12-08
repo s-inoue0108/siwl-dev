@@ -2,7 +2,6 @@ import { onCleanup, onMount } from "solid-js";
 import { Portal, Show } from "solid-js/web";
 import { isOpenToc, setIsOpenToc } from "../../utils/store/is-open-toc";
 import { IoClose, IoList } from "solid-icons/io";
-import { BiRegularTable } from "solid-icons/bi";
 import Toc from "../large/Toc";
 import { isOpenSearch, setIsOpenSearch } from "../../utils/store/is-open-search";
 import type { MarkdownHeading } from "astro";
