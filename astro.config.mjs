@@ -33,7 +33,7 @@ export default defineConfig({
 
 	site: "https://siwl.dev",
 
-	output: "hybrid",
+	output: "static",
 	adapter: cloudflare(),
 
 	integrations: [
