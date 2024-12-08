@@ -7,7 +7,7 @@ import SearchInput from "../form/SearchInput";
 import SearchResult from "../form/SearchResult";
 import { createSignal, Show, createEffect } from "solid-js";
 import { keyword } from "../../utils/store/search";
-import { AllowedRoutes } from "../../utils/common/route";
+import { AllowedRoutes } from "../../route";
 import TocModal from "../button/TocModal";
 import SwitchTheme from "../button/SwitchTheme";
 import type { MarkdownHeading } from "astro";

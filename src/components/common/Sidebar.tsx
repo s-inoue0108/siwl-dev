@@ -1,7 +1,7 @@
 import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
-import { AllowedRoutes } from "../../utils/common/route";
+import { AllowedRoutes } from "../../route";
 import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
 import { IoLogoRss } from "solid-icons/io";
 

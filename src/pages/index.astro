@@ -2,7 +2,7 @@
 import ArticleCardsPanel from "../components/large/ArticleCardsPanel.astro";
 import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
-import { AllowedRoutes } from "../utils/common/route";
+import { AllowedRoutes } from "../route";
 import { IoArrowForward } from "solid-icons/io";
 
 const articles = await getCollection("article", ({ data }) => {

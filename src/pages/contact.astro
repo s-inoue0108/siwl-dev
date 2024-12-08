@@ -2,7 +2,7 @@
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import ContactForm from "../components/form/ContactForm";
 import Base from "../layouts/Base.astro";
-import { AllowedRoutes } from "../utils/common/route";
+import { AllowedRoutes } from "../route";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();

@@ -1,4 +1,4 @@
-import { AllowedRoutes } from "../../utils/common/route";
+import { AllowedRoutes } from "../../route";
 
 interface Props {
 	currentPath: string;

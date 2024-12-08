@@ -1,4 +1,4 @@
-import { getOmit } from "./utilfuncs";
+import { getOmit } from "./utils/common/utilfuncs";
 
 export class AllowedRoutes {
 

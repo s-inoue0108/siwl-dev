@@ -7,24 +7,23 @@ import Breadcrumbs from "../../../../components/common/Breadcrumbs.astro";
 import ProfileCard from "../../../../components/card/ProfileCard.astro";
 import TagCardsPanel from "../../../../components/large/TagCardsPanel";
 import CategoriesPanel from "../../../../components/large/CategoriesPanel";
-import { AllowedRoutes } from "../../../../utils/common/route";
+import { AllowedRoutes } from "../../../../route";
 import Pager from "../../../../components/button/Pager";
 
-export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+	const categories = await getCollection("category");
+	const articles = await getCollection("article", ({ data }) => {
+		return import.meta.env.PROD ? data.isDraft === false : true;
+	});
 
-  const categories = await getCollection("category");
-  const articles = await getCollection("article", ({ data }) => {
-    return import.meta.env.PROD ? data.isDraft === false : true;
-  });
-
-  const routes = categories.flatMap((category) => {
-		const filteredArticles = articles.filter(({ data }) => {
-			return (
-      data.category.id === category.id
-			);
-		}).sort((a, b) => {
-      return b.data.publishDate.getTime() - a.data.publishDate.getTime();
-    });
+	const routes = categories.flatMap((category) => {
+		const filteredArticles = articles
+			.filter(({ data }) => {
+				return data.category.id === category.id;
+			})
+			.sort((a, b) => {
+				return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+			});
 
 		return paginate(filteredArticles, {
 			params: { category: category.id },
@@ -33,7 +32,7 @@ export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 		});
 	});
 	return routes;
-});
+};
 
 const { page, category } = Astro.props;
 
@@ -41,19 +40,24 @@ const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 ---
 
-<Base title={`${meta.name} | ${category.data.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-  <section class="pt-8 w-full flex flex-col lg:flex-row">
-    <article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
-      <Breadcrumbs count={page.data.length} category={category} />
-      <ArticleCardsPanel articles={page.data} />
-      <Pager page={page} />
-    </article>
-    <aside class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]">
-      <ProfileCard />
-      <div class="lg:sticky lg:top-8 flex flex-col sm:gap-8">
-        <CategoriesPanel currentPath={Astro.url.pathname} client:visible />
-        <TagCardsPanel client:visible />
-      </div>
-    </aside>
+<Base
+	title={`${meta.name} | ${category.data.name} | ${import.meta.env.APP_NAME}`}
+	description=`${meta.description}`
+>
+	<section class="pt-8 w-full flex flex-col lg:flex-row">
+		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
+			<Breadcrumbs count={page.data.length} category={category} />
+			<ArticleCardsPanel articles={page.data} />
+			<Pager page={page} />
+		</article>
+		<aside
+			class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
+		>
+			<ProfileCard />
+			<div class="lg:sticky lg:top-8 flex flex-col sm:gap-8">
+				<CategoriesPanel currentPath={Astro.url.pathname} client:visible />
+				<TagCardsPanel client:visible />
+			</div>
+		</aside>
 	</section>
 </Base>
