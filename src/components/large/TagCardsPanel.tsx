@@ -9,7 +9,7 @@ interface Props {
 	limit?: number;
 }
 
-const TagCardsPanel = ({ currentPath = "", limit = 10 }: Props) => {
+const TagCardsPanel = ({ currentPath = "", limit = 20 }: Props) => {
 	const [isMore, setIsMore] = createSignal(false);
 	return (
 		<Panel

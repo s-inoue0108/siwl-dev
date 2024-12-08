@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
+import ContactForm from "../components/form/ContactForm";
 import Base from "../layouts/Base.astro";
 import { AllowedRoutes } from "../utils/common/route";
 
@@ -10,13 +11,6 @@ const { meta } = routes.getSubsetPageMeta();
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
 	<section class="pt-8 w-full flex flex-col gap-8">
 		<Breadcrumbs />
-		<div class="-mx-4 lg:mx-auto p-1 lg:p-8 text-foreground bg-[#f9f9f9] lg:rounded-xl">
-			<iframe
-				class="w-full sm:w-[640px] h-[1720px] lg:h-[1360px] overflow-hidden"
-				src="https://docs.google.com/forms/d/e/1FAIpQLSfiTSvqXBZUWdYXGoNWy8ZO8wCopJh7VvSS-ZM0gpNELFfQtQ/viewform?embedded=true"
-				width="640"
-				height="1360">Loading...</iframe
-			>
-		</div>
+		<ContactForm client:load />
 	</section>
 </Base>

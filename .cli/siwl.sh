@@ -119,7 +119,7 @@ function process() {
         echo "[Deployments]"
         echo "https://dash.cloudflare.com/36267a6e8ba52f5b9b2f32b9ffd99e7b/pages/view/siwl-dev"
         echo "[Contact Form]"
-        echo "https://docs.google.com/forms/d/1Zxo_7-OUUfw8pjO1k-7yELuQrGw5I17Osp3IZnfc_LI/edit"
+        echo "https://script.google.com/home"
         echo "[Zenn]"
         echo "https://zenn.dev/s_inoue0108"
         echo ""

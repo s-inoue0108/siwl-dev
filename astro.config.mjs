@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
 import solid from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
+import cloudflare from "@astrojs/cloudflare";
 
 // Remark/Rehype Plugins from third-party
 import remarkMath from "remark-math";
@@ -31,6 +32,9 @@ export default defineConfig({
 	},
 
 	site: "https://siwl.dev",
+
+	output: "hybrid",
+	adapter: cloudflare(),
 
 	integrations: [
 		solid(),

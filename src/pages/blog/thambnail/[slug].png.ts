@@ -1,4 +1,4 @@
-import { type APIContext } from "astro";
+import { type APIContext, type APIRoute } from "astro";
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import { getImageResponse } from "../../../utils/api/generateImage";
 
@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
 };
 
 
-export const GET = async ({ params }: APIContext) => {
+export const GET: APIRoute = async ({ params }: APIContext) => {
   const article = await getEntry("article", params.slug as CollectionEntry<"article">["slug"]);
 
   const imageResponse = await getImageResponse(article.data.title);
