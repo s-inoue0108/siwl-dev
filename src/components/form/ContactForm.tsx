@@ -92,7 +92,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<input
-						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:outline-accent-vivid focus:outline-2"
+						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						type="text"
 						id="contact-name"
 						value={name()}
@@ -106,7 +106,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<input
-						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:outline-accent-vivid focus:outline-2"
+						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						type="email"
 						id="contact-email"
 						value={email()}
@@ -120,7 +120,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<textarea
-						class="resize-none rounded-lg p-2 bg-muted-background/30 border-muted-background focus:outline-accent-vivid focus:outline-2"
+						class="resize-none rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						id="contact-content"
 						value={content()}
 						onInput={(e) => setContent(e.target.value)}

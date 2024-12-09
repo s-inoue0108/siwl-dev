@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
   const recaptchaResponse = await fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/x-www-form-urlencoded"
     },
     body: recaptchaRequestBody.toString()
   });
@@ -38,7 +38,7 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
     const responseData = await response.json();
 
     if (responseData.error) {
-      return new Response(JSON.stringify(responseData), { status: 400 });
+      return new Response(null, { status: 400 });
     }
 
     return new Response(JSON.stringify(responseData), {
