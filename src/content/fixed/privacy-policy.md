@@ -2,7 +2,7 @@
 title: プライバシーポリシー
 description: プライバシーポリシー
 publishDate: 2024-10-04T00:00:00+09:00
-updateDate: 2024-10-11T00:00:00+09:00
+updateDate: 2024-12-09T00:00:00+09:00
 ---
 
 **SIWL.dev**（以下「**当サイト**」とします） は、プログラミングなどの内容をブログコンテンツとして発信することを目的に作成された Web サイトです。
@@ -25,9 +25,7 @@ https://siwl.dev
 
 ### アクセス解析ツールについて
 
-当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」を利用しています。詳しくは以下をご覧ください。
-
-https://policies.google.com/technologies/partner-sites?hl=ja
+当サイトでは、アクセス解析ツールとして Google 社の「Google Analytics」を利用しています。詳しくは[こちらのページ](https://policies.google.com/technologies/partner-sites?hl=ja)をご覧ください。
 
 ## 免責事項
 

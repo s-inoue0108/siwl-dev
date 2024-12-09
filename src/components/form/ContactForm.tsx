@@ -145,7 +145,7 @@ const ContactForm = () => {
 							rel="noopener noreferrer"
 							class="text-sky visited:text-purple hover:underline"
 						>
-							プライバシーポリシー
+							プライバシーポリシー↗
 						</a>{" "}
 						に同意する
 					</label>
