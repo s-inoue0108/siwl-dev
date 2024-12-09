@@ -36,7 +36,7 @@ const { Content, headings } = await privacyPolicy.render();
 					>
 				</p>
 				<p>
-					<i> 更新者：Shota Inoue</i>
+					<i>{`更新者：${import.meta.env.APP_OWNER}`}</i>
 				</p>
 			</section>
 		</article>
@@ -72,7 +72,7 @@ const { Content, headings } = await privacyPolicy.render();
 
 		ul > li,
 		ol > li {
-			@apply py-1 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+			@apply py-3 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 		}
 
 		ul > li > ul {

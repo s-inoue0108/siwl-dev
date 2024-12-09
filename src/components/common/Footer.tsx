@@ -11,7 +11,7 @@ const Footer = ({ currentPath }: Props) => {
 		<footer class="mt-8 w-full sticky top-[100dvh] h-8 lg:h-12 border-t border-muted-background text-muted-foreground">
 			<nav>
 				<p class="text-sm lg:text-md absolute top-1/2 left-2 lg:left-1/2 lg:-translate-x-1/2 -translate-y-1/2">
-					&copy; {new Date().getFullYear()} Shota Inoue
+					&copy; {`${new Date().getFullYear()} ${import.meta.env.APP_OWNER}`}
 				</p>
 				<ul class="text-xs lg:text-sm flex items-center gap-4 lg:gap-8 absolute top-1/2 right-2 lg:right-8 -translate-y-1/2">
 					{metas.map(({ name, rootpath }) => (

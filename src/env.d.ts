@@ -3,7 +3,7 @@
 interface ImportMetaEnv {
   readonly APP_NAME: string;
   readonly APP_URL: string;
-  readonly APP_ADMIN_MAIL: string;
+  readonly APP_OWNER: string;
   readonly GOOGLE_APPS_SCRIPT_URL: string;
   readonly PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY: string;
   readonly GOOGLE_RECAPTCHA_SECRET_KEY: string;

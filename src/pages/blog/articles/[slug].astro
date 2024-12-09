@@ -42,7 +42,7 @@ const { Content, headings } = await article.render();
 				<RelatedArticles relatedArticles={article.data.relatedArticles} />
 				<div class="lg:hidden">
 					<Shares
-						appName={import.meta.env.APP_NAME}
+						appOwner={import.meta.env.APP_OWNER}
 						appUrl={import.meta.env.APP_URL}
 						title={article.data.title}
 						slug={article.slug}
@@ -60,7 +60,7 @@ const { Content, headings } = await article.render();
 				<Toc headings={headings} client:visible />
 				<div class="flex items-center gap-4 w-full">
 					<Shares
-						appName={import.meta.env.APP_NAME}
+						appOwner={import.meta.env.APP_OWNER}
 						appUrl={import.meta.env.APP_URL}
 						title={article.data.title}
 						slug={article.slug}
@@ -95,7 +95,7 @@ const { Content, headings } = await article.render();
 
 		ul > li,
 		ol > li {
-			@apply py-1 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+			@apply py-3 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 		}
 
 		ul > li > ul {

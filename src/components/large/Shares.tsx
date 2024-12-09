@@ -3,14 +3,14 @@ import { SiFacebook, SiMisskey, SiTwitter, SiHatenabookmark } from "solid-icons/
 import Panel from "./Panel";
 
 interface Props {
-	appName: string;
+	appOwner: string;
 	appUrl: string;
 	title: CollectionEntry<"article">["data"]["title"];
 	slug: CollectionEntry<"article">["slug"];
 }
 
-const Shares = ({ appName, appUrl, title, slug }: Props) => {
-	const text = encodeURIComponent(`${title} | ${appName}`);
+const Shares = ({ appOwner, appUrl, title, slug }: Props) => {
+	const text = encodeURIComponent(`${title} | ${appOwner}`);
 	const url = `${appUrl}/blog/articles/${slug}`;
 
 	const facebookLink = `https://www.facebook.com/share.php?u=${url}`;
