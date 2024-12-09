@@ -1,11 +1,11 @@
 ---
-isDraft: true
+isDraft: false
 title: SolidJS + Astro SSR + GAS で静的サイトにフォームを実装する
 category: tech
 tags: [astro, solid, gas]
 description: お問い合わせフォームに、Astro の SSR 機能と Google Apps Script を利用したメール通知機能を実装しました。
 publishDate: 2024-12-08T17:54:26+09:00
-updateDate: 2024-12-08T17:54:26+09:00
+updateDate: 2024-12-09T15:17:56+09:00
 relatedArticles: [astro-katex-ssr]
 ---
 
