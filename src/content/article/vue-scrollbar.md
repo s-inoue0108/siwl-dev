@@ -16,7 +16,7 @@ https://digipress.info/tech/circular-progress-bar-with-count-up/
 ## 方針
 
 参考サイトのように SVG を使って実装します。
-Vue を利用することで、SVg のプロパティである `stroke-dashoffset` をリアクティブに扱い、スクロールイベントに応じてその値を更新しようという考えです。
+Vue を利用することで、SVG のプロパティである `stroke-dashoffset` をリアクティブに扱い、スクロールイベントに応じてその値を更新しようという考えです。
 
 ## 実装
 

@@ -49,21 +49,16 @@ const ArchivesCalendar = ({ articles }: Props) => {
 	return (
 		<div class="flex justify-center">
 			<ul class="flex flex-col">
-				<li class="w-fit mx-auto px-4 py-1 flex justify-center items-center gap-1 mb-8 border border-muted-background bg-muted-background/50 rounded-full">
-					<select
-						id="select-year"
-						name="select-year"
-						onChange={(e) => handleChange(e)}
-						class="bg-muted-background/50 text-lg xl:text-2xl font-semibold"
-					>
-						{uniquePublishYears.map((year) => {
-							return <option value={year}>{year}</option>;
-						})}
-					</select>
-					<label for="select-year" class="xl:text-xl">
-						<BiSolidSortAlt />
-					</label>
-				</li>
+				<select
+					id="select-year"
+					name="select-year"
+					onChange={(e) => handleChange(e)}
+					class="mb-8 border-muted-background bg-muted-background/30 text-center text-lg xl:text-2xl font-semibold rounded-lg"
+				>
+					{uniquePublishYears.map((year) => {
+						return <option value={year}>{year}</option>;
+					})}
+				</select>
 				<For each={numberOfArticleEachMonths()}>
 					{({ name, value, numberOf }) => {
 						return (
