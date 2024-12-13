@@ -5,9 +5,13 @@ category: tech
 tags: [perl, gaussian, comp-science]
 description: Gaussian16 では、結合長、二面角といったパラメータを固定しながら構造最適化計算を繰り返す Relaxed Scan 計算が利用できます。今回は、Scan 計算の結果から最適構造の座標情報を抽出し、TD-DFT 計算を実行するためのインプットファイルを生成するスクリプトを Perl で作成しましたので、紹介します。
 publishDate: 2024-12-10T20:53:35+09:00
-updateDate: 2024-12-12T22:06:03+09:00
+updateDate: 2024-12-13T18:19:51+09:00
 relatedArticles: []
 ---
+
+## ソースコード
+
+https://github.com/s-inoue0108/gen-tddft
 
 ## 参考
 
@@ -40,7 +44,7 @@ $ grep "Optimization completed" calc.log | wc -l
 
 ## Perl スクリプトの作成
 
-`extract.pl` というファイル名でスクリプトを作成しました。
+`gen-tddft.pl` というファイル名でスクリプトを作成しました。
 
 ### アウトプットファイルの解析
 
@@ -81,13 +85,13 @@ $ grep "Optimization completed" calc.log | wc -l
 - ブロックの終わりとして `-----` を検出したら `$statinonary_coordinate` にコピーします。
 - 以上のステップを繰り返し、`Optimization completed` をとらえたら直前の `$statinonary_coordinate` をファイル生成関数に渡します。
 
-```perl:extract.pl
+```perl:gen-tddft.pl
 #!/usr/bin/perl
 use strict;
 use warnings;
 
 # ファイル名の取得
-my $file = shift or die "Usage: extract <filename>.out\n";
+my $file = shift or die "Usage: gen-tddft <filename>.out\n";
 
 # グローバル変数
 my $ln = 0;                  # ファイルの行数
@@ -133,7 +137,7 @@ close $fh;
 - 座標データは適切に加工します（後述）。
 - 探索する励起構造の数や汎関数、基底関数系はハードコーディングしていますが、ユーザの入力を受け取れるようにするとよいと思います。
 
-```perl:extract.pl
+```perl:gen-tddft.pl
 sub gen_tddft {
   my ($file, $coordinate, $count) = @_;
 
@@ -190,7 +194,7 @@ EOF
 
 [^2]: このコードも生成 AI の力を借りました。もっといい書き方にできると思います...
 
-```perl:extract.pl
+```perl:gen-tddft.pl
 # 原子番号と元素記号のハッシュ
 my %atoms = (
     1 => 'H',
@@ -257,5 +261,5 @@ sub processed_coordinate {
 `calc.out` のあるディレクトリまで移動して次のコマンドを実行します：
 
 ```bash:bash
-$ perl ./extract.pl calc.out
+$ perl ./gen-tddft.pl ./opt_result.out
 ```
