@@ -5,7 +5,7 @@ category: tech
 tags: [perl, gaussian, comp-science]
 description: Gaussian16 では、結合長、二面角といったパラメータを固定しながら構造最適化計算を繰り返す Relaxed Scan 計算が利用できます。今回は、Scan 計算の結果から最適構造の座標情報を抽出し、TD-DFT 計算を実行するためのインプットファイルを生成するスクリプトを Perl で作成しましたので、紹介します。
 publishDate: 2024-12-10T20:53:35+09:00
-updateDate: 2024-12-13T18:19:51+09:00
+updateDate: 2024-12-15T21:06:13+09:00
 relatedArticles: []
 ---
 
@@ -21,10 +21,10 @@ https://yamnor.me/2024-11-08-1904/
 
 ## 実装戦略
 
-構造最適化計算のアウトプット `calc.out (.log)` のあるディレクトリに移動し、次のコマンドを実行してみましょう：
+構造最適化計算のアウトプット `opt_result.out (.log)` のあるディレクトリに移動し、次のコマンドを実行してみましょう：
 
 ```bash:ターミナル
-$ grep "Standard orientation" calc.log | wc -l
+$ grep "Standard orientation" opt_result.out | wc -l
 ```
 
 このコマンドは、計算された分子の座標情報の総数を表示します（[詳しくはこちら](https://www.hpc.co.jp/chem/software/gaussian/help/keywords/symmetry/)）。
@@ -32,7 +32,7 @@ $ grep "Standard orientation" calc.log | wc -l
 同様に、次のコマンドを実行してみましょう：
 
 ```bash:ターミナル
-$ grep "Optimization completed" calc.log | wc -l
+$ grep "Optimization completed" opt_result.out | wc -l
 ```
 
 このコマンドは、Scan で得られた最終構造の数を表示します。正常に Scan 計算が実行されていれば、インプットファイルで指定したスキャン回数に等しくなるはずです。したがって、上の記事にもある通り、
