@@ -5,7 +5,7 @@ category: tech
 tags: [perl, gaussian, comp-science]
 description: Gaussian16 では、結合長、二面角といったパラメータを固定しながら構造最適化計算を繰り返す Relaxed Scan 計算が利用できます。今回は、Scan 計算の結果から最適構造の座標情報を抽出し、TD-DFT 計算を実行するためのインプットファイルを生成するスクリプトを Perl で作成しましたので、紹介します。
 publishDate: 2024-12-10T20:53:35+09:00
-updateDate: 2024-12-15T21:06:13+09:00
+updateDate: 2024-12-15T21:14:23+09:00
 relatedArticles: []
 ---
 
@@ -188,7 +188,7 @@ EOF
 
 よって、**Atomic Number は対応する元素記号に置換する必要があります**。ハッシュ（連想配列）を定義して対応します[^1]。
 
-[^1]: 生成 AI に指示して 118 行のハッシュを作ってもらいました。抜け落ちている元素があったりなどしたので、要注意です。
+[^1]: 生成 AI に指示して 118 行のハッシュを作ってもらいました。
 
 以上の処理を `join` メソッド等を使って実現します[^2]。
 
@@ -263,3 +263,7 @@ sub processed_coordinate {
 ```bash:bash
 $ perl ./gen-tddft.pl ./opt_result.out
 ```
+
+同様の記事を Zenn にも公開しています：
+
+https://zenn.dev/s_inoue0108/articles/gaussian-extract-structure
