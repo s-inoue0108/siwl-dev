@@ -42,7 +42,6 @@
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.23",
     "solid-transition-group": "^0.2.3",
-    "swiper": "^11.1.14",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2",
     "unist-util-visit": "^5.0.0"

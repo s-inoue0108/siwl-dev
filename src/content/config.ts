@@ -73,9 +73,9 @@ const workCollection = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     url: z.string(),
-    stacks: z.array(z.string()),
+    github: z.string().optional(),
     keywords: z.array(z.string()),
-    images: z.array(image()).optional(),
+    image: image(),
   }),
 })
 

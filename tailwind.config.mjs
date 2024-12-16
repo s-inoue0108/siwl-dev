@@ -28,6 +28,7 @@ export default {
 			},
 			animation: {
 				"fade-in": "fade-in 1s ease-in-out",
+				"fade-in-fast": "fade-in 0.2s ease-in-out",
 				inversion: "inversion 1s linear",
 			},
 			keyframes: {

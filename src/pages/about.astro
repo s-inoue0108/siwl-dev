@@ -212,10 +212,10 @@ const { meta } = routes.getSubsetPageMeta();
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
 			Works
 		</h2>
-		<ul class="mx-auto flex flex-wrap items-center gap-8">
+		<ul class="w-full mx-auto flex flex-col lg:flex-row lg:flex-wrap items-center gap-8">
 			{
 				works.map((work) => (
-					<li>
+					<li class="w-full lg:w-fit">
 						<WorkCard work={work} client:load />
 					</li>
 				))

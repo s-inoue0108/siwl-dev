@@ -175,7 +175,7 @@ const ContactForm = () => {
 					<div
 						class={`w-full z-[100] fixed bottom-0 left-0 ${
 							isSucsess() ? "bg-green-600" : "bg-red-600"
-						} } p-4 animate-fade-in`}
+						} } p-4 animate-fade-in-fast`}
 					>
 						<button type="button" onClick={() => setIsOpen(false)} class="absolute top-2 right-2">
 							<IoCloseCircleOutline size={"1.5rem"} />
