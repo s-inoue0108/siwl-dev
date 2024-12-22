@@ -53,7 +53,7 @@ const TocModal = ({ headings }: Props) => {
 				} text-sm flex items-center gap-1 font-semibold`}
 			>
 				{isOpenToc() ? <IoClose /> : <IoList />}
-				Toc
+				Contents
 			</button>
 			<Portal mount={document.body}>
 				<Show when={isOpenToc()}>

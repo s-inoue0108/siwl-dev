@@ -1,6 +1,7 @@
 import { IoSunny, IoMoon } from "solid-icons/io";
 import { BiRegularLoaderAlt } from "solid-icons/bi";
-import { onMount, createSignal, Show } from "solid-js";
+import { Match, onMount, Switch } from "solid-js";
+import { isDark, setIsDark } from "../../utils/store/is-dark";
 
 interface Props {
 	size?: string | number;
@@ -8,8 +9,7 @@ interface Props {
 }
 
 const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
-	const [isDark, setIsDark] = createSignal<boolean | null>(null);
-	const switchTheme = () => {
+	const toggleTheme = () => {
 		setIsDark(!isDark());
 		const rootClass = document.documentElement.classList;
 		const storage = window.localStorage;
@@ -32,24 +32,28 @@ const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
 			setIsDark(theme === "dark" ? true : false);
 		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			setIsDark(true);
+		} else {
+			setIsDark(false);
 		}
 	});
 
 	return (
 		<button
 			type="button"
-			onClick={switchTheme}
+			onClick={toggleTheme}
 			class={`${
 				isBorder &&
 				"p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background"
-			}`}
+			} relative`}
 		>
-			<Show
-				when={isDark() !== null}
-				fallback={<BiRegularLoaderAlt size={size} class="animate-spin" />}
-			>
-				{isDark() ? <IoMoon size={size} /> : <IoSunny size={size} />}
-			</Show>
+			<Switch fallback={<BiRegularLoaderAlt size={size} class="animate-spin" />}>
+				<Match when={isDark() === true}>
+					<IoMoon size={size} />
+				</Match>
+				<Match when={isDark() === false}>
+					<IoSunny size={size} />
+				</Match>
+			</Switch>
 		</button>
 	);
 };

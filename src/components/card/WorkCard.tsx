@@ -29,7 +29,7 @@ const WorkCard = ({ work }: Props) => {
 					<ul class="absolute bottom-2 left-0 flex items-center gap-2">
 						<li>
 							{work.data.keywords.slice(0, 4).map((word) => (
-								<span class="px-2 py-1 text-xs font-bold text-muted-foreground bg-muted-background/30 rounded-md">
+								<span class="px-2 py-1 text-xs font-bold text-muted-foreground rounded-md">
 									{`#${word}`}
 								</span>
 							))}

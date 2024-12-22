@@ -9,7 +9,6 @@ import { createSignal, Show, createEffect } from "solid-js";
 import { keyword } from "../../utils/store/search";
 import { AllowedRoutes } from "../../route";
 import TocModal from "../button/TocModal";
-import SwitchTheme from "../button/SwitchTheme";
 import type { MarkdownHeading } from "astro";
 import { isOpenSearch } from "../../utils/store/is-open-search";
 import { isOpenToc } from "../../utils/store/is-open-toc";
@@ -70,9 +69,6 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 						</li>
 					</ul>
 					<ul class="flex items-center gap-3">
-						<li>
-							<SwitchTheme />
-						</li>
 						<li>
 							<Hamburger />
 						</li>
