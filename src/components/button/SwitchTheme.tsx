@@ -1,7 +1,6 @@
 import { IoSunny, IoMoon } from "solid-icons/io";
 import { BiRegularLoaderAlt } from "solid-icons/bi";
-import { Match, onMount, Switch } from "solid-js";
-import { isDark, setIsDark } from "../../utils/store/is-dark";
+import { createSignal, Match, onMount, Switch } from "solid-js";
 
 interface Props {
 	size?: string | number;
@@ -9,6 +8,8 @@ interface Props {
 }
 
 const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
+	const [isDark, setIsDark] = createSignal<boolean | null>(null);
+
 	const toggleTheme = () => {
 		setIsDark(!isDark());
 		const rootClass = document.documentElement.classList;
