@@ -1,3 +1,4 @@
 isDraft: false
 name: Shell
 belong: tech
+icon: ./icons/bash.svg
