@@ -8,14 +8,14 @@ export class AllowedRoutes {
       name: "Home",
       matchers: [/^\/$/,],
       rootpath: "/",
-      description: "とある分子科学の学生が運営するブログです。プログラミングや計算科学など、自由気ままに情報を発信しています。",
+      description: "Web プログラミングと計算科学が好きな分子科学の学生が、自由気ままに運営しています。",
       subsets: [],
     },
     {
       name: "Blog",
       matchers: [/^\/blog\/[0-9]+/,],
       rootpath: "/blog/1",
-      description: "とある分子科学の学生が運営するブログです。プログラミングや計算科学など、自由気ままに情報を発信しています。",
+      description: "Web プログラミングと計算科学が好きな分子科学の学生が、自由気ままに運営しています。",
       subsets: [
         {
           name: "Categories",
