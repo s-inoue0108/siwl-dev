@@ -98,7 +98,7 @@ $ git switch <branch>
 
 ### ページルート
 
-`/utils/route.ts` の `_ROUTE_CONFIG` でページルートとメタ情報を管理しています。以下は例です。
+`/route.ts` の `_ROUTE_CONFIG` でページルートとメタ情報を管理しています。以下は例です。
 
 ```ts
 [

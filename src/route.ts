@@ -8,14 +8,14 @@ export class AllowedRoutes {
       name: "Home",
       matchers: [/^\/$/,],
       rootpath: "/",
-      description: "プログラミングについての情報を発信しています。",
+      description: "とある分子科学の学生が運営するブログです。プログラミングや計算科学など、自由気ままに情報を発信しています。",
       subsets: [],
     },
     {
       name: "Blog",
       matchers: [/^\/blog\/[0-9]+/,],
       rootpath: "/blog/1",
-      description: "プログラミングについての情報を発信しています。",
+      description: "とある分子科学の学生が運営するブログです。プログラミングや計算科学など、自由気ままに情報を発信しています。",
       subsets: [
         {
           name: "Categories",
@@ -51,7 +51,7 @@ export class AllowedRoutes {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "当サイト管理人のプロフィールや制作物を掲載しています。",
+      description: "サイト運営者のプロフィールや制作物を掲載しています。",
       subsets: [],
     },
     {
