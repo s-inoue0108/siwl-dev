@@ -5,11 +5,11 @@ category: tech
 tags: [astro, solid, gas]
 description: お問い合わせフォームに、Astro の SSR 機能と Google Apps Script を利用したメール通知機能を実装しました。
 publishDate: 2024-12-08T17:54:26+09:00
-updateDate: 2024-12-09T20:42:26+09:00
+updateDate: 2024-12-28T21:39:28+09:00
 relatedArticles: [astro-katex-ssr]
 ---
 
-## バージョン
+## バージョン情報
 
 - Astro `v4.15.9`
 - @astrojs/cloudflare `v9.2.1`
@@ -19,26 +19,26 @@ relatedArticles: [astro-katex-ssr]
 
 ## reCAPTCHA の用意
 
-GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) にフィルタリングします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
+GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) によりフィルタリングします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
 
 > [!tip]
 >
 > 開発サーバーからのリクエストを検証したい場合、`localhost` からの認証をするためのキーを別途取得しておくとよいです。
 
-キー情報は環境変数に保存します。
+キーは環境変数に保存します。
 
 ```dotenv:.env
 PUBLIC_SITE_KEY=****************
 SECRET_KEY=****************
 ```
 
-Astro では、`PUBLIC_` プレフィックスをつけた変数のみをクライアントサイドで利用できます。サイトキーはクライアントサイドから参照するため、つけておきます。
+Astro では、`PUBLIC_` プレフィックスをつけた変数のみをクライアントサイドで利用できます。サイトキーはクライアントサイドから参照するため、これをつけておきます。
 
 https://docs.astro.build/ja/guides/environment-variables/
 
 ## GAS の実装
 
-[Google Apps Script](https://script.google.com/home) の `doPost` 関数でフォームからの通信を受け取り、`Gmail.sendEmail` 関数で通知メールを送信する仕組みを作ります。
+[Google Apps Script](https://script.google.com/) の `doPost` 関数でフォームからの通信を受け取り、`Gmail.sendEmail` 関数で通知メールを送信する仕組みを作ります。
 
 ```js:GAS
 const sendMail = (name, email, content) => {
@@ -86,7 +86,7 @@ const doPostTest = () => {
 
 ## フォームの実装
 
-フォームは SolidJS で作成しました。まず、フォームの値とレスポンスの情報を格納するための State を宣言します。
+フォームは [SolidJS](https://www.solidjs.com/) で作成しました。まず、フォームの値とレスポンスの情報を格納するための State を宣言します。
 
 ```tsx:ContactForm.tsx
 import { createSignal } from "solid-js";
@@ -198,7 +198,7 @@ const handleSubmit = async (e: SubmitEvent) => {
 
 ### フォーム HTML
 
-スタイリングに Tailwind CSS を用いています。`name, email, content` プロパティを格納する `<input>` 要素と、`<Portal>` によるレスポンスの通知モーダルを付けています。
+スタイリングに [Tailwind CSS](https://tailwindcss.com/) を用いています。`name, email, content` プロパティを格納する `<input>` 要素と、`<Portal>` によるレスポンスの通知モーダルを付けています。
 
 ```tsx:ContactForm.tsx
 <>
