@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2024-12-31T20:35:14+09:00
+updateDate: 2024-12-31T22:12:06+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -376,6 +376,15 @@ https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
 ```
 
 https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
+
+### CodePen
+
+```md:記法
+<!--https://codepen.io/<user>/pen/<query>-->
+https://codepen.io/s-inoue0108/pen/PwYJOyv
+```
+
+https://codepen.io/s-inoue0108/pen/PwYJOyv
 
 ### Speaker Deck
 

@@ -22,6 +22,7 @@ import remarkFigureCaption from "./src/plugins/remark/remark-figure-caption";
 import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
 import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
 import remarkGistEmbed from "./src/plugins/remark/remark-gist-embed";
+import remarkCodepenEmbed from "./src/plugins/remark/remark-codepen-embed";
 import remarkSpeakerDeckEmbed from "./src/plugins/remark/remark-speakerdeck-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
@@ -69,6 +70,7 @@ export default defineConfig({
 			remarkTwitterEmbed,
 			remarkYoutubeEmbed,
 			remarkGistEmbed,
+			remarkCodepenEmbed,
 			remarkSpeakerDeckEmbed,
 			remarkFigureCaption,
 			remarkCallout,
