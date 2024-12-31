@@ -1,7 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import { createMemo, createSignal, For } from "solid-js";
 import { IoGitCommitOutline } from "solid-icons/io";
-import { BiSolidSortAlt } from "solid-icons/bi";
 import { getMonths } from "../../utils/common/utilfuncs";
 import { allArticles } from "../../utils/store/collections";
 
