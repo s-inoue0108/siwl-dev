@@ -347,7 +347,7 @@ URLが独立した行にある場合、かつURLの形式が以下に示す例�
 
 ### YouTube
 
-```md:YouTubeの埋め込み
+```md:記法
 <!--https://www.youtube.com/watch?v=<query>-->
 https://www.youtube.com/watch?v=sTxY93pA1zI
 ```
@@ -356,7 +356,7 @@ https://www.youtube.com/watch?v=sTxY93pA1zI
 
 ### Twitter (X)
 
-```md:Twitterの埋め込み
+```md:記法
 <!--https://x.com/<user>/status/<query>-->
 https://x.com/astrodotbuild/status/1844403385375862824
 
@@ -370,12 +370,21 @@ https://x.com/astrodotbuild/status/1844403385375862824
 
 ### GitHub Gist
 
-```md:Gist
+```md:記法
 <!--https://gist.github.com/<user>/<query>-->
 https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
 ```
 
 https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
+
+### Speaker Deck
+
+```md:記法
+<!--https://speakerdeck.com/<user>/<query>-->
+https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
+```
+
+https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
 
 ## ZennのMarkdown記法
 

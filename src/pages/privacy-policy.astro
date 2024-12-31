@@ -320,8 +320,7 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* iframe */
 		p > iframe {
-			@apply w-full h-fit xl:w-2/3 2xl:w-1/2 mx-auto rounded-xl;
-			aspect-ratio: 16 / 9;
+			@apply w-full h-fit mx-auto xl:aspect-video;
 		}
 	}
 </style>
