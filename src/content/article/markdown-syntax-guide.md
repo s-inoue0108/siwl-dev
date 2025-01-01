@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2024-12-31T22:12:06+09:00
+updateDate: 2025-01-01T12:23:12+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -343,30 +343,22 @@ $$
 
 ## 埋め込み
 
-URLが独立した行にある場合、かつURLの形式が以下に示す例の通りである場合に変換されます。
+いくつかの Web サービスは oEmbed API を利用した特殊な埋め込みに対応しています。
 
-### YouTube
+*[!table] 対応済みの Web サービス*
 
-```md:記法
-<!--https://www.youtube.com/watch?v=<query>-->
-https://www.youtube.com/watch?v=sTxY93pA1zI
-```
+| サービス名   | サービス形態 | URL                        |
+| :----------- | :----------- | :------------------------- |
+| GitHub Gist  | ソースコード | `https://gist.github.com`  |
+| CodePen      | ソースコード | `https://codepen.io`       |
+| Speaker Deck | スライド     | `https://speakerdeck.com`  |
+| Docswell     | スライド     | `https://docswell.com`     |
+| Spotify      | 音楽         | `https://open.spotify.com` |
+| SoundCloud   | 音楽         | `https://soundcloud.com`   |
+| YouTube      | 動画         | `https://youtube.com`      |
+| Twitter (X)  | SNS          | `https://x.com`            |
+| Canva        | デザイン     | `https://canva.com`        |
 
-https://www.youtube.com/watch?v=sTxY93pA1zI
-
-### Twitter (X)
-
-```md:記法
-<!--https://x.com/<user>/status/<query>-->
-https://x.com/astrodotbuild/status/1844403385375862824
-
-<!-- or -->
-
-<!--https://twitter.com/<user>/status/<query>-->
-https://twitter.com/astrodotbuild/status/1844403385375862824
-```
-
-https://x.com/astrodotbuild/status/1844403385375862824
 
 ### GitHub Gist
 
@@ -395,6 +387,64 @@ https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-
 
 https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
 
-## ZennのMarkdown記法
+### Docswell
+
+```md:記法
+<!--https://docswell.com/s/<user>/<query>-->
+https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
+```
+
+https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
+
+### Spotify
+
+```md:記法
+<!--https://open.spotify.com/<locale?>/<category>/<query>-->
+https://open.spotify.com/intl-ja/track/6Ug3vnQRk30sUrOvDWstgI
+https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
+```
+
+https://open.spotify.com/intl-ja/track/6Ug3vnQRk30sUrOvDWstgI
+
+https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
+
+### SoundCloud
+
+```md:記法
+<!--https://soundcloud.com/<user>/<query>-->
+https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
+```
+
+https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
+
+### YouTube
+
+```md:記法
+<!--https://www.youtube.com/watch?v=<query>-->
+https://www.youtube.com/watch?v=sTxY93pA1zI
+```
+
+https://www.youtube.com/watch?v=sTxY93pA1zI
+
+### Twitter (X)
+
+```md:記法
+<!--https://[x|twitter].com/<user>/status/<query>-->
+https://x.com/astrodotbuild/status/1844403385375862824
+https://twitter.com/astrodotbuild/status/1844403385375862824
+```
+
+https://x.com/astrodotbuild/status/1844403385375862824
+
+## Canva
+
+```md:記法
+<!--https://canva.com/design/<query>/view-->
+https://www.canva.com/design/DACHZTlgWkU/view
+```
+
+https://www.canva.com/design/DACHZTlgWkU/view
+
+## [参考] ZennのMarkdown記法
 
 https://zenn.dev/zenn/articles/markdown-guide

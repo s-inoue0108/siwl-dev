@@ -24,6 +24,9 @@ import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
 import remarkGistEmbed from "./src/plugins/remark/remark-gist-embed";
 import remarkCodepenEmbed from "./src/plugins/remark/remark-codepen-embed";
 import remarkSpeakerDeckEmbed from "./src/plugins/remark/remark-speakerdeck-embed";
+import remarkDocswellEmbed from "./src/plugins/remark/remark-docswell-embed";
+import remarkSpotifyEmbed from "./src/plugins/remark/remark-spotify-embed";
+import remarkSoundCloudEmbed from "./src/plugins/remark/remark-soundcloud-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
@@ -72,6 +75,9 @@ export default defineConfig({
 			remarkGistEmbed,
 			remarkCodepenEmbed,
 			remarkSpeakerDeckEmbed,
+			remarkDocswellEmbed,
+			remarkSpotifyEmbed,
+			remarkSoundCloudEmbed,
 			remarkFigureCaption,
 			remarkCallout,
 			remarkMath,

@@ -1,5 +1,4 @@
-interface CodepenEmbed {
-  success: boolean;
+interface DocswellEmbed {
   type: string;
   version: number;
   provider_name: string;
@@ -7,18 +6,15 @@ interface CodepenEmbed {
   title: string;
   author_name: string;
   author_url: string;
-  height: number;
-  width: number;
-  thumbnail_width: number;
-  thumbnail_height: number;
-  thumbnail_url: string;
   html: string;
+  width: number;
+  height: number;
 }
 
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
 
-export default function remarkCodepenEmbed() {
+export default function remarkDocswellEmbed() {
   return async (tree: Root) => {
     const transformer: any[] = [];
     visit(tree, "paragraph", (node) => {
@@ -27,7 +23,7 @@ export default function remarkCodepenEmbed() {
       if (!paragraphNode) return;
 
       visit(paragraphNode, 'text', (textNode) => {
-        if (!/^https:\/\/(?:www\.)?codepen\.io\/[a-z0-9_-]+\/pen\/[a-zA-Z]+$/.test(textNode.value)) return;
+        if (!/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(textNode.value)) return;
 
         const url = textNode.value;
 
@@ -46,14 +42,14 @@ export default function remarkCodepenEmbed() {
     try {
       await Promise.all(transformer.map((t) => t()));
     } catch (error) {
-      console.error(`[remark-codepen-embed] Error: ${error}`);
+      console.error(`[remark-docswell-embed] Error: ${error}`);
     }
   }
 }
 
-const fetchEmbed = async (url: string): Promise<CodepenEmbed> => {
-  const endpoint = "https://codepen.io/api/oembed";
+const fetchEmbed = async (url: string): Promise<DocswellEmbed> => {
+  const endpoint = "https://www.docswell.com/service/oembed";
   const query = encodeURIComponent(url);
-  const resp = await fetch(`${endpoint}?format=json&url=${query}`);
+  const resp = await fetch(`${endpoint}?url=${query}`);
   return await resp.json();
 }
