@@ -52,10 +52,11 @@ const readingTime = getReadingTime(body);
 						href={`/blog/articles/${slug}`}
 						class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`
 					>
-						<h2
+						<!-- <h2
 							class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip"
 							transition:name={`title-${article.slug}`}
-						>
+						> -->
+						<h2 class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip">
 							{data.title}
 						</h2>
 					</a>

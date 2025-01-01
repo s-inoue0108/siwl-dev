@@ -61,7 +61,7 @@ const { title, description } = Astro.props;
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141830" />
 
 		<!--View Transitions-->
-		<ViewTransitions />
+		<!-- <ViewTransitions /> -->
 
 		<!--noindex nofollow in /contact, privacy-policy-->
 		{
@@ -123,7 +123,7 @@ const { title, description } = Astro.props;
 			};
 
 			initializeTheme();
-			document.addEventListener("astro:after-swap", initializeTheme);
+			// document.addEventListener("astro:after-swap", initializeTheme);
 		</script>
 
 		<!--title -->
