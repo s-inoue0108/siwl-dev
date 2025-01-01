@@ -34,7 +34,7 @@ const { Content, headings } = await article.render();
 >
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
-			<ArticleHeadline data={article.data} body={article.body} />
+			<ArticleHeadline slug={article.slug} data={article.data} body={article.body} />
 			<div class="lg:hidden">
 				<Toc headings={headings} client:visible />
 			</div>

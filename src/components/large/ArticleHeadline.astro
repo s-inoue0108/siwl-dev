@@ -5,11 +5,12 @@ import ClassifyCard from "../card/ClassifyCard.astro";
 import { getReadingTime } from "../../utils/common/getreadingtime";
 
 interface Props {
+	slug: CollectionEntry<"article">["slug"];
 	data: CollectionEntry<"article">["data"];
 	body: CollectionEntry<"article">["body"];
 }
 
-const { data, body } = Astro.props;
+const { slug, data, body } = Astro.props;
 
 const category = await getEntry("category", data.category.id);
 const tags = await getEntries(data.tags ? data.tags : []);
@@ -21,12 +22,9 @@ const readingTime = getReadingTime(body);
 	<div
 		class={`border-l-[12px] ${category.id === "tech" ? "border-accent-sub-base" : "border-accent-base"} px-4 lg:px-6 -mx-4 sm:w-full sm:mx-0`}
 	>
-		<!-- <h1
-			class="text-[1.5rem] sm:text-[1.875rem] lg:text-[2.25rem] 2xl:text-[3rem] tracking-wide xl:leading-relaxed font-bold"
-			transition:name={`title-${slug}`}
-		> -->
 		<h1
 			class="text-[1.5rem] sm:text-[1.875rem] lg:text-[2.25rem] 2xl:text-[3rem] tracking-wide xl:leading-relaxed font-bold"
+			transition:name={`title-${slug}`}
 		>
 			{data.title}
 		</h1>

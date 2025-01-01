@@ -24,8 +24,7 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
 		>
 			<nav>
-				{/* <a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload> */}
-				<a href="/" class="text-4xl lg:text-5xl font-extrabold">
+				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
 					{appName}
 				</a>
 				<ul class="flex absolute items-center gap-4 pt-8 xl:pt-6">
@@ -89,14 +88,10 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 					<li>
 						<div class="flex items-center gap-3 xl:gap-4">
 							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
-							{/* <a
-								href={rootpath}
-								class="tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
-								data-astro-reload
-							> */}
 							<a
 								href={rootpath}
 								class="tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
+								data-astro-reload
 							>
 								{name}
 							</a>
@@ -109,14 +104,10 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 										<li>
 											<div class="flex items-center gap-3 xl:gap-4">
 												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
-												{/* <a
-													href={subset.rootpath}
-													class="tracking-wide font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
-													data-astro-reload
-												> */}
 												<a
 													href={subset.rootpath}
 													class="tracking-wide font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
+													data-astro-reload
 												>
 													{subset.name}
 												</a>
