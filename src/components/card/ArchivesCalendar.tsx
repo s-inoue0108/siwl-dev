@@ -1,14 +1,9 @@
-import type { CollectionEntry } from "astro:content";
-import { createMemo, createSignal, For } from "solid-js";
+import { createMemo, createSignal, For, Index } from "solid-js";
 import { IoGitCommitOutline } from "solid-icons/io";
 import { getMonths } from "../../utils/common/utilfuncs";
 import { allArticles } from "../../utils/store/collections";
 
-interface Props {
-	articles: CollectionEntry<"article">[];
-}
-
-const ArchivesCalendar = ({ articles }: Props) => {
+const ArchivesCalendar = () => {
 	const [selectedYear, setSelectedYear] = createSignal<number>(new Date().getFullYear());
 
 	const handleChange = (e: Event) => {
@@ -19,10 +14,6 @@ const ArchivesCalendar = ({ articles }: Props) => {
 	};
 
 	const months = getMonths();
-
-	const publishYears = articles.map(({ data }) => data.publishDate.getFullYear());
-
-	const uniquePublishYears = Array.from(new Set(publishYears)).sort((a, b) => b - a);
 
 	const numberOfArticleEachMonths = createMemo(() => {
 		const currentYearArticles = allArticles.filter(({ data }) => {
@@ -45,6 +36,16 @@ const ArchivesCalendar = ({ articles }: Props) => {
 		return numberOfArticlesEachMonths;
 	});
 
+	const getAvailableYears = (start: number, end: number): number[] => {
+		const arr = [];
+		for (let n = start; n <= end; n++) {
+			arr.push(n);
+		}
+		return arr;
+	};
+
+	const availableYears = getAvailableYears(2024, new Date().getFullYear());
+
 	return (
 		<div class="flex justify-center">
 			<ul class="flex flex-col">
@@ -54,9 +55,13 @@ const ArchivesCalendar = ({ articles }: Props) => {
 					onChange={(e) => handleChange(e)}
 					class="mb-8 border-muted-background bg-muted-background/30 text-center text-lg xl:text-2xl font-semibold rounded-lg"
 				>
-					{uniquePublishYears.map((year) => {
-						return <option value={year}>{year}</option>;
-					})}
+					<Index each={availableYears}>
+						{(year) => (
+							<option value={year()} selected={year() === selectedYear()}>
+								{year()}
+							</option>
+						)}
+					</Index>
 				</select>
 				<For each={numberOfArticleEachMonths()}>
 					{({ name, value, numberOf }) => {
