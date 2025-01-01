@@ -31,16 +31,18 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 		data-reactions-enabled="0"
 		data-emit-metadata="0"
 		data-input-position="top"
-		data-theme="preferred_color_scheme"
+		data-theme="catppuccin_mocha"
 		data-lang="ja"
-		data-loading="lazy"
 		crossorigin="anonymous"
 		async></script>
 </div>
 
 <script is:inline>
 	const updateGiscusTheme = () => {
-		const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+		const theme =
+			window.localStorage.getItem("theme") ??
+			(document.documentElement.classList.contains("dark") ? "dark" : "light");
+
 		const iframe = document.querySelector("iframe.giscus-frame");
 		if (!iframe) return;
 
