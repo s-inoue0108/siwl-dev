@@ -347,16 +347,16 @@ $$
 
 *[!table] 対応済みの Web サービス*
 
-| サービス名   | サービス形態 | URL                        |
-| :----------- | :----------- | :------------------------- |
-| GitHub Gist  | ソースコード | `https://gist.github.com`  |
-| CodePen      | ソースコード | `https://codepen.io`       |
-| Speaker Deck | スライド     | `https://speakerdeck.com`  |
-| Docswell     | スライド     | `https://docswell.com`     |
-| Spotify      | 音楽         | `https://open.spotify.com` |
-| SoundCloud   | 音楽         | `https://soundcloud.com`   |
-| YouTube      | 動画         | `https://youtube.com`      |
-| Twitter (X)  | SNS          | `https://x.com`            |
+| サービス名   | サービス形態     | URL                        |
+| :----------- | :--------------- | :------------------------- |
+| GitHub Gist  | ソースコード共有 | `https://gist.github.com`  |
+| CodePen      | ソースコード共有 | `https://codepen.io`       |
+| Speaker Deck | スライド共有     | `https://speakerdeck.com`  |
+| Docswell     | スライド共有     | `https://docswell.com`     |
+| Spotify      | 音楽配信         | `https://open.spotify.com` |
+| SoundCloud   | 音楽配信         | `https://soundcloud.com`   |
+| YouTube      | 動画配信         | `https://youtube.com`      |
+| Twitter (X)  | SNS              | `https://x.com`            |
 
 
 ### GitHub Gist
