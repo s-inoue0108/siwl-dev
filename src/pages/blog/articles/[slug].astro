@@ -10,6 +10,7 @@ import PageTopButton from "../../../components/button/PageTopButton";
 import RelatedArticles from "../../../components/large/RelatedArticles.astro";
 import Shares from "../../../components/large/Shares";
 import SideArticles from "../../../components/large/SideArticles.astro";
+import Comments from "../../../components/large/Comments.astro";
 
 export const getStaticPaths = async () => {
 	const articles = await getCollection("article");
@@ -39,6 +40,7 @@ const { Content, headings } = await article.render();
 			</div>
 			<section id="article-content">
 				<Content />
+				<Comments />
 				<RelatedArticles relatedArticles={article.data.relatedArticles} />
 				<div class="lg:hidden">
 					<Shares

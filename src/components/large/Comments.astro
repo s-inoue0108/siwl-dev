@@ -1,0 +1,74 @@
+---
+import { IoChatbubbleEllipses } from "solid-icons/io";
+---
+
+<svg width="0" height="0">
+	<linearGradient id="gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+		<stop stop-color="rgba(var(--accent-sub-base), var(--opacity))" offset="0%"></stop>
+		<stop stop-color="rgba(var(--accent-base), var(--opacity))" offset="100%"></stop>
+	</linearGradient>
+</svg>
+<h2
+	id="h2-related-articles"
+	class="w-full overflow-x-auto mt-12 mb-4 lg:mt-24 lg:mb-8 text-[24px] lg:text-[30px] 2xl:text-[36px] font-bold flex items-center gap-2 pb-2 border-b border-muted-background"
+>
+	<div class="flex items-center gap-3">
+		<a href="#h2-related-articles" class="heading min-w-max whitespace-nowrap">
+			<IoChatbubbleEllipses style={{ fill: "url(#gradient)" }} />
+		</a>
+		コメント
+	</div>
+</h2>
+<div class="mx-auto pb-6">
+	<script
+		src="https://giscus.app/client.js"
+		data-repo="s-inoue0108/siwl-dev"
+		data-repo-id="R_kgDOM92vyA"
+		data-category="Announcements"
+		data-category-id="DIC_kwDOM92vyM4Clpeq"
+		data-mapping="pathname"
+		data-strict="0"
+		data-reactions-enabled="0"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme="catppuccin_latte"
+		data-lang="ja"
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async></script>
+</div>
+
+<script is:inline>
+	const updateGiscusTheme = () => {
+		const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+		const iframe = document.querySelector("iframe.giscus-frame");
+		if (!iframe) return;
+
+		const attributeStyle = (style) => {
+			iframe.contentWindow.postMessage(
+				{
+					giscus: {
+						setConfig: { theme: `${new URL(document.URL).origin}/giscus/${style}.css` },
+					},
+				},
+				"https://giscus.app"
+			);
+		};
+
+		switch (theme) {
+			case "dark":
+				attributeStyle("catppuccin_mocha");
+				break;
+			case "light":
+				attributeStyle("catppuccin_latte");
+				break;
+		}
+	};
+
+	const observer = new MutationObserver(updateGiscusTheme);
+	observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+	window.onload = () => {
+		updateGiscusTheme();
+	};
+</script>
