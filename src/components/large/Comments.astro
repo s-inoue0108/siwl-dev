@@ -62,7 +62,13 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 
 	const giscusScript = document.createElement("script");
 	Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
-	document.getElementById("comments")!.appendChild(giscusScript);
+
+	const attachScript = () => {
+		document.getElementById("comments")!.appendChild(giscusScript);
+	};
+
+	attachScript();
+	document.addEventListener("astro:after-swap", attachScript);
 </script>
 
 <script is:inline>
