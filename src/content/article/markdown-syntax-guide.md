@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能なMarkdown記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-01T12:23:12+09:00
+updateDate: 2025-01-01T12:23:55+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -357,7 +357,6 @@ $$
 | SoundCloud   | 音楽         | `https://soundcloud.com`   |
 | YouTube      | 動画         | `https://youtube.com`      |
 | Twitter (X)  | SNS          | `https://x.com`            |
-| Canva        | デザイン     | `https://canva.com`        |
 
 
 ### GitHub Gist
@@ -435,15 +434,6 @@ https://twitter.com/astrodotbuild/status/1844403385375862824
 ```
 
 https://x.com/astrodotbuild/status/1844403385375862824
-
-## Canva
-
-```md:記法
-<!--https://canva.com/design/<query>/view-->
-https://www.canva.com/design/DACHZTlgWkU/view
-```
-
-https://www.canva.com/design/DACHZTlgWkU/view
 
 ## [参考] ZennのMarkdown記法
 
