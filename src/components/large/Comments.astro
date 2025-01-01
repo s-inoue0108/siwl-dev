@@ -19,23 +19,51 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 		コメント
 	</div>
 </h2>
-<div class="mx-auto pb-6">
-	<script
-		src="https://giscus.app/client.js"
-		data-repo="s-inoue0108/siwl-dev"
-		data-repo-id="R_kgDOM92vyA"
-		data-category="Announcements"
-		data-category-id="DIC_kwDOM92vyM4Clpeq"
-		data-mapping="pathname"
-		data-strict="0"
-		data-reactions-enabled="0"
-		data-emit-metadata="0"
-		data-input-position="top"
-		data-theme="catppuccin_mocha"
-		data-lang="ja"
-		crossorigin="anonymous"
-		async></script>
-</div>
+<section id="comments" class="mx-auto pb-6"></section>
+
+<script>
+	interface GiscusAttributes {
+		src: string;
+		"data-repo": string;
+		"data-repo-id": string;
+		"data-category": string;
+		"data-category-id": string;
+		"data-mapping": string;
+		"data-reactions-enabled": string;
+		"data-emit-metadata": string;
+		"data-theme": string | null;
+		"data-lang": string;
+		"data-loading": string;
+		crossorigin: string;
+		async: string;
+	}
+
+	const theme =
+		window.localStorage.getItem("theme") ??
+		(document.documentElement.classList.contains("dark") ? "dark" : "light");
+
+	const giscusTheme = theme === "dark" ? "catppuccin_mocha" : "catppuccin_latte";
+
+	const giscusAttributes: GiscusAttributes = {
+		src: "https://giscus.app/client.js",
+		"data-repo": "s-inoue0108/siwl-dev",
+		"data-repo-id": "R_kgDOM92vyA",
+		"data-category": "Announcements",
+		"data-category-id": "DIC_kwDOM92vyM4Clpeq",
+		"data-mapping": "pathname",
+		"data-reactions-enabled": "0",
+		"data-emit-metadata": "0",
+		"data-theme": giscusTheme,
+		"data-lang": "ja",
+		"data-loading": "lazy",
+		crossorigin: "anonymous",
+		async: "",
+	};
+
+	const giscusScript = document.createElement("script");
+	Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+	document.getElementById("comments")!.appendChild(giscusScript);
+</script>
 
 <script is:inline>
 	const updateGiscusTheme = () => {
@@ -56,6 +84,8 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 				"https://giscus.app"
 			);
 		};
+
+		console.log(theme);
 
 		switch (theme) {
 			case "dark":
