@@ -9,17 +9,26 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 	</linearGradient>
 </svg>
 <h2
-	id="h2-comments"
+	id="h2-discussions"
 	class="w-full overflow-x-auto mt-12 mb-4 lg:mt-24 lg:mb-8 text-[24px] lg:text-[30px] 2xl:text-[36px] font-bold flex items-center gap-2 pb-2 border-b border-muted-background"
 >
 	<div class="flex items-center gap-3">
-		<a href="#h2-comments" class="heading min-w-max whitespace-nowrap">
+		<a href="#h2-discussions" class="heading min-w-max whitespace-nowrap">
 			<IoChatbubbleEllipses style={{ fill: "url(#gradient)" }} />
 		</a>
-		Comments
+		Discussions
 	</div>
 </h2>
-<div id="comments" class="mx-auto pb-6"></div>
+<div id="discussions" class="mx-auto mb-2"></div>
+<p class="text-xs text-right mb-4">
+	お問い合わせフォームは
+	<a
+		href="/contact"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="font-semibold text-sky visited:text-purple hover:underline">こちら↗</a
+	>
+</p>
 
 <script>
 	interface GiscusAttributes {
@@ -47,10 +56,10 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 		src: "https://giscus.app/client.js",
 		"data-repo": "s-inoue0108/siwl-dev",
 		"data-repo-id": "R_kgDOM92vyA",
-		"data-category": "Announcements",
+		"data-category": "General",
 		"data-category-id": "DIC_kwDOM92vyM4Clpeq",
 		"data-mapping": "pathname",
-		"data-reactions-enabled": "0",
+		"data-reactions-enabled": "1",
 		"data-emit-metadata": "0",
 		"data-theme": giscusTheme,
 		"data-lang": "ja",
@@ -62,7 +71,7 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 	Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
 
 	const attachScript = () => {
-		document.getElementById("comments")!.appendChild(giscusScript);
+		document.getElementById("discussions")!.appendChild(giscusScript);
 	};
 
 	attachScript();

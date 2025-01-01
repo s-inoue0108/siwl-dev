@@ -90,7 +90,7 @@ https://github.com/giscus/giscus/issues/336
 		"data-category": "Announcements",
 		"data-category-id": "DIC_kwDOM92vyM4Clpeq",
 		"data-mapping": "pathname",
-		"data-reactions-enabled": "0",
+		"data-reactions-enabled": "1",
 		"data-emit-metadata": "0",
 		"data-theme": giscusTheme,
 		"data-lang": "ja",
