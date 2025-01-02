@@ -127,16 +127,20 @@ const { Content, headings } = await privacyPolicy.render();
 
 		/* image */
 		p > img {
-			@apply rounded-xl lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-4;
+			@apply rounded-md lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-16;
 		}
 
 		/* caption */
-		p > figcaption {
-			@apply mb-4;
+		.caption-image {
+			@apply mb-8;
+		}
+
+		.caption-table {
+			@apply mt-8;
 		}
 
 		table {
-			@apply table min-w-[1px] max-w-full mx-auto tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+			@apply table min-w-[1px] max-w-full mx-auto mb-16 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 
 			thead {
 				@apply bg-muted-background/50;

@@ -27,7 +27,7 @@ export default function remarkFigureCaption() {
         const figcaptionNode = {
           type: "html",
           value: `<p>
-                    <figcaption class="w-fit py-2 flex gap-1 items-center mx-auto text-muted-foreground font-semibold">
+                    <figcaption class="caption-${type} w-fit py-2 flex gap-1 items-center mx-auto text-muted-foreground font-semibold">
                       ${captionIcons[type]}
                       ${match.groups.title}
                     </figcaption>

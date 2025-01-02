@@ -279,8 +279,6 @@ title は省略可能です。
 | `tip`       | 小ネタ           | green   |
 | `math`      | 数学の公式や定理 | orange  |
 
-<br />
-
 > [!quote]
 > 
 > text text text
