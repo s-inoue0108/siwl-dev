@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "SIWL.dev",
+			"path": "."
+		},
+		{
+			"name": "Articles",
+			"path": "src/content/article"
+		},
+		{
+			"name": "Tags",
+			"path": "src/content/tag"
+		},
+		{
+			"name": "Bookmarks",
+			"path": "src/content/bookmark"
+		},
+		{
+			"name": "Works",
+			"path": "src/content/work"
+		},
+		{
+			"name": "Fixed",
+			"path": "src/content/fixed"
+		}
+	]
+}

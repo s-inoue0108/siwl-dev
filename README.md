@@ -1,467 +1,86 @@
 # SIWL.dev
 
-![SIWL.dev](https://siwl.dev/siwl-logo.svg)
+https://siwl.dev
 
-## 記事の書き方
+Personal website of [@s-inoue0108](https://github.com/s-inoue0108).
 
-### 新しく記事を書く
+- [SIWL.dev](#siwldev)
+	- [Contents Management CLI](#contents-management-cli)
+		- [Alias configuration](#alias-configuration)
+		- [Usage](#usage)
+		- [Available `<action>`s and `-option`s](#available-actions-and--options)
+		- [Available `<model>`s](#available-models)
+	- [General Commands](#general-commands)
+	- [Markdown Syntax](#markdown-syntax)
 
-1. 記事を追加します：
 
-```bash
-$ siwl -f <filename> add
-```
+## Contents Management CLI
 
-2. 開発サーバを起動します：
+Execute `/.cli/siwl.ts`.
+\
+Built with [commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
 
-```bash
-$ siwl -d
-# or
-pnpm run dev
-```
+### Alias configuration
 
-3. `src/content/article/<filename>.md` のスキーマと内容を編集します。
-
-```bash
-# current: src/content
-$ code article/<filename>.md
-```
-
-4. 記事を公開設定にします：
+Add to `~/.bashrc`:
 
 ```bash
-$ siwl -f <filename> pub
+alias siwl="source /path/to/dir/.cli/siwl.sh"
 ```
 
-5. 変更を反映します：
+### Usage
 
 ```bash
-$ siwl -b <branch>
-# or
-$ git switch <branch>
-$ git add .
-$ git commit -m "edit article"
-$ git push origin <branch>
-$ git switch main
-$ git merge <branch>
-$ git push origin main
-$ git switch <branch>
+# Using pnpm
+pnpm run siwl <action> -option <arg>
+
+# Using alias
+siwl -option <arg> <action>
 ```
 
-### 既存の記事を更新する
+### Available `<action>`s and `-option`s
 
-1. 記事の公開状態を更新します：
-
-```bash
-# 下書きにする
-$ siwl -f <filename> dft
-# 公開する
-$ siwl -f <filename> pub
-```
-
-3. 開発サーバを起動します：
-
-```bash
-$ siwl -d
-# or
-pnpm run dev
-```
-
-4. 記事の内容を更新します：
-
-```bash
-# current: src/content
-$ code article/<filename>.md
-```
-
-5. 変更を反映します：
-
-```bash
-$ siwl -b <branch>
-# or
-$ git switch <branch>
-$ git add .
-$ git commit -m "edit article"
-$ git push origin <branch>
-$ git switch main
-$ git merge <branch>
-$ git push origin main
-$ git switch <branch>
-```
-
-## ルーティング
-
-### ページルート
-
-`/route.ts` の `_ROUTE_CONFIG` でページルートとメタ情報を管理しています。以下は例です。
-
-```ts
-[
-	{
-		name: "Home",
-		matchers: [/^\/$/],
-		rootpath: "/",
-		description: "プログラミングについての情報を発信しています。",
-		subsets: [...],
-	},
-];
-```
-
-## CLI
-
-### Content Management CLI
-
-Node.js/TypeScript/CommanderJS で作成しており、`/.cli/siwl.ts` が実行ファイルです。
-
-```bash
-# using pnpm
-$ pnpm run siwl <action> -opt
-```
-
-以上は NPM スクリプト `tsx /.cli/siwl.ts` を実行します。
-
-#### 利用可能な `<model>`
-
-| `<model>`  | description                  | filetype |
-| :--------- | :--------------------------- | :------- |
-| `article`  | ブログの記事                 | MARKDOWN |
-| `tag`      | ブログのタグ                 | YAML     |
-| `bookmark` | Webページのブックマーク      | YAML     |
-| `work`     | ポートフォリオページの制作物 | YAML     |
-
-> [!IMPORTANT]
-> `<model>` が未指定あるいは typo の場合は `article` モデルを参照します。
-
-#### 利用可能な `<action>`
-
-| `<action>`     | `-opt`                     | description                                                                                                |
-| :------------- | :------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `add\|new`     | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を作成し、スキーマを初期化します。                             |
-| `remove\|rm`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を削除します。                                                 |
-| `draft\|dft`   | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を下書きにもどします。                                         |
-| `publish\|pub` | `-f <filename> -m <model>` | `src/content/<model>/<filename>.(md\|yaml)` を公開設定にし、`article` の場合はタイムスタンプを更新します。 |
-| `list\|ls`     | `-m <model>`               | `src/content/<model>/` を公開状態を含めて一覧表示します。                                                  |
-|                | `-h`                       | Content Management CLI のヘルプを表示します。                                                              |
-|                | `-v`                       | Content Management CLI のバージョンを表示します。                                                          |
+| `<action>`     | `-option <arg>`            | description                                                                                     |
+| :------------- | :------------------------- | ----------------------------------------------------------------------------------------------- |
+| `add\|new`     | `-f <filename> -m <model>` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
+| `remove\|rm`   | `-f <filename> -m <model>` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
+| `draft\|dft`   | `-f <filename> -m <model>` | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                              |
+| `publish\|pub` | `-f <filename> -m <model>` | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`. |
+| `list\|ls`     | `-m <model>`               | List `src/content/<model>/` with status.                                                        |
+|                | `-h`                       | Display help.                                                                                   |
+|                | `-v`                       | Display version.                                                                                |
 
 > [!TIP]
-> `<action> -h` でコマンド毎のヘルプを表示します。
+> Type `<action> -h` to display help for each `<action>`s.
 
-### Content Management CLI + 汎用オプション
+### Available `<model>`s
 
-`/.cli/siwl.ts` をフォークした `/.cli/siwl.sh` を実行します。
-
-```bash
-$ siwl -opt <action>
-```
+| `<model>`  | description                | filetype |
+| :--------- | :------------------------- | :------- |
+| `article`  | Article page for blog.     | md       |
+| `tag`      | Tags to classify articles. | yaml     |
+| `bookmark` | Links to external website. | yaml     |
+| `work`     | My production.             | yaml     |
 
 > [!IMPORTANT]
-> 以上のコマンドを実行するためには、次のエイリアスを `~/.bashrc` に設定する必要があります。
-> 
-> ```bash
-> alias siwl="source <local-dir>/.cli/siwl.sh"
-> ```
+> If `<model>` is unspecified or typo, it refers to `article`.
 
-このエイリアスは Content Management CLI のほかに、以下の汎用オプションを提供します。
+## General Commands
 
-| `-opt`                       | description                                                                              |
-| :--------------------------- | :--------------------------------------------------------------------------------------- |
-| `-d`                         | 開発サーバを起動します。                                                                 |
-| `-b <branch>`                | `origin/<branch>`へ変更を push し、`origin/main` へマージします。                        |
-| `-s`                         | 現在のローカルブランチの内容を `origin/main` の内容で同期します。                        |
-| `-e <service> -f <filename>` | Markdown を `<service>` の形式へ変換し、エクスポートします。                             |
-| `-h`                         | プロジェクトに関連する Web ページの情報と、Content Management CLI のヘルプを表示します。 |
+Execute `/.cli/siwl.sh`. Content Management CLI is integrated into this script.
 
-## Markdown の構文
-
-GitHub-Flavored Markdown をベースに、拡張構文を導入しています。
-
-> [!NOTE]
-> 詳細は https://siwl.dev/blog/articles/markdown-syntax-guide にあります。
-
-> [!TIP]
-> ZennのMarkdown記法: https://zenn.dev/zenn/articles/markdown-guide
-
-### 見出し
-
-```md
-## レベル1
-### レベル2
-#### レベル3
+```bash
+# Using alias
+$ siwl -option <arg>
 ```
 
-> [!WARNING]
-> `<h1>`, `<h5>`, `<h6>` は使用できません。
-
-### リスト
-
-#### 列挙
-
-```md
-- ul-1
-- ul-2
-  - ul-2-1
-  - ul-2-2
-```
-
-#### 番号付き
-
-```md
-1. ol-1
-2. ol-2
-3. 1. ol-3-1
-   2. ol-3-2
-```
-
-### インラインスタイル
-
-#### 強調
-
-```md
-これは **強調** されます。
-```
-
-#### 取り消し線
-
-```md
-~取り消し線~ がつきます。
-
-<!--or-->
-
-~~取り消し線~~ がつきます。
-```
-
-#### イタリック
-
-```md
-これは *イタリック* になります。
-```
-
-### 文末脚注
-
-```md
-これは脚注です[^1]。
-
-<!--footnote-->
-[^1]: ここに脚注がきます。
-```
-
-### 区切り線
-
-```md:区切り線
----
-```
-
-### リンク
-
-#### むき出しのリンク
-
-URLが独立した行にある場合にのみ変換されます。
-
-```md
-https://siwl.dev/blog/articles/renewal-note
-
-<!--or-->
-
-<https://siwl.dev/blog/articles/renewal-note>
-```
-
-#### インラインリンク
-
-```md
-[リニューアルノート](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
-
-https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
-
-[相対パスによるリンク](/blog/articles/renewal-note) は内部リンクです。
-```
-
-### 画像
-
-画像ファイルは `./images/` に格納することを推奨します。キャプションをつける場合は1行空けます。
-
-```md
-![プロフィール画像](./images/profile-image.jpg)
-
-*[!image] 画像の例*
-```
-
-### 表
-
-キャプションをつける場合は1行空けます。
-
-```md
-*[!table] テーブルの例*
-
-| a     | b     |     c |   d   |
-| ----- | :---- | ----: | :---: |
-| aaaaa | bbbbb | ccccc | ddddd |
-| aaaa  | bbbb  |  cccc | dddd  |
-| aaa   | bbb   |   ccc |  ddd  |
-```
-
-### コード
-
-[https://shiki.matsu.io/languages](Shiki) を使用しています。
-
-#### インラインコード
-
-```md:インラインコード
-`inline code`
-```
-
-#### タイトル付きコードブロック
-
-タイトルは必須です。
-
-````md
-```ts:TypeScriptによる例
-const text: string = "Hello, world!";
-
-const displayTextType = (text: string) => {
-  if (typeof text !== "string") return;
-  console.log("text type is string");
-}
-```
-````
-
-### 引用
-
-#### 通常の引用
-
-```md
-> 通常の引用
-```
-
-#### コールアウト
-
-title は省略可能です。
-
-```md
-> [!type] title
->
-> text text text
-```
-
-| type        | description      | color   |
-| :---------- | :--------------- | :------ |
-| `quote`     | 強調したい引用   | default |
-| `note`      | 補足             | default |
-| `info`      | 付帯する情報     | blue    |
-| `important` | 重要事項         | violet  |
-| `warn`      | 警告             | amber   |
-| `alert`     | 強い警告         | red     |
-| `tip`       | 小ネタ           | green   |
-| `math`      | 数学の公式や定理 | orange  |
-
-### 数式
-
-$ \KaTeX $ を使用しています。詳細は https://katex.org/docs/supported, https://katex.org/docs/support_table
-
-#### インライン数式
-
-```md
-$ f(x) = e^x $ はインライン数式です。
-```
-
-#### 別行立て数式
-
-```tex
-$$
-f(t) = \sum_{n = 0}^\infty \frac{t^n}{n!} \left. \frac{d^{n}f(t)}{dt^n}\right|_{t = 0}
-$$
-```
-
-### 埋め込み
-
-いくつかの Web サービスは oEmbed API を利用した特殊な埋め込みに対応しています。
-
-*[!table] 対応済みの Web サービス*
-
-| サービス名   | サービス形態     | URL                        |
-| :----------- | :--------------- | :------------------------- |
-| GitHub Gist  | ソースコード共有 | `https://gist.github.com`  |
-| CodePen      | ソースコード共有 | `https://codepen.io`       |
-| Speaker Deck | スライド共有     | `https://speakerdeck.com`  |
-| Docswell     | スライド共有     | `https://docswell.com`     |
-| Spotify      | 音楽配信         | `https://open.spotify.com` |
-| SoundCloud   | 音楽配信         | `https://soundcloud.com`   |
-| YouTube      | 動画配信         | `https://youtube.com`      |
-| Twitter (X)  | SNS              | `https://x.com`            |
-
-
-#### GitHub Gist
-
-```md:記法
-<!--https://gist.github.com/<user>/<query>-->
-https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
-```
-
-https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
-
-#### CodePen
-
-```md:記法
-<!--https://codepen.io/<user>/pen/<query>-->
-https://codepen.io/s-inoue0108/pen/PwYJOyv
-```
-
-https://codepen.io/s-inoue0108/pen/PwYJOyv
-
-#### Speaker Deck
-
-```md:記法
-<!--https://speakerdeck.com/<user>/<query>-->
-https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
-```
-
-https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
-
-#### Docswell
-
-```md:記法
-<!--https://docswell.com/s/<user>/<query>-->
-https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
-```
-
-https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
-
-#### Spotify
-
-```md:記法
-<!--https://open.spotify.com/<locale?>/<category>/<query>-->
-https://open.spotify.com/intl-ja/track/6Ug3vnQRk30sUrOvDWstgI
-https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
-```
-
-https://open.spotify.com/intl-ja/track/6Ug3vnQRk30sUrOvDWstgI
-
-https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
-
-#### SoundCloud
-
-```md:記法
-<!--https://soundcloud.com/<user>/<query>-->
-https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
-```
-
-https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
-
-#### YouTube
-
-```md:記法
-<!--https://www.youtube.com/watch?v=<query>-->
-https://www.youtube.com/watch?v=sTxY93pA1zI
-```
-
-https://www.youtube.com/watch?v=sTxY93pA1zI
-
-#### Twitter (X)
-
-```md:記法
-<!--https://[x|twitter].com/<user>/status/<query>-->
-https://x.com/astrodotbuild/status/1844403385375862824
-https://twitter.com/astrodotbuild/status/1844403385375862824
-```
-
-https://x.com/astrodotbuild/status/1844403385375862824
+| `-option <arg>` | description                                                                           |
+| :-------------- | :------------------------------------------------------------------------------------ |
+| `-d`            | Activate dev server.                                                                  |
+| `-b <branch>`   | Push changes to `origin/<branch>` and merge into `origin/main`.                       |
+| `-s`            | Synchronize the current local branch with the contents of `origin/main`.              |
+| `-h`            | Displays information related to this project and help for the Content Management CLI. |
+
+## Markdown Syntax
+
+Please refer to https://siwl.dev/blog/articles/markdown-syntax-guide.
