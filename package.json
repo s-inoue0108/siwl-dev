@@ -1,5 +1,5 @@
 {
-  "name": "siwl-v4",
+  "name": "siwl-dev",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "siwl": "tsx .cli/siwl.ts"
+    "siwl": "tsx .cli/siwl.ts",
+    "deploy": "tsx .cli/deploy.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",

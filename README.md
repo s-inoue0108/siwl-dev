@@ -1,46 +1,35 @@
 # SIWL.dev
 
-https://siwl.dev
+Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with Astro, SolidJS and Tailwind CSS.
 
-Personal website of [@s-inoue0108](https://github.com/s-inoue0108).
+- https://siwl.dev
+- https://github.com/s-inoue0108/siwl-dev
 
-- [SIWL.dev](#siwldev)
-	- [Contents Management CLI](#contents-management-cli)
-		- [Alias configuration](#alias-configuration)
-		- [Usage](#usage)
-		- [Available `<action>`s and `-option`s](#available-actions-and--options)
-		- [Available `<model>`s](#available-models)
-	- [General Commands](#general-commands)
-	- [Markdown Syntax](#markdown-syntax)
+## General Commands
 
+### Activate local server
+
+```bash
+# Using Yarn
+yarn dev
+
+yarn start
+```
 
 ## Contents Management CLI
 
-Execute `/.cli/siwl.ts`.
-\
-Built with [commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
-
-### Alias configuration
-
-Add to `~/.bashrc`:
-
-```bash
-alias siwl="source /path/to/dir/.cli/siwl.sh"
-```
+Execute `/.cli/siwl.ts` using `npm` script. Built with [commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
 
 ### Usage
 
 ```bash
-# Using pnpm
-pnpm run siwl <action> -option <arg>
-
-# Using alias
-siwl -option <arg> <action>
+# Using Yarn
+yarn run siwl <action> -option <arg>
 ```
 
 ### Available `<action>`s and `-option`s
 
-| `<action>`     | `-option <arg>`            | description                                                                                     |
+| `<action>`     | `-option <arg>`            | Description                                                                                     |
 | :------------- | :------------------------- | ----------------------------------------------------------------------------------------------- |
 | `add\|new`     | `-f <filename> -m <model>` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
 | `remove\|rm`   | `-f <filename> -m <model>` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
@@ -50,12 +39,9 @@ siwl -option <arg> <action>
 |                | `-h`                       | Display help.                                                                                   |
 |                | `-v`                       | Display version.                                                                                |
 
-> [!TIP]
-> Type `<action> -h` to display help for each `<action>`s.
-
 ### Available `<model>`s
 
-| `<model>`  | description                | filetype |
+| `<model>`  | Description                | Filetype |
 | :--------- | :------------------------- | :------- |
 | `article`  | Article page for blog.     | md       |
 | `tag`      | Tags to classify articles. | yaml     |
@@ -64,22 +50,6 @@ siwl -option <arg> <action>
 
 > [!IMPORTANT]
 > If `<model>` is unspecified or typo, it refers to `article`.
-
-## General Commands
-
-Execute `/.cli/siwl.sh`. Content Management CLI is integrated into this script.
-
-```bash
-# Using alias
-$ siwl -option <arg>
-```
-
-| `-option <arg>` | description                                                                           |
-| :-------------- | :------------------------------------------------------------------------------------ |
-| `-d`            | Activate dev server.                                                                  |
-| `-b <branch>`   | Push changes to `origin/<branch>` and merge into `origin/main`.                       |
-| `-s`            | Synchronize the current local branch with the contents of `origin/main`.              |
-| `-h`            | Displays information related to this project and help for the Content Management CLI. |
 
 ## Markdown Syntax
 

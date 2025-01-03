@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// "pnpm run siwl" for ailias, or "pnpm -s dlx tsx .cli/siwl.ts <cmd> --opt" for direct run
 
 import fs from "fs";
 import chalk from "chalk";
@@ -44,7 +43,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `---\nisDraft: true\ntitle: \ncategory: tech\ntags: []\ndescription: \npublishDate: ${toISOStringWithTimezone(new Date())}\nupdateDate: ${toISOStringWithTimezone(new Date())}\nrelatedArticles: []\n---`,
+        `---\nisDraft: true\ntitle: \ncategory: tech\ntags: []\ndescription: ""\npublishDate: ${toISOStringWithTimezone(new Date())}\nupdateDate: ${toISOStringWithTimezone(new Date())}\nrelatedArticles: []\n---`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.md`)}`);
@@ -80,7 +79,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `isDraft: true\nname: \ndescription: \nurl: \n`,
+        `isDraft: true\nname: \ndescription: ""\nurl: \n`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
@@ -97,7 +96,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `isDraft: true\ntitle: \ndescription: \nurl: \nstacks: []\nkeywords: []\nimages: []\n`,
+        `isDraft: true\ntitle: \ndescription: ""\nurl: \nstacks: []\nkeywords: []\nimages: []\n`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
