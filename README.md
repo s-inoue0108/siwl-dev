@@ -2,9 +2,6 @@
 
 Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with Astro, SolidJS and Tailwind CSS.
 
-- https://siwl.dev
-- https://github.com/s-inoue0108/siwl-dev
-
 ## General Commands
 
 ### Activate local server
@@ -39,18 +36,21 @@ yarn run siwl <action> -option <arg>
 |                | `-h`                       | Display help.                                                                                   |
 |                | `-v`                       | Display version.                                                                                |
 
+> [!TIP]
+> Use `<action> -h` to display help for each actions.
+
 ### Available `<model>`s
 
-| `<model>`  | Description                | Filetype |
-| :--------- | :------------------------- | :------- |
-| `article`  | Article page for blog.     | md       |
-| `tag`      | Tags to classify articles. | yaml     |
-| `bookmark` | Links to external website. | yaml     |
-| `work`     | My production.             | yaml     |
+| `<model>`  | Description               | Filetype |
+| :--------- | :------------------------ | :------- |
+| `article`  | Article page for blog.    | md       |
+| `tag`      | Tag to classify articles. | yaml     |
+| `bookmark` | Link to external website. | yaml     |
+| `work`     | My web work.              | yaml     |
 
 > [!IMPORTANT]
 > If `<model>` is unspecified or typo, it refers to `article`.
 
 ## Markdown Syntax
 
-Please refer to https://siwl.dev/blog/articles/markdown-syntax-guide.
+Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
