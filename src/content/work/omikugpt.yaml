@@ -1,0 +1,7 @@
+isDraft: false
+title: おみくじアプリ
+description: ChatGPT API を利用したモバイル向けの簡単なおみくじアプリです。
+url: https://omikugpt.vercel.app
+github: https://github.com/s-inoue0108/gpt-omikuji
+keywords: [ChatGPT, Vue, Nuxt.js, Vercel]
+image: ./images/omikugpt.png

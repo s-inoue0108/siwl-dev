@@ -96,7 +96,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `isDraft: true\ntitle: \ndescription: ""\nurl: \nstacks: []\nkeywords: []\nimages: []\n`,
+        `isDraft: true\ntitle: \ndescription: ""\nurl: \ngithub: \nkeywords: []\nimage: ./images/\n`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
