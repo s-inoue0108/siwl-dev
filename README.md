@@ -107,3 +107,10 @@ yarn run deploy --zenn
 ```bash
 git subtree push --prefix=zenn zenn main
 ```
+
+### Synchronize
+
+```bash
+git subtree pull --prefix=zenn --squash zenn main
+yarn run deploy
+```
