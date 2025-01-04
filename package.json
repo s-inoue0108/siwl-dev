@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "siwl": "tsx .cli/siwl.ts",
-    "deploy": "tsx .cli/deploy.ts"
+    "deploy": "bash .cli/deploy.sh"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
