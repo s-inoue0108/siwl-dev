@@ -23,9 +23,9 @@ const getFilename = (cmd: any) => {
   return filename;
 }
 
-// add
+// create
 program
-  .command("add")
+  .command("create")
   .alias("new")
   .description("add a new content")
   .requiredOption("-f, --filename <filename>", "content filename")
@@ -241,7 +241,7 @@ program
       });
 
     }
-  })
+  });
 
 // list
 program
@@ -282,8 +282,8 @@ program
 
 // open
 program
-  .command("code")
-  .alias("cd")
+  .command("open")
+  .alias("op")
   .description("open content by Visual Studio Code")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
@@ -307,10 +307,10 @@ program
     });
   });
 
-// access
+// view
 program
-  .command("access")
-  .alias("ac")
+  .command("view")
+  .alias("vi")
   .description("access article")
   .option("-f, --filename <filename>", "content filename")
   .option("-l, --local", 'use local server')
@@ -533,4 +533,4 @@ program
 
   });
 
-program.name("siwl").description("Contents Management CLI").version("1.0", "-v, --version").parse(process.argv);
+program.name("siwl").description("Contents Management CLI").version("2.0", "-v, --version").parse(process.argv);
