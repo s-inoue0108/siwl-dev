@@ -1,6 +1,6 @@
 # SIWL.dev
 
-Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with Astro, SolidJS and Tailwind CSS.
+Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [AstroJS](https://astro.build/), [SolidJS](https://solidjs.com) and [Tailwind CSS](https://tailwindcss.com).
 
 ## General Commands
 
@@ -9,13 +9,20 @@ Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with A
 ```bash
 # Using Yarn
 yarn dev
+```
 
-yarn start
+### Deploy
+
+Execute `/.cli/deploy.sh` via `npm` script.
+
+```bash
+# Using Yarn
+yarn run deploy
 ```
 
 ## Contents Management CLI
 
-Execute `/.cli/siwl.ts` using `npm` script. Built with [commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
+Execute `/.cli/siwl.ts` via `npm` script. This script is built by [Commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
 
 ### Usage
 
