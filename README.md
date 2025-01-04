@@ -4,7 +4,7 @@ Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [
 
 ## 💻 General Commands
 
-### start local server
+### Start local server
 
 The following environment is recommended:
 

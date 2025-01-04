@@ -1,10 +1,6 @@
 # SIWL.dev Zenn
 
-This is the subtree of `@s-inoue0108/siwl-dev`.
-
-```bash
-cd zenn
-```
+This is the subtree of [@s-inoue0108/siwl-dev](https://github.com/s-inoue0108/siwl-dev).
 
 ## Zenn CLI
 
