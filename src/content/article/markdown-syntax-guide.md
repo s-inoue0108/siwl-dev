@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-04T20:46:46+09:00
+updateDate: 2025-01-04T20:56:48+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -313,7 +313,7 @@ title は省略可能です。
 
 ## 数式
 
-$ \KaTeX $ を使用しています。
+$\KaTeX$ を使用しています。
 
 https://katex.org/docs/supported
 
