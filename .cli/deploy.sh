@@ -28,5 +28,8 @@ if [ -z "$provider" ]; then
   echo -e "\e[1m\e[92mDeployed successfully.\e[0m"
 
 elif [ "$provider" == "zenn" ]; then
-  echo "zenn"
+
+  # git add zenn/*
+  # git commit -m "update zenn"
+  # git push
 fi
