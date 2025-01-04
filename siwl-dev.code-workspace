@@ -27,6 +27,10 @@
 		{
 			"name": "Zenn",
 			"path": "./zenn"
+		},
+		{
+			"name": "Qiita",
+			"path": "./qiita"
 		}
 	]
 }

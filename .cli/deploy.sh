@@ -40,7 +40,7 @@ elif [ "$provider" == "--qiita" ]; then
   git switch "$current_branch"
 
   now=$(date +"%Y-%m-%d %H:%M")
-  echo -e "\e[1m\e[95m[$now] Push to qiita/main\e[0m"
+  echo -e "\e[1m\e[92m[$now] Push to qiita/main\e[0m"
 
   git subtree push --prefix=qiita qiita main
 else

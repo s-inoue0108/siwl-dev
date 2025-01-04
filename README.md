@@ -26,6 +26,9 @@ yarn run deploy
 
 # push with @s-inoue0108/siwl-dev-zenn
 yarn run deploy --zenn
+
+# push with @s-inoue0108/siwl-dev-qiita
+yarn run deploy --qiita
 ```
 
 ## 📂 Contents Management CLI
@@ -77,40 +80,8 @@ yarn run siwl <action> -option <arg>
 
 ## 🧑‍💻 Zenn
 
-- Check with [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
+- Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
 
-### Export article from this blog
+## 🧑‍💻 Qiita
 
-Automatically rewrite frontmatter and non-compliant syntax.
-
-```bash
-yarn run siwl ex -f <filename> -s zenn
-```
-
-### Zenn CLI
-
-Zenn CLI can be used in `/zenn/*`.
-
-```bash
-# preview at `/zenn/*`
-yarn zenn preview
-```
-
-### Push to parent repository with zenn repository
-
-```bash
-yarn run deploy --zenn
-```
-
-### Push only zenn repository
-
-```bash
-git subtree push --prefix=zenn zenn main
-```
-
-### Synchronize
-
-```bash
-git subtree pull --prefix=zenn --squash zenn main
-yarn run deploy
-```
+- Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-qiita).

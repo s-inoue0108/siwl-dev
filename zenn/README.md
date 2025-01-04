@@ -10,15 +10,13 @@ Zenn CLI can be used in `/zenn/*`.
 
 * [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
 
+## Export article from this blog
+
+Automatically rewrite frontmatter and non-compliant syntax.
+
 ```bash
-# add article
-yarn zenn new:article
-
-# preview
-yarn zenn preview
+yarn run siwl ex -f <filename> -s zenn
 ```
-
-## Deploy
 
 ### Push to parent repository with zenn repository
 
@@ -32,10 +30,9 @@ yarn run deploy --zenn
 git subtree push --prefix=zenn zenn main
 ```
 
-## Export article from SIWL.dev
-
-Automatically rewrite frontmatter and non-compliant syntax.
+### Synchronize
 
 ```bash
-yarn run siwl ex -f <filename> -s zenn
+git subtree pull --prefix=zenn --squash zenn main
+yarn run deploy
 ```
