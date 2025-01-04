@@ -71,6 +71,14 @@ else
   git push origin "$main_branch"
 
   git switch "$current_branch"
+
+  now=$(date +"%Y-%m-%d %H:%M")
+  echo -e "\e[1m\e[95m[$now] Push to zenn/main\e[0m"
+  git subtree push --prefix=zenn zenn main
+
+  now=$(date +"%Y-%m-%d %H:%M")
+  echo -e "\e[1m\e[92m[$now] Push to qiita/main\e[0m"
+  git subtree push --prefix=qiita qiita main
 fi
 
 echo -e "\e[1m\e[92mDeployed successfully.\e[0m"
