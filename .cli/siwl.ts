@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 import fs from "fs";
+import { exec } from "child_process";
 import chalk from "chalk";
 import { Command } from "commander";
-const program = new Command();
-
 import { toISOStringWithTimezone } from "../src/utils/common/utilfuncs";
+
+const program = new Command();
 
 const getModel = (cmd: any) => {
   const isModel = (arg: string | undefined): arg is ("article" | "tag" | "bookmark" | "work") => {
@@ -26,7 +27,7 @@ program
   .alias("new")
   .description("add a new content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -111,7 +112,7 @@ program
   .alias("rm")
   .description("remove a content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -195,7 +196,7 @@ program
   .alias("pub")
   .description("publishing a content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -245,8 +246,11 @@ program
   .command("list")
   .alias("ls")
   .description("view content list")
-  .option("-m, --model <model>", 'which model to use "article" | "tag" | "bookmark" | "work"')
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
+  .option("-d, --drafted", "show drafted contents")
+  .option("-p, --published", "show published contents")
   .action((cmd) => {
+
     const model = getModel(cmd);
 
     const getSlug = (isDraft: boolean, slug: string) => {
@@ -260,15 +264,52 @@ program
         fs.readFile(`./src/content/${model}/${dirent.name}`, 'utf8', (err, data) => {
           if (err) throw err;
           const isDraft = data.search(/isDraft: true/) === -1 ? false : true;
+
+          if (cmd.drafted && !isDraft) return;
+          if (cmd.published && isDraft) return;
+
           console.log(getSlug(isDraft, `* ${dirent.name.replace(".md", "").replace(".yaml", "")}`));
           if (model === "article") {
             const title = data.match(/title: (.*)/)![0].replace("title: ", "");
-            console.log(title);
-            console.log(``);
+            console.log(`${title}\n`);
           }
         })
       }
     });
   });
 
-program.name("siwl").description("Content Management CLI").version("0.0.1", "-v, --version").parse(process.argv);
+// access
+program
+  .command("access")
+  .alias("ac")
+  .description("access article")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-l, --local", 'use local server')
+  .action((cmd) => {
+    const filename = getFilename(cmd);
+    const path = `blog/articles/${filename}`;
+
+    const openURL = (url: string) => {
+      exec(`bash ./.cli/access.sh ${url}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing command: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
+    }
+
+    if (cmd.local) {
+      const url = `http://localhost:8000/${path}`;
+      openURL(url);
+    } else {
+      const url = `https://siwl.dev/${path}`;
+      openURL(url);
+    }
+  });
+
+program.name("siwl").description("Contents Management CLI").version("1.0", "-v, --version").parse(process.argv);

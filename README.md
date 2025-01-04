@@ -33,15 +33,16 @@ yarn run siwl <action> -option <arg>
 
 ### Available `<action>`s and `-option`s
 
-| `<action>`     | `-option <arg>`            | Description                                                                                     |
-| :------------- | :------------------------- | ----------------------------------------------------------------------------------------------- |
-| `add\|new`     | `-f <filename> -m <model>` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
-| `remove\|rm`   | `-f <filename> -m <model>` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
-| `draft\|dft`   | `-f <filename> -m <model>` | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                              |
-| `publish\|pub` | `-f <filename> -m <model>` | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`. |
-| `list\|ls`     | `-m <model>`               | List `src/content/<model>/` with status.                                                        |
-|                | `-h`                       | Display help.                                                                                   |
-|                | `-v`                       | Display version.                                                                                |
+| `<action>`     | `-option <arg>`                | Description                                                                                     |
+| :------------- | :----------------------------- | ----------------------------------------------------------------------------------------------- |
+| `add\|new`     | `[-f <filename>] [-m <model>]` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
+| `remove\|rm`   | `[-f <filename>] [-m <model>]` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
+| `draft\|dft`   | `[-f <filename>] [-m <model>]` | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                              |
+| `publish\|pub` | `[-f <filename>] [-m <model>]` | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`. |
+| `list\|ls`     | `[-m <model>] [-p] [-d]`       | List `src/content/<model>/` with status.                                                        |
+| `access\|ac`   | `[-f <filename>] [-l]`         | Access to article using browser.                                                                |
+|                | `-h`                           | Display help.                                                                                   |
+|                | `-v`                           | Display version.                                                                                |
 
 > [!TIP]
 > Use `<action> -h` to display help for each actions.
