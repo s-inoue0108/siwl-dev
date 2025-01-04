@@ -1,12 +1,14 @@
 ---
-isDraft: false
 title: Astro で KaTeX をプリレンダリングする
-category: tech
-tags: [astro, ts]
-description: Astro で remark/rehype を用いずに KaTeX をレンダリングする実装を行いました。
-publishDate: 2024-10-17T00:00:00+09:00
-updateDate: 2025-01-04T23:05:25+09:00
-relatedArticles: []
+tags:
+  - TypeScript
+  - astro
+private: false
+updated_at: '2025-01-04T23:09:51+09:00'
+id: db1815d5a3d2852593a0
+organization_url_name: null
+slide: false
+ignorePublish: false
 ---
 
 ```bash:インストール
@@ -42,8 +44,6 @@ let $ = load(html);
 
 デリミタ（区切り文字）で囲われた部分の文字列のみレンダリングするようにします。インラインであれば `$`、別行立てには `$$` を用います。
 
-> [!important]
-> 
 > インラインと別行立てのデリミタ処理がバッティングしてはいけないため、`$$ $$` に囲まれた部分を抽出する正規表現は、`$` にマッチングしないように `[^\$]+` を用います。
 > また、先に別行立てをレンダリングすることで、別行立てがインラインとしてレンダリングされることを防ぎます。
 
@@ -136,6 +136,6 @@ $$
 $$
 ```
 
-$$
+```math
 \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} f \left( \frac{k}{n} \right) = \int_{0}^{1} f(x) dx
-$$
+```
