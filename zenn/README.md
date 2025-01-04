@@ -8,6 +8,8 @@ cd zenn
 
 ## Zenn CLI
 
+Zenn CLI can be used in `/zenn/*`.
+
 * [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
 
 ```bash
@@ -20,7 +22,22 @@ yarn zenn preview
 
 ## Deploy
 
+### Push to parent repository with zenn repository
+
 ```bash
-# @s-inoue0108/siwl-dev
+yarn run deploy --zenn
+```
+
+### Push only zenn repository
+
+```bash
 git subtree push --prefix=zenn zenn main
+```
+
+## Export article from SIWL.dev
+
+Automatically rewrite frontmatter and non-compliant syntax.
+
+```bash
+yarn run siwl ex -f <filename> -s zenn
 ```

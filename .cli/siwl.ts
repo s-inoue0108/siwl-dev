@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "fs";
+import readline from 'readline';
 import { exec } from "child_process";
 import chalk from "chalk";
 import { Command } from "commander";
@@ -351,12 +352,73 @@ program
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-s, --style <style>", 'which markdown style to use (zenn)', "zenn")
-  .option("-r, --repository <repository>", "repository path to export", "")
   .action((cmd) => {
-    exec("pwd", (_, stdout, __) => {
-      console.log(stdout);
-    })
+
     const filename = getFilename(cmd);
-  })
+    const file = `./src/content/article/${filename}.md`;
+
+    if (cmd.style === "zenn") {
+      const zennFile = `./zenn/articles/${filename}.md`;
+
+      if (fs.existsSync(zennFile)) {
+        console.log(chalk.bgYellowBright(`${zennFile} already exists!`));
+        process.exit(1);
+      }
+
+      exec(`touch ${zennFile}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing command: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
+
+      const rs = fs.createReadStream(file);
+      const ws = fs.createWriteStream(zennFile);
+
+      const rl = readline.createInterface({
+        input: rs,
+        output: ws,
+      });
+
+      let lc = 0;
+      rl.on("line", (line) => {
+
+        lc++;
+
+        if (lc > 0 && lc < 11) {
+          if (/^publishDate: |^updateDate: |^relatedArticles: /.test(line)) {
+            return;
+          } else if (/^title: /.test(line)) {
+            ws.write(`${line}\n`);
+          } else if (/^isDraft: /.test(line)) {
+            ws.write(`published: false\n`);
+          } else if (/^category: /.test(line)) {
+            const newLine = line.replace(/^category: \"?(tech|idea)\"?$/, "type: $1");
+            ws.write(`${newLine}\n`);
+          } else if (/^tags: /.test(line)) {
+            const newLine = line.replace(/^tags: \[(.*)\]$/, "topics: [$1]");
+            ws.write(`${newLine}\n`);
+          } else if (/^description: /.test(line)) {
+            ws.write(`emoji: ""\n`);
+          } else {
+            ws.write(`${line}\n`);
+          }
+        } else {
+          ws.write(`${line}\n`);
+        }
+      });
+
+      rl.on("close", () => {
+        console.log(`generated ${chalk.cyan(zennFile)}`);
+      });
+
+    }
+
+  });
 
 program.name("siwl").description("Contents Management CLI").version("1.0", "-v, --version").parse(process.argv);

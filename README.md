@@ -52,6 +52,7 @@ yarn run siwl <action> -option <arg>
 | `list\|ls`     | `[-m <model>] [-p] [-d]`     | List `src/content/<model>/` with status.                                                        |
 | `code\|cd`     | `-f <filename> [-m <model>]` | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                         |
 | `access\|ac`   | `[-f <filename>] [-l]`       | Access to article using browser.                                                                |
+| `export\|ex`   | `-f <filename> [-s]`         | Export markdown with specified style.                                                           |
 |                | `-h`                         | Display help.                                                                                   |
 |                | `-v`                         | Display version.                                                                                |
 
@@ -72,8 +73,37 @@ yarn run siwl <action> -option <arg>
 
 ## ✅ Markdown Syntax
 
-Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
+- Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
 
-## Zenn
+## 🧑‍💻 Zenn
 
-Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
+- Check with [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
+
+### Export article from this blog
+
+Automatically rewrite frontmatter and non-compliant syntax.
+
+```bash
+yarn run siwl ex -f <filename> -s zenn
+```
+
+### Zenn CLI
+
+Zenn CLI can be used in `/zenn/*`.
+
+```bash
+# preview at `/zenn/*`
+yarn zenn preview
+```
+
+### Push to parent repository with zenn repository
+
+```bash
+yarn run deploy --zenn
+```
+
+### Push only zenn repository
+
+```bash
+git subtree push --prefix=zenn zenn main
+```
