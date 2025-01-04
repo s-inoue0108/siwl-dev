@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-04T11:52:23+09:00
+updateDate: 2025-01-04T19:08:16+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -137,7 +137,7 @@ relatedArticles: [renewal-note]   # optional
 ## 区切り線
 
 ```md:区切り線
----
+-----
 ```
 
 ## リンク
