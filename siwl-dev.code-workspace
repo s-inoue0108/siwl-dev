@@ -23,6 +23,10 @@
 		{
 			"name": "Fixed",
 			"path": "src/content/fixed"
+		},
+		{
+			"name": "Zenn",
+			"path": "./zenn"
 		}
 	]
 }
