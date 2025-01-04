@@ -4,10 +4,16 @@ Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [
 
 ## 💻 General Commands
 
-### Activate local server
+### start local server
+
+The following environment is recommended:
+
+- Node.js `>=v20` && npm `v10`
+- Yarn `v1.22`
+- Visual Studio Code `v1.96`
+- Git `v2.40`
 
 ```bash
-# Using Yarn
 yarn dev
 ```
 
@@ -16,7 +22,6 @@ yarn dev
 Execute `/.cli/deploy.sh` via `npm` script.
 
 ```bash
-# Using Yarn
 yarn run deploy
 ```
 
@@ -27,7 +32,6 @@ Execute `/.cli/siwl.ts` via `npm` script. This script is built by [Commander.js]
 ### Usage
 
 ```bash
-# Using Yarn
 yarn run siwl <action> -option <arg>
 ```
 
