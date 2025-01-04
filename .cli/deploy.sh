@@ -10,7 +10,7 @@ if [[ "$current_branch" == "$main_branch" ]]; then
   exit 1
 fi
 
-if [ "$1" != "--siwl" ] && [ "$1" != "--zenn" ] && [ "$1" != "--qiita" ]; then
+if [ "$1" != "" ] && [ "$1" != "--siwl" ] && [ "$1" != "--zenn" ] && [ "$1" != "--qiita" ]; then
   echo "[ERROR] Please specify '--siwl' or '--zenn' or '--qiita'."
   exit 1
 fi

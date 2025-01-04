@@ -6,6 +6,7 @@ import { exec } from "child_process";
 import chalk from "chalk";
 import { Command } from "commander";
 import { toISOStringWithTimezone } from "../src/utils/common/utilfuncs";
+import { randomEmoji } from "../src/utils/api/emoji";
 
 const program = new Command();
 
@@ -420,14 +421,16 @@ program
             const newLine = line.replace(/^tags: \[(.*)\]$/, "topics: [$1]");
             ws.write(`${newLine}\n`);
           } else if (/^description: /.test(line)) {
-            ws.write(`emoji: ""\n`);
+            ws.write(`emoji: ${randomEmoji()}\n`);
           } else {
             ws.write(`${line}\n`);
           }
         } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock) {
           lcTmp = lc;
+          return;
         } else if (lcTmp === lc + 1 && !isCodeBlock && isRefBlock) {
           lcTmp = 0;
+          return;
         } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
           return;
         } else if (/^https:\/\/(?:www\.)?gist\.github\.com\/[a-z0-9_-]+\/[a-z0-9]{1,32}?$/.test(line) && !isCodeBlock) {
@@ -436,12 +439,9 @@ program
         } else if (/^https:\/\/(?:www\.)?codepen\.io\/[a-z0-9_-]+\/pen\/[a-zA-Z]+$/.test(line) && !isCodeBlock) {
           const newLine = `@[codepen](${line})`;
           ws.write(`${newLine}\n`);
-        } else if (/^https:\/\/(?:www\.)?speakerdeck\.com\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(line) && !isCodeBlock) {
-          const newLine = `@[speakerdeck](${line})`;
-          ws.write(`${newLine}\n`);
         } else if (/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(line) && !isCodeBlock) {
           const newLine = `@[docswell](${line})`;
-          ws.write(`${newLine}\n`);
+          ws.write(`${newLine.replace(/https\:\/\/(?:www\.)?docswell\.com\//, "https://www.docswell.com/")}\n`);
         } else {
           ws.write(`${line}\n`);
         }
