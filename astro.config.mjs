@@ -100,14 +100,6 @@ export default defineConfig({
 	},
 
 	vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					additionalData: `@import "src/assets/scss/base.scss";`,
-					silenceDeprecations: ["legacy-js-api"],
-				},
-			},
-		},
 		ssr: {
 			external: ["@resvg/resvg-js"],
 		},

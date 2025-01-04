@@ -1,6 +1,8 @@
 ---
 // Reset CSS
 import "destyle.css/destyle.min.css";
+// Base style
+import "../assets/css/base.css";
 // Fonts
 import "@fontsource/noto-sans-jp/300.css";
 import "@fontsource/noto-sans-jp/400.css";
@@ -151,7 +153,7 @@ const { title, description, ogImage, headings } = Astro.props;
 </html>
 
 <!--main css -->
-<style is:global lang="scss">
+<style is:global>
 	html {
 		scroll-behavior: smooth;
 	}
