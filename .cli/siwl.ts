@@ -278,19 +278,44 @@ program
     });
   });
 
+// open
+program
+  .command("code")
+  .alias("cd")
+  .description("open content by Visual Studio Code")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
+  .action((cmd) => {
+    const filename = getFilename(cmd);
+    const model = getModel(cmd);
+
+    const ext = model === "article" ? "md" : "yaml";
+    const path = `./src/content/${model}/${filename}.${ext}`;
+
+    exec(`code ${path}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing command: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(stderr);
+        return;
+      }
+      console.log(stdout);
+    });
+  });
+
 // access
 program
   .command("access")
   .alias("ac")
   .description("access article")
-  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-f, --filename <filename>", "content filename")
   .option("-l, --local", 'use local server')
   .action((cmd) => {
-    const filename = getFilename(cmd);
-    const path = `blog/articles/${filename}`;
 
     const openURL = (url: string) => {
-      exec(`bash ./.cli/access.sh ${url}`, (error, stdout, stderr) => {
+      exec(`bash ./.cli/siwl/access.sh ${url}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error executing command: ${error.message}`);
           return;
@@ -303,6 +328,13 @@ program
       });
     }
 
+    let path = "";
+    if (cmd.filename) {
+      path = `blog/articles/${getFilename(cmd)}`;
+    } else {
+      path = "";
+    }
+
     if (cmd.local) {
       const url = `http://localhost:8000/${path}`;
       openURL(url);
@@ -311,5 +343,6 @@ program
       openURL(url);
     }
   });
+
 
 program.name("siwl").description("Contents Management CLI").version("1.0", "-v, --version").parse(process.argv);

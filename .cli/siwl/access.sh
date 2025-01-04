@@ -1,4 +1,5 @@
 #!/bin/bash
+# execute by .cli/siwl.ts
 
 url=$1
 

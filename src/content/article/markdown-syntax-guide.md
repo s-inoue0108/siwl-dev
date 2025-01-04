@@ -1,11 +1,11 @@
 ---
 isDraft: false
-title: Markdown記法の一覧
+title: Markdown 記法の一覧
 category: tech
 tags: []
-description: このブログで利用可能なMarkdown記法をまとめています。
+description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-01T12:23:55+09:00
+updateDate: 2025-01-04T11:52:23+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -16,10 +16,10 @@ relatedArticles: [renewal-note]
 ```yaml:フロントマターの例
 ---
 isDraft: false   # require [true or false]
-title: Markdown記法の一覧   # require
+title: Markdown 記法の一覧   # require
 category: tech   # require [tech or idea]
 tags: [html, css, js]   # optional
-description: このブログで利用可能なMarkdown記法をまとめています。 # optional
+description: このブログで利用可能な Markdown 記法をまとめています。 # optional
 publishDate: yyyy-MM-ddTHH:mm:ss+09:00   # require
 updateDate: yyyy-MM-ddTHH:mm:ss+09:00   # optional
 relatedArticles: [renewal-note]   # optional
@@ -32,17 +32,17 @@ relatedArticles: [renewal-note]   # optional
 >
 > ```bash:記事の追加
 > # Markdownを生成し、isDraft, publishDate, updateDate を初期化します
-> $ siwl -f <filename> add
+> $ yarn run siwl add -f <filename>
 > ```
 >
 > ```bash:記事の公開
 > # isDraft = false, updateDate を更新します
-> $ siwl -f <filename> pub
+> $ yarn run siwl pub -f <filename>
 > ```
 >
 > ```bash:記事を下書きに戻す
 > # isDraft = true
-> $ siwl -f <filename> dft
+> $ yarn run siwl dft -f <filename>
 > ```
 
 ## 見出し

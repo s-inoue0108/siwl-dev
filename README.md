@@ -31,18 +31,22 @@ Execute `/.cli/siwl.ts` via `npm` script. This script is built by [Commander.js]
 yarn run siwl <action> -option <arg>
 ```
 
+> [!TIP]
+> `yarn run` can be omitted by setting the `alias siwl="yarn run siwl"` to `~/.bashrc`.
+
 ### Available `<action>`s and `-option`s
 
-| `<action>`     | `-option <arg>`                | Description                                                                                     |
-| :------------- | :----------------------------- | ----------------------------------------------------------------------------------------------- |
-| `add\|new`     | `[-f <filename>] [-m <model>]` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
-| `remove\|rm`   | `[-f <filename>] [-m <model>]` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
-| `draft\|dft`   | `[-f <filename>] [-m <model>]` | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                              |
-| `publish\|pub` | `[-f <filename>] [-m <model>]` | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`. |
-| `list\|ls`     | `[-m <model>] [-p] [-d]`       | List `src/content/<model>/` with status.                                                        |
-| `access\|ac`   | `[-f <filename>] [-l]`         | Access to article using browser.                                                                |
-|                | `-h`                           | Display help.                                                                                   |
-|                | `-v`                           | Display version.                                                                                |
+| `<action>`     | `-option <arg>`              | Description                                                                                     |
+| :------------- | :--------------------------- | ----------------------------------------------------------------------------------------------- |
+| `add\|new`     | `-f <filename> [-m <model>]` | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                       |
+| `remove\|rm`   | `-f <filename> [-m <model>]` | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                             |
+| `draft\|dft`   | `-f <filename> [-m <model>]` | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                              |
+| `publish\|pub` | `-f <filename> [-m <model>]` | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`. |
+| `list\|ls`     | `[-m <model>] [-p] [-d]`     | List `src/content/<model>/` with status.                                                        |
+| `code\|cd`     | `-f <filename> [-m <model>]` | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                         |
+| `access\|ac`   | `[-f <filename>] [-l]`       | Access to article using browser.                                                                |
+|                | `-h`                         | Display help.                                                                                   |
+|                | `-v`                         | Display version.                                                                                |
 
 > [!TIP]
 > Use `<action> -h` to display help for each actions.
