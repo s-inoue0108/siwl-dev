@@ -2,7 +2,7 @@
 
 Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [AstroJS](https://astro.build/), [SolidJS](https://solidjs.com) and [Tailwind CSS](https://tailwindcss.com).
 
-## General Commands
+## 💻 General Commands
 
 ### Activate local server
 
@@ -20,7 +20,7 @@ Execute `/.cli/deploy.sh` via `npm` script.
 yarn run deploy
 ```
 
-## Contents Management CLI
+## 📂 Contents Management CLI
 
 Execute `/.cli/siwl.ts` via `npm` script. This script is built by [Commander.js](https://github.com/tj/commander.js), execute by [tsx](https://github.com/privatenumber/tsx).
 
@@ -63,6 +63,6 @@ yarn run siwl <action> -option <arg>
 > [!IMPORTANT]
 > If `<model>` is unspecified or typo, it refers to `article`.
 
-## Markdown Syntax
+## ✅ Markdown Syntax
 
 Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
