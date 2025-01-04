@@ -24,6 +24,9 @@ git push origin "$main_branch"
 git switch "$current_branch"
 
 if [ "$provider" == "--zenn" ]; then
+  now=$(date +"%Y-%m-%d %H:%M")
+
+  echo -e "\e[1m\e[95m[$now] Push to zenn/main\e[0m"
   git subtree push --prefix=zenn zenn main
 fi
 

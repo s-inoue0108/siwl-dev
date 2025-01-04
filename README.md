@@ -23,6 +23,9 @@ Execute `/.cli/deploy.sh` via `npm` script.
 
 ```bash
 yarn run deploy
+
+# push with @s-inoue0108/siwl-dev-zenn
+yarn run deploy --zenn
 ```
 
 ## 📂 Contents Management CLI
@@ -72,3 +75,5 @@ yarn run siwl <action> -option <arg>
 Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
 
 ## Zenn
+
+Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
