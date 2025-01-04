@@ -12,14 +12,14 @@ fi
 
 echo -e "\e[1m\e[95m[$now] Deploying from $current_branch\e[0m"
 
-git add . >/dev/null
-git commit -m "[$now] deploy from $current_branch" >/dev/null
-git push origin "$current_branch" >/dev/null
+git add .
+git commit -m "[$now] deploy from $current_branch"
+git push origin "$current_branch"
 
-git switch "$main_branch" >/dev/null
-git merge "$current_branch" >/dev/null
-git push origin "$main_branch" >/dev/null
+git switch "$main_branch"
+git merge "$current_branch"
+git push origin "$main_branch"
 
-git switch "$current_branch" >/dev/null
+git switch "$current_branch"
 
 echo -e "\e[1m\e[92mDeployed successfully.\e[0m"
