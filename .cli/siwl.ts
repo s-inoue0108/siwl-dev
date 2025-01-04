@@ -344,5 +344,19 @@ program
     }
   });
 
+// export
+program
+  .command("export")
+  .alias("ex")
+  .description("export content")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-s, --style <style>", 'which markdown style to use (zenn)', "zenn")
+  .option("-r, --repository <repository>", "repository path to export", "")
+  .action((cmd) => {
+    exec("pwd", (_, stdout, __) => {
+      console.log(stdout);
+    })
+    const filename = getFilename(cmd);
+  })
 
 program.name("siwl").description("Contents Management CLI").version("1.0", "-v, --version").parse(process.argv);
