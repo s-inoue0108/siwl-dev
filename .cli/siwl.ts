@@ -401,9 +401,7 @@ program
 
         if (isRefBlock === false && /^\>/.test(line)) {
           isRefBlock = true;
-        }
-
-        if (isRefBlock === true && !/^\>/.test(line)) {
+        } else if (isRefBlock === true && !/^\>/.test(line)) {
           isRefBlock = false;
         }
 
@@ -425,12 +423,10 @@ program
           } else {
             ws.write(`${line}\n`);
           }
-        } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock) {
+        } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
           lcTmp = lc;
-          return;
-        } else if (lcTmp === lc + 1 && !isCodeBlock && isRefBlock) {
+        } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
           lcTmp = 0;
-          return;
         } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
           return;
         } else if (/^https:\/\/(?:www\.)?gist\.github\.com\/[a-z0-9_-]+\/[a-z0-9]{1,32}?$/.test(line) && !isCodeBlock) {
@@ -451,6 +447,88 @@ program
         console.log(`generated ${chalk.cyan(zennFile)}`);
       });
 
+    } else if (cmd.style === "qiita") {
+      const qiitaFile = `./qiita/public/${filename}.md`;
+
+      if (fs.existsSync(qiitaFile)) {
+        console.log(chalk.bgYellowBright(`${qiitaFile} already exists!`));
+        process.exit(1);
+      }
+
+      exec(`touch ${qiitaFile}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing command: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(stderr);
+          return;
+        }
+        console.log(stdout);
+      });
+
+      const rs = fs.createReadStream(file);
+      const ws = fs.createWriteStream(qiitaFile);
+
+      const rl = readline.createInterface({
+        input: rs,
+        output: ws,
+      });
+
+      let lc = 0;
+      let lcTmp = 0;
+      let isCodeBlock = false;
+      let isMathBlock = false;
+      let isRefBlock = false;
+
+      rl.on("line", (line) => {
+
+        lc++;
+
+        if (/^```/.test(line) || /^\> ```/.test(line)) {
+          isCodeBlock = !isCodeBlock;
+        }
+
+        if (isRefBlock === false && /^\>/.test(line)) {
+          isRefBlock = true;
+        } else if (isRefBlock === true && !/^\>/.test(line)) {
+          isRefBlock = false;
+        }
+
+        if (lc > 0 && lc < 11 && !isCodeBlock) {
+          if (/^publishDate: |^updateDate: |^relatedArticles: |^category: |^description: /.test(line)) {
+            return;
+          } else if (/^title: /.test(line)) {
+            ws.write(`${line}\n`);
+          } else if (/^isDraft: /.test(line)) {
+            ws.write(`ignorePublish: true\n`);
+          } else if (/^tags: /.test(line)) {
+            ws.write(`${line}\n`);
+          } else if (/^---$/.test(line) && lc > 2) {
+            ws.write(`private: false\nupdated_at: ''\nid: null\norganization_url_name: null\nslide: false\n${line}\n`);
+          } else {
+            ws.write(`${line}\n`);
+          }
+        } else if (/^\$\$$/.test(line) && !isMathBlock && !isCodeBlock) {
+          isMathBlock = true;
+          ws.write(`\`\`\`math\n`);
+        } else if (/^\$\$$/.test(line) && isMathBlock && !isCodeBlock) {
+          isMathBlock = false;
+          ws.write(`\`\`\`\n`);
+        } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
+          lcTmp = lc;
+        } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
+          lcTmp = 0;
+        } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
+          return;
+        } else {
+          ws.write(`${line}\n`);
+        }
+      });
+
+      rl.on("close", () => {
+        console.log(`generated ${chalk.green(qiitaFile)}`);
+      });
     }
 
   });
