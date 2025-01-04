@@ -2,6 +2,8 @@
 
 This is the subtree of [@s-inoue0108/siwl-dev](https://github.com/s-inoue0108/siwl-dev).
 
+- https://zenn.dev/s_inoue0108
+
 ## Zenn CLI
 
 Zenn CLI can be used in `/zenn/*`.
