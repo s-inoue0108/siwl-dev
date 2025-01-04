@@ -1,6 +1,5 @@
 #!/bin/bash
 
-provider=$1
 current_branch=$(git branch --contains | cut -d " " -f 2)
 main_branch="main"
 now=$(date +"%Y-%m-%d %H:%M")
@@ -11,9 +10,28 @@ if [[ "$current_branch" == "$main_branch" ]]; then
   exit 1
 fi
 
+if [ "$1" != "--siwl" ] && [ "$1" != "--zenn" ] && [ "$1" != "--qiita" ]; then
+  echo "[ERROR] Please specify '--siwl' or '--zenn' or '--qiita'."
+  exit 1
+fi
+
 echo -e "\e[1m\e[95m[$now] Deploying from $current_branch\e[0m"
 
-if [ "$provider" == "--zenn" ]; then
+if [ "$1" == "--siwl" ]; then
+  git add .
+
+  git reset qiita/* zenn/*
+
+  git commit -m "[$now] deploy from $current_branch"
+  git push origin "$current_branch"
+
+  git switch "$main_branch"
+  git merge "$current_branch"
+  git push origin "$main_branch"
+
+  git switch "$current_branch"
+
+elif [ "$1" == "--zenn" ]; then
   git add zenn/*
   git commit -m "[$now] deploy from $current_branch"
   git push origin "$current_branch"
@@ -28,7 +46,7 @@ if [ "$provider" == "--zenn" ]; then
   echo -e "\e[1m\e[95m[$now] Push to zenn/main\e[0m"
 
   git subtree push --prefix=zenn zenn main
-elif [ "$provider" == "--qiita" ]; then
+elif [ "$1" == "--qiita" ]; then
   git add qiita/*
   git commit -m "[$now] deploy from $current_branch"
   git push origin "$current_branch"

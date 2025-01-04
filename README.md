@@ -24,6 +24,9 @@ Execute `/.cli/deploy.sh` via `npm` script.
 ```bash
 yarn run deploy
 
+# push without zenn/* and qiita/*
+yarn run deploy --siwl
+
 # push with @s-inoue0108/siwl-dev-zenn
 yarn run deploy --zenn
 
