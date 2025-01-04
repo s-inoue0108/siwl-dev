@@ -22,7 +22,7 @@ if [ "$1" == "--siwl" ]; then
 
   git reset qiita/* zenn/*
 
-  git commit -m "[$now] deploy from $current_branch"
+  git commit -m "[$now] Deploy to origin/main"
   git push origin "$current_branch"
 
   git switch "$main_branch"
@@ -33,7 +33,7 @@ if [ "$1" == "--siwl" ]; then
 
 elif [ "$1" == "--zenn" ]; then
   git add zenn/*
-  git commit -m "[$now] deploy from $current_branch"
+  git commit -m "[$now] Deploy to origin/main and zenn/main"
   git push origin "$current_branch"
 
   git switch "$main_branch"
@@ -43,12 +43,12 @@ elif [ "$1" == "--zenn" ]; then
   git switch "$current_branch"
 
   now=$(date +"%Y-%m-%d %H:%M")
-  echo -e "\e[1m\e[95m[$now] Push to zenn/main\e[0m"
+  echo -e "\e[1m\e[96m[$now] Push to zenn/main\e[0m"
 
   git subtree push --prefix=zenn zenn main
 elif [ "$1" == "--qiita" ]; then
   git add qiita/*
-  git commit -m "[$now] deploy from $current_branch"
+  git commit -m "[$now] Deploy to origin/main and qiita/main"
   git push origin "$current_branch"
 
   git switch "$main_branch"
@@ -63,7 +63,7 @@ elif [ "$1" == "--qiita" ]; then
   git subtree push --prefix=qiita qiita main
 else
   git add .
-  git commit -m "[$now] deploy from $current_branch"
+  git commit -m "[$now] Deploy to origin/main, zenn/main and qiita/main"
   git push origin "$current_branch"
 
   git switch "$main_branch"
@@ -73,7 +73,7 @@ else
   git switch "$current_branch"
 
   now=$(date +"%Y-%m-%d %H:%M")
-  echo -e "\e[1m\e[95m[$now] Push to zenn/main\e[0m"
+  echo -e "\e[1m\e[96m[$now] Push to zenn/main\e[0m"
   git subtree push --prefix=zenn zenn main
 
   now=$(date +"%Y-%m-%d %H:%M")
@@ -81,4 +81,5 @@ else
   git subtree push --prefix=qiita qiita main
 fi
 
-echo -e "\e[1m\e[92mDeployed successfully.\e[0m"
+now=$(date +"%Y-%m-%d %H:%M")
+echo -e "\e[1m[$now] Deployed successfully!\e[0m"
