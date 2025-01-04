@@ -82,4 +82,4 @@ else
 fi
 
 now=$(date +"%Y-%m-%d %H:%M")
-echo -e "\e[1m[$now] Deployed successfully!\e[0m"
+echo -e "\e[1m\e[95m[$now] Deployed successfully!\e[0m"
