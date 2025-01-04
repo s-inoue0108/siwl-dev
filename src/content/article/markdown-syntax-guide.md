@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-04T19:08:16+09:00
+updateDate: 2025-01-04T20:46:46+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -322,10 +322,10 @@ https://katex.org/docs/support_table
 ### インライン数式
 
 ```md:インライン
-$ f(x) = e^x $ はインライン数式です。
+$f(x) = e^x$ はインライン数式です。
 ```
 
-$ f(x) = e^x $ はインライン数式です。
+$f(x) = e^x$ はインライン数式です。
 
 ### 別行立て数式
 

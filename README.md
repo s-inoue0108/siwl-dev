@@ -55,7 +55,7 @@ yarn run siwl <action> -option <arg>
 | `list\|ls`     | `[-m <model>] [-p] [-d]`     | List `src/content/<model>/` with status.                                                        |
 | `code\|cd`     | `-f <filename> [-m <model>]` | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                         |
 | `access\|ac`   | `[-f <filename>] [-l]`       | Access to article using browser.                                                                |
-| `export\|ex`   | `-f <filename> [-s]`         | Export markdown with specified style.                                                           |
+| `export\|ex`   | `-f <filename> -s <style>`   | Export markdown with specified style.                                                           |
 |                | `-h`                         | Display help.                                                                                   |
 |                | `-v`                         | Display version.                                                                                |
 

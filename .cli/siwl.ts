@@ -351,7 +351,7 @@ program
   .alias("ex")
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-s, --style <style>", 'which markdown style to use (zenn)', "zenn")
+  .option("-s, --style <style>", 'which markdown style to use (zenn|qiita)')
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -386,7 +386,9 @@ program
       });
 
       let lc = 0;
+      let lcTmp = 0;
       let isCodeBlock = false;
+      let isRefBlock = false;
 
       rl.on("line", (line) => {
 
@@ -394,6 +396,14 @@ program
 
         if (/^```/.test(line) || /^\> ```/.test(line)) {
           isCodeBlock = !isCodeBlock;
+        }
+
+        if (isRefBlock === false && /^\>/.test(line)) {
+          isRefBlock = true;
+        }
+
+        if (isRefBlock === true && !/^\>/.test(line)) {
+          isRefBlock = false;
         }
 
         if (lc > 0 && lc < 11 && !isCodeBlock) {
@@ -415,7 +425,9 @@ program
             ws.write(`${line}\n`);
           }
         } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock) {
-          return;
+          lcTmp = lc;
+        } else if (lcTmp === lc + 1 && !isCodeBlock && isRefBlock) {
+          lcTmp = 0;
         } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
           return;
         } else if (/^https:\/\/(?:www\.)?gist\.github\.com\/[a-z0-9_-]+\/[a-z0-9]{1,32}?$/.test(line) && !isCodeBlock) {
@@ -423,6 +435,12 @@ program
           ws.write(`${newLine}\n`);
         } else if (/^https:\/\/(?:www\.)?codepen\.io\/[a-z0-9_-]+\/pen\/[a-zA-Z]+$/.test(line) && !isCodeBlock) {
           const newLine = `@[codepen](${line})`;
+          ws.write(`${newLine}\n`);
+        } else if (/^https:\/\/(?:www\.)?speakerdeck\.com\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(line) && !isCodeBlock) {
+          const newLine = `@[speakerdeck](${line})`;
+          ws.write(`${newLine}\n`);
+        } else if (/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(line) && !isCodeBlock) {
+          const newLine = `@[docswell](${line})`;
           ws.write(`${newLine}\n`);
         } else {
           ws.write(`${line}\n`);
