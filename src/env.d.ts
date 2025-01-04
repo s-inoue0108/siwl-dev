@@ -10,6 +10,7 @@ interface ImportMetaEnv {
   readonly GITHUB_URL: string;
   readonly X_URL: string;
   readonly ZENN_URL: string;
+  readonly QIITA_URL: string;
   readonly X_OWNER: string;
 }
 

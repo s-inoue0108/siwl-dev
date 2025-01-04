@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ProfileImage from "../../assets/images/profile-image.jpg";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
 import Age from "./Age";
 import ExperienceYears from "./ExperienceYears";
 ---
@@ -32,7 +32,7 @@ import ExperienceYears from "./ExperienceYears";
 			<br />
 			<span> フロントエンドが好きです。</span>
 		</p>
-		<ul class="w-full px-6 flex items-center justify-between">
+		<ul class="w-full px-2 flex items-center justify-between">
 			<li>
 				<a
 					href="/about"
@@ -50,6 +50,16 @@ import ExperienceYears from "./ExperienceYears";
 						class="text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 					>
 						<SiZenn />
+					</a>
+				</li>
+				<li>
+					<a
+						href={import.meta.env.QIITA_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+					>
+						<SiQiita />
 					</a>
 				</li>
 				<li>

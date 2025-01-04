@@ -4,7 +4,7 @@ import { AllowedRoutes } from "../route";
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import ProfileImage from "../assets/images/profile-image.jpg";
-import { SiGithub, SiTwitter, SiZenn } from "solid-icons/si";
+import { SiGithub, SiTwitter, SiZenn, SiQiita } from "solid-icons/si";
 import ExperienceYears from "../components/card/ExperienceYears";
 import Age from "../components/card/Age";
 
@@ -56,6 +56,16 @@ const { meta } = routes.getSubsetPageMeta();
 							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
 							<SiZenn />
+						</a>
+					</li>
+					<li>
+						<a
+							href={import.meta.env.QIITA_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<SiQiita />
 						</a>
 					</li>
 					<li>

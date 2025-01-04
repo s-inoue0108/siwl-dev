@@ -2,7 +2,7 @@ import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
 import { AllowedRoutes } from "../../route";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
 import { IoLogoRss } from "solid-icons/io";
 
 interface Props {
@@ -10,10 +10,11 @@ interface Props {
 	currentPath: string;
 	xUrl: string;
 	zennUrl: string;
+	qiitaUrl: string;
 	githubUrl: string;
 }
 
-const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
+const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
 	const metas = routes.getRootPageMetaAll(["Home", "Privacy Policy"]);
 
@@ -36,6 +37,16 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
 							<SiZenn />
+						</a>
+					</li>
+					<li>
+						<a
+							href={qiitaUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<SiQiita />
 						</a>
 					</li>
 					<li>

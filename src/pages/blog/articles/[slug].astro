@@ -40,9 +40,7 @@ const { Content, headings } = await article.render();
 			</div>
 			<section id="article-content">
 				<Content />
-				<Comments />
-				<RelatedArticles relatedArticles={article.data.relatedArticles} />
-				<div class="lg:hidden">
+				<div class="lg:hidden mt-8 lg:mt-0">
 					<Shares
 						appOwner={import.meta.env.APP_OWNER}
 						appUrl={import.meta.env.APP_URL}
@@ -51,6 +49,8 @@ const { Content, headings } = await article.render();
 						client:visible
 					/>
 				</div>
+				<Comments />
+				<RelatedArticles relatedArticles={article.data.relatedArticles} />
 				<SideArticles slug={article.slug} />
 			</section>
 		</article>
