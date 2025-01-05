@@ -63,4 +63,13 @@
 		],
 		"description": "Display Math"
 	},
+
+	"Wikipedia Embed": {
+		"scope": "markdown",
+		"prefix": "wiki-embed",
+		"body": [
+			"@{wiki}($1)",
+		],
+		"description": "Wikipedia Embed"
+	},
 }
