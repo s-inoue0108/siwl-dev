@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-04T23:49:45+09:00
+updateDate: 2025-01-05T23:26:20+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -341,7 +341,7 @@ $$
 
 ## 埋め込み
 
-いくつかの Web サービスは oEmbed API を利用した特殊な埋め込みに対応しています。
+いくつかの Web サービスは oEmbed API をはじめとする外部 API を利用した特殊な埋め込みに対応しています。
 
 *[!table] 対応済みの Web サービス*
 
@@ -355,6 +355,7 @@ $$
 | SoundCloud   | 音楽配信         | `https://soundcloud.com`   |
 | YouTube      | 動画配信         | `https://youtube.com`      |
 | Twitter (X)  | SNS              | `https://x.com`            |
+| Wikipedia    | 百科事典         | `https://ja.wikipedia.org` |
 
 
 ### GitHub Gist
@@ -433,6 +434,19 @@ https://twitter.com/astrodotbuild/status/1844403385375862824
 
 https://x.com/astrodotbuild/status/1844403385375862824
 
-## [参考] ZennのMarkdown記法
+### Wikipedia
 
-https://zenn.dev/zenn/articles/markdown-guide
+```md:記法
+@{wiki}(単語)
+@{wikipedia}(単語)
+@{wikimedia}(単語)
+
+<!--":lang" をつけるとそのロケールで検索します-->
+<!--デフォルトは ja（https://ja.wikipedia.org）です-->
+
+@{wiki:en}(word)
+@{wikipedia:fr}(mot)
+@{wikimedia:ko}(단어)
+```
+
+@{wiki}(プログラミング)

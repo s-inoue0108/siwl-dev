@@ -27,6 +27,7 @@ import remarkSpeakerDeckEmbed from "./src/plugins/remark/remark-speakerdeck-embe
 import remarkDocswellEmbed from "./src/plugins/remark/remark-docswell-embed";
 import remarkSpotifyEmbed from "./src/plugins/remark/remark-spotify-embed";
 import remarkSoundCloudEmbed from "./src/plugins/remark/remark-soundcloud-embed";
+import remarkWikimediaEmbed from "./src/plugins/remark/remark-wikimedia-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 
@@ -78,6 +79,7 @@ export default defineConfig({
 			remarkDocswellEmbed,
 			remarkSpotifyEmbed,
 			remarkSoundCloudEmbed,
+			remarkWikimediaEmbed,
 			remarkFigureCaption,
 			remarkCallout,
 			remarkMath,
