@@ -245,6 +245,43 @@ program
     }
   });
 
+// rename
+program
+  .command("rename")
+  .alias("rn")
+  .description("renaming a content")
+  .requiredOption("-f, --filename <filename>", "content filename")
+  .requiredOption("-n, --newname <newname>", "new filename")
+  .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
+  .action((cmd) => {
+
+    const filename = getFilename(cmd);
+    const model = getModel(cmd);
+    const newName = cmd.newname;
+
+    const ext = model === "article" ? "md" : "yaml";
+
+    const file = `${rootpath}/${model}/${filename}.${ext}`;
+    const newFile = `${rootpath}/${model}/${newName}.${ext}`;
+
+    if (fs.existsSync(newFile)) {
+      console.log(chalk.bgYellowBright(`${model}/${newName}.${ext} does already exist!`));
+      process.exit(1);
+    }
+
+    exec(`mv ${file} ${newFile}`, (error, _, stderr) => {
+      if (error) {
+        console.error(`Error executing command: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(stderr);
+        return;
+      }
+      console.log(`renamed ${chalk.yellow(`${model}/${filename}.${ext}`)} to ${chalk.green(`${model}/${newName}.${ext}`)}`);
+    });
+  });
+
 // list
 program
   .command("list")
@@ -354,7 +391,7 @@ program
   .alias("ex")
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
+  .requiredOption("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
   .action(async (cmd) => {
 
     const filename = getFilename(cmd);
@@ -618,4 +655,8 @@ program
     }
   });
 
-program.name("siwl").description("Contents Management CLI").version("2.0", "-v, --version").parse(process.argv);
+program
+  .name("siwl")
+  .description("Contents Management CLI")
+  .version("2.0", "-v, --version")
+  .parse(process.argv);
