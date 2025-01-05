@@ -22,15 +22,16 @@ yarn dev
 Execute `/.cli/deploy.sh` via `npm` script.
 
 ```bash
+# push all changes
 yarn deploy
 
-# push without zenn/* and qiita/*
+# push to origin/main omit zenn/* and qiita/*
 yarn deploy --siwl
 
-# push with @s-inoue0108/siwl-dev-zenn
+# push to origin/main and @s-inoue0108/siwl-dev-zenn only zenn/*
 yarn deploy --zenn
 
-# push with @s-inoue0108/siwl-dev-qiita
+# push to origin/main and @s-inoue0108/siwl-dev-qiita only qiita/*
 yarn deploy --qiita
 ```
 
