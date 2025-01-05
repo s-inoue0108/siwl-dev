@@ -5,8 +5,8 @@ category: tech
 tags: [astro, ts, js, git]
 description: Markdown を変換し、Git Subtree として統合した Zenn, Qiita のリポジトリへ記事をコピーするコマンドを作成しました。Zenn リポジトリの統合を例に、その内容についてまとめます。
 publishDate: 2025-01-05T12:05:11+09:00
-updateDate: 2025-01-05T17:05:10+09:00
-relatedArticles: []
+updateDate: 2025-01-05T17:23:19+09:00
+relatedArticles: [markdown-syntax-guide, gas-contact-form, astro-giscus-comments]
 ---
 
 ## Git Subtree
