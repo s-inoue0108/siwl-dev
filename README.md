@@ -58,7 +58,7 @@ yarn run siwl <action> -option <arg>
 | `list\|ls`     | `[-m <model>] [-p\|-d]`      | `[--model <model>] [--publised\|--drafted]` | List `src/content/<model>/` with status.                                                        |
 | `open\|op`     | `-f <filename> [-m <model>]` | `--filename <filename> [--model <model>]`   | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                         |
 | `view\|vi`     | `[-f <filename>] [-l]`       | `[--filename <filename>] [--local]`         | View specified article using browser.                                                           |
-| `export\|ex`   | `-f <filename> -s <style>`   | `--filename <filename> --style <style>`     | Export markdown with specified style.                                                           |
+| `export\|ex`   | `-f <filename> -t <mdtype>`  | `--filename <filename> --type <mdtype>`     | Export markdown with specified type.                                                            |
 |                | `-h`                         | `--help`                                    | Display help.                                                                                   |
 |                | `-v`                         | `--version`                                 | Display version.                                                                                |
 

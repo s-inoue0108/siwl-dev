@@ -15,7 +15,7 @@ Zenn CLI can be used in `/zenn/*`.
 Automatically rewrite frontmatter and non-compliant syntax.
 
 ```bash
-yarn run siwl ex -f <filename> -s zenn
+yarn run siwl ex -f <filename> -t zenn
 ```
 
 ### Push to parent repository with zenn repository

@@ -23,6 +23,8 @@ const getFilename = (cmd: any) => {
   return filename;
 }
 
+const rootpath = "./src/content";
+
 // create
 program
   .command("create")
@@ -38,7 +40,7 @@ program
     if (model === "article") {
 
       // ファイル
-      const file = `./src/content/${model}/${filename}.md`;
+      const file = `${rootpath}/${model}/${filename}.md`;
       if (fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.md already exists!`));
         process.exit(1);
@@ -56,7 +58,7 @@ program
     } else if (model === "tag") {
 
       // ファイル
-      const file = `./src/content/${model}/${filename}.yaml`;
+      const file = `${rootpath}/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
         process.exit(1);
@@ -74,7 +76,7 @@ program
     } else if (model === "bookmark") {
 
       // ファイル
-      const file = `./src/content/${model}/${filename}.yaml`;
+      const file = `${rootpath}/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
         process.exit(1);
@@ -91,7 +93,7 @@ program
     } else {
 
       // ファイル
-      const file = `./src/content/${model}/${filename}.yaml`;
+      const file = `${rootpath}/${model}/${filename}.yaml`;
       if (fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.yaml already exists!`));
         process.exit(1);
@@ -121,7 +123,7 @@ program
     const model = getModel(cmd);
 
     if (model === "article") {
-      fs.unlink(`./src/content/${model}/${filename}.md`, (err) => {
+      fs.unlink(`${rootpath}/${model}/${filename}.md`, (err) => {
         if (err) {
           console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
           process.exit(1);
@@ -130,7 +132,7 @@ program
         process.exit(0);
       });
     } else {
-      fs.unlink(`./src/content/${model}/${filename}.yaml`, (err) => {
+      fs.unlink(`${rootpath}/${model}/${filename}.yaml`, (err) => {
         if (err) {
           console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
           process.exit(1);
@@ -155,7 +157,7 @@ program
 
     if (model === "article") {
 
-      const file = `./src/content/${model}/${filename}.md`;
+      const file = `${rootpath}/${model}/${filename}.md`;
       if (!fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
         process.exit(1);
@@ -173,7 +175,7 @@ program
 
     } else {
 
-      const file = `./src/content/${model}/${filename}.yaml`;
+      const file = `${rootpath}/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
@@ -206,7 +208,7 @@ program
 
     if (model === "article") {
 
-      const file = `./src/content/${model}/${filename}.md`;
+      const file = `${rootpath}/${model}/${filename}.md`;
       if (!fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.md does not exist!`));
         process.exit(1);
@@ -224,7 +226,7 @@ program
 
     } else {
 
-      const file = `./src/content/${model}/${filename}.yaml`;
+      const file = `${rootpath}/${model}/${filename}.yaml`;
       if (!fs.existsSync(file)) {
         console.log(chalk.bgYellowBright(`${model}/${filename}.yaml does not exist!`));
         process.exit(1);
@@ -259,11 +261,11 @@ program
       return isDraft ? chalk.blue(slug) : chalk.magenta(slug);
     }
 
-    fs.readdir(`./src/content/${model}/`, { withFileTypes: true }, (_, dirents) => {
+    fs.readdir(`${rootpath}/${model}/`, { withFileTypes: true }, (_, dirents) => {
       console.log(`${chalk.bgWhiteBright(`${model.toUpperCase()}`)} (${chalk.blue("drafted")}/${chalk.magenta("published")})`);
       for (const dirent of dirents) {
         if (dirent.isDirectory()) continue;
-        fs.readFile(`./src/content/${model}/${dirent.name}`, 'utf8', (err, data) => {
+        fs.readFile(`${rootpath}/${model}/${dirent.name}`, 'utf8', (err, data) => {
           if (err) throw err;
           const isDraft = data.search(/isDraft: true/) === -1 ? false : true;
 
@@ -292,7 +294,7 @@ program
     const model = getModel(cmd);
 
     const ext = model === "article" ? "md" : "yaml";
-    const path = `./src/content/${model}/${filename}.${ext}`;
+    const path = `${rootpath}/${model}/${filename}.${ext}`;
 
     exec(`code ${path}`, (error, stdout, stderr) => {
       if (error) {
@@ -352,13 +354,13 @@ program
   .alias("ex")
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
-  .option("-s, --style <style>", 'which markdown style to use (zenn|qiita)')
-  .action((cmd) => {
+  .option("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
+  .action(async (cmd) => {
 
     const filename = getFilename(cmd);
-    const file = `./src/content/article/${filename}.md`;
+    const file = `${rootpath}/article/${filename}.md`;
 
-    if (cmd.style === "zenn") {
+    if (cmd.type === "zenn") {
       const zennFile = `./zenn/articles/${filename}.md`;
 
       if (fs.existsSync(zennFile)) {
@@ -391,63 +393,90 @@ program
       let isCodeBlock = false;
       let isRefBlock = false;
 
-      rl.on("line", (line) => {
-
+      for await (const line of rl) {
         lc++;
 
-        if (/^```/.test(line) || /^\> ```/.test(line)) {
-          isCodeBlock = !isCodeBlock;
-        }
+        await (async () => {
+          if (/^https:\/\/(?:www\.)?speakerdeck\.com\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(line) && !isCodeBlock) {
+            const html = await (async (url: string): Promise<string> => {
+              const endpoint = "https://speakerdeck.com/oembed.json";
+              const query = encodeURIComponent(url);
+              const resp = await fetch(`${endpoint}?url=${query}`);
+              const json = await resp.json();
+              return json.html;
+            })(line);
 
-        if (isRefBlock === false && /^\>/.test(line)) {
-          isRefBlock = true;
-        } else if (isRefBlock === true && !/^\>/.test(line)) {
-          isRefBlock = false;
-        }
+            const match = html.match(/src\=\"\/\/speakerdeck\.com\/player\/([a-z0-9]+)\" /);
+            if (!match) {
+              return;
+            }
 
-        if (lc > 0 && lc < 11 && !isCodeBlock) {
-          if (/^publishDate: |^updateDate: |^relatedArticles: /.test(line)) {
-            return;
-          } else if (/^title: /.test(line)) {
-            ws.write(`${line}\n`);
-          } else if (/^isDraft: /.test(line)) {
-            ws.write(`published: false\n`);
-          } else if (/^category: /.test(line)) {
-            const newLine = line.replace(/^category: \"?(tech|idea)\"?$/, "type: $1");
+            const newLine = `@[speakerdeck](${match[1]})`;
             ws.write(`${newLine}\n`);
-          } else if (/^tags: /.test(line)) {
-            const newLine = line.replace(/^tags: \[(.*)\]$/, "topics: [$1]");
+
+          } else if (/^https:\/\/(?:www\.)?gist\.github\.com\/[a-z0-9_-]+\/[a-z0-9]{1,32}?$/.test(line) && !isCodeBlock) {
+            const newLine = `@[gist](${line})`;
             ws.write(`${newLine}\n`);
-          } else if (/^description: /.test(line)) {
-            ws.write(`emoji: ${randomEmoji()}\n`);
-          } else {
+          } else if (/^https:\/\/(?:www\.)?codepen\.io\/[a-z0-9_-]+\/pen\/[a-zA-Z]+$/.test(line) && !isCodeBlock) {
+            const newLine = `@[codepen](${line})`;
+            ws.write(`${newLine}\n`);
+          } else if (/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(line) && !isCodeBlock) {
+            const newLine = `@[docswell](${line})`;
+            ws.write(`${newLine.replace(/https\:\/\/(?:www\.)?docswell\.com\//, "https://www.docswell.com/")}\n`);
+          } else if (/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
-        } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
-          lcTmp = lc;
-        } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
-          lcTmp = 0;
-        } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
-          return;
-        } else if (/^https:\/\/(?:www\.)?gist\.github\.com\/[a-z0-9_-]+\/[a-z0-9]{1,32}?$/.test(line) && !isCodeBlock) {
-          const newLine = `@[gist](${line})`;
-          ws.write(`${newLine}\n`);
-        } else if (/^https:\/\/(?:www\.)?codepen\.io\/[a-z0-9_-]+\/pen\/[a-zA-Z]+$/.test(line) && !isCodeBlock) {
-          const newLine = `@[codepen](${line})`;
-          ws.write(`${newLine}\n`);
-        } else if (/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(line) && !isCodeBlock) {
-          const newLine = `@[docswell](${line})`;
-          ws.write(`${newLine.replace(/https\:\/\/(?:www\.)?docswell\.com\//, "https://www.docswell.com/")}\n`);
-        } else {
-          ws.write(`${line}\n`);
-        }
-      });
+        })();
 
-      rl.on("close", () => {
-        console.log(`generated ${chalk.cyan(zennFile)}`);
-      });
+        await (async () => {
+          if (/^```/.test(line) || /^\> ```/.test(line)) {
+            isCodeBlock = !isCodeBlock;
+          }
+        })();
 
-    } else if (cmd.style === "qiita") {
+        await (async () => {
+          if (!isRefBlock && /^\>/.test(line)) {
+            isRefBlock = true;
+          } else if (isRefBlock && !/^\>/.test(line)) {
+            isRefBlock = false;
+          }
+        })();
+
+        await (async () => {
+          if (lc > 0 && lc < 11 && !isCodeBlock) {
+            if (/^publishDate: |^updateDate: |^relatedArticles: /.test(line)) {
+              return;
+            } else if (/^title: /.test(line)) {
+              ws.write(`${line}\n`);
+            } else if (/^isDraft: /.test(line)) {
+              ws.write(`published: false\n`);
+            } else if (/^category: /.test(line)) {
+              const newLine = line.replace(/^category: \"?(tech|idea)\"?$/, "type: $1");
+              ws.write(`${newLine}\n`);
+            } else if (/^tags: /.test(line)) {
+              const newLine = line.replace(/^tags: \[(.*)\]$/, "topics: [$1]");
+              ws.write(`${newLine}\n`);
+            } else if (/^description: /.test(line)) {
+              ws.write(`emoji: ${randomEmoji()}\n`);
+            } else {
+              ws.write(`${line}\n`);
+            }
+          } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
+            lcTmp = lc;
+          } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
+            lcTmp = 0;
+          } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
+            return;
+          } else if (!/^https?\:\/\//.test(line)) {
+            ws.write(`${line}\n`);
+          }
+        })();
+      };
+
+      rl.close();
+      console.log(`generated ${chalk.cyan(zennFile)}`);
+
+    } else if (cmd.type === "qiita") {
       const qiitaFile = `./qiita/public/${filename}.md`;
 
       if (fs.existsSync(qiitaFile)) {
@@ -481,56 +510,112 @@ program
       let isMathBlock = false;
       let isRefBlock = false;
 
-      rl.on("line", (line) => {
-
+      for await (const line of rl) {
         lc++;
 
-        if (/^```/.test(line) || /^\> ```/.test(line)) {
-          isCodeBlock = !isCodeBlock;
-        }
+        await (async () => {
+          if (/^https:\/\/(?:www\.)?speakerdeck\.com\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(line) && !isCodeBlock) {
+            const html = await (async (url: string): Promise<string> => {
+              const endpoint = "https://speakerdeck.com/oembed.json";
+              const query = encodeURIComponent(url);
+              const resp = await fetch(`${endpoint}?url=${query}`);
+              const json = await resp.json();
+              return json.html;
+            })(line);
 
-        if (isRefBlock === false && /^\>/.test(line)) {
-          isRefBlock = true;
-        } else if (isRefBlock === true && !/^\>/.test(line)) {
-          isRefBlock = false;
-        }
+            const idMatch = html.match(/src\=\"\/\/speakerdeck\.com\/player\/([a-z0-9]+?)\" /);
+            const ratioMatch = html.match(/\aspect-ratio\:?([0-9\/]+?)\;/);
 
-        if (lc > 0 && lc < 11 && !isCodeBlock) {
-          if (/^publishDate: |^updateDate: |^relatedArticles: |^category: |^description: /.test(line)) {
-            return;
-          } else if (/^title: /.test(line)) {
-            ws.write(`${line}\n`);
-          } else if (/^isDraft: /.test(line)) {
-            ws.write(`ignorePublish: true\n`);
-          } else if (/^tags: /.test(line)) {
-            ws.write(`${line}\n`);
-          } else if (/^---$/.test(line) && lc > 2) {
-            ws.write(`private: false\nupdated_at: ''\nid: null\norganization_url_name: null\nslide: false\n${line}\n`);
-          } else {
+            if (!idMatch || !ratioMatch) {
+              return;
+            }
+
+            const id = idMatch[1];
+            const ratioParts = ratioMatch[1].split("/");
+            const ratio = Number(ratioParts[0]) / Number(ratioParts[1]);
+
+            const newLine = `<script async class="speakerdeck-embed" data-id="${id}" data-ratio="${Number(ratio)}" src="//speakerdeck.com/assets/embed.js"></script>`;
+            ws.write(`${newLine}\n`);
+
+          } else if (/^https:\/\/(?:www\.)?docswell\.com\/s\/[a-z0-9_-]+\/[a-zA-Z0-9-]+$/.test(line) && !isCodeBlock) {
+
+            const html = await (async (url: string): Promise<string> => {
+              const endpoint = "https://www.docswell.com/service/oembed";
+              const query = encodeURIComponent(url);
+              const resp = await fetch(`${endpoint}?url=${query}`);
+              const json = await resp.json();
+              return json.html;
+            })(line);
+
+            const srcMatch = html.match(/src\=\"([a-zA-Z0-9\.\/\:]+?)\" /);
+            const ratioMatch = html.match(/\aspect-ratio\: ([0-9\/]+?)\;/);
+
+            if (!srcMatch || !ratioMatch) {
+              return;
+            }
+
+            const src = srcMatch[1];
+            const ratioParts = ratioMatch[1].split("/");
+            const ratio = Number(ratioParts[1]) / Number(ratioParts[0]);
+
+            const newLine = `<script async class="docswell-embed" src="https://www.docswell.com/assets/libs/docswell-embed/docswell-embed.min.js" data-src="${src}" data-aspect="${ratio}"></script>`;
+            ws.write(`${newLine}\n`);
+
+          } else if (/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
-        } else if (/^\$\$$/.test(line) && !isMathBlock && !isCodeBlock) {
-          isMathBlock = true;
-          ws.write(`\`\`\`math\n`);
-        } else if (/^\$\$$/.test(line) && isMathBlock && !isCodeBlock) {
-          isMathBlock = false;
-          ws.write(`\`\`\`\n`);
-        } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
-          lcTmp = lc;
-        } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
-          lcTmp = 0;
-        } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
-          return;
-        } else {
-          ws.write(`${line}\n`);
-        }
-      });
+        })();
 
-      rl.on("close", () => {
-        console.log(`generated ${chalk.green(qiitaFile)}`);
-      });
+        await (async () => {
+          if (/^```/.test(line) || /^\> ```/.test(line)) {
+            isCodeBlock = !isCodeBlock;
+          }
+        })();
+
+        await (async () => {
+          if (!isRefBlock && /^\>/.test(line)) {
+            isRefBlock = true;
+          } else if (isRefBlock && !/^\>/.test(line)) {
+            isRefBlock = false;
+          }
+        })();
+
+        await (async () => {
+          if (lc > 0 && lc < 11 && !isCodeBlock) {
+            if (/^publishDate: |^updateDate: |^relatedArticles: |^category: |^description: /.test(line)) {
+              return;
+            } else if (/^title: /.test(line)) {
+              ws.write(`${line}\n`);
+            } else if (/^isDraft: /.test(line)) {
+              ws.write(`ignorePublish: true\n`);
+            } else if (/^tags: /.test(line)) {
+              ws.write(`${line}\n`);
+            } else if (/^---$/.test(line) && lc > 2) {
+              ws.write(`private: false\nupdated_at: ''\nid: null\norganization_url_name: null\nslide: false\n${line}\n`);
+            } else {
+              ws.write(`${line}\n`);
+            }
+          } else if (/^\$\$$/.test(line) && !isMathBlock && !isCodeBlock) {
+            isMathBlock = true;
+            ws.write(`\`\`\`math\n`);
+          } else if (/^\$\$$/.test(line) && isMathBlock && !isCodeBlock) {
+            isMathBlock = false;
+            ws.write(`\`\`\`\n`);
+          } else if (/^\> \[\!.*\]/.test(line) && !isCodeBlock && isRefBlock) {
+            lcTmp = lc;
+          } else if (lcTmp === lc - 1 && !isCodeBlock && isRefBlock) {
+            lcTmp = 0;
+          } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
+            return;
+          } else if (!/^https?\:\/\//.test(line)) {
+            ws.write(`${line}\n`);
+          }
+        })();
+      };
+
+      rl.close();
+      console.log(`generated ${chalk.green(qiitaFile)}`);
     }
-
   });
 
 program.name("siwl").description("Contents Management CLI").version("2.0", "-v, --version").parse(process.argv);
