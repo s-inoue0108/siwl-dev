@@ -22,16 +22,16 @@ yarn dev
 Execute `/.cli/deploy.sh` via `npm` script.
 
 ```bash
-yarn run deploy
+yarn deploy
 
 # push without zenn/* and qiita/*
-yarn run deploy --siwl
+yarn deploy --siwl
 
 # push with @s-inoue0108/siwl-dev-zenn
-yarn run deploy --zenn
+yarn deploy --zenn
 
 # push with @s-inoue0108/siwl-dev-qiita
-yarn run deploy --qiita
+yarn deploy --qiita
 ```
 
 ## 📂 Contents Management CLI
@@ -41,11 +41,11 @@ Execute `/.cli/siwl.ts` via `npm` script. This script is built by [Commander.js]
 ### Usage
 
 ```bash
-yarn run siwl <action> -option <arg>
+yarn siwl <action> -option <arg>
 ```
 
 > [!TIP]
-> `yarn run` can be omitted by setting the `alias siwl="yarn run siwl"` to `~/.bashrc`.
+> `yarn` can be omitted by setting the `alias siwl="yarn siwl"` to `~/.bashrc`.
 
 ### Available `<action>`s and `-option`s
 

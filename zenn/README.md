@@ -15,13 +15,13 @@ Zenn CLI can be used in `/zenn/*`.
 Automatically rewrite frontmatter and non-compliant syntax.
 
 ```bash
-yarn run siwl ex -f <filename> -t zenn
+yarn siwl ex -f <filename> -t zenn
 ```
 
 ### Push to parent repository with zenn repository
 
 ```bash
-yarn run deploy --zenn
+yarn deploy --zenn
 ```
 
 ### Push only zenn repository
@@ -34,5 +34,5 @@ git subtree push --prefix=zenn zenn main
 
 ```bash
 git subtree pull --prefix=zenn --squash zenn main
-yarn run deploy
+yarn deploy
 ```
