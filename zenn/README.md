@@ -34,5 +34,5 @@ git subtree push --prefix=zenn zenn main
 
 ```bash
 git subtree pull --prefix=zenn --squash zenn main
-yarn deploy
+yarn deploy --siwl
 ```
