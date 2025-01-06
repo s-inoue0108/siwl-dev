@@ -29,6 +29,6 @@ else
   exit 1
 fi
 
-echo "$open_command $url"
+echo -e "$open_command \e[95m$url\e[0m"
 
 $open_command "$url"

@@ -59,7 +59,7 @@ yarn siwl <action> -option <arg>
 | `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]` | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
 | `list\|ls`     | `[-m <model>] [-p\|-d]`                   | List `src/content/<model>/` with status.                                                          |
 | `open\|op`     | `-f <filename> [-m <model>]`              | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
-| `view\|vi`     | `[-f <filename>] [-l]`                    | View specified `article` using browser.                                                           |
+| `view\|vi`     | `[-f <filename>] [-l] [-d]`               | View specified webpage using browser.                                                             |
 | `export\|ex`   | `-f <filename> -t <mdtype> [-F]`          | Export `article` with specified markdown type.                                                    |
 |                | `-h`                                      | Display help.                                                                                     |
 |                | `-v`                                      | Display version.                                                                                  |
