@@ -115,19 +115,19 @@ const { Content, headings } = await article.render();
 
 		/* link card */
 		.rlc-container {
-			@apply my-8 lg:my-12 flex items-center w-full h-24 sm:h-28 lg:h-32 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
+			@apply my-8 lg:my-12 flex items-center w-full h-28 sm:h-32 lg:h-36 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
 		}
 
 		.rlc-info {
-			@apply flex flex-col p-2 justify-between gap-1 w-3/4 h-full;
+			@apply flex flex-col p-2 justify-between gap-1 w-[70%] h-full;
 		}
 
 		.rlc-title {
-			@apply font-semibold lg:text-lg max-h-12 truncate;
+			@apply font-semibold lg:text-lg xl:text-xl whitespace-nowrap truncate;
 		}
 
 		.rlc-description {
-			@apply text-xs text-muted-foreground whitespace-pre-wrap max-h-4 lg:max-h-12 truncate overflow-clip;
+			@apply text-sm text-muted-foreground whitespace-pre-wrap max-h-11 truncate;
 		}
 
 		.rlc-url-container {
@@ -135,15 +135,15 @@ const { Content, headings } = await article.render();
 		}
 
 		.rlc-favicon {
-			@apply w-3 h-3;
+			@apply w-4 h-4 rounded-md;
 		}
 
 		.rlc-url {
-			@apply font-code font-semibold tracking-tight text-xs text-muted-foreground;
+			@apply pl-1 font-code font-semibold tracking-tight text-sm text-muted-foreground whitespace-nowrap truncate;
 		}
 
 		.rlc-image-container {
-			@apply w-1/4 h-full;
+			@apply w-[30%] h-full;
 		}
 
 		.rlc-image-container img {

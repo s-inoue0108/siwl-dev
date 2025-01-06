@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-06T21:07:24+09:00
+updateDate: 2025-01-06T22:44:40+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -356,6 +356,7 @@ $$
 | YouTube      | 動画配信         | `https://youtube.com`      |
 | Twitter (X)  | SNS              | `https://x.com`            |
 | Wikipedia    | 百科事典         | `https://ja.wikipedia.org` |
+| note         | ブログ           | `https://note.com`         |
 
 
 ### GitHub Gist
@@ -437,16 +438,23 @@ https://x.com/astrodotbuild/status/1844403385375862824
 ### Wikipedia
 
 ```md:記法
-@{wiki}(単語)
-@{wikipedia}(単語)
-@{wikimedia}(単語)
+<!--@{wiki|wikimedia|wikipedia}(単語)-->
+@{wiki}(プログラミング)
 
 <!--":lang" をつけるとそのロケールで検索します-->
 <!--デフォルトは ja（https://ja.wikipedia.org）です-->
-
-@{wiki:en}(word)
-@{wikipedia:fr}(mot)
-@{wikimedia:ko}(단어)
+@{wiki:en}(programming)
+@{wikipedia:fr}(programmation)
+@{wikimedia:ko}(프로그래밍)
 ```
 
 @{wiki}(プログラミング)
+
+### note
+
+```md:記法
+<!--@{note}(query)-->
+@{note}(na07e3bae0d15)
+```
+
+@{note}(na07e3bae0d15)
