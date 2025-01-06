@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-05T23:26:20+09:00
+updateDate: 2025-01-06T21:07:24+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -32,17 +32,17 @@ relatedArticles: [renewal-note]   # optional
 >
 > ```bash:記事の追加
 > # Markdownを生成し、isDraft, publishDate, updateDate を初期化します
-> $ yarn run siwl new -f <filename>
+> $ yarn siwl new -f <filename>
 > ```
 >
 > ```bash:記事の公開
 > # isDraft = false, updateDate を更新します
-> $ yarn run siwl pub -f <filename>
+> $ yarn siwl pub -f <filename>
 > ```
 >
 > ```bash:記事を下書きに戻す
 > # isDraft = true
-> $ yarn run siwl dft -f <filename>
+> $ yarn siwl dft -f <filename>
 > ```
 
 ## 見出し
