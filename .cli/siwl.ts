@@ -405,7 +405,7 @@ program
         process.exit(1);
       }
 
-      exec(`touch ${zennFile}`, (error, stdout, stderr) => {
+      exec(`touch ${zennFile}`, (error, _, stderr) => {
         if (error) {
           console.error(`Error executing command: ${error.message}`);
           return;
@@ -414,7 +414,6 @@ program
           console.error(stderr);
           return;
         }
-        console.log(stdout);
       });
 
       const rs = fs.createReadStream(file);
@@ -504,6 +503,27 @@ program
             lcTmp = 0;
           } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
             return;
+          } else if (/^\!\[.*\]\(.+(?:\.jpe?g|\.png|\.svg)\)$/.test(line) && !isCodeBlock) {
+            const relPathMatch = line.match(/^\!\[.*\]\((.+(?:\.jpe?g|\.png|\.svg))\)$/);
+            if (!relPathMatch) return;
+            const relPath = relPathMatch[1];
+            const partPath = relPath.replace(/^\.{0,2}\/?images\//, "");
+
+            const toDirPath = `./zenn/images`;
+            if (!fs.existsSync(`${toDirPath}/${filename}/`)) {
+              fs.mkdirSync(`${toDirPath}/${filename}/`);
+            }
+
+            exec(`cp ./src/content/article/images/${partPath} ${toDirPath}/${partPath}`, (error, _, stderr) => {
+              if (error) {
+                console.error(`Error executing command: ${error.message}`);
+                return;
+              }
+              if (stderr) {
+                console.error(stderr);
+                return;
+              }
+            });
           } else if (!/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
@@ -521,7 +541,7 @@ program
         process.exit(1);
       }
 
-      exec(`touch ${qiitaFile}`, (error, stdout, stderr) => {
+      exec(`touch ${qiitaFile}`, (error, _, stderr) => {
         if (error) {
           console.error(`Error executing command: ${error.message}`);
           return;
@@ -530,7 +550,6 @@ program
           console.error(stderr);
           return;
         }
-        console.log(stdout);
       });
 
       const rs = fs.createReadStream(file);

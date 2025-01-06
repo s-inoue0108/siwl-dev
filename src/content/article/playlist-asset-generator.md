@@ -28,7 +28,7 @@ https://playlist-asset-generator.vercel.app
 
 ### プレビュー
 
-![playlist-asset-generator](./images//playlist-asset-generator.png)
+![playlist-asset-generator](./images/playlist-asset-generator/playlist-asset-generator.png)
 
 *[!image] プレビュー*
 

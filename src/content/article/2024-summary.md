@@ -13,7 +13,7 @@ relatedArticles: []
 
 https://github.com/s-inoue0108
 
-![GitHub コントリビューション](./images//github-contributions.png)
+![GitHub コントリビューション](./images/2024-summary/github-contributions.png)
 
 *[!image] コントリビューションマップ*
 

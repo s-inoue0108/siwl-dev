@@ -174,15 +174,15 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 
 ## 画像
 
-画像ファイルは `./images/` に格納することを推奨します。キャプションをつける場合は1行空けます。
+画像ファイルは `./images/[slug]/` に格納することを推奨します。キャプションをつける場合は1行空けます。
 
 ```md:画像
-![プロフィール画像](./images/profile-image.jpg)
+![プロフィール画像](./images/markdown-syntax-guide/profile-image.jpg)
 
 *[!image] 画像の例*
 ```
 
-![プロフィール画像](./images/profile-image.jpg)
+![プロフィール画像](./images/markdown-syntax-guide/profile-image.jpg)
 
 *[!image] 画像の例*
 
