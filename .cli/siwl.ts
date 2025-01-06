@@ -395,6 +395,7 @@ program
   .alias("ex")
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
+  .option("-n, --newname <newname>", "new content filename")
   .requiredOption("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
   .option("-F, --force", 'force export')
   .action(async (cmd) => {
@@ -403,7 +404,7 @@ program
     const file = `${rootpath}/article/${filename}.md`;
 
     if (cmd.type === "zenn") {
-      const zennFile = `./zenn/articles/${filename}.md`;
+      const zennFile = `./zenn/articles/${cmd.newname ? cmd.newname : filename}.md`;
 
       if (fs.existsSync(zennFile) && !cmd.force) {
         console.log(chalk.bgYellowBright(`${zennFile} already exists!`));
@@ -535,7 +536,7 @@ program
       console.log(`generated ${chalk.cyan(zennFile)}`);
 
     } else if (cmd.type === "qiita") {
-      const qiitaFile = `./qiita/public/${filename}.md`;
+      const qiitaFile = `./qiita/public/${cmd.newname ? cmd.newname : filename}.md`;
 
       if (fs.existsSync(qiitaFile) && !cmd.force) {
         console.log(chalk.bgYellowBright(`${qiitaFile} already exists!`));

@@ -102,7 +102,7 @@ const { Content, headings } = await privacyPolicy.render();
 		}
 
 		.rlc-description {
-			@apply text-sm text-muted-foreground whitespace-pre-wrap max-h-11 truncate;
+			@apply text-sm text-muted-foreground whitespace-pre-wrap max-h-10 truncate;
 		}
 
 		.rlc-url-container {
@@ -176,8 +176,8 @@ const { Content, headings } = await privacyPolicy.render();
 		.callout {
 			@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
-			code {
-				@apply bg-background;
+			p > code {
+				@apply bg-background text-muted-foreground;
 			}
 
 			.remark-code-title {

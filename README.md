@@ -50,19 +50,19 @@ yarn siwl <action> -option <arg>
 
 ### Available `<action>`s and `-option`s
 
-| `<action>`     | `-option <arg>`                           | Description                                                                                       |
-| :------------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------ |
-| `create\|new`  | `-f <filename> [-m <model>]`              | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                         |
-| `remove\|rm`   | `-f <filename> [-m <model>]`              | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                               |
-| `draft\|dft`   | `-f <filename> [-m <model>]`              | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                                |
-| `publish\|pub` | `-f <filename> [-m <model>]`              | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`.   |
-| `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]` | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
-| `list\|ls`     | `[-m <model>] [-p\|-d]`                   | List `src/content/<model>/` with status.                                                          |
-| `open\|op`     | `-f <filename> [-m <model>]`              | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
-| `view\|vi`     | `[-f <filename>] [-l] [-d]`               | View specified webpage using browser.                                                             |
-| `export\|ex`   | `-f <filename> -t <mdtype> [-F]`          | Export `article` with specified markdown type.                                                    |
-|                | `-h`                                      | Display help.                                                                                     |
-|                | `-v`                                      | Display version.                                                                                  |
+| `<action>`     | `-option <arg>`                                 | Description                                                                                       |
+| :------------- | :---------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| `create\|new`  | `-f <filename> [-m <model>]`                    | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                         |
+| `remove\|rm`   | `-f <filename> [-m <model>]`                    | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                               |
+| `draft\|dft`   | `-f <filename> [-m <model>]`                    | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                                |
+| `publish\|pub` | `-f <filename> [-m <model>]`                    | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`.   |
+| `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]`       | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
+| `list\|ls`     | `[-m <model>] [-p\|-d]`                         | List `src/content/<model>/` with status.                                                          |
+| `open\|op`     | `-f <filename> [-m <model>]`                    | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
+| `view\|vi`     | `[-f <filename>] [-l] [-d]`                     | View specified webpage using browser.                                                             |
+| `export\|ex`   | `-f <filename> -t <mdtype> [-n <newname>] [-F]` | Export `article` with specified markdown type.                                                    |
+|                | `-h`                                            | Display help.                                                                                     |
+|                | `-v`                                            | Display version.                                                                                  |
 
 > [!IMPORTANT]
 > Use `<action> -h` to display help for each actions. Run this command to see the `--longoption`.
