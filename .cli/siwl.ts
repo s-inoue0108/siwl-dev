@@ -509,6 +509,16 @@ program
             }
 
             execSync(`cp ./src/content/article/images/${partPath} ${toDirPath}/${partPath}`);
+          } else if (/^\@\{(?:wiki|wikimedia|wikipedia)(?:\:[a-z]{1,3})?\}\(.+\)$/.test(line) && !isCodeBlock) {
+            const strMatch = line.match(/^\@\{(?:wiki|wikimedia|wikipedia)(\:[a-z]{1,3})?\}\((.+)\)$/);
+            if (!strMatch) return;
+
+            let lang = "ja";
+            if (strMatch[1]) lang = strMatch[1].replace(":", "");
+
+            const str = strMatch[2];
+            const url = `https://${lang}.wikipedia.org/wiki/${str}`;
+            ws.write(`${url}\n`);
           } else if (!/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
@@ -643,6 +653,16 @@ program
             lcTmp = 0;
           } else if (/^\*\[\!(?:image|table)\].*\*/.test(line) && !isCodeBlock) {
             return;
+          } else if (/^\@\{(?:wiki|wikimedia|wikipedia)(?:\:[a-z]{1,3})?\}\(.+\)$/.test(line) && !isCodeBlock) {
+            const strMatch = line.match(/^\@\{(?:wiki|wikimedia|wikipedia)(\:[a-z]{1,3})?\}\((.+)\)$/);
+            if (!strMatch) return;
+
+            let lang = "ja";
+            if (strMatch[1]) lang = strMatch[1].replace(":", "");
+
+            const str = strMatch[2];
+            const url = `https://${lang}.wikipedia.org/wiki/${str}`;
+            ws.write(`${url}\n`);
           } else if (!/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
