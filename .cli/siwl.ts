@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import readline from 'readline';
-import { exec } from "child_process";
+import { exec, execSync } from "child_process";
 import chalk from "chalk";
 import { Command } from "commander";
 import { toISOStringWithTimezone } from "../src/utils/common/utilfuncs";
@@ -392,6 +392,7 @@ program
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .requiredOption("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
+  .option("-F, --force", 'force export')
   .action(async (cmd) => {
 
     const filename = getFilename(cmd);
@@ -400,21 +401,14 @@ program
     if (cmd.type === "zenn") {
       const zennFile = `./zenn/articles/${filename}.md`;
 
-      if (fs.existsSync(zennFile)) {
+      if (fs.existsSync(zennFile) && !cmd.force) {
         console.log(chalk.bgYellowBright(`${zennFile} already exists!`));
         process.exit(1);
+      } else if (fs.existsSync(zennFile) && cmd.force) {
+        execSync(`rm -f ${zennFile}`);
       }
 
-      exec(`touch ${zennFile}`, (error, _, stderr) => {
-        if (error) {
-          console.error(`Error executing command: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          console.error(stderr);
-          return;
-        }
-      });
+      execSync(`touch ${zennFile}`);
 
       const rs = fs.createReadStream(file);
       const ws = fs.createWriteStream(zennFile);
@@ -514,43 +508,29 @@ program
               fs.mkdirSync(`${toDirPath}/${filename}/`);
             }
 
-            exec(`cp ./src/content/article/images/${partPath} ${toDirPath}/${partPath}`, (error, _, stderr) => {
-              if (error) {
-                console.error(`Error executing command: ${error.message}`);
-                return;
-              }
-              if (stderr) {
-                console.error(stderr);
-                return;
-              }
-            });
+            execSync(`cp ./src/content/article/images/${partPath} ${toDirPath}/${partPath}`);
           } else if (!/^https?\:\/\//.test(line)) {
             ws.write(`${line}\n`);
           }
         })();
       };
 
+      rs.close();
+      ws.end();
       rl.close();
       console.log(`generated ${chalk.cyan(zennFile)}`);
 
     } else if (cmd.type === "qiita") {
       const qiitaFile = `./qiita/public/${filename}.md`;
 
-      if (fs.existsSync(qiitaFile)) {
+      if (fs.existsSync(qiitaFile) && !cmd.force) {
         console.log(chalk.bgYellowBright(`${qiitaFile} already exists!`));
         process.exit(1);
+      } else if (fs.existsSync(qiitaFile) && cmd.force) {
+        execSync(`rm -f ${qiitaFile}`);
       }
 
-      exec(`touch ${qiitaFile}`, (error, _, stderr) => {
-        if (error) {
-          console.error(`Error executing command: ${error.message}`);
-          return;
-        }
-        if (stderr) {
-          console.error(stderr);
-          return;
-        }
-      });
+      execSync(`touch ${qiitaFile}`);
 
       const rs = fs.createReadStream(file);
       const ws = fs.createWriteStream(qiitaFile);
@@ -669,6 +649,8 @@ program
         })();
       };
 
+      rs.close();
+      ws.end();
       rl.close();
       console.log(`generated ${chalk.green(qiitaFile)}`);
     }
@@ -677,5 +659,5 @@ program
 program
   .name("siwl")
   .description("Contents Management CLI")
-  .version("2.0", "-v, --version")
+  .version("2.1", "-v, --version")
   .parse(process.argv);
