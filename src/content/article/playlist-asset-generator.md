@@ -5,7 +5,7 @@ category: tech
 tags: [ts, solid, sass, dj]
 description: DJ MIX プレイを録音して、動画として残したいことがあります。今回は、プレイした楽曲のメタデータから動画制作用の SVG アセットを出力するツールを SolidJS で制作してみました。
 publishDate: 2024-10-04T00:00:00+09:00
-updateDate: 2024-10-13T00:00:00+09:00
+updateDate: 2025-01-07T23:31:50+09:00
 ---
 
 ## ツールの紹介
@@ -20,7 +20,7 @@ https://playlist-asset-generator.vercel.app
 > 
 > カンマ区切りです。各カラムは FLAC ファイルが含むメタデータを参考に定義してあり、以下のヘッダーを含んでいます。
 >
-> ```csv:CSV
+> ```csv
 > FILENAME,ARTIST,TITLE,ALBUM,GENRE,TRACKNUMBER,DATE,ALBUMARTIST,COMPOSER,FLACPATH
 > ```
 >
@@ -52,7 +52,7 @@ https://www.solidjs.com/
 
 SolidJS は React によく似ていますが、小規模なアプリケーションであればよりシンプルに記述できると感じます。特に Hooks まわりは、`useState`（SolidJS では `createSignal`）が追加ライブラリを必要とせずにグローバルステートを宣言できるなど、使いやすい部分が多い気がします。
 
-```ts:state
+```ts
 import { createSignal } from "solid-js";
 
 export const [state, setState] = createSignal();
@@ -75,7 +75,7 @@ Vercel が開発している [satori](https://github.com/vercel/satori) を使�
 
 CSV をドロップする部分のみ書きます。`csv()` を外部ファイルにステートとして保存します。
 
-```ts:csvステート
+```ts
 import { createSignal } from "solid-js";
 
 export const [csv, setCsv] = createSignal("");
@@ -84,7 +84,7 @@ export const [isDroped, setIsDroped] = createSignal(false);
 
 ドロップゾーンの要素に `onDrop={(e) => drop(e)}` としてイベントハンドラを定義します。イベントハンドラの内容は以下です：
 
-```ts:dropイベントハンドラ
+```ts
 const drop = async (e: DragEvent) => {
   e.preventDefault();
   if (e.dataTransfer && !isDroped()) {
@@ -106,7 +106,7 @@ const drop = async (e: DragEvent) => {
 `isDroped()` はステートであり、ファイルがドロップされた後にドロップゾーンをロックする役割を果たします。
 また、`getTextFromFile` メソッドは FileReader API を使用して CSV を `string` として読みだしています。
 
-```ts:getTextFromFile
+```ts
 const getTextFromFile = (file: File, encoding: string = "utf-8") => {
   return new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -126,7 +126,7 @@ const getTextFromFile = (file: File, encoding: string = "utf-8") => {
 
 JS で CSV を取り扱うベストプラクティスはこれといったものがなさそうです。安直ですが、行を改行文字で、列をコンマで区切って取り出したデータをオブジェクト配列にマッピングすることでパースします。
 
-```ts:parser.ts
+```ts
 // キーとその型を定義
 const cols = {
   ARTIST: "",
@@ -160,7 +160,7 @@ export const parser = (csv: string) => {
 
 `parser()` の返り値の型は `{.....}[]` ですが、JSX に展開する場合は 2 次元配列 `[.....][]` のほうがおそらく扱いやすいです。そのための変換を行います（~~二度手間感はぬぐえませんが~~） 。
 
-```ts:tableData
+```ts
 import { createMemo } from "solid-js";
 
 const tableData = createMemo(() => {
@@ -184,7 +184,7 @@ const tableData = () => {
 
 `<table>` 要素に展開します。
 
-```tsx:table
+```tsx
 <table>
   <thead>
     {table().slice(0, 1).map((row) => (
@@ -211,7 +211,7 @@ const tableData = () => {
 
 今回はクライアントサイドで処理してしまいます。UI は JSX で実装していますが、satori でも JSX を用いようとしてうまくいかなかったので、DOM はオブジェクトで記述しています。
 
-```ts:satoriによる画像生成
+```ts
 export const generateSvg = async (entry) => {
   // fonts
   const noto400 = await fetch("/fonts/NotoSansJP-Regular.ttf").then((resp) =>
@@ -250,7 +250,7 @@ export const generateSvg = async (entry) => {
 
 フォントは `/public` へ配置し、Fetch API で読み込んでいます。上記のメソッドを実行するボタンも作っておきます。
 
-```tsx:画像生成ボタン
+```tsx
 // 外部に実装しておきます: const [svgs, setSvgs] = createSignal([]);
 export default function GenerateBtn() {
   const getSvgs = async (entries) => {
@@ -273,7 +273,7 @@ export default function GenerateBtn() {
 
 せっかくなのでモーダルで実装してみます。調べてみると、SolidJS にはモーダルを手軽に実装するための API が提供されています。
 
-```tsx:モーダル
+```tsx
 import { Portal } from "solid-js/web";
 import { Show } from "solid-js";
 
@@ -294,7 +294,7 @@ export default function Modal() {
 
 このようにすることで `svgs()` に要素が格納されているときのみモーダルが表示されます。最後に SVG をダウンロードするボタンを作ります。
 
-```tsx:ダウンロードボタン
+```tsx
 // 外部に実装しておきます: const [svgs, setSvgs] = createSignal([]);
 export default function DownloadBtn() {
   const onDownload = (entries) => {

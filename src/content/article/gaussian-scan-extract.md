@@ -5,7 +5,7 @@ category: tech
 tags: [perl, gaussian, comp-science]
 description: Gaussian16 では、結合長、二面角といったパラメータを固定しながら構造最適化計算を繰り返す Relaxed Scan 計算が利用できます。今回は、Scan 計算の結果から最適構造の座標情報を抽出し、TD-DFT 計算を実行するためのインプットファイルを生成するスクリプトを Perl で作成しましたので、紹介します。
 publishDate: 2024-12-10T20:53:35+09:00
-updateDate: 2024-12-15T21:14:23+09:00
+updateDate: 2025-01-07T23:34:48+09:00
 relatedArticles: []
 ---
 
@@ -180,7 +180,7 @@ EOF
 
 このうち、デカルト座標の部分と、2列目の Atomic Number 列が xyz 形式のインプットで必要になります：
 
-```txt:想定
+```txt
  C   .........   .........    ........
  H   .........   .........    ........
  H   .........   .........    ........
@@ -260,7 +260,7 @@ sub processed_coordinate {
 
 `calc.out` のあるディレクトリまで移動して次のコマンドを実行します：
 
-```bash:bash
+```bash
 $ perl ./gen-tddft.pl ./opt_result.out
 ```
 

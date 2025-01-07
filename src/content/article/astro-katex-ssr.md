@@ -5,7 +5,7 @@ category: tech
 tags: [astro, ts]
 description: Astro で remark/rehype を用いずに KaTeX をレンダリングする実装を行いました。
 publishDate: 2024-10-17T00:00:00+09:00
-updateDate: 2025-01-04T23:05:25+09:00
+updateDate: 2025-01-07T23:33:39+09:00
 relatedArticles: []
 ---
 
@@ -31,7 +31,7 @@ https://github.com/cheeriojs/cheerio
 $ npm i cheerio
 ```
 
-```ts:初期化
+```ts
 import { load } from "cheerio";
 
 // CMS から返ってきた HTML 文字列で初期化する
@@ -47,7 +47,7 @@ let $ = load(html);
 > インラインと別行立てのデリミタ処理がバッティングしてはいけないため、`$$ $$` に囲まれた部分を抽出する正規表現は、`$` にマッチングしないように `[^\$]+` を用います。
 > また、先に別行立てをレンダリングすることで、別行立てがインラインとしてレンダリングされることを防ぎます。
 
-```ts:TypeScript
+```ts
 import katex from "katex";
 
 // 先に別行立てをレンダリング
@@ -65,7 +65,7 @@ const renderedText = renderedDisplayText.replaceAll(/\$[^\$]+\$/g, (text: string
 
 `<code>` 内のテキストはデリミタとなる `$` が使用される可能性が高く、しかもレンダリングされると困ります。Cheerio を利用して `<code>` でラップされたテキストを取り出し、一時的に保持してレンダリング後に差し戻す処理を実装します。
 
-```ts:TypeScript
+```ts
 // <code> のテキストを抽出
 const innerTexts: string[] = [];
 $("code").each((_, elm) => {
@@ -88,7 +88,7 @@ $("code").each((idx, elm) => {
 
 ### HTML のレンダリング
 
-```astro:Astro
+```astro
 ---
 import "katex/dist/katex.min.css";   // CSS
 
@@ -130,7 +130,7 @@ Astroの場合、Client で 処理する JS は `<script>` 内に記述します
 
 ## Usage
 
-```tex:TeX
+```tex
 $$
 \lim_{n \to \infty} \frac{1}{n} \sum_{k=0}^{n-1} f \left( \frac{k}{n} \right) = \int_{0}^{1} f(x) dx
 $$

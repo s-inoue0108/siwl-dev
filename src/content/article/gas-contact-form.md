@@ -5,7 +5,7 @@ category: tech
 tags: [astro, solid, gas]
 description: お問い合わせフォームに、Astro の SSR 機能と Google Apps Script を利用したメール通知機能を実装しました。
 publishDate: 2024-12-08T17:54:26+09:00
-updateDate: 2024-12-28T21:39:28+09:00
+updateDate: 2025-01-07T23:35:57+09:00
 relatedArticles: [astro-katex-ssr]
 ---
 
@@ -136,7 +136,7 @@ onMount(() => {
 
 型補完のために `@types/grecaptcha` をインストールします。
 
-```bash:型情報の追加
+```bash
 $ npm i -D @types/grecaptcha
 ```
 
