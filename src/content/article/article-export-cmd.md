@@ -5,7 +5,7 @@ category: tech
 tags: [astro, ts, js, git]
 description: Markdown を変換し、Git Subtree として統合した Zenn, Qiita のリポジトリへ記事をコピーするコマンドを作成しました。Zenn リポジトリの統合を例に、その内容についてまとめます。
 publishDate: 2025-01-05T12:05:11+09:00
-updateDate: 2025-01-05T17:23:19+09:00
+updateDate: 2025-01-07T23:29:04+09:00
 relatedArticles: [markdown-syntax-guide, gas-contact-form, astro-giscus-comments]
 ---
 
@@ -19,27 +19,27 @@ Git には複数のリポジトリを統合する手段の1つとして **Subtre
 
 例として、Zenn の記事を管理しているリポジトリを取り込んでみます。リポジトリが GitHub にあるとすると、
 
-```bash:remoteを追加
+```bash
 git remote add my-zenn-repo https://github.com/username/zenn-repo.git
 ```
 
 のようにすることで、`my-zenn-repo` という名称でリモートリポジトリを登録することができます。これを現在のプロジェクトのサブディレクトリに取り込みましょう：
 
-```bash:zenn/を追加
+```bash
 git subtree add --prefix=zenn --squash my-zenn-repo main
 ```
 
 現在のプロジェクトに `zenn/` というサブディレクトリができ、ここにリポジトリのコンテンツが含まれていることがわかります。
 あとはいつものように commit して push すると、現在のプロジェクトのリモートリポジトリにサブツリーの内容が反映されます。
 
-```bash:現在のプロジェクトの変更を反映
+```bash
 git commit -m "added subtree"
 git push origin main
 ```
 
 取り込んだリポジトリのリモート `@username/zenn-repo` と変更を同期するには、`git subtree push/pull` を用います。
 
-```bash:push/pull
+```bash
 # push
 git subtree push --prefix=zenn my-zenn-repo main
 
@@ -57,7 +57,7 @@ https://zenn.dev/zenn/articles/install-zenn-cli
 
 サブツリー `zenn/` に移動し、CLI をセットアップします。
 
-```bash:zenn-cliのセットアップ
+```bash
 cd ./zenn
 npm install zenn-cli
 npx zenn init 
@@ -259,7 +259,7 @@ API 呼び出し中に後続の処理をブロックするため、分岐処理�
 
 tsx を使用して CLI を実行できます。
 
-```bash:実行
+```bash
 npx tsx ./cli.ts ex -f filename -t zenn
 ```
 

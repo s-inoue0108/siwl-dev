@@ -7,12 +7,22 @@ export default function rehypeCodeCopyButton() {
 
   return (tree: Root) => {
 
-    visit(tree, 'element', (node) => {
+    visit(tree, 'element', (node, _, parent) => {
       if (node.tagName !== 'pre') return;
 
       count++;
 
       node.properties.id = `code-block-${count}`;
+      const copyButton = {
+        type: 'element',
+        tagName: 'button',
+        properties: {
+          id: `copy-button-${count}`,
+        },
+        children: node.children,
+      } satisfies ElementContent;
+
+      node.children = [copyButton];
 
       const script = {
         type: 'element',
@@ -22,11 +32,10 @@ export default function rehypeCodeCopyButton() {
           type: 'text',
           value: `
             document.addEventListener('DOMContentLoaded', () => {
-              const codeBlock = document.getElementById('code-block-${count}');
-              codeBlock.addEventListener('click', () => {
-                const codeTag = codeBlock.children[0];
-                const text = codeTag.innerText;
-                navigator.clipboard.writeText(text);
+              const copyButton = document.getElementById('copy-button-${count}');
+              copyButton.addEventListener('click', () => {
+                const code = copyButton.children[0];
+                navigator.clipboard.writeText(code.innerText);
               });
             });
           `
