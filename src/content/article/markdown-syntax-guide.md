@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-06T22:44:40+09:00
+updateDate: 2025-01-07T17:30:06+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -453,8 +453,8 @@ https://x.com/astrodotbuild/status/1844403385375862824
 ### note
 
 ```md:記法
-<!--@{note}(query)-->
-@{note}(na07e3bae0d15)
+<!--https://note.com/<user>/n/<query>-->
+https://note.com/notemag/n/na07e3bae0d15
 ```
 
-@{note}(na07e3bae0d15)
+https://note.com/notemag/n/na07e3bae0d15

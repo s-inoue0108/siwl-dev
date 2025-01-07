@@ -10,9 +10,9 @@ export default function remarkNoteEmbed() {
       if (!paragraphNode) return;
 
       visit(paragraphNode, 'text', (textNode) => {
-        if (!/^\@\{note\}\(n.+\)$/.test(textNode.value)) return;
+        if (!/^https\:\/\/note\.com\/[a-z0-9_-]+\/n\/n[a-z0-9]+$/.test(textNode.value)) return;
 
-        const queryMatch = textNode.value.match(/^\@\{note\}\((n[a-z0-9]+)\)$/);
+        const queryMatch = textNode.value.match(/^https\:\/\/note\.com\/[a-z0-9_-]+\/n\/(n[a-z0-9]+)$/);
         if (!queryMatch) return;
 
         const query = queryMatch[1];
