@@ -22,17 +22,17 @@ yarn dev
 Execute `/.cli/deploy.sh` via `npm` script.
 
 ```bash
-# push all changes
-yarn deploy
-
 # push to origin/main omit zenn/* and qiita/*
-yarn deploy --siwl
+yarn deploy
 
 # push to origin/main and @s-inoue0108/siwl-dev-zenn only zenn/*
 yarn deploy --zenn
 
 # push to origin/main and @s-inoue0108/siwl-dev-qiita only qiita/*
 yarn deploy --qiita
+
+# push all changes
+yarn deploy --all
 ```
 
 ## 📂 Contents Management CLI
