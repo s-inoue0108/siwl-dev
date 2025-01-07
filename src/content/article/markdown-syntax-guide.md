@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-07T17:30:06+09:00
+updateDate: 2025-01-07T23:06:18+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -121,12 +121,12 @@ relatedArticles: [renewal-note]   # optional
 
 これは *イタリック* になります。
 
-## 文末脚注
+## 脚注
 
 ```md:脚注
 これは脚注です[^1]。
 
-<!--footnote-->
+<!--脚注はレベル3の見出しになります-->
 [^1]: ここに脚注がきます。
 ```
 
@@ -217,16 +217,25 @@ https://shiki.matsu.io/languages
 ### インラインコード
 
 ```md:インラインコード
-`inline code`
+`inline code` はインラインコードです。
 ```
 
-`inline code`
+`inline code` はインラインコードです。
 
-### タイトル付きコードブロック
+### コードブロック
 
-タイトルは必須です。
+タイトルは任意です。
 
-````md:タイトル付きコードブロック
+````md:コードブロック
+```js
+const text = "Hello, world!";
+
+const displayTextType = (text) => {
+  if (typeof text !== "string") return;
+  console.log("text type is string");
+}
+```
+
 ```ts:TypeScriptによる例
 const text: string = "Hello, world!";
 
@@ -236,6 +245,15 @@ const displayTextType = (text: string) => {
 }
 ```
 ````
+
+```js
+const text = "Hello, world!";
+
+const displayTextType = (text) => {
+  if (typeof text !== "string") return;
+  console.log("text type is string");
+}
+```
 
 ```ts:TypeScriptによる例
 const text: string = "Hello, world!";
@@ -321,7 +339,7 @@ https://katex.org/docs/support_table
 
 ### インライン数式
 
-```md:インライン
+```md:インライン数式
 $f(x) = e^x$ はインライン数式です。
 ```
 
@@ -361,7 +379,7 @@ $$
 
 ### GitHub Gist
 
-```md:記法
+```md
 <!--https://gist.github.com/<user>/<query>-->
 https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
 ```
@@ -370,7 +388,7 @@ https://gist.github.com/s-inoue0108/6716e31de586f9f48fce1dbd0ea33899
 
 ### CodePen
 
-```md:記法
+```md
 <!--https://codepen.io/<user>/pen/<query>-->
 https://codepen.io/s-inoue0108/pen/PwYJOyv
 ```
@@ -379,7 +397,7 @@ https://codepen.io/s-inoue0108/pen/PwYJOyv
 
 ### Speaker Deck
 
-```md:記法
+```md
 <!--https://speakerdeck.com/<user>/<query>-->
 https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-87da-623799f8d8bd
 ```
@@ -388,7 +406,7 @@ https://speakerdeck.com/panda_program/tips-for-indie-hackers-5e33891f-2054-4044-
 
 ### Docswell
 
-```md:記法
+```md
 <!--https://docswell.com/s/<user>/<query>-->
 https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
 ```
@@ -397,7 +415,7 @@ https://docswell.com/s/ku-suke/LK7J5V-hello-docswell
 
 ### Spotify
 
-```md:記法
+```md
 <!--https://open.spotify.com/<locale?>/<category>/<query>-->
 https://open.spotify.com/intl-ja/track/6Ug3vnQRk30sUrOvDWstgI
 https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
@@ -409,7 +427,7 @@ https://open.spotify.com/artist/5CxWZpW3bKbMiOC6jJ5r7i
 
 ### SoundCloud
 
-```md:記法
+```md
 <!--https://soundcloud.com/<user>/<query>-->
 https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
 ```
@@ -418,7 +436,7 @@ https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
 
 ### YouTube
 
-```md:記法
+```md
 <!--https://www.youtube.com/watch?v=<query>-->
 https://www.youtube.com/watch?v=sTxY93pA1zI
 ```
@@ -427,7 +445,7 @@ https://www.youtube.com/watch?v=sTxY93pA1zI
 
 ### Twitter (X)
 
-```md:記法
+```md
 <!--https://[x|twitter].com/<user>/status/<query>-->
 https://x.com/astrodotbuild/status/1844403385375862824
 https://twitter.com/astrodotbuild/status/1844403385375862824
@@ -437,7 +455,7 @@ https://x.com/astrodotbuild/status/1844403385375862824
 
 ### Wikipedia
 
-```md:記法
+```md
 <!--@{wiki|wikimedia|wikipedia}(単語)-->
 @{wiki}(プログラミング)
 
@@ -452,7 +470,7 @@ https://x.com/astrodotbuild/status/1844403385375862824
 
 ### note
 
-```md:記法
+```md
 <!--https://note.com/<user>/n/<query>-->
 https://note.com/notemag/n/na07e3bae0d15
 ```

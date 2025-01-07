@@ -31,6 +31,7 @@ import remarkWikimediaEmbed from "./src/plugins/remark/remark-wikimedia-embed";
 import remarkNoteEmbed from "./src/plugins/remark/remark-note-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
+import rehypeCodeCopyButton from "./src/plugins/rehype/rehype-code-copy-button";
 
 // https://astro.build/config
 export default defineConfig({
@@ -94,6 +95,7 @@ export default defineConfig({
 			rehypeInlineAnchor,
 			rehypeHeadings,
 			rehypeKatex,
+			rehypeCodeCopyButton,
 		],
 		remarkRehype: {
 			footnoteLabelTagName: "h4",
