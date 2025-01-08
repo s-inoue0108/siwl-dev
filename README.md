@@ -2,7 +2,7 @@
 
 Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [AstroJS](https://astro.build/), [SolidJS](https://solidjs.com) and [Tailwind CSS](https://tailwindcss.com).
 
-## System Structure
+## 🌐 System Structure
 
 ![System Structure](./structure.drawio.svg)
 
