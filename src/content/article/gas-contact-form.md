@@ -19,7 +19,7 @@ relatedArticles: [astro-katex-ssr]
 
 ## reCAPTCHA の用意
 
-GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) によりフィルタリングします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
+GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) によりバリデーションします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
 
 > [!tip]
 >
