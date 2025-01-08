@@ -375,6 +375,7 @@ $$
 | Twitter (X)  | SNS              | `https://x.com`            |
 | Wikipedia    | 百科事典         | `https://ja.wikipedia.org` |
 | note         | ブログ           | `https://note.com`         |
+| Hatena Blog  | ブログ           | `https://hatenablog.blog`  |
 
 
 ### GitHub Gist
@@ -476,3 +477,12 @@ https://note.com/notemag/n/na07e3bae0d15
 ```
 
 https://note.com/notemag/n/na07e3bae0d15
+
+### Hatena Blog
+
+```md
+<!--https://<user>.hatenablog.com/<yyyy>/<mm>/<dd>/<query>-->
+https://staff.hatenablog.com/entry/2014/09/03/153938
+```
+
+https://staff.hatenablog.com/entry/2014/09/03/153938

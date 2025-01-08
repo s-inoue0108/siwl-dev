@@ -7,7 +7,7 @@ export default function rehypeCodeCopyButton() {
 
   return (tree: Root) => {
 
-    visit(tree, 'element', (node, _, parent) => {
+    visit(tree, 'element', (node) => {
       if (node.tagName !== 'pre') return;
 
       count++;
