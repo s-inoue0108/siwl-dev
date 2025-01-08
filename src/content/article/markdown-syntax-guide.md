@@ -373,6 +373,7 @@ $$
 | SoundCloud   | 音楽配信         | `https://soundcloud.com`   |
 | YouTube      | 動画配信         | `https://youtube.com`      |
 | Twitter (X)  | SNS              | `https://x.com`            |
+| Misskey      | SNS              | `https://misskey.io` ほか  |
 | Wikipedia    | 百科事典         | `https://ja.wikipedia.org` |
 | note         | ブログ           | `https://note.com`         |
 | Hatena Blog  | ブログ           | `https://hatenablog.blog`  |
@@ -454,17 +455,26 @@ https://twitter.com/astrodotbuild/status/1844403385375862824
 
 https://x.com/astrodotbuild/status/1844403385375862824
 
+### Misskey
+
+```md
+<!--@{misskey}(id)-->
+@{misskey:host}(a2r05zxp6u)
+
+<!--":host" で参照するサーバーを設定できます（省略可）-->
+<!--デフォルトは sushi.ski (https://sushi.ski) です-->
+```
+
+@{misskey}(a2r05zxp6u)
+
 ### Wikipedia
 
 ```md
 <!--@{wiki|wikimedia|wikipedia}(単語)-->
-@{wiki}(プログラミング)
+@{wiki:lang}(プログラミング)
 
-<!--":lang" をつけるとそのロケールで検索します-->
+<!--":lang" をつけるとそのロケールで検索します（省略可）-->
 <!--デフォルトは ja（https://ja.wikipedia.org）です-->
-@{wiki:en}(programming)
-@{wikipedia:fr}(programmation)
-@{wikimedia:ko}(프로그래밍)
 ```
 
 @{wiki}(プログラミング)

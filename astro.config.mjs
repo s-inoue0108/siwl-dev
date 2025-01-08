@@ -20,6 +20,7 @@ import rehypeKatex from "rehype-katex";
 import remarkCallout from "./src/plugins/remark/remark-callout";
 import remarkFigureCaption from "./src/plugins/remark/remark-figure-caption";
 import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
+import remarkMisskeyEmbed from "./src/plugins/remark/remark-misskey-embed";
 import remarkYoutubeEmbed from "./src/plugins/remark/remark-youtube-embed";
 import remarkGistEmbed from "./src/plugins/remark/remark-gist-embed";
 import remarkCodepenEmbed from "./src/plugins/remark/remark-codepen-embed";
@@ -83,6 +84,7 @@ export default defineConfig({
 			remarkSpotifyEmbed,
 			remarkSoundCloudEmbed,
 			remarkWikimediaEmbed,
+			remarkMisskeyEmbed,
 			remarkNoteEmbed,
 			remarkHatenablogEmbed,
 			remarkFigureCaption,
