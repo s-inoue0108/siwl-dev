@@ -1,9 +1,9 @@
 ---
-title: "Astro + GAS で静的サイトにお問い合わせフォームを実装する"
-emoji: "🚀"
-type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [astro, solidjs, gas]
 published: true
+title: SolidJS + Astro SSR + GAS で静的サイトにフォームを実装する
+type: tech
+topics: [astro, solid, gas]
+emoji: 🚀
 ---
 
 ## バージョン情報
@@ -12,15 +12,13 @@ published: true
 - @astrojs/cloudflare `v9.2.1`
 - TypeScript `v5.6.2`
 
-執筆時点で Astro `v5` がリリースされていますが、`v4` の環境です。また、@astrojs/cloudflare は Latest Release (`v12`) のものを用いるとビルドに失敗するため、`v9` を用いています。
+執筆時点で Astro `v5` がリリースされていますが、`v4` の環境です。また、@astrojs/cloudflare は Latest Release (`v12`) のものを用いるとデプロイに失敗するため、`v9` を用いています。
 
 ## reCAPTCHA の用意
 
-GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) によりフィルタリングします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
+GAS アプリケーションとの通信を [Google reCAPTCHA](https://www.google.com/recaptcha/about/) (`v3`) によりバリデーションします。次の URL へアクセスし、reCAPTCHA 認証のためのサイトキーとシークレットキーを取得します。
 
-:::message
-開発サーバーからのリクエストを検証したい場合、`localhost` からの認証をするためのキーを別途取得しておくとよいです。
-:::
+> 開発サーバーからのリクエストを検証したい場合、`localhost` からの認証をするためのキーを別途取得しておくとよいです。
 
 キーは環境変数に保存します。
 
@@ -35,7 +33,7 @@ https://docs.astro.build/ja/guides/environment-variables/
 
 ## GAS の実装
 
-[Google Apps Script](https://script.google.com/home) の `doPost` 関数でフォームからの通信を受け取り、`Gmail.sendEmail` 関数で通知メールを送信する仕組みを作ります。
+[Google Apps Script](https://script.google.com/) の `doPost` 関数でフォームからの通信を受け取り、`Gmail.sendEmail` 関数で通知メールを送信する仕組みを作ります。
 
 ```js:GAS
 const sendMail = (name, email, content) => {
@@ -133,7 +131,7 @@ onMount(() => {
 
 型補完のために `@types/grecaptcha` をインストールします。
 
-```bash:型情報の追加
+```bash
 $ npm i -D @types/grecaptcha
 ```
 
@@ -199,104 +197,110 @@ const handleSubmit = async (e: SubmitEvent) => {
 
 ```tsx:ContactForm.tsx
 <>
-  <form class="mx-auto w-full flex flex-col gap-6" onSubmit={handleSubmit}>
-  	<div class="flex flex-col gap-2">
-  		<label for="contact-name">
-    		<span>お名前</span>
-    		<span class="text-red-500"> *</span>
-    	</label>
-    	<input
-    		class="rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
-    		type="text"
-    		id="contact-name"
-    		value={name()}
-    		onInput={(e) => setName(e.target.value)}
-    		required
-    	/>
-    </div>
-    <div class="flex flex-col gap-2">
-    	<label for="contact-email">
-    		<span>メールアドレス</span>
-    		<span class="text-red-500"> *</span>
-    	</label>
-    	<input
-    		class="rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
-    		type="email"
-    		id="contact-email"
-    		value={email()}
-    		onInput={(e) => setEmail(e.target.value)}
-    		required
-    	/>
-    </div>
-    <div class="flex flex-col gap-2">
-    	<label for="contact-content">
-    		<span>お問い合わせ内容</span>
-    		<span class="text-red-500"> *</span>
-    	</label>
-    	<textarea
-    		class="resize-none rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
-    		id="contact-content"
-    		value={content()}
-    		onInput={(e) => setContent(e.target.value)}
-    		required
-    		rows={10}
-    	/>
-    </div>
+	<form class="mx-auto w-full flex flex-col gap-6" onSubmit={handleSubmit}>
+		<div class="flex flex-col gap-2">
+			<label for="contact-name">
+				<span>お名前</span>
+				<span class="text-red-500"> *</span>
+			</label>
+			<input
+				class="rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
+				type="text"
+				id="contact-name"
+				value={name()}
+				onInput={(e) => setName(e.target.value)}
+				required
+			/>
+		</div>
+		<div class="flex flex-col gap-2">
+			<label for="contact-email">
+				<span>メールアドレス</span>
+				<span class="text-red-500"> *</span>
+			</label>
+			<input
+				class="rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
+				type="email"
+				id="contact-email"
+				value={email()}
+				onInput={(e) => setEmail(e.target.value)}
+				required
+			/>
+		</div>
+		<div class="flex flex-col gap-2">
+			<label for="contact-content">
+				<span>お問い合わせ内容</span>
+				<span class="text-red-500"> *</span>
+			</label>
+			<textarea
+				class="resize-none rounded-lg p-2 focus:ring-0 focus:outline-blue-500 focus:outline-2"
+				id="contact-content"
+				value={content()}
+				onInput={(e) => setContent(e.target.value)}
+				required
+				rows={10}
+			/>
+		</div>
 
-    <div class="mx-auto flex items-center">
-    	<input
-    		id="contact-checkbox"
-    		type="checkbox"
-    		checked={isAgree()}
-    		onInput={(e) => setIsAgree(e.target.checked)}
-    		class="w-4 h-4 rounded focus:ring-blue-500 focus:ring-2"
-    		required
-    	/>
-    	<label for="contact-checkbox" class="ms-2 text-sm font-medium">
-    		<a
-    			href="/privacy-policy"
-    			target="_blank"
-    			rel="noopener noreferrer"
-    			class="text-blue-500 visited:text-purple-500 hover:underline"
-    		>
-    			プライバシーポリシー↗
-    		</a>{" "}
-    		に同意する
-    	</label>
-    </div>
+		<div class="mx-auto flex items-center">
+			<input
+				id="contact-checkbox"
+				type="checkbox"
+				checked={isAgree()}
+				onInput={(e) => setIsAgree(e.target.checked)}
+				class="w-4 h-4 rounded focus:ring-blue-500 focus:ring-2"
+				required
+			/>
+			<label for="contact-checkbox" class="ms-2 text-sm font-medium">
+				<a
+					href="/privacy-policy"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-blue-500 visited:text-purple-500 hover:underline"
+				>
+					プライバシーポリシー↗
+				</a>{" "}
+				に同意する
+			</label>
+		</div>
 
-    <div class="mx-auto">
-    	<button
-    		class="w-40 flex items-center justify-center font-bold bg-gradient-to-r from-accent-sub-base to-accent-base px-4 py-2 rounded-lg"
-    		type="submit"
-    	>
-    		{isSubmitting() ? (
-    			<span class="flex items-center gap-2">
-    				<span>送信中...</span>
-    			</span>
-    		) : (
-    			<span class="flex items-center gap-2">
-    				<span>送信する</span>
-    			</span>
-    		)}
-    	</button>
-    </div>
-    </form>
-    <Portal mount={document.body}>
-    <Show when={isOpen()}>
-    	<div class={`w-full z-[100] fixed bottom-0 left-0 ${isSucsess() ? "bg-green-600" : "bg-red-600"} } p-4`}>
-    		<button type="button" onClick={() => setIsOpen(false)} class="absolute top-2 right-2">×</button>
-    		<div class="text-center flex flex-col gap-2">
-    			<div>
-    				{isSucsess() ? "お問い合わせを受け付けました" : "送信に失敗しました"}
-    			</div>
-    			<div>
-    				{isSucsess() ? "メールボックスをご確認ください。" : "お手数ですが、もう一度お試しください。"}
-    			</div>
-    		</div>
-    	</div>
-    </Show>
-  </Portal>
+		<div class="mx-auto">
+			<button
+				class="w-40 flex items-center justify-center font-bold bg-gradient-to-r from-accent-sub-base to-accent-base px-4 py-2 rounded-lg"
+				type="submit"
+			>
+				{isSubmitting() ? (
+					<span class="flex items-center gap-2">
+						<span>送信中...</span>
+					</span>
+				) : (
+					<span class="flex items-center gap-2">
+						<span>送信する</span>
+					</span>
+				)}
+			</button>
+		</div>
+	</form>
+	<Portal mount={document.body}>
+		<Show when={isOpen()}>
+			<div
+				class={`w-full z-[100] fixed bottom-0 left-0 ${
+					isSucsess() ? "bg-green-600" : "bg-red-600"
+				} } p-4`}
+			>
+				<button type="button" onClick={() => setIsOpen(false)} class="absolute top-2 right-2">×</button>
+				<div class="text-center flex flex-col gap-2">
+					<div>
+						{isSucsess() ? "お問い合わせを受け付けました" : "送信に失敗しました"}
+					</div>
+					<div>
+						{isSucsess()
+							? "メールボックスをご確認ください。"
+							: "お手数ですが、もう一度お試しください。"}
+					</div>
+				</div>
+			</div>
+		</Show>
+	</Portal>
 </>
 ```
 
@@ -324,9 +328,7 @@ export default defineConfig({
 })
 ```
 
-:::message alert
-Astro `v5` ではレンダリングオプション `hybrid` が[削除されたようです](https://docs.astro.build/en/guides/upgrade-to/v5/#removed-hybrid-rendering-mode)。SSG ベースのプロジェクトの一部で SSR を利用するためには、代わりに `static` オプションを利用します。
-:::
+> Astro `v5` ではレンダリングオプション `hybrid` が[削除されたようです](https://docs.astro.build/en/guides/upgrade-to/v5/#removed-hybrid-rendering-mode)。SSG ベースのプロジェクトの一部で SSR を利用するためには、代わりに `static` オプションを利用します。
 
 ### エンドポイントの実装
 
