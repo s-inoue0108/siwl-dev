@@ -1,0 +1,294 @@
+#article-content {
+	/* paragraphs */
+	p {
+		@apply tracking-wide leading-relaxed 2xl:leading-loose sm:text-[1.125rem] lg:text-[1.25rem];
+	}
+
+	/* list */
+	ul {
+		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-disc my-8;
+	}
+
+	ol {
+		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-decimal my-8;
+	}
+
+	ol > li::marker {
+		@apply font-semibold;
+	}
+
+	ul > li,
+	ol > li {
+		@apply py-3 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+	}
+
+	ul > li > ul {
+		@apply pl-4 py-1 my-0;
+	}
+
+	ol > li > ol {
+		@apply pl-6 py-0 my-0;
+	}
+
+	/* footnote ol */
+	ol > li[id^="user-content-fn"] p {
+		@apply inline;
+	}
+
+	/* link card */
+	.rlc-container {
+		@apply my-8 lg:my-12 flex items-center w-full h-28 sm:h-32 lg:h-36 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
+	}
+
+	.rlc-info {
+		@apply flex flex-col p-2 justify-between gap-1 w-[70%] h-full;
+	}
+
+	.rlc-title {
+		@apply font-semibold lg:text-lg xl:text-xl whitespace-nowrap truncate;
+	}
+
+	.rlc-description {
+		@apply text-sm text-muted-foreground whitespace-pre-wrap max-h-10 truncate;
+	}
+
+	.rlc-url-container {
+		@apply flex items-center gap-1;
+	}
+
+	.rlc-favicon {
+		@apply w-4 h-4 rounded-md;
+	}
+
+	.rlc-url {
+		@apply pl-1 font-code font-semibold tracking-tight text-sm text-muted-foreground whitespace-nowrap truncate;
+	}
+
+	.rlc-image-container {
+		@apply w-[30%] h-full;
+	}
+
+	.rlc-image-container img {
+		@apply bg-background w-full h-full object-cover rounded-r-[calc(0.75rem-1px)];
+	}
+
+	/* image */
+	p > img {
+		@apply rounded-md lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-16;
+	}
+
+	/* caption */
+	.caption-image {
+		@apply mb-8;
+	}
+
+	.caption-table {
+		@apply mt-8;
+	}
+
+	table {
+		@apply table min-w-[1px] max-w-full mx-auto mb-16 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+
+		thead {
+			@apply bg-muted-background/50;
+		}
+
+		tr {
+			@apply border-collapse border-b border-muted-background;
+
+			code {
+				@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+			}
+
+			.katex {
+				@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
+			}
+		}
+
+		th {
+			@apply p-2 lg:px-4;
+		}
+
+		td {
+			@apply text-muted-foreground p-2 lg:px-4;
+		}
+	}
+
+	/* blockquote */
+	blockquote {
+		@apply block bg-muted-background/30 border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 lg:my-12;
+	}
+
+	/* callout */
+	.callout {
+		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
+
+		p > code {
+			@apply bg-background text-muted-foreground;
+		}
+
+		.remark-code-title {
+			@apply bg-background/30;
+		}
+
+		.astro-code {
+			background-color: rgba(var(--background), 1) !important;
+		}
+	}
+
+	.callout-title {
+		@apply pb-4 flex items-center gap-2 font-bold text-lg lg:text-xl xl:text-2xl;
+
+		code {
+			@apply font-code text-lg lg:text-xl xl:text-2xl;
+		}
+
+		.katex {
+			@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
+		}
+	}
+
+	.callout-quote {
+		@apply bg-muted-background/30 border border-muted-background;
+	}
+
+	.callout-title-quote {
+		@apply text-foreground;
+	}
+
+	.callout-note {
+		@apply bg-muted-background/30 border border-muted-background;
+	}
+
+	.callout-title-note {
+		@apply text-foreground;
+	}
+
+	.callout-info {
+		@apply bg-blue-500/30 border border-blue-500;
+	}
+
+	.callout-title-info {
+		@apply text-blue-500;
+	}
+
+	.callout-important {
+		@apply bg-violet-400/30 border border-violet-400;
+	}
+
+	.callout-title-important {
+		@apply text-violet-400;
+	}
+
+	.callout-warn {
+		@apply bg-amber-400/30 border border-amber-400;
+	}
+
+	.callout-title-warn {
+		@apply text-amber-400;
+	}
+
+	.callout-alert {
+		@apply bg-red-400/30 border border-red-400;
+	}
+
+	.callout-title-alert {
+		@apply text-red-400;
+	}
+
+	.callout-tip {
+		@apply bg-green-500/30 border border-green-500;
+	}
+
+	.callout-title-tip {
+		@apply text-green-500;
+	}
+
+	.callout-math {
+		@apply bg-orange-400/30 border border-orange-400;
+	}
+
+	.callout-title-math {
+		@apply text-orange-400;
+	}
+
+	/* code block */
+	.remark-code-title {
+		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background/30;
+	}
+
+	.code-block {
+		@apply w-full h-fit block relative my-8 lg:my-12 rounded-lg;
+	}
+
+	.code-block > pre {
+		@apply relative p-2 overflow-x-auto rounded-lg;
+	}
+
+	.remark-code-title + .code-block {
+		@apply mt-0 lg:mt-0 rounded-tl-none;
+	}
+
+	.remark-code-title + .code-block > pre {
+		@apply rounded-tl-none;
+	}
+
+	.code-block > pre::-webkit-scrollbar {
+		height: 12px;
+		background: transparent;
+		border-bottom-left-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+	.code-block > pre::-webkit-scrollbar-thumb {
+		background: linear-gradient(
+			90deg,
+			rgba(var(--accent-sub-base), var(--opacity)) 0%,
+			rgb(var(--accent-base), var(--opacity)) 100%
+		);
+		border-radius: 8px;
+	}
+
+	.code-block > pre code {
+		@apply font-code text-sm lg:text-base xl:text-lg;
+	}
+
+	.code-copy-button {
+		@apply absolute top-2 right-2 z-10 bg-muted-background/30 hover:bg-muted-background p-2 rounded-full transition duration-200;
+	}
+
+	/* inline code */
+	p > code,
+	li > code {
+		@apply text-muted-foreground font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+	}
+
+	.astro-code {
+		background-color: rgba(var(--muted), 0.3) !important;
+	}
+
+	.astro-code span {
+		background-color: transparent !important;
+	}
+
+	/* hr */
+	hr {
+		@apply my-4 border-[0.5px] border-muted-background;
+	}
+
+	/* math block */
+	.katex {
+		@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
+	}
+	.katex-display {
+		@apply py-2 overflow-x-auto overflow-y-clip;
+	}
+
+	.katex-display > .katex {
+		@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
+	}
+
+	/* iframe */
+	p > iframe {
+		@apply w-full h-fit mx-auto aspect-video;
+	}
+}

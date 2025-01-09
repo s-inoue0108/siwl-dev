@@ -15,6 +15,8 @@ import rlc from "remark-link-card";
 import rehypeRaw from "rehype-raw";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
+// @ts-ignore
+import rehypeWrapAll from "rehype-wrap-all";
 
 // Remark/Rehype Plugins from made
 import remarkCallout from "./src/plugins/remark/remark-callout";
@@ -99,6 +101,13 @@ export default defineConfig({
 			rehypeInlineAnchor,
 			rehypeHeadings,
 			rehypeKatex,
+			[
+				rehypeWrapAll,
+				{
+					selector: "pre",
+					wrapper: "div.code-block",
+				},
+			],
 			rehypeCodeCopyButton,
 		],
 		remarkRehype: {

@@ -7,22 +7,66 @@ export default function rehypeCodeCopyButton() {
 
   return (tree: Root) => {
 
-    visit(tree, 'element', (node) => {
+    visit(tree, 'element', (node, index, parent) => {
       if (node.tagName !== 'pre') return;
 
       count++;
 
-      node.properties.id = `code-block-${count}`;
+      const svg = {
+        type: 'element',
+        tagName: 'svg',
+        properties: {
+          fill: 'currentColor',
+          'stroke-width': 0,
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: '0 0 512 512',
+          height: '1em',
+          width: '1em',
+          style: 'overflow: visible; color: currentcolor;'
+        },
+        children: [
+          {
+            type: 'element',
+            tagName: 'rect',
+            properties: {
+              width: 336,
+              height: 336,
+              x: 128,
+              y: 128,
+              fill: 'none',
+              stroke: 'currentColor',
+              'stroke-linejoin': 'round',
+              'stroke-width': 32,
+              rx: 57,
+              ry: 57
+            },
+            children: []
+          },
+          {
+            type: 'element',
+            tagName: 'path',
+            properties: {
+              fill: 'none',
+              stroke: 'currentColor',
+              'stroke-linecap': 'round',
+              'stroke-linejoin': 'round',
+              'stroke-width': 32,
+              d: 'm383.5 128 .5-24a56.16 56.16 0 0 0-56-56H112a64.19 64.19 0 0 0-64 64v216a56.16 56.16 0 0 0 56 56h24'
+            },
+            children: []
+          }
+        ]
+      } satisfies ElementContent;
+
       const copyButton = {
         type: 'element',
         tagName: 'button',
         properties: {
-          id: `copy-button-${count}`,
+          className: "code-copy-button",
+          id: `code-copy-button-${count}`,
         },
-        children: node.children,
+        children: [svg],
       } satisfies ElementContent;
-
-      node.children = [copyButton];
 
       const script = {
         type: 'element',
@@ -32,17 +76,19 @@ export default function rehypeCodeCopyButton() {
           type: 'text',
           value: `
             document.addEventListener('DOMContentLoaded', () => {
-              const copyButton = document.getElementById('copy-button-${count}');
+              const copyButton = document.getElementById('code-copy-button-${count}');
               copyButton.addEventListener('click', () => {
-                const code = copyButton.children[0];
-                navigator.clipboard.writeText(code.innerText);
+                const codeBlock = copyButton.previousElementSibling.children[0];
+                navigator.clipboard.writeText(codeBlock.innerText);
               });
             });
           `
         }],
       } satisfies ElementContent;
 
-      node.children.push(script);
+      if (parent && Array.isArray(parent.children)) {
+        parent.children.splice(index! + 1, 0, copyButton, script);
+      }
     });
   };
 }
