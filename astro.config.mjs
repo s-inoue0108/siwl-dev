@@ -93,7 +93,7 @@ export default defineConfig({
 			remarkCallout,
 			remarkMath,
 			remarkCodeTitles,
-			[rlc, { cache: false, shortenUrl: true }],
+			[rlc, { cache: true, shortenUrl: true }],
 		],
 		rehypePlugins: [
 			rehypeRaw,
