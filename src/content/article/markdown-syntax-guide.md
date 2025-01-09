@@ -5,7 +5,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-07T23:06:18+09:00
+updateDate: 2025-01-09T19:01:18+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -491,7 +491,7 @@ https://note.com/notemag/n/na07e3bae0d15
 ### Hatena Blog
 
 ```md
-<!--https://<user>.hatenablog.com/<yyyy>/<mm>/<dd>/<query>-->
+<!--https://<user>.hatenablog.com/entry/<yyyy>/<mm>/<dd>/<query>-->
 https://staff.hatenablog.com/entry/2014/09/03/153938
 ```
 
