@@ -30,7 +30,7 @@ const { Content, headings } = await article.render();
 <ArticlePage
 	title={`${article.data.title} | ${import.meta.env.APP_NAME}`}
 	description={article.data.description ?? ""}
-	ogImage={new URL(`/blog/thambnail/${article.slug}.png`, import.meta.env.APP_URL)}
+	ogImage={new URL(`/blog/thumbnail/${article.slug}.png`, import.meta.env.APP_URL)}
 	headings={headings}
 >
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
