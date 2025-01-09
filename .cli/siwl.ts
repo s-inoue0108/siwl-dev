@@ -201,6 +201,7 @@ program
   .description("publishing a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
+  .option("-r, --reset", "reset publish date")
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -216,7 +217,10 @@ program
 
       fs.readFile(file, 'utf8', (err, data) => {
         if (err) throw err;
-        const newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `updateDate: ${toISOStringWithTimezone(new Date())}`);
+        let newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `updateDate: ${toISOStringWithTimezone(new Date())}`);
+        if (cmd.reset) {
+          newData = newData.replace(/publishDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `publishDate: ${toISOStringWithTimezone(new Date())}`);
+        }
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
           console.log(`published ${chalk.magenta(`${model}/${filename}.md`)}`);
