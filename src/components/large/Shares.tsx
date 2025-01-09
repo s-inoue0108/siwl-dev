@@ -2,7 +2,7 @@ import type { CollectionEntry } from "astro:content";
 import { SiFacebook, SiMisskey, SiTwitter, SiHatenabookmark } from "solid-icons/si";
 import { BsQrCode } from "solid-icons/bs";
 import Panel from "./Panel";
-import { isOpenQRModal, setIsOpenQRModal } from "../../utils/store/is-open-qrmodal";
+import { setIsOpenQRModal } from "../../utils/store/is-open-qrmodal";
 import QRModal from "./QRModal";
 
 interface Props {
