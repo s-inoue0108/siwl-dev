@@ -4,7 +4,7 @@ import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { AllowedRoutes } from "../route";
 import Toc from "../components/large/Toc";
 import ArticlePage from "../layouts/ArticlePage.astro";
-import "../../../assets/css/article_style.css";
+import "../assets/css/article_style.css";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
