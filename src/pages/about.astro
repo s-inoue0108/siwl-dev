@@ -23,7 +23,7 @@ import { getCollection } from "astro:content";
 import WorkCard from "../components/card/WorkCard";
 
 const works = await getCollection("work", ({ data }) => {
-	return import.meta.env.PROD ? data.isDraft === false : true;
+	return import.meta.env.PROD ? !data.isDraft : true;
 });
 
 const routes = new AllowedRoutes(Astro.url.pathname);

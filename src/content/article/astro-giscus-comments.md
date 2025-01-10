@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Astro, Giscus で静的サイトにコメント機能をつける
 category: tech
 tags: [astro, ts, js]

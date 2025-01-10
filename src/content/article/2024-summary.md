@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: 2024年 総括
 category: idea
 tags: [poem]

@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Markdown 記法の一覧
 category: tech
 tags: []
@@ -15,14 +16,15 @@ relatedArticles: [renewal-note]
 
 ```yaml:フロントマターの例
 ---
-isDraft: false   # require [true or false]
-title: Markdown 記法の一覧   # require
-category: tech   # require [tech or idea]
-tags: [html, css, js]   # optional
-description: このブログで利用可能な Markdown 記法をまとめています。 # optional
-publishDate: yyyy-MM-ddTHH:mm:ss+09:00   # require
-updateDate: yyyy-MM-ddTHH:mm:ss+09:00   # optional
-relatedArticles: [renewal-note]   # optional
+isDraft: false                         # required [true|false]
+isLimited: false                       # required [true|false]
+title: ~~~                             # required
+category: tech                         # required [tech|idea]
+tags: [html, css, js]                  # optional
+description: ~~~                       # optional
+publishDate: yyyy-MM-ddTHH:mm:ss+09:00 # required
+updateDate: yyyy-MM-ddTHH:mm:ss+09:00  # optional
+relatedArticles: [~~~]                 # optional
 ---
 ```
 

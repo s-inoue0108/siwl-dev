@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: SolidJS + Astro SSR + GAS で静的サイトにフォームを実装する
 category: tech
 tags: [astro, solid, gas]

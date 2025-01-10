@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Gaussian インプットファイルの例
 category: tech
 tags: [gaussian, comp-science]

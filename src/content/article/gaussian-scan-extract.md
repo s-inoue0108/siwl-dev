@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Perl で Gaussian のスキャン計算結果から TD-DFT 計算ファイルを生成する
 category: tech
 tags: [perl, gaussian, comp-science]

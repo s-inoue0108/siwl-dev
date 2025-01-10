@@ -13,7 +13,7 @@ import Pager from "../../../../components/button/Pager";
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 	const categories = await getCollection("category");
 	const articles = await getCollection("article", ({ data }) => {
-		return import.meta.env.PROD ? data.isDraft === false : true;
+		return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
 	});
 
 	const routes = categories.flatMap((category) => {

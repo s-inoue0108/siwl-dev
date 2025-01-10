@@ -12,7 +12,7 @@ import Pager from "../../components/button/Pager";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 	const articles = await getCollection("article", ({ data }) => {
-		return import.meta.env.PROD ? data.isDraft === false : true;
+		return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
 	});
 
 	const sortedArticles = articles.sort((a, b) => {

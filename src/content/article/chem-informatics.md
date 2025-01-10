@@ -1,5 +1,6 @@
 ---
 isDraft: true
+isLimited: false
 title: ケモインフォマティクス：ノート
 category: tech
 tags: [python]

@@ -11,7 +11,7 @@ import NoItem from "../../components/common/NoItem.astro";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 	const bookmarks = await getCollection("bookmark", ({ data }) => {
-		return import.meta.env.PROD ? data.isDraft === false : true;
+		return import.meta.env.PROD ? !data.isDraft : true;
 	});
 
 	return paginate(bookmarks, { pageSize: 10 });

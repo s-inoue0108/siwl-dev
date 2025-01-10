@@ -1,11 +1,12 @@
 ---
-isDraft: true
+isDraft: false
+isLimited: true
 title: 数値計算を勉強する
 category: idea
 tags: [comp-science]
 description: 種々の数値計算手法についてまとめ、Python による実装をしてみます。
-publishDate: 2024-12-07T10:39:08+09:00
-updateDate: 2024-12-07T10:39:08+09:00
+publishDate: 2025-01-10T13:49:23+09:00
+updateDate: 2025-01-10T13:49:23+09:00
 relatedArticles: []
 ---
 

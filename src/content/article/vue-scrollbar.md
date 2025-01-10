@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Vue でスクロールに同期したプログレスバーを実装する
 category: tech
 tags: [ts, vue]

@@ -13,7 +13,7 @@ const route = new AllowedRoutes(Astro.url.pathname);
 const { meta } = route.getSubsetPageMeta();
 
 const tags = await getCollection("tag", ({ data }) => {
-	return import.meta.env.PROD ? data.isDraft === false : true;
+	return import.meta.env.PROD ? !data.isDraft : true;
 });
 ---
 

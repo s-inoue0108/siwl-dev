@@ -10,7 +10,7 @@ import { IoGitCommitOutline } from "solid-icons/io";
 
 export const getStaticPaths = async () => {
 	const articles = await getCollection("article", ({ data }) => {
-		return import.meta.env.PROD ? data.isDraft === false : true;
+		return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
 	});
 
 	const publishDates = articles.map(({ data }) => {

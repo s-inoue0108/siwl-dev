@@ -5,6 +5,7 @@ const articleCollection = defineCollection({
   type: "content",
   schema: z.object({
     isDraft: z.boolean().default(true),
+    isLimited: z.boolean().default(false),
     title: z.string(),
     description: z.string().optional(),
     category: reference("category").default("tech"),

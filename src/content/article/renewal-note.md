@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Astro, SolidJS で個人ブログを制作しました
 category: tech
 tags: [astro, solid, ts, tailwindcss]

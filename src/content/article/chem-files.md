@@ -1,5 +1,6 @@
 ---
 isDraft: true
+isLimited: false
 title: 化学情報を扱うファイルについて
 category: tech
 tags: [comp-science]

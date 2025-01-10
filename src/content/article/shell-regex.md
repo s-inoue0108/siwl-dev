@@ -1,5 +1,6 @@
 ---
 isDraft: true
+isLimited: false
 title: シェルで正規表現を使う
 category: tech
 tags: [shell]

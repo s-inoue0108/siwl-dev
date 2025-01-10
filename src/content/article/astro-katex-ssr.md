@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Astro で KaTeX をプリレンダリングする
 category: tech
 tags: [astro, ts]

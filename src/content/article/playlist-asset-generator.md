@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: DJ プレイリストから動画制作用のアセットを生成するツールを作ってみた
 category: tech
 tags: [ts, solid, sass, dj]

@@ -1,5 +1,6 @@
 ---
 isDraft: true
+isLimited: false
 title: 最近読んだ新書のレビュー
 category: idea
 tags: [book-review, poem]

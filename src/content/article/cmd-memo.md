@@ -1,5 +1,6 @@
 ---
 isDraft: true
+isLimited: false
 title: UNIX コマンドメモ
 category: tech
 tags: [shell]

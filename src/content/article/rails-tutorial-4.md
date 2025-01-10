@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Ruby on Rails で API を作る（認証機能編）
 category: tech
 tags: [rails]

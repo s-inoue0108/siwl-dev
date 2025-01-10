@@ -201,7 +201,9 @@ program
   .description("publishing a content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
-  .option("-r, --reset", "reset publish date")
+  .option("-R, --reset", "reset publish date (article only)")
+  .option("-L, --limited", "set limited release (article only)")
+  .option("-U, --unlimited", "unset limited release (article only)")
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -220,6 +222,12 @@ program
         let newData = data.replace(/isDraft: true/, 'isDraft: false').replace(/updateDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `updateDate: ${toISOStringWithTimezone(new Date())}`);
         if (cmd.reset) {
           newData = newData.replace(/publishDate: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/, `publishDate: ${toISOStringWithTimezone(new Date())}`);
+        }
+        if (cmd.limited) {
+          newData = newData.replace(/isLimited: false/, 'isLimited: true');
+        }
+        if (cmd.unlimited) {
+          newData = newData.replace(/isLimited: true/, 'isLimited: false');
         }
         fs.writeFile(file, newData, (err) => {
           if (err) throw err;
@@ -313,7 +321,7 @@ program
           if (cmd.drafted && !isDraft) return;
           if (cmd.published && isDraft) return;
 
-          console.log(getSlug(isDraft, `* ${dirent.name.replace(".md", "").replace(".yaml", "")}`));
+          console.log(getSlug(isDraft, `${model === "article" && data.search(/isLimited: false/) === -1 ? "#" : "*"} ${dirent.name.replace(".md", "").replace(".yaml", "")}`));
           if (model === "article") {
             const title = data.match(/title: (.*)/)![0].replace("title: ", "");
             console.log(`${title}\n`);
@@ -688,5 +696,5 @@ program
 program
   .name("siwl")
   .description("Contents Management CLI")
-  .version("2.1", "-v, --version")
+  .version("2.2", "-v, --version")
   .parse(process.argv);

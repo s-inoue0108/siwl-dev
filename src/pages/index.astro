@@ -6,7 +6,7 @@ import { AllowedRoutes } from "../route";
 import { IoArrowForward } from "solid-icons/io";
 
 const articles = await getCollection("article", ({ data }) => {
-	return import.meta.env.PROD ? data.isDraft === false : true;
+	return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
 });
 
 const routes = new AllowedRoutes(Astro.url.pathname);

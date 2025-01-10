@@ -14,7 +14,9 @@ import SideArticles from "../../../components/large/SideArticles.astro";
 import Comments from "../../../components/large/Comments.astro";
 
 export const getStaticPaths = async () => {
-	const articles = await getCollection("article");
+	const articles = await getCollection("article", ({ data }) => {
+		return import.meta.env.PROD ? !data.isDraft : true;
+	});
 
 	return articles.map((article) => ({
 		params: { slug: article.slug },

@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: シェルスクリプトからシェルスクリプトを生成する
 category: tech
 tags: [shell]
