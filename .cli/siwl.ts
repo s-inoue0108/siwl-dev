@@ -490,8 +490,8 @@ program
         })();
 
         await (async () => {
-          if (lc > 0 && lc < 11 && !isCodeBlock) {
-            if (/^publishDate: |^updateDate: |^relatedArticles: /.test(line)) {
+          if (lc > 0 && lc < 12 && !isCodeBlock) {
+            if (/^publishDate: |^updateDate: |^relatedArticles: |^isLimited: /.test(line)) {
               return;
             } else if (/^title: /.test(line)) {
               ws.write(`${line}\n`);
@@ -644,8 +644,8 @@ program
         })();
 
         await (async () => {
-          if (lc > 0 && lc < 11 && !isCodeBlock) {
-            if (/^publishDate: |^updateDate: |^relatedArticles: |^category: |^description: /.test(line)) {
+          if (lc > 0 && lc < 12 && !isCodeBlock) {
+            if (/^publishDate: |^updateDate: |^relatedArticles: |^category: |^description: |^isLimited: /.test(line)) {
               return;
             } else if (/^title: /.test(line)) {
               ws.write(`${line}\n`);
