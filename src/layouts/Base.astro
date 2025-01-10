@@ -65,9 +65,9 @@ const { title, description } = Astro.props;
 		<!--View Transitions-->
 		<ViewTransitions />
 
-		<!--noindex nofollow in /contact, privacy-policy-->
+		<!--noindex nofollow in /contact-->
 		{
-			/^\/(contact|privacy-policy)$/.test(Astro.url.pathname) && (
+			/^\/contact$/.test(Astro.url.pathname) && (
 				<>
 					<meta name="robots" content="noindex" />
 					<meta name="robots" content="nofollow" />
