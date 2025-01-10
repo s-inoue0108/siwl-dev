@@ -6,7 +6,7 @@ category: tech
 tags: []
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-09T19:01:18+09:00
+updateDate: 2025-01-10T23:19:32+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -55,9 +55,12 @@ relatedArticles: [~~~]                 # optional
 #### レベル3
 ```
 
-> [!warn] 利用できる見出しについて
+> [!important] 見出しのレベルについて
 > 
-> `<h1>` , `<h5>` , `<h6>` は使用できません。
+> 見出しは `<h2>` から始めます。
+> `<h1>` , `<h5>` , `<h6>` はスタイルが定義されておらず、使用できません。
+>
+> test test
 
 ## リスト
 
@@ -278,26 +281,31 @@ const displayTextType = (text: string) => {
 
 ### コールアウト
 
-title は省略可能です。
+title は省略可能です。ヘッダと文章部の間は1行空けます。`:fold` を指定するとデフォルトで折りたたまれて表示されます。
 
 ```md:コールアウト
-> [!type] title
+> [!type:fold] title
 >
 > text text text
 ```
 
 *[!table] 利用可能な type*
 
-| type        | description      | color   |
-| :---------- | :--------------- | :------ |
-| `quote`     | 強調したい引用   | default |
-| `note`      | 補足             | default |
-| `info`      | 付帯する情報     | blue    |
-| `important` | 重要事項         | violet  |
-| `warn`      | 警告             | amber   |
-| `alert`     | 強い警告         | red     |
-| `tip`       | 小ネタ           | green   |
-| `math`      | 数学の公式や定理 | orange  |
+| type        | description | color   |
+| :---------- | :---------- | :------ |
+| `quote`     | 引用        | default |
+| `note`      | 覚書        | default |
+| `remark`    | 備考        | default |
+| `info`      | 情報        | blue    |
+| `todo`      | 手順        | blue    |
+| `important` | 重要事項    | violet  |
+| `example`   | 例          | violet  |
+| `warn`      | 警告        | amber   |
+| `question`  | 疑問        | amber   |
+| `alert`     | 強い警告    | red     |
+| `attention` | 注意事項    | red     |
+| `tip`       | 小ネタ      | green   |
+| `break`     | 閑話休題    | green   |
 
 > [!quote]
 > 
@@ -307,7 +315,15 @@ title は省略可能です。
 > 
 > text text text
 
+> [!remark]
+> 
+> text text text
+
 > [!info]
+> 
+> text text text
+
+> [!todo]
 > 
 > text text text
 
@@ -315,19 +331,31 @@ title は省略可能です。
 > 
 > text text text
 
-> [!warn]
+> [!example]
 > 
 > text text text
 
-> [!alert]
+> [!warn:fold]
 > 
 > text text text
 
-> [!tip]
+> [!question:fold]
 > 
 > text text text
 
-> [!math]
+> [!alert:fold]
+> 
+> text text text
+
+> [!attention:fold]
+> 
+> text text text
+
+> [!tip:fold]
+> 
+> text text text
+
+> [!break:fold]
 > 
 > text text text
 

@@ -40,8 +40,9 @@ interface Props {
 	description: string;
 	ogImage?: URL;
 	headings: MarkdownHeading[];
+	isLimited: boolean;
 }
-const { title, description, ogImage, headings } = Astro.props;
+const { title, description, ogImage, headings, isLimited } = Astro.props;
 ---
 
 <!doctype html>
@@ -70,6 +71,16 @@ const { title, description, ogImage, headings } = Astro.props;
 
 		<!--View Transitions-->
 		<ViewTransitions />
+
+		<!--noindex nofollow in limited pages-->
+		{
+			isLimited && (
+				<>
+					<meta name="robots" content="noindex" />
+					<meta name="robots" content="nofollow" />
+				</>
+			)
+		}
 
 		<!-- Favicon -->
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />

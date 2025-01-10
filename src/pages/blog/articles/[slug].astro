@@ -34,6 +34,7 @@ const { Content, headings } = await article.render();
 	description={article.data.description ?? ""}
 	ogImage={new URL(`/blog/thumbnail/${article.slug}.png`, import.meta.env.APP_URL)}
 	headings={headings}
+	isLimited={article.data.isLimited}
 >
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">

@@ -137,7 +137,7 @@
 	}
 
 	.callout-title {
-		@apply pb-4 flex items-center gap-2 font-bold text-lg lg:text-xl xl:text-2xl;
+		@apply flex items-center gap-2 font-bold text-lg lg:text-xl xl:text-2xl cursor-pointer;
 
 		code {
 			@apply font-code text-lg lg:text-xl xl:text-2xl;
@@ -146,6 +146,10 @@
 		.katex {
 			@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
 		}
+	}
+
+	.callout > p:nth-child(2) {
+		@apply pt-4;
 	}
 
 	.callout-quote {
@@ -164,11 +168,27 @@
 		@apply text-foreground;
 	}
 
+	.callout-remark {
+		@apply bg-muted-background/30 border border-muted-background;
+	}
+
+	.callout-title-remark {
+		@apply text-foreground;
+	}
+
 	.callout-info {
 		@apply bg-blue-500/30 border border-blue-500;
 	}
 
 	.callout-title-info {
+		@apply text-blue-500;
+	}
+
+	.callout-todo {
+		@apply bg-blue-500/30 border border-blue-500;
+	}
+
+	.callout-title-todo {
 		@apply text-blue-500;
 	}
 
@@ -180,11 +200,27 @@
 		@apply text-violet-400;
 	}
 
+	.callout-example {
+		@apply bg-violet-400/30 border border-violet-400;
+	}
+
+	.callout-title-example {
+		@apply text-violet-400;
+	}
+
 	.callout-warn {
 		@apply bg-amber-400/30 border border-amber-400;
 	}
 
 	.callout-title-warn {
+		@apply text-amber-400;
+	}
+
+	.callout-question {
+		@apply bg-amber-400/30 border border-amber-400;
+	}
+
+	.callout-title-question {
 		@apply text-amber-400;
 	}
 
@@ -196,6 +232,14 @@
 		@apply text-red-400;
 	}
 
+	.callout-attention {
+		@apply bg-red-400/30 border border-red-400;
+	}
+
+	.callout-title-attention {
+		@apply text-red-400;
+	}
+
 	.callout-tip {
 		@apply bg-green-500/30 border border-green-500;
 	}
@@ -204,21 +248,21 @@
 		@apply text-green-500;
 	}
 
-	.callout-math {
-		@apply bg-orange-400/30 border border-orange-400;
+	.callout-break {
+		@apply bg-green-500/30 border border-green-500;
 	}
 
-	.callout-title-math {
-		@apply text-orange-400;
+	.callout-title-break {
+		@apply text-green-500;
 	}
 
 	/* code block */
 	.remark-code-title {
-		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background/30;
+		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
 	}
 
 	.code-block {
-		@apply w-full h-fit block relative my-8 lg:my-12 rounded-lg;
+		@apply w-full h-fit block relative my-8 lg:my-12 rounded-lg border border-muted-background;
 	}
 
 	.code-block > pre {
