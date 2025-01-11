@@ -41,8 +41,6 @@ const tagCollection = defineCollection({
     name: z.string(),
     belong: reference("category").default("tech"),
     icon: image().optional(),
-    zennName: z.string().optional(),
-    qiitaName: z.string().optional(),
   }),
 });
 
