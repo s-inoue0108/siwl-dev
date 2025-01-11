@@ -6,7 +6,7 @@ interface Props {
 
 const Footer = ({ currentPath }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
-	const metas = routes.getRootPageMetaAll(["Home", "About", "Bookmarks", "Blog"]);
+	const metas = routes.getRootPageMetaAll(["Home", "About", "Bookmarks", "Blog", "Readme"]);
 	return (
 		<footer class="mt-8 w-full sticky top-[100dvh] h-8 lg:h-12 border-t border-muted-background text-muted-foreground">
 			<nav>
