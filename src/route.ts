@@ -79,7 +79,7 @@ export class AllowedRoutes {
       name: "Readme",
       matchers: [/^\/readme/],
       rootpath: "/readme",
-      description: "README.md of this site.",
+      description: "README of this site.",
       subsets: [],
     },
   ] as const

@@ -1,8 +1,8 @@
 ---
 title: README
-description: README
+description: README of this site.
 publishDate: 2024-10-04T00:00:00+09:00
-updateDate: 2025-01-01T00:00:00+09:00
+updateDate: 2025-01-11T13:15:01+09:00
 ---
 
 # SIWL.dev
@@ -77,7 +77,7 @@ yarn siwl <action> -option <arg>
 | `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]`       | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
 | `list\|ls`     | `[-m <model>] [-p\|-d]`                         | List `src/content/<model>/` with status.                                                          |
 | `open\|op`     | `-f <filename> [-m <model>]`                    | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
-| `view\|vi`     | `[-f <filename>] [-l] [-d]`                     | View specified webpage using browser.                                                             |
+| `view\|vi`     | `[-f <filename>] [-l] [-g] [-r]`                | View specified webpage using browser.                                                             |
 | `export\|ex`   | `-f <filename> -t <mdtype> [-n <newname>] [-F]` | Export `article` with specified markdown type.                                                    |
 |                | `-h`                                            | Display help.                                                                                     |
 |                | `-v`                                            | Display version.                                                                                  |
@@ -86,7 +86,7 @@ yarn siwl <action> -option <arg>
 > 
 > Use `<action> -h` to display help for each actions. Run this command to see the `--longoption`.
 
-### Available models
+### Available `<model>`s
 
 | `<model>`  | Description               | Filetype |
 | :--------- | :------------------------ | :------- |

@@ -343,7 +343,11 @@ program
     const model = getModel(cmd);
 
     const ext = model === "article" ? "md" : "yaml";
-    const path = `${rootpath}/${model}/${filename}.${ext}`;
+    let path = `${rootpath}/${model}/${filename}.${ext}`;
+
+    if (filename === "readme") {
+      path = "./README.md";
+    }
 
     exec(`code ${path}`, (error, stdout, stderr) => {
       if (error) {
@@ -365,8 +369,6 @@ program
   .description("access article")
   .option("-f, --filename <filename>", "content filename")
   .option("-l, --local", 'use local server')
-  .option("-g, --github", 'open github repository')
-  .option("-r, --readme", 'open readme')
   .action((cmd) => {
 
     const openURL = (url: string) => {
@@ -384,7 +386,9 @@ program
     }
 
     let path = "";
-    if (cmd.filename) {
+    if (cmd.filename === "readme") {
+      path = "readme";
+    } else if (cmd.filename) {
       path = `blog/articles/${getFilename(cmd)}`;
     } else {
       path = "";
@@ -392,12 +396,6 @@ program
 
     if (cmd.local) {
       const url = `http://localhost:8000/${path}`;
-      openURL(url);
-    } else if (cmd.github) {
-      const url = `https://github.com/s-inoue0108/siwl-dev/`;
-      openURL(url);
-    } else if (cmd.readme) {
-      const url = `https://siwl.dev/readme/`;
       openURL(url);
     } else {
       const url = `https://siwl.dev/${path}`;
@@ -412,12 +410,38 @@ program
   .description("export content")
   .requiredOption("-f, --filename <filename>", "content filename")
   .option("-n, --newname <newname>", "new content filename")
-  .requiredOption("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)')
+  .option("-t, --type <mdtype>", 'which markdown type to use (zenn|qiita)', "zenn")
   .option("-F, --force", 'force export')
   .action(async (cmd) => {
 
     const filename = getFilename(cmd);
     const file = `${rootpath}/article/${filename}.md`;
+
+    if (cmd.filename === "readme") {
+      const readme = "./README.md";
+      const readmeFixed = "./src/content/fixed/README.md";
+      if (fs.existsSync(readmeFixed)) {
+        execSync(`rm -f ${readmeFixed}`);
+      }
+
+      execSync(`touch ${readmeFixed}`);
+
+      const frontmatter = `---\ntitle: README\ndescription: README of this site.\npublishDate: 2024-10-04T00:00:00+09:00\nupdateDate: ${toISOStringWithTimezone(new Date())}\n---\n\n`;
+      fs.writeFile(readmeFixed, frontmatter, (err) => {
+        if (err) throw err;
+      });
+
+      fs.readFile(readme, 'utf8', (err, data) => {
+        if (err) throw err;
+        fs.appendFile(readmeFixed, data, (err) => {
+          if (err) throw err;
+          console.log(`exported ${chalk.magenta(readme)} to ${chalk.magenta(readmeFixed)}`);
+          process.exit(0);
+        });
+      });
+
+      return;
+    }
 
     if (cmd.type === "zenn") {
       const zennFile = `./zenn/articles/${cmd.newname ? cmd.newname : filename}.md`;
