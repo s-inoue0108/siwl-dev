@@ -20,15 +20,17 @@ import { IoChatbubbleEllipses } from "solid-icons/io";
 	</div>
 </h2>
 <div id="discussions" class="mx-auto mb-2"></div>
-<p class="text-xs text-right mb-4">
-	お問い合わせフォームは
-	<a
-		href="/contact"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="font-semibold text-sky visited:text-purple hover:underline">こちら↗</a
-	>
-</p>
+<ul class="flex items-center justify-end gap-4">
+	<li>
+		<a href="/contact" class="font-semibold text-sky visited:text-purple hover:underline">Contact</a
+		>
+	</li>
+	<li>
+		<a href="/privacy-policy" class="font-semibold text-sky visited:text-purple hover:underline"
+			>Privacy Policy</a
+		>
+	</li>
+</ul>
 
 <script>
 	interface GiscusAttributes {
