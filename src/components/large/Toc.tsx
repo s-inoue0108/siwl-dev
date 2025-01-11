@@ -81,7 +81,7 @@ const Toc = ({ headings }: Props) => {
 												? "bg-gradient-to-b from-accent-sub-base to-accent-base bg-clip-text text-transparent"
 												: "text-muted-foreground"
 										} ${
-											h.depth === 2 ? "" : h.depth === 3 ? "pl-4" : "pl-6"
+											h.depth < 3 ? "" : h.depth === 3 ? "pl-4" : "pl-6"
 										} hover:text-foreground inline-flex items-center gap-2`}
 									>
 										<span
@@ -93,7 +93,7 @@ const Toc = ({ headings }: Props) => {
 										/>
 										<span
 											class={`${
-												h.depth === 2
+												h.depth < 3
 													? "text-lg font-bold"
 													: h.depth === 3
 													? "text-base font-semibold"

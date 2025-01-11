@@ -365,7 +365,8 @@ program
   .description("access article")
   .option("-f, --filename <filename>", "content filename")
   .option("-l, --local", 'use local server')
-  .option("-d, --document", 'open github repository')
+  .option("-g, --github", 'open github repository')
+  .option("-r, --readme", 'open readme')
   .action((cmd) => {
 
     const openURL = (url: string) => {
@@ -392,8 +393,11 @@ program
     if (cmd.local) {
       const url = `http://localhost:8000/${path}`;
       openURL(url);
-    } else if (cmd.document) {
+    } else if (cmd.github) {
       const url = `https://github.com/s-inoue0108/siwl-dev/`;
+      openURL(url);
+    } else if (cmd.readme) {
+      const url = `https://siwl.dev/readme/`;
       openURL(url);
     } else {
       const url = `https://siwl.dev/${path}`;

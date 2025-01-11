@@ -1,0 +1,53 @@
+---
+import { getEntry } from "astro:content";
+import Breadcrumbs from "../components/common/Breadcrumbs.astro";
+import { AllowedRoutes } from "../route";
+import Toc from "../components/large/Toc";
+import ArticlePage from "../layouts/ArticlePage.astro";
+import "../assets/css/article_style.css";
+
+const routes = new AllowedRoutes(Astro.url.pathname);
+const { meta } = routes.getSubsetPageMeta();
+
+const readme = await getEntry("fixed", "readme");
+
+const { Content, headings } = await readme.render();
+---
+
+<ArticlePage
+	title={`${meta.name} | ${import.meta.env.APP_NAME}`}
+	description=`${meta.description}`
+	headings={headings}
+	isLimited={true}
+>
+	<section class="pt-8 w-full flex flex-col lg:flex-row">
+		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
+			<Breadcrumbs />
+			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
+			<div class="lg:hidden">
+				<Toc headings={headings} client:visible />
+			</div>
+			<section id="article-content">
+				<Content />
+				<hr />
+				<p>
+					<i
+						>{
+							`最終更新日時：${readme.data.updateDate?.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" })}`
+						}</i
+					>
+				</p>
+				<p>
+					<i>{`更新者：${import.meta.env.APP_OWNER}`}</i>
+				</p>
+			</section>
+		</article>
+		<aside
+			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
+		>
+			<div class="lg:sticky lg:top-8 hidden lg:flex flex-col items-end sm:gap-4">
+				<Toc headings={headings} client:visible />
+			</div>
+		</aside>
+	</section>
+</ArticlePage>

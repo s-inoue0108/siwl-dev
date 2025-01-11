@@ -75,6 +75,13 @@ export class AllowedRoutes {
       description: "当サイトのプライバシーポリシーを掲載しています。",
       subsets: [],
     },
+    {
+      name: "Readme",
+      matchers: [/^\/readme/],
+      rootpath: "/readme",
+      description: "README.md of this site.",
+      subsets: [],
+    },
   ] as const
 
   // 許されるすべてのルートパターン

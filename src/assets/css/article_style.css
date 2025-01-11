@@ -90,6 +90,21 @@
 		@apply mx-auto mb-16 w-full overflow-x-auto;
 	}
 
+	.table-block::-webkit-scrollbar {
+		height: 12px;
+		background: transparent;
+		border-bottom-left-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+	.table-block::-webkit-scrollbar-thumb {
+		background: linear-gradient(
+			90deg,
+			rgba(var(--accent-sub-base), var(--opacity)) 0%,
+			rgb(var(--accent-base), var(--opacity)) 100%
+		);
+		border-radius: 8px;
+	}
+
 	table {
 		@apply table mx-auto whitespace-nowrap min-w-[1px] max-w-full tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 

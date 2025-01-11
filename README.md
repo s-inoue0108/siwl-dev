@@ -1,10 +1,16 @@
 # SIWL.dev
 
+https://siwl.dev
+
 Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [AstroJS](https://astro.build/), [SolidJS](https://solidjs.com) and [Tailwind CSS](https://tailwindcss.com).
+
+## 💿 GitHub Repo
+
+https://github.com/s-inoue0108/siwl-dev
 
 ## 🌐 System Structure
 
-![System Structure](./structure.drawio.svg)
+![System Structure](/structure.drawio.svg)
 
 ## 💻 General Commands
 
@@ -50,9 +56,10 @@ yarn siwl <action> -option <arg>
 ```
 
 > [!TIP]
+> 
 > `yarn` can be omitted by setting the `alias siwl="yarn siwl"` to `~/.bashrc`.
 
-### Available `<action>`s and `-option`s
+### Available actions and options
 
 | `<action>`     | `-option <arg>`                                 | Description                                                                                       |
 | :------------- | :---------------------------------------------- | :------------------------------------------------------------------------------------------------ |
@@ -63,12 +70,13 @@ yarn siwl <action> -option <arg>
 | `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]`       | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
 | `list\|ls`     | `[-m <model>] [-p\|-d]`                         | List `src/content/<model>/` with status.                                                          |
 | `open\|op`     | `-f <filename> [-m <model>]`                    | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
-| `view\|vi`     | `[-f <filename>] [-l] [-d]`                     | View specified webpage using browser.                                                             |
+| `view\|vi`     | `[-f <filename>] [-l] [-g] [-r]`                | View specified webpage using browser.                                                             |
 | `export\|ex`   | `-f <filename> -t <mdtype> [-n <newname>] [-F]` | Export `article` with specified markdown type.                                                    |
 |                | `-h`                                            | Display help.                                                                                     |
 |                | `-v`                                            | Display version.                                                                                  |
 
 > [!IMPORTANT]
+> 
 > Use `<action> -h` to display help for each actions. Run this command to see the `--longoption`.
 
 ### Available `<model>`s
@@ -81,16 +89,17 @@ yarn siwl <action> -option <arg>
 | `work`     | My web work.              | yaml     |
 
 > [!TIP]
+> 
 > If `<model>` is unspecified or typo, it refers to `article`.
 
 ## ✅ Markdown Syntax
 
-- Please refer to [this page](https://siwl.dev/blog/articles/markdown-syntax-guide).
+https://siwl.dev/blog/articles/markdown-syntax-guide
 
-## 🧑‍💻 Zenn
+## 🧑‍💻 Zenn Binding
 
-- Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-zenn).
+https://github.com/s-inoue0108/siwl-dev-zenn
 
-## 🧑‍💻 Qiita
+## 🧑‍💻 Qiita Binding
 
-- Please refer to [this page](https://github.com/s-inoue0108/siwl-dev-qiita).
+https://github.com/s-inoue0108/siwl-dev-qiita
