@@ -3,7 +3,7 @@ isDraft: false
 isLimited: false
 title: Markdown 記法の一覧
 category: tech
-tags: []
+tags: [markdown]
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
 updateDate: 2025-01-10T23:19:32+09:00
@@ -30,22 +30,13 @@ relatedArticles: [~~~]                 # optional
 
 > [!tip] CLIについて
 > 
-> CLIを使用すると、`isDraft`, `publishDate` および `updateDate` の内容を変更することができます。
+> CLI を使用したコンテンツ管理を利用できます。
 >
-> ```bash:記事の追加
-> # Markdownを生成し、isDraft, publishDate, updateDate を初期化します
-> $ yarn siwl new -f <filename>
+> ```bash:CLI
+> yarn siwl <action> -option <arg>
 > ```
 >
-> ```bash:記事の公開
-> # isDraft = false, updateDate を更新します
-> $ yarn siwl pub -f <filename>
-> ```
->
-> ```bash:記事を下書きに戻す
-> # isDraft = true
-> $ yarn siwl dft -f <filename>
-> ```
+> 詳しくは[こちら](https://github.com/s-inoue0108/siwl-dev)
 
 ## 見出し
 

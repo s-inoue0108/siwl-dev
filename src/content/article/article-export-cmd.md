@@ -127,11 +127,11 @@ program
 
 *[!table] おもな独自構文の差分*
 
-|      Syntax      | This site                      | Zenn      | Qiita                           |
-| :--------------: | :----------------------------- | :-------- | :------------------------------ |
-| **Display math** | \$\$<br>formula<br>\$\$        | *same*    | \`\`\`math<br>formula<br>\`\`\` |
-|   **Callout**    | > [!type] title<br>><br>> text | *nothing* | *nothing*                       |
-|   **Caption**    | \*[!image\|table] title\*      | *nothing* | *nothing*                       |
+| Syntax           | This site                                                                          | Zenn      | Qiita                                                                               |
+| :--------------- | :--------------------------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------- |
+| **Display math** | <span style="font-family: 'Source Code Pro'">\$\$<br>formula<br>\$\$</span>        | *same*    | <span style="font-family: 'Source Code Pro'">\`\`\`math<br>formula<br>\`\`\`</span> |
+| **Callout**      | <span style="font-family: 'Source Code Pro'">> [!type] title<br>><br>> text</span> | *nothing* | *nothing*                                                                           |
+| **Caption**      | <span style="font-family: 'Source Code Pro'">\*[!image\|table] title\*</span>      | *nothing* | *nothing*                                                                           |
 
 例えばコールアウトは、このブログでは引用 `>` の拡張構文として実装しているため、Zenn/Qiita ではただの引用文として扱われるようにします[^1]。
 ほかにも、埋め込みコンテンツは構文にバリエーションがあるため、特定のコンテンツに対して変換を実行します。
@@ -211,7 +211,7 @@ for (const line of rl) {
 
 #### API 呼び出しを挟む処理
 
-このブログでは、埋め込みたいコンテンツの URL を独立した行に書き込むことで、 [**oEmbed API**](https://oembed.com) を経由した `<iframe>` 要素にレンダリングされるようにしています。しかし、例えば Zenn では、Speaker Deck の埋め込みなどで API にアクセスするための構文がわずかに異なる場合があります。
+このブログでは、埋め込みたいコンテンツの URL を独立した行に書き込むことで、[**oEmbed API**](https://oembed.com) などを経由して埋め込みの `<iframe>` 要素がレンダリングされるようにしています。しかし、例えば Zenn では、Speaker Deck の埋め込みなどで構文がわずかに異なる場合があります。
 \
 このようなパターンに対応するため、API を叩いて返ってきたレスポンスの情報をもとに変換を行う処理を実装します。
 

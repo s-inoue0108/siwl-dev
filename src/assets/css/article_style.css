@@ -86,8 +86,12 @@
 		@apply mt-8;
 	}
 
+	.table-block {
+		@apply mx-auto mb-16 w-full overflow-x-auto;
+	}
+
 	table {
-		@apply table min-w-[1px] max-w-full mx-auto mb-16 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		@apply table mx-auto whitespace-nowrap min-w-[1px] max-w-full tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 
 		thead {
 			@apply bg-muted-background/50;
@@ -128,7 +132,11 @@
 		}
 
 		.remark-code-title {
-			@apply bg-background/30;
+			@apply bg-background border border-background;
+		}
+
+		.code-block {
+			@apply border border-background;
 		}
 
 		.astro-code {
@@ -137,7 +145,7 @@
 	}
 
 	.callout-title {
-		@apply flex items-center gap-2 font-bold text-lg lg:text-xl xl:text-2xl cursor-pointer;
+		@apply flex items-center gap-2 font-bold text-lg lg:text-xl xl:text-2xl cursor-pointer list-none;
 
 		code {
 			@apply font-code text-lg lg:text-xl xl:text-2xl;
@@ -146,6 +154,10 @@
 		.katex {
 			@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
 		}
+	}
+
+	.callout-title::-webkit-details-marker {
+		@apply hidden;
 	}
 
 	.callout > p:nth-child(2) {
@@ -258,7 +270,7 @@
 
 	/* code block */
 	.remark-code-title {
-		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
+		@apply text-muted-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
 	}
 
 	.code-block {
@@ -297,7 +309,11 @@
 	}
 
 	.code-copy-button {
-		@apply absolute top-2 right-2 z-10 bg-muted-background/30 hover:bg-muted-background p-2 rounded-full transition duration-200;
+		@apply absolute top-[6px] right-2 z-10 bg-muted-background/30 hover:bg-muted-background p-2 rounded-full transition duration-200;
+	}
+
+	.code-copy-button svg path {
+		@apply text-muted-foreground;
 	}
 
 	/* inline code */

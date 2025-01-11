@@ -103,10 +103,16 @@ export default defineConfig({
 			rehypeKatex,
 			[
 				rehypeWrapAll,
-				{
-					selector: "pre",
-					wrapper: "div.code-block",
-				},
+				[
+					{
+						selector: "pre",
+						wrapper: "div.code-block",
+					},
+					{
+						selector: "table",
+						wrapper: "div.table-block",
+					},
+				],
 			],
 			rehypeCodeCopyButton,
 		],
