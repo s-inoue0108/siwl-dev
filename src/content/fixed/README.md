@@ -2,7 +2,7 @@
 title: README
 description: README of this site.
 publishDate: 2024-10-04T00:00:00+09:00
-updateDate: 2025-01-11T13:16:59+09:00
+updateDate: 2025-01-11T13:25:54+09:00
 ---
 
 # SIWL.dev

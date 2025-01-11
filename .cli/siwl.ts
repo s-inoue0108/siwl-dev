@@ -433,7 +433,8 @@ program
 
       fs.readFile(readme, 'utf8', (err, data) => {
         if (err) throw err;
-        fs.appendFile(readmeFixed, data, (err) => {
+        const newData = data.replace(/(\.\/)?public\//g, '/');
+        fs.appendFile(readmeFixed, newData, (err) => {
           if (err) throw err;
           console.log(`exported ${chalk.magenta(readme)} to ${chalk.magenta(readmeFixed)}`);
           process.exit(0);
