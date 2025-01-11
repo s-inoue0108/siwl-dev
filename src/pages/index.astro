@@ -49,11 +49,13 @@ const { meta } = routes.getRootPageMeta();
 						></path>
 					</g>
 				</svg>
-				<p
-					class="text-justify w-full font-bold text-muted-foreground lg:text-xl xl:text-2xl absolute top-[240px] sm:top-[344px] lg:top-[480px]"
+				<div
+					class="w-1/2 md:w-2/3 xl:w-5/6 absolute top-[240px] sm:top-[344px] lg:top-[480px] left-1/2 -translate-x-1/2"
 				>
-					{meta.description}
-				</p>
+					<p class="font-bold text-justify text-muted-foreground lg:text-xl xl:text-2xl">
+						{meta.description}
+					</p>
+				</div>
 			</div>
 			<ul
 				class="mt-[40px] sm:mt-[240px] lg:mt-0 w-full flex flex-col sm:flex-row justify-center items-center gap-8 z-10"

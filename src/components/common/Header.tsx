@@ -31,9 +31,10 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 	const handleScroll = () => {
 		if (isOpenSearch() || isOpenToc()) return;
 		nowPosition = document.documentElement.scrollTop;
+		const thHeightTop = document.getElementById("header")!.clientHeight;
 
-		if (beforePosition === nowPosition) return;
-		if (beforePosition < nowPosition + 1) {
+		if (beforePosition === nowPosition || nowPosition < thHeightTop) return;
+		if (beforePosition < nowPosition) {
 			setDirection("down");
 		} else {
 			setDirection("up");
