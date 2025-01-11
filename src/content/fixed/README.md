@@ -2,7 +2,7 @@
 title: README
 description: README of this site.
 publishDate: 2024-10-04T00:00:00+09:00
-updateDate: 2025-01-11T13:15:01+09:00
+updateDate: 2025-01-11T13:16:59+09:00
 ---
 
 # SIWL.dev
@@ -68,19 +68,19 @@ yarn siwl <action> -option <arg>
 
 ### Available actions and options
 
-| `<action>`     | `-option <arg>`                                 | Description                                                                                       |
-| :------------- | :---------------------------------------------- | :------------------------------------------------------------------------------------------------ |
-| `create\|new`  | `-f <filename> [-m <model>]`                    | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                         |
-| `remove\|rm`   | `-f <filename> [-m <model>]`                    | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                               |
-| `draft\|dft`   | `-f <filename> [-m <model>]`                    | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                                |
-| `publish\|pub` | `-f <filename> [-m <model>] [-R] [-L] [-U]`     | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`.   |
-| `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]`       | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
-| `list\|ls`     | `[-m <model>] [-p\|-d]`                         | List `src/content/<model>/` with status.                                                          |
-| `open\|op`     | `-f <filename> [-m <model>]`                    | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
-| `view\|vi`     | `[-f <filename>] [-l] [-g] [-r]`                | View specified webpage using browser.                                                             |
-| `export\|ex`   | `-f <filename> -t <mdtype> [-n <newname>] [-F]` | Export `article` with specified markdown type.                                                    |
-|                | `-h`                                            | Display help.                                                                                     |
-|                | `-v`                                            | Display version.                                                                                  |
+| `<action>`     | `-option <arg>`                                           | Description                                                                                       |
+| :------------- | :-------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| `create\|new`  | `-f <filename> [-m <model>]`                              | Create `src/content/<model>/<filename>.(md\|yaml)` and initialize schema.                         |
+| `remove\|rm`   | `-f <filename> [-m <model>]`                              | Remove `src/content/<model>/<filename>.(md\|yaml)`.                                               |
+| `draft\|dft`   | `-f <filename> [-m <model>]`                              | Draft `src/content/<model>/<filename>.(md\|yaml)`.                                                |
+| `publish\|pub` | `-f <filename> [-m <model>] [-R] [-L] [-U]`               | Publish `src/content/<model>/<filename>.(md\|yaml)` and update timestamp if model is `article`.   |
+| `rename\|rn`   | `-f <filename> -n <newname> [-m <model>]`                 | Rename `src/content/<model>/<filename>.(md\|yaml)` to `src/content/<model>/<newname>.(md\|yaml)`. |
+| `list\|ls`     | `[-m <model>] [-p\|-d]`                                   | List `src/content/<model>/` with status.                                                          |
+| `open\|op`     | `-f <filename\|readme> [-m <model>]`                      | Open `src/content/<model>/<filename>.(md\|yaml)` by Visual Studio Code.                           |
+| `view\|vi`     | `[-f <filename\|readme>] [-l]`                            | View specified webpage using browser.                                                             |
+| `export\|ex`   | `-f <filename\|readme> [-t <mdtype>] [-n <newname>] [-F]` | Export `article` with specified markdown type.                                                    |
+|                | `-h`                                                      | Display help.                                                                                     |
+|                | `-v`                                                      | Display version.                                                                                  |
 
 > [!IMPORTANT]
 > 
