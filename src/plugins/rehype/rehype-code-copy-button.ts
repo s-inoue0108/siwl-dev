@@ -57,7 +57,9 @@ export default function rehypeCodeCopyButton() {
       const script = {
         type: 'element',
         tagName: 'script',
-        properties: {},
+        properties: {
+          type: "text/javascript",
+        },
         children: [{
           type: 'text',
           value: `
