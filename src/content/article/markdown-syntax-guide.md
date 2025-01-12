@@ -258,6 +258,17 @@ const displayTextType = (text: string) => {
 }
 ```
 
+## オーディオ
+
+Web Audio API を使用できます。`mp3`, `wav`, `flac` 形式が対応しています。
+
+```md
+<!--@{audio}(filepath)-->
+@{audio}(./audios/markdown-syntax-guide/test.mp3)
+```
+
+@{audio}(./audios/markdown-syntax-guide/test.mp3)
+
 ## 引用
 
 ### 通常の引用
