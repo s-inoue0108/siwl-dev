@@ -6,14 +6,14 @@ category: tech
 tags: [astro, solid, ts, tailwindcss]
 description: Astro, SolidJS を使用してブログサイトをリニューアルしました。このエントリでは、使用した技術やライブラリについてまとめます。
 publishDate: 2024-10-06T00:00:00+09:00
-updateDate: 2025-01-06T23:33:59+09:00
+updateDate: 2025-01-15T20:44:38+09:00
 ---
 
 **S.Inoue** と申します。大学生（非情報系）ですが、個人的に Web 制作に取り組んでおり、大学卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
 \
 特に、精力的に取り組んできた（と思っている）Web フロントエンドの分野でいくつか触ってみたい技術があり、また、以前作ったブログのリプレイスを行うも不満が残る部分が多かったため、いっそ新しく作り直そうということで Astro と SolidJS を使ったブログを制作 ~~しました~~ **しております**[^1] ので、紹介させていただきます。
 
-[^1]: **[2025-01-06 追記]** 今でもちょこちょこと機能追加を行っております。Web フロントエンドは奥が深い。
+[^1]: 今でもちょこちょこと機能追加を行っております。Web フロントエンドは奥が深い。
 
 ## 使用した技術
 
@@ -178,11 +178,13 @@ https://github.com/yisibl/resvg-js
 
 ### ホスティング
 
-#### Cloudflare
+#### Cloudflare Pages
 
 独自ドメインの管理を Cloudflare で行っている都合上、ホスティングも Cloudflare で行うことにしました。以前は Vercel を使っていましたが、難なく乗り換えることができました。
 
 https://www.cloudflare.com/ja-jp/
+
+今後バックエンドを実装する機会があれば、Workers や D1 の利用も考えたいと思っています。最近話題のバックエンドフレームワークである [Hono](https://hono.dev) も使ってみたいです。
 
 ### CLI
 
@@ -204,7 +206,7 @@ Node.js で実装したコマンドラインに文字色や背景色をつける
 
 https://github.com/chalk/chalk
 
-#### Bash shell
+#### Bash スクリプト
 
 定型的な Git 操作を少ないコマンドで行えるように Bash スクリプトを別途組んであります。また、Commander.js で構築した CLI を経由して実行するスクリプトなども作成してあります。
 
@@ -218,10 +220,9 @@ https://docs.astro.build/ja/guides/view-transitions/
 
 これを利用して、ブログの一覧表示ページ <-> 記事ページ間の遷移の際に記事のメタデータ部分をアニメーションさせています。
 
-> [!warn] Astro `v5` での仕様変更
+> [!warn:fold] Astro `v5` での仕様変更
 > 
-> View Transition API にも一部大きな変更がありました。
-> https://docs.astro.build/en/guides/upgrade-to/v5/
+> View Transition API は、`v5` から ClientRouter という名称で扱われるように変更されたようです（https://docs.astro.build/en/guides/upgrade-to/v5/）。
 
 ### 読了時間の追加
 
@@ -235,7 +236,7 @@ https://jahir.dev/blog/astro-reading-time
 \
 このブログにおいては、記事検索のための `input` 要素を含むUIをデバイスのサイズに応じて出しわけているのですが、バインドするキーワードをグローバルステートにしています。
 
-### お問い合わせフォームの追加
+### お問い合わせフォームの作成
 
 以下の記事に実装をまとめています。
 
