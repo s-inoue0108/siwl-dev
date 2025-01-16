@@ -142,10 +142,6 @@
 	.callout {
 		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
-		p > code {
-			@apply bg-background text-muted-foreground;
-		}
-
 		.remark-code-title {
 			@apply bg-background border border-background;
 		}
@@ -183,12 +179,20 @@
 		@apply bg-muted-background/30 border border-muted-background;
 	}
 
+	.callout-quote p code {
+		@apply border border-muted-background/50 bg-muted-background/30;
+	}
+
 	.callout-title-quote {
 		@apply text-foreground;
 	}
 
 	.callout-note {
 		@apply bg-muted-background/30 border border-muted-background;
+	}
+
+	.callout-note p code {
+		@apply border border-muted-background/50 bg-muted-background/30;
 	}
 
 	.callout-title-note {
@@ -199,12 +203,20 @@
 		@apply bg-muted-background/30 border border-muted-background;
 	}
 
+	.callout-remark p code {
+		@apply border border-muted-background/50 bg-muted-background/30;
+	}
+
 	.callout-title-remark {
 		@apply text-foreground;
 	}
 
 	.callout-info {
 		@apply bg-blue-500/30 border border-blue-500;
+	}
+
+	.callout-info p code {
+		@apply border border-blue-500/50 bg-blue-500/30;
 	}
 
 	.callout-title-info {
@@ -215,12 +227,20 @@
 		@apply bg-blue-500/30 border border-blue-500;
 	}
 
+	.callout-todo p code {
+		@apply border border-blue-500/50 bg-blue-500/30;
+	}
+
 	.callout-title-todo {
 		@apply text-blue-500;
 	}
 
 	.callout-important {
 		@apply bg-violet-400/30 border border-violet-400;
+	}
+
+	.callout-important p code {
+		@apply border border-violet-400/50 bg-violet-400/30;
 	}
 
 	.callout-title-important {
@@ -231,12 +251,20 @@
 		@apply bg-violet-400/30 border border-violet-400;
 	}
 
+	.callout-example p code {
+		@apply border border-violet-400/50 bg-violet-400/30;
+	}
+
 	.callout-title-example {
 		@apply text-violet-400;
 	}
 
 	.callout-warn {
 		@apply bg-amber-400/30 border border-amber-400;
+	}
+
+	.callout-warn p code {
+		@apply border border-amber-400/50 bg-amber-400/30;
 	}
 
 	.callout-title-warn {
@@ -247,12 +275,20 @@
 		@apply bg-amber-400/30 border border-amber-400;
 	}
 
+	.callout-question p code {
+		@apply border border-amber-400/50 bg-amber-400/30;
+	}
+
 	.callout-title-question {
 		@apply text-amber-400;
 	}
 
 	.callout-alert {
 		@apply bg-red-400/30 border border-red-400;
+	}
+
+	.callout-alert p code {
+		@apply border border-red-400/50 bg-red-400/30;
 	}
 
 	.callout-title-alert {
@@ -263,6 +299,10 @@
 		@apply bg-red-400/30 border border-red-400;
 	}
 
+	.callout-attention p code {
+		@apply border border-red-400/50 bg-red-400/30;
+	}
+
 	.callout-title-attention {
 		@apply text-red-400;
 	}
@@ -271,12 +311,20 @@
 		@apply bg-green-500/30 border border-green-500;
 	}
 
+	.callout-tip p code {
+		@apply border border-green-500/50 bg-green-500/30;
+	}
+
 	.callout-title-tip {
 		@apply text-green-500;
 	}
 
 	.callout-break {
 		@apply bg-green-500/30 border border-green-500;
+	}
+
+	.callout-break p code {
+		@apply border border-green-500/50 bg-green-500/30;
 	}
 
 	.callout-title-break {
@@ -334,7 +382,7 @@
 	/* inline code */
 	p > code,
 	li > code {
-		@apply text-muted-foreground font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+		@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 border border-muted-background px-1 py-[0.125rem] rounded-md;
 	}
 
 	.astro-code {

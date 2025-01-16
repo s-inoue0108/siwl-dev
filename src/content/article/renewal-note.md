@@ -222,7 +222,7 @@ https://docs.astro.build/ja/guides/view-transitions/
 
 > [!warn:fold] Astro `v5` での仕様変更
 > 
-> View Transition API は、`v5` から ClientRouter という名称で扱われるように変更されたようです（https://docs.astro.build/en/guides/upgrade-to/v5/）。
+> View Transition API は、`v5` から Client Router という名称で扱われるように変更されたようです。詳しくは https://docs.astro.build/en/guides/upgrade-to/v5/ を参照してください。
 
 ### 読了時間の追加
 
@@ -261,9 +261,7 @@ https://siwl.dev/blog/articles/article-export-cmd
 \
 せっかく自分の Web サイトを持てたので、これからはコツコツ記事を書いて知見をためていきたいと思っています。
 \
-**同じ記事を Zenn にも掲載しております。ぜひご覧ください。**
-
-https://zenn.dev/s_inoue0108/articles/blog-renewal-note
+**[同じ記事を Zenn にも掲載しております](https://zenn.dev/s_inoue0108/articles/blog-renewal-note)。ぜひご覧ください。**
 
 ## 参考記事
 
