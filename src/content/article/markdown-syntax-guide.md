@@ -6,7 +6,7 @@ category: tech
 tags: [markdown]
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-10T23:19:32+09:00
+updateDate: 2025-01-17T22:46:24+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -260,23 +260,61 @@ const displayTextType = (text: string) => {
 
 ## 引用
 
-### 通常の引用
+### 引用
 
-```md:通常の引用
-> 通常の引用
+```md:引用
+> ここは引用ブロックです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 ```
 
-> 通常の引用
+> ここは引用ブロックです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 ### コールアウト
 
-title は省略可能です。ヘッダと文章部の間は1行空けます。`:fold` を指定するとデフォルトで折りたたまれて表示されます。
+`title` は省略可能です。ヘッダと文章部の間は1行空けます。`:fold` を指定するとデフォルトで折りたたまれて表示されます。
 
 ```md:コールアウト
 > [!type:fold] title
 >
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 ```
+
+`type` は以下から選択できます。
 
 *[!table] 利用可能な type*
 
@@ -296,57 +334,213 @@ title は省略可能です。ヘッダと文章部の間は1行空けます。`
 | `tip`       | 小ネタ      | green   |
 | `break`     | 閑話休題    | green   |
 
-> [!quote]
+> [!quote:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!note]
+> [!note:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!remark]
+> [!remark:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!info]
+> [!info:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!todo]
+> [!todo:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!important]
+> [!important:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
-> [!example]
+> [!example:fold]
+>
+> これはコールアウトです。
 > 
-> text text text
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!warn:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!question:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!alert:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!attention:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!tip:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 > [!break:fold]
 > 
-> text text text
+> これはコールアウトです。
+> 
+> ```python:Python
+> x = 1
+> y = 2
+>
+> def add(x, y):
+>   return x + y
+> 
+> print(add(x, y))
+> ```
+> 
+> `inline code` や $inline math$ も使えます。
 
 ## 数式
 

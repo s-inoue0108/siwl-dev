@@ -135,10 +135,11 @@
 
 	/* blockquote */
 	blockquote {
-		@apply block bg-muted-background/30 border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 lg:my-12;
+		@apply block text-muted-foreground border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 lg:my-12;
 	}
 
 	/* callout */
+
 	.callout {
 		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
