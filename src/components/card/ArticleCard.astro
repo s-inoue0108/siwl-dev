@@ -4,7 +4,7 @@ import ClassifyCard from "./ClassifyCard.astro";
 import { IoGitCommit, IoTimer, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
 import { getEntry, getEntries } from "astro:content";
-import { getReadingTime } from "../../utils/common/getreadingtime";
+import { getReadingTime } from "../../utils/common/reading-time";
 
 interface Props {
 	article: CollectionEntry<"article">;
@@ -16,7 +16,7 @@ const { slug, data, body } = article;
 const category = await getEntry("category", data.category.id);
 const tags = await getEntries(data.tags ? data.tags : []);
 
-const readingTime = getReadingTime(body);
+const { minutes } = getReadingTime(body);
 ---
 
 <section id={`article-card-${slug}`}>
@@ -85,7 +85,7 @@ const readingTime = getReadingTime(body);
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
 					>
 						<IoTimer />
-						<div class="text-xs sm:text-sm tracking-wider">{readingTime}</div>
+						<div class="text-xs sm:text-sm tracking-wider">{`${minutes} min`}</div>
 					</div>
 				</div>
 				<ArticleCardLayerButton article={article} category={category} client:load />

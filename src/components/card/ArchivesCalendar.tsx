@@ -1,5 +1,5 @@
 import { createMemo, createSignal, For, Index } from "solid-js";
-import { IoGitCommitOutline } from "solid-icons/io";
+import { IoChevronForward, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
 import { getMonths } from "../../utils/common/utilfuncs";
 import { allArticles } from "../../utils/store/collections";
 
@@ -47,7 +47,7 @@ const ArchivesCalendar = () => {
 	const availableYears = getAvailableYears(2024, new Date().getFullYear());
 
 	return (
-		<div class="flex justify-center">
+		<div class="w-full md:w-fit flex justify-center p-4 bg-muted-background/30 border border-muted-background rounded-xl">
 			<ul class="flex flex-col">
 				<select
 					id="select-year"
@@ -66,32 +66,33 @@ const ArchivesCalendar = () => {
 				<For each={numberOfArticleEachMonths()}>
 					{({ name, value, numberOf }) => {
 						return (
-							<li class="w-full my-[-0.4rem] lg:my-[-0.5rem] 2xl:my-[-0.6rem]">
-								<ul class="flex items-center gap-1">
-									<ul
-										class={`${
-											numberOf.tech + numberOf.idea === 0 ? "opacity-30 select-none" : ""
-										} flex items-center gap-2 xl:gap-3 font-code text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-semibold`}
-									>
-										<li>{(numberOf.tech + numberOf.idea).toString().padStart(2, "0")}</li>
-										<li class="text-accent-sub-base">
-											{numberOf.tech.toString().padStart(2, "0")}
-										</li>
-										<li class="text-accent-base">{numberOf.idea.toString().padStart(2, "0")}</li>
-									</ul>
-									<li class="text-6xl lg:text-7xl xl:text-8xl">
-										<IoGitCommitOutline class="rotate-90" />
+							<li class="border-b border-muted-background">
+								<ul class="flex justify-between items-center gap-8 py-4">
+									<li>
+										<ul class="flex font-code text-2xl lg:text-3xl xl:text-4xl gap-4">
+											<li class="flex items-center gap-1 text-accent-sub-base">
+												<IoDesktopOutline />
+												<span>{numberOf.tech.toString().padStart(2, "0")}</span>
+											</li>
+											<li class="flex items-center gap-1 text-accent-base">
+												<IoBulbOutline />
+												<span>{numberOf.idea.toString().padStart(2, "0")}</span>
+											</li>
+										</ul>
 									</li>
-									<a
-										href={`/blog/archives/${selectedYear()}-${value}`}
-										class={`${
-											numberOf.tech + numberOf.idea === 0
-												? "select-none pointer-events-none opacity-30"
-												: "hover:opacity-70"
-										} tracking-wide font-bold text-xl lg:text-2xl xl:text-3xl transition-opacity duration-150`}
-									>
-										{name}
-									</a>
+									<li>
+										<a
+											href={`/blog/archives/${selectedYear()}-${value}`}
+											class={`${
+												numberOf.tech + numberOf.idea === 0
+													? "select-none pointer-events-none opacity-30"
+													: "hover:opacity-70"
+											} font-code tracking-wide font-bold text-3xl lg:text-4xl xl:text-5xl transition-opacity duration-150 flex items-center`}
+										>
+											<span>{name.slice(0, 3)}</span>
+											<IoChevronForward />
+										</a>
+									</li>
 								</ul>
 							</li>
 						);

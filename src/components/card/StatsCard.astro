@@ -1,0 +1,68 @@
+---
+import { getReadingTime } from "../../utils/common/reading-time";
+import { allArticles } from "../../utils/store/collections";
+import { allTags } from "../../utils/store/collections";
+
+const getTotalReadingTime = () => {
+	let totalReadingTime = 0;
+	let totalWordCount = 0;
+	allArticles
+		.filter(({ data }) => !data.isDraft)
+		.forEach(({ body, data }) => {
+			if (data.isDraft) return;
+			const { minutes, wc } = getReadingTime(body);
+			totalReadingTime += minutes;
+			totalWordCount += wc;
+		});
+	return {
+		totalReadingTime,
+		totalWordCount,
+	};
+};
+
+const { totalReadingTime, totalWordCount } = getTotalReadingTime();
+---
+
+<div
+	class="px-8 py-4 w-full md:w-fit h-fit flex flex-col gap-8 bg-muted-background/30 border border-muted-background rounded-xl"
+>
+	<h2
+		class="flex justify-center text-4xl tracking-wide font-bold border-b border-muted-background pb-2"
+	>
+		Total
+	</h2>
+	<ul class="flex flex-col gap-8 pt-4">
+		<li class="flex flex-col gap-2 border-b border-muted-background pb-2">
+			<div class="w-full flex justify-center text-xl">
+				<span>Number of Articles</span>
+			</div>
+			<div class="w-full text-center text-3xl font-bold tracking-wider">
+				<span>{allArticles.filter(({ data }) => !data.isDraft).length}</span>
+			</div>
+		</li>
+		<li class="flex flex-col gap-2 border-b border-muted-background pb-2">
+			<div class="w-full flex justify-center text-xl">
+				<span>Number of Tags</span>
+			</div>
+			<div class="w-full text-center text-3xl font-bold tracking-wider">
+				<span>{allTags.filter(({ data }) => !data.isDraft).length}</span>
+			</div>
+		</li>
+		<li class="flex flex-col gap-2 border-b border-muted-background pb-2">
+			<div class="w-full flex justify-center text-xl">
+				<span>Word Count</span>
+			</div>
+			<div class="w-full text-center text-3xl font-bold tracking-wider">
+				<span>{totalWordCount} wds</span>
+			</div>
+		</li>
+		<li class="flex flex-col gap-2 border-b border-muted-background pb-2">
+			<div class="w-full flex justify-center text-xl">
+				<span>Reading Time</span>
+			</div>
+			<div class="w-full text-center text-3xl font-bold tracking-wider">
+				<span>{totalReadingTime} min</span>
+			</div>
+		</li>
+	</ul>
+</div>
