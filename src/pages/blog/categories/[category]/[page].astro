@@ -51,11 +51,11 @@ const { meta } = routes.getSubsetPageMeta();
 			<Pager page={page} />
 		</article>
 		<aside
-			class="pt-16 lg:pt-0 flex flex-col sm:gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
+			class="pt-16 lg:pt-0 flex flex-col gap-8 lg:w-[35%] lg:pl-[3.95rem] 2xl:pl-[5.925rem] 2xl:pr-[1.975rem]"
 		>
 			<ProfileCard />
 			<div class="lg:sticky lg:top-8 flex flex-col sm:gap-8">
-				<CategoriesPanel currentPath={Astro.url.pathname} client:visible />
+				<CategoriesPanel client:visible currentPath={Astro.url.pathname} />
 				<TagCardsPanel client:visible />
 			</div>
 		</aside>
