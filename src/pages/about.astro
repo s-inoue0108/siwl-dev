@@ -21,6 +21,7 @@ import IconTailwind from "../content/tag/icons/tailwindcss.svg";
 import { getCollection } from "astro:content";
 
 import WorkCard from "../components/card/WorkCard";
+import TwitterEmbed from "../components/card/TwitterEmbed";
 
 const works = await getCollection("work", ({ data }) => {
 	return import.meta.env.PROD ? !data.isDraft : true;
@@ -221,11 +222,22 @@ const { meta } = routes.getSubsetPageMeta();
 				</div>
 			</div>
 		</div>
-		<!-- <hr class="border-[0.5px] border-muted-background" />
+		<hr class="border-[0.5px] border-muted-background" />
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
 			Background
 		</h2>
-		<p>In Preparation...</p> -->
+		<h3 class="font-extrabold text-[1.125rem] lg:text-[1.875rem] xl:text-[2.25rem]">
+			北里大学 理学部化学科 (2021-2025)
+		</h3>
+		<div class="flex flex-col gap-8 lg:flex-row lg:justify-between items-center">
+			<div
+				class="w-2/3 text-[1.125rem] lg:text-[1.875rem] leading-normal lg:leading-relaxed text-muted-foreground"
+			>
+				π共役ポリマー合成、白金錯体、キラル化学、量子化学計算(Gaussian)
+				に関連したテーマで卒業研究を行いました。
+			</div>
+			<TwitterEmbed client:load url="https://x.com/kitasato_kinou" />
+		</div>
 		<hr class="border-[0.5px] border-muted-background" />
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
 			Works
