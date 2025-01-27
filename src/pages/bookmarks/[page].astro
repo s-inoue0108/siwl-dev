@@ -6,7 +6,7 @@ import Breadcrumbs from "../../components/common/Breadcrumbs.astro";
 import { AllowedRoutes } from "../../route";
 import Pager from "../../components/button/Pager";
 import ProfileCard from "../../components/card/ProfileCard.astro";
-import { IoLink } from "solid-icons/io";
+import { ImLink } from "solid-icons/im";
 import NoItem from "../../components/common/NoItem.astro";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
@@ -27,6 +27,7 @@ const { meta } = route.getRootPageMeta();
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
 			<Breadcrumbs count={page.total} />
+			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
 			<ul class="flex flex-col gap-6">
 				{
 					page.data.length > 0 ? (
@@ -37,9 +38,9 @@ const { meta } = route.getRootPageMeta();
 										href={data.url}
 										target="_blank"
 										rel="noopener noreferrer"
-										class="w-fit flex items-center gap-2 text-xl lg:text-2xl xl:text-3xl text-sky hover:underline"
+										class="w-fit flex items-center gap-2 text-xl lg:text-2xl xl:text-3xl underline underline-offset-4 text-sky hover:opacity-70 transition-opacity duration-150"
 									>
-										<IoLink />
+										<ImLink />
 										<h1 class="font-semibold">{data.name}</h1>
 									</a>
 									<p class="text-sm lg:text-base">{data.description}</p>
