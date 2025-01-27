@@ -65,9 +65,7 @@ const { meta } = route.getSubsetPageMeta();
 							<li class="w-full my-[-0.4rem] lg:my-[-0.5rem] 2xl:my-[-0.6rem]">
 								<div class="flex items-center gap-1">
 									<time
-										class={`font-code whitespace-nowrap lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold ${
-											data.category.id === "tech" ? "text-accent-sub-base" : "text-accent-base"
-										}`}
+										class="font-code whitespace-nowrap lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold"
 										datetime={data.publishDate.toISOString()}
 									>
 										{`${(data.publishDate.getMonth() + 1).toString().padStart(2, "0")}-${data.publishDate.getDate().toString().padStart(2, "0")}`}
@@ -77,8 +75,8 @@ const { meta } = route.getSubsetPageMeta();
 									</div>
 									<a
 										href={`/blog/articles/${slug}`}
-										class={`underline underline-offset-4 w-3/4 font-semibold truncate text-sm sm:text-base lg:text-lg xl:text-xl transition-colors duration-150
-								${data.category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"}`}
+										class={`underline underline-offset-4 w-3/4 font-semibold truncate text-sm sm:text-base lg:text-lg xl:text-xl
+								${data.category.id === "tech" ? "text-accent-sub-base" : "text-accent-base"} hover:opacity-70 transition-opacity duration-150`}
 									>
 										{data.title}
 									</a>
