@@ -342,7 +342,7 @@
 	}
 
 	.code-block > pre {
-		@apply relative p-2 overflow-x-auto rounded-lg;
+		@apply relative pl-2 pr-12 py-2 overflow-x-auto rounded-lg;
 	}
 
 	.remark-code-title + .code-block {
