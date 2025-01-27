@@ -15,9 +15,10 @@ interface TwitterEmbed {
 
 interface Props {
 	url: string;
+	origin?: string;
 }
 
-const TwitterEmbed = ({ url }: Props) => {
+const TwitterEmbed = ({ url, origin = "https://siwl.dev" }: Props) => {
 	const fetchEmbed = async (url: string): Promise<TwitterEmbed> => {
 		const endpoint = "https://publish.twitter.com/oembed";
 		const query = encodeURIComponent(url);
@@ -26,6 +27,7 @@ const TwitterEmbed = ({ url }: Props) => {
 			{
 				headers: {
 					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": origin,
 				},
 			}
 		);
