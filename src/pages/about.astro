@@ -21,7 +21,6 @@ import IconTailwind from "../content/tag/icons/tailwindcss.svg";
 import { getCollection } from "astro:content";
 
 import WorkCard from "../components/card/WorkCard";
-import TwitterEmbed from "../components/card/TwitterEmbed";
 
 const works = await getCollection("work", ({ data }) => {
 	return import.meta.env.PROD ? !data.isDraft : true;
@@ -236,7 +235,12 @@ const { meta } = routes.getSubsetPageMeta();
 				π共役ポリマー合成、白金錯体、キラル化学、量子化学計算(Gaussian)
 				に関連したテーマで卒業研究を行いました。
 			</div>
-			<TwitterEmbed client:load url="https://x.com/kitasato_kinou" />
+			<div>
+				<a class="twitter-timeline" href="https://twitter.com/kitasato_kinou?ref_src=twsrc%5Etfw"
+					>Tweets by kitasato_kinou</a
+				>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
 		</div>
 		<hr class="border-[0.5px] border-muted-background" />
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
