@@ -63,14 +63,6 @@ relatedArticles: []
 >
 > となって矛盾が起きるから、基底状態の電子密度 $\rho_0(\bm{r})$ に対応する外部ポテンシャルは唯一つである。
 
-ここで、$\rho_0(\bm{r})$ は以下のように表される：
-
-$$
-\rho_0(\bm{r}) = \int d\bm{x}~|\varPhi_0(\bm{x})|^2 \left( \sum_{i} \delta(\bm{r}_i - \bm{r}) \right)
-$$
-
-ここで、電子 $i$ の座標を空間座標とスピン座標の組 $\bm{x}_i := (\bm{r}_i, \sigma_i)$ で表し、$\bm{x} := \{\bm{x}_1,\ldots,\bm{x}_N\}$ である。また、$\varPhi_0(\bm{x})$ は系の基底状態の（規格化された）波動関数である。
-\
 多電子系のハミルトニアン $\hat{H}$ は次のように書くことができる：
 
 $$
@@ -80,7 +72,7 @@ $$
 ここで $\hat{H}_0$ は運動エネルギー項とクーロン相互作用項の和で、
 
 $$
-\hat{H}_0 = -\frac{\hbar^2}{2m}\sum_{i} {\nabla_i}^2 + \frac{1}{4\pi\varepsilon_0} \sum_{i}\sum_{j\neq i} \frac{1}{|\bm{r}_i - \bm{r}_j|}
+\hat{H}_0 = -\frac{1}{2}\sum_{i} {\nabla_i}^2 + \sum_{i}\sum_{j\neq i} \frac{1}{|\bm{r}_i - \bm{r}_j|}
 $$
 
 である。
@@ -116,6 +108,8 @@ $$
 > $$
 > E[\rho] = \bra{\varPsi_V}\hat{H}\ket{\varPsi_V} \ge \bra{\varPsi_0}\hat{H}\ket{\varPsi_0} = E[\rho_0] = E_0
 > $$
+>
+> がしたがう。等号は $\rho = \rho_0$ のとき成立する。
 
 これらの前提をもとに、電子密度 $\rho$ を変化させながらエネルギー $E_[\rho]$ を計算し、これが最小と思われる結果を返したとき $\rho = \rho_0$（基底状態）であるとする。
 
@@ -123,7 +117,69 @@ $$
 
 Hohenberg-Kohn の定理は、任意の電子密度 $\rho$ に対応して、それを基底状態とする外部ポテンシャル $V$ がいつでも存在することは保証しない。$\rho$ を基底状態電子密度としてもつような外部ポテンシャル $V$ が存在するとき、そのような $\rho$ を **$V$-表現可能**であるという。
 
-## Kohn-Sham 方程式
+## Kohn-Sham 理論
 
-### Kohn-Sham 補助系
+DFT を現実の系に適用する際の困難は、エネルギー汎関数 $E[\rho]$ の真の表現が知られていない点にある。$E[\rho]$ を各構成要素に分解すると、
 
+$$
+E[\rho] = T[\rho] + V_\mathrm{ex}[\rho] + V_\mathrm{h}[\rho] + E_\mathrm{xc}[\rho]
+$$
+
+となる。ここで、
+
+- 運動エネルギー $T[\rho]$
+- 外部ポテンシャルによるエネルギー $\displaystyle V_\mathrm{ex}[\rho] = \int d\bm{r} ~ V(\bm{r})\rho(\bm{r})$
+- クーロン相互作用によるエネルギー $\displaystyle V_\mathrm{h}[\rho] = \int d\bm{r}d\bm{r}' ~ \frac{\rho(\bm{r})\rho(\bm{r}')}{|\bm{r} - \bm{r}'|}$
+- 交換・相関エネルギー $E_\mathrm{xc}[\rho]$
+
+である。**Kohn-Sham 理論**とは、$E_\mathrm{xc}[\rho]$ を除く3つの項のエネルギー汎関数を相互作用しない系を仮定して近似的に求めるアイデアである。
+
+### Kohn-Sham 方程式
+
+Kohn-Sham 理論では、実際の系の電子密度 $\rho$ と同等であるような補助系の電子密度を仮定し、次のように求める：
+
+$$
+\rho(\bm{r}) = \sum_i |\phi_i(\bm{r})|^2
+$$
+
+ここで $\phi_i(\bm{r})$ は相互作用しない $N$-電子系の1電子軌道（Kohn-Sham 軌道）である。これらを用いて、
+
+$$
+T^\mathrm{KS}[\rho] = -\frac{1}{2}\sum_i \int d\bm{r} ~ {\phi_i}^\ast(\bm{r}) {\nabla_i}^2 \phi_i(\bm{r})
+$$
+
+$$
+V^\mathrm{KS}_\mathrm{ex}[\rho] = \int d\bm{r} ~ V(\bm{r})\rho(\bm{r})
+$$
+
+$$
+V^\mathrm{KS}_\mathrm{h}[\rho] = \int d\bm{r}d\bm{r}' ~ \frac{\rho(\bm{r})\rho(\bm{r}')}{|\bm{r} - \bm{r}'|}
+$$
+
+から、Kohn-Sham エネルギー汎関数 $E^\mathrm{KS}$ は次のように求められる：
+
+$$
+E^\mathrm{KS}[\rho] = T_\mathrm{s}[\rho] + V_\mathrm{ex}[\rho] + V_\mathrm{h}[\rho] + E_\mathrm{xc}[\rho]
+$$
+
+これを $\phi_i$ で変分すると、
+
+$$
+V^\mathrm{KS}(\bm{r}) := \frac{\delta E^\mathrm{KS}}{\delta \phi_i} = V(\bm{r}) + \int d\bm{r} \frac{\rho(\bm{r})}{|\bm{r} - \bm{r}'|} + \frac{\delta E_\mathrm{xc}}{\delta \rho}
+$$
+
+を得る。この Kohn-Sham ポテンシャルを使ったハミルトニアンから、以下の **Kohn-Sham 方程式**を得る：
+
+> [!tip] Kohn-Sham 方程式
+>
+> $$
+> \left( -\frac{1}{2}{\nabla_i}^2 + V^\mathrm{KS}(\bm{r}) \right)\phi_i = \varepsilon_i\phi_i
+> $$
+>
+> $$
+> V^\mathrm{KS}(\bm{r}) = V(\bm{r}) + \int d\bm{r} \frac{\rho(\bm{r})}{|\bm{r} - \bm{r}'|} + \frac{\delta E_\mathrm{xc}}{\delta \rho}, \quad \rho = \sum_i |\phi_i|^2
+> $$
+
+Kohn-Sham 方程式は、適当な試行電子密度 $\rho$ を与えてやることでハミルトニアンが決まり、その固有状態である Kohn-Sham 軌道 $\phi_i$ を求めることで電子密度 $\rho$ へフィードバックできるから、セルフコンシステントに解くことができる。
+
+### 交換・相関汎関数
