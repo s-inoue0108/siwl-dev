@@ -5,7 +5,7 @@ category: idea
 tags: [comp-science]
 description: "密度汎関数理論の導入についてまとめます。"
 publishDate: 2025-01-30T22:36:20+09:00
-updateDate: 2025-02-05T12:11:02+09:00
+updateDate: 2025-02-08T00:42:54+09:00
 relatedArticles: []
 ---
 
@@ -162,24 +162,102 @@ $$
 E^\mathrm{KS}[\rho] = T_\mathrm{s}[\rho] + V_\mathrm{ex}[\rho] + V_\mathrm{h}[\rho] + E_\mathrm{xc}[\rho]
 $$
 
-これを $\phi_i$ で変分すると、
+Kohn-Sham 軌道が規格直交であるという制約条件の下で、$E^\mathrm{KS}$ を ${\phi_i}^\ast$ で変分したものがゼロであるという条件から、
 
 $$
-V^\mathrm{KS}(\bm{r}) := \frac{\delta E^\mathrm{KS}}{\delta \phi_i} = V(\bm{r}) + \int d\bm{r} \frac{\rho(\bm{r})}{|\bm{r} - \bm{r}'|} + \frac{\delta E_\mathrm{xc}}{\delta \rho}
+\frac{\delta E^\mathrm{KS}}{\delta {\phi_i}^\ast} - \sum_{i}\sum_{j} \varepsilon_{ij} \frac{\delta}{\delta {\phi_i}^\ast}\left( \int d\bm{r} ~ {\phi_i}^\ast \phi_j - \delta_{ij} \right) = 0
 $$
 
-を得る。この Kohn-Sham ポテンシャルを使ったハミルトニアンから、以下の **Kohn-Sham 方程式**を得る：
+が成り立つことと同値な式として、**Kohn-Sham 方程式**：
 
 > [!tip] Kohn-Sham 方程式
 >
 > $$
-> \left( -\frac{1}{2}{\nabla_i}^2 + V^\mathrm{KS}(\bm{r}) \right)\phi_i = \varepsilon_i\phi_i
+> \left( -\frac{1}{2}{\nabla_i}^2 + V(\bm{r}) + \int d\bm{r} \frac{\rho(\bm{r})}{|\bm{r} - \bm{r}'|} + \frac{\delta E_\mathrm{xc}}{\delta \rho} \right)\phi_i = \varepsilon_i\phi_i
 > $$
+
+を得る。
+
+> [!warn] 
+>
+> ここで連鎖律：
 >
 > $$
-> V^\mathrm{KS}(\bm{r}) = V(\bm{r}) + \int d\bm{r} \frac{\rho(\bm{r})}{|\bm{r} - \bm{r}'|} + \frac{\delta E_\mathrm{xc}}{\delta \rho}, \quad \rho = \sum_i |\phi_i|^2
+> \frac{\delta f[\rho]}{\delta {\phi_i}^\ast} = \frac{\delta f[\rho]}{\delta \rho}\frac{\delta \rho}{\delta {\phi_i}^\ast} = \frac{\delta f[\rho]}{\delta \rho} \phi_i
+> $$
+>
+> を用いた。
+
+Kohn-Sham 方程式は、適当な試行電子密度 $\rho$ を与えてやることで Fock 演算子 $\hat{F}^\mathrm{KS}$ が決まり、その固有状態である Kohn-Sham 軌道 $\phi_i$ を求めることで電子密度 $\rho$ へフィードバックできるから、セルフコンシステントに解くことができる。
+
+### Roothaan 方程式
+
+計算機での解法においては、Kohn-Sham 軌道 $\phi_i$ を所与の基底関数[^1]の組 $\{\chi_\mu\}$ で線形結合展開して表現する：
+
+[^1]: 一般には原子軌道で、Slater 軌道 $e^{-\zeta r}$ よりも縮約 Gauss 軌道 $\sum_k e^{-\alpha_k r^2}$ が用いられる。
+
+$$
+\phi_i(\bm{r}) = \sum_{\mu}C_{\mu i} \chi_\mu(\bm{r})
+$$
+
+ここで $C_{i\mu}$ などは展開係数であり、これを $(\mu, i)$ 成分にもつ行列を $\bm{C} = (C_{\mu i})$ とする。また、
+
+$$
+F^\mathrm{KS}_{\nu \mu} = \int d\bm{r} ~ {\chi_\nu}^\ast(\bm{r}) \hat{F}^\mathrm{KS} \chi_\mu(\bm{r})
+$$
+
+$$
+S_{\nu \mu} = \int d\bm{r} ~ {\chi_\nu}^\ast(\bm{r}) \chi_\mu(\bm{r})
+$$
+
+を要素にもつ行列をそれぞれ $\bm{F}^\mathrm{KS}, ~\bm{S}$ と定め、Kohn-Sham 軌道エネルギー $\varepsilon_i$ を並べた対角行列を $\bm{\varepsilon}$ と定めると、**Roothaan 方程式**：
+
+> [!tip] Roothaan 方程式
+> 
+> $$
+> \bm{F}^\mathrm{KS} \bm{C} = \bm{S} \bm{C} \bm{\varepsilon}
 > $$
 
-Kohn-Sham 方程式は、適当な試行電子密度 $\rho$ を与えてやることでハミルトニアンが決まり、その固有状態である Kohn-Sham 軌道 $\phi_i$ を求めることで電子密度 $\rho$ へフィードバックできるから、セルフコンシステントに解くことができる。
+を得る。Roothaan 方程式は行列計算により展開係数行列 $\bm{C}$ をもとめる方程式であるが、Fock 行列 $\bm{F}^\mathrm{KS}$ 自身に $\bm{C}$ の要素を含む（クーロン相互作用ポテンシャルおよび交換・相関汎関数）から、やはりセルフコンシステントに解く必要がある。
 
 ### 交換・相関汎関数
+
+Kohn-Sham 軌道を用いた厳密解が唯一得られないのは交換・相関汎関数 $E_\mathrm{xc}[\rho]$ の項であり、いわゆる「汎関数」として多くの近似手法が提案されている。
+
+#### 局所密度近似（LDA）
+
+**局所密度近似（LDA）** は、空間中の各点 $\bm{r}$ ごとに電子の交換・相関エネルギー（電子密度 $\rho(\bm{r})$ によって決まる）を定める。$\varepsilon_\mathrm{xc}$ を点 $\bm{r}$ での電子の交換・相関エネルギー密度とするとき、
+
+$$
+E_\mathrm{xc}^\mathrm{LDA}[\rho] = \int d\bm{r} ~ \rho(\bm{r}) \varepsilon_\mathrm{xc}(\rho(\bm{r}))
+$$
+
+となる。この汎関数は電子密度 $\rho$ によってのみ決まる。
+
+#### 一般化勾配近似（GGA）
+
+**一般化勾配近似（GGA）** は、LDA に密度勾配の情報を取り入れ補正を試みたモデルである。
+
+$$
+E_\mathrm{xc}^\mathrm{GGA}[\rho] = \int d\bm{r} ~ \rho(\bm{r}) \varepsilon_\mathrm{xc}(\rho(\bm{r}), \nabla \rho(\bm{r}))
+$$
+
+#### メタ一般化勾配近似（meta-GGA）
+
+**メタ一般化勾配近似（meta-GGA）** は、GGA に加えて電子の運動エネルギー密度（$\tau$）を加えたモデルであり、密度の二次勾配 $\nabla^2 \rho$ の情報を含む。
+
+$$
+E_\mathrm{xc}^\mathrm{metaGGA}[\rho] = \int d\bm{r} ~ \rho(\bm{r}) \varepsilon_\mathrm{xc}(\rho(\bm{r}), \nabla \rho(\bm{r}), \tau)
+$$
+
+#### 混成汎関数
+
+**混成汎関数** は、Hartree-Fock 理論の交換相互作用 $E_\mathrm{x}^\mathrm{HF}$：
+
+$$
+E_\mathrm{x}^\mathrm{HF} = -\frac{1}{2} \sum_{i,j} \int d\bm{r}_1 d\bm{r}_2 ~ {\phi_i}^\ast(\bm{r}_1){\phi_j}^\ast(\bm{r}_1)\frac{1}{|\bm{r}_1 - \bm{r}_2|}{\phi_i}(\bm{r}_2){\phi_j}(\bm{r}_2)
+$$
+
+に対し、既知の交換・相関汎関数をパラメータで重みづけして混成したモデルである。
+\
+特に、Becke の 3-parameters 混成（**B3LYP**）が有名である。これは、交換汎関数に HF と Becke 88 交換汎関数、相関汎関数に Lee-Yang-Parr 相関汎関数を用い、これらを3つの経験的パラメータで混成したものである。
