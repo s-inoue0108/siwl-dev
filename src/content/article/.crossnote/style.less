@@ -6,11 +6,21 @@
   // modify your style here
   // eg: background-color: blue;
 
-  background: rgb(4, 8, 24);
-  color: rgb(252, 252, 252);
+  // CSS variables
+  --opacity: 1;
+  --background: 4, 8, 24;
+  --foreground: 252, 252, 252;
+  --muted: 20, 24, 48;
+  --muted-foreground: 134, 136, 147;
+  --accent-vivid: 64, 32, 208;
+  --accent-base: 120, 82, 220;
+  --accent-sub-base: 30, 70, 180;
+
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
 
   h1, h2 {
-    border-bottom: solid 1px rgb(20, 24, 48);
+    border-bottom: solid 1px rgb(var(--muted));
     padding-bottom: 0.5rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -19,7 +29,7 @@
   }
 
   h3 {
-    border-bottom: solid 1px rgb(20, 24, 48);
+    border-bottom: solid 1px rgb(var(--muted));
     padding-bottom: 0.5rem;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
@@ -35,7 +45,7 @@
   }
 
   .hashes {
-    background: linear-gradient(to right, rgb(30, 70, 180) 0%, rgb(120, 82, 220) 100%);
+    background: linear-gradient(to right, rgb(var(--accent-sub-base)) 0%, rgb(var(--accent-base)) 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -59,27 +69,44 @@
   pre {
     margin-top: 2rem;
     margin-bottom: 2rem;
+    background-color: rgba(var(--muted), 0.3) !important;
+    border: solid 1px rgb(var(--muted));
+    border-radius: 0.5rem;
   }
 
   pre code {
-    color: aliceblue;
+    color: rgb(var(--foreground));
   }
 
-  // blockquote:not(.callout) {
-  //   background-color: transparent;
-  //   border: none;
-  //   padding-left: 0;
-  //   padding-right: 2rem;
-  // }
+  p > code, li > code {
+    background-color: rgba(var(--muted), 0.5) !important;
+    border: solid 1px rgb(var(--muted)) !important;
+    border-radius: 0.5rem;
+    color: rgb(var(--foreground));
+  }
 
-  .callout {
+  blockquote {
+    background: transparent;
     display: block;
+    color: rgb(var(--muted-foreground));
+    border-left: solid 8px rgb(var(--muted));
     padding: 0.5rem 1rem;
-    width: 100%;
-    height: fit-content;
-    border-radius: 0.75rem;
-    margin: 3rem 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    p > code {
+      color: rgb(var(--muted-foreground));
+    }
   }
+
+  // .callout {
+  //   display: block;
+  //   padding: 0.5rem 1rem;
+  //   width: 100%;
+  //   height: fit-content;
+  //   border-radius: 0.75rem;
+  //   margin: 3rem 0;
+  // }
 
   .callout-tip {
     background-color: rgb(34 197 94 / 0.3);
@@ -102,24 +129,41 @@
     font-size: 18px;
     line-height: 1.7;
 
+    thead {
+      background-color: rgba(var(--muted), 0.5);
+    }
+
 		tr {
       border-collapse: collapse;
-      border-bottom: solid 1px;
+      border-bottom: solid 1px rgb(var(--muted));
 		}
 
 		th {
-			padding: 4px 8px;
+			padding: 0.5rem 1rem;
       border: none;
 		}
 
 		td {
-      padding: 4px 8px;
+      padding: 0.5rem 1rem;
       border: none;
 		}
+
+    code {
+      background-color: rgba(var(--muted), 0.5) !important;
+      border: solid 1px rgb(var(--muted)) !important;
+      border-radius: 0.5rem;
+      color: rgb(var(--foreground));
+    }
   }
 
   .katex-display {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: solid 0.5px rgb(var(--muted));
   }
 }
