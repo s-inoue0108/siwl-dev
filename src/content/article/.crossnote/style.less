@@ -1,0 +1,125 @@
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+.markdown-preview.markdown-preview {
+  // modify your style here
+  // eg: background-color: blue;
+
+  background: rgb(4, 8, 24);
+  color: rgb(252, 252, 252);
+
+  h1, h2 {
+    border-bottom: solid 1px rgb(20, 24, 48);
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+
+  h3 {
+    border-bottom: solid 1px rgb(20, 24, 48);
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  h4, h5, h6 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  .hashes {
+    background: linear-gradient(to right, rgb(30, 70, 180) 0%, rgb(120, 82, 220) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  ul > li, ol > li {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  pre {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  pre code {
+    color: aliceblue;
+  }
+
+  // blockquote:not(.callout) {
+  //   background-color: transparent;
+  //   border: none;
+  //   padding-left: 0;
+  //   padding-right: 2rem;
+  // }
+
+  .callout {
+    display: block;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    height: fit-content;
+    border-radius: 0.75rem;
+    margin: 3rem 0;
+  }
+
+  .callout-tip {
+    background-color: rgb(34 197 94 / 0.3);
+    border: solid 1px rgb(34 197 94);
+  }
+  
+  .callout-important {
+    background-color: rgb(167 139 250 / 0.3);
+    border: solid 1px rgb(167 139 250);
+  }
+
+  table {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: table;
+    margin: 0 auto;
+    white-space: nowrap;
+    min-width: 1px;
+    max-width: 100%;
+    font-size: 18px;
+    line-height: 1.7;
+
+		tr {
+      border-collapse: collapse;
+      border-bottom: solid 1px;
+		}
+
+		th {
+			padding: 4px 8px;
+      border: none;
+		}
+
+		td {
+      padding: 4px 8px;
+      border: none;
+		}
+  }
+
+  .katex-display {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
