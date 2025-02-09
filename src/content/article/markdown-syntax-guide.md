@@ -334,7 +334,7 @@ const displayTextType = (text: string) => {
 | `tip`       | 小ネタ      | green   |
 | `break`     | 閑話休題    | green   |
 
-> [!quote:fold]
+> [!quote:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -350,7 +350,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!note:fold]
+> [!note:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -366,7 +366,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!remark:fold]
+> [!remark:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -382,7 +382,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!info:fold]
+> [!info:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -398,7 +398,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!todo:fold]
+> [!todo:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -414,7 +414,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!important:fold]
+> [!important:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -430,7 +430,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!example:fold]
+> [!example:fold] 
 >
 > これはコールアウトです。
 > 
@@ -446,7 +446,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!warn:fold]
+> [!warn:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -462,7 +462,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!question:fold]
+> [!question:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -478,7 +478,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!alert:fold]
+> [!alert:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -494,7 +494,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!attention:fold]
+> [!attention:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -510,7 +510,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!tip:fold]
+> [!tip:fold] 
 > 
 > これはコールアウトです。
 > 
@@ -526,7 +526,7 @@ const displayTextType = (text: string) => {
 > 
 > `inline code` や $inline math$ も使えます。
 
-> [!break:fold]
+> [!break:fold] 
 > 
 > これはコールアウトです。
 > 

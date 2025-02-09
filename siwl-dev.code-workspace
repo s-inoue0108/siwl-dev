@@ -37,7 +37,7 @@
 		"markdown-preview-enhanced.previewTheme": "one-dark.css",
 		"markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
 		"markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
-		"markdown-preview-enhanced.scrollSync": true,
+		"markdown-preview-enhanced.scrollSync": false,
 		"markdown-preview-enhanced.frontMatterRenderingOption": "code block",
 		"markdown-preview-enhanced.mathRenderingOption": "KaTeX",
 		"markdown-preview-enhanced.printBackground": true
