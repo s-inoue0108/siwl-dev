@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: VSCode + Markdown Preview Enhanced で Markdown の執筆環境を整える
 category: tech
 tags: [markdown]

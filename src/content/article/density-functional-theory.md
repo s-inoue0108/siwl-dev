@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: 密度汎関数理論（DFT）の物理
 category: idea
 tags: [comp-science]

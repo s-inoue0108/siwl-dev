@@ -1,5 +1,6 @@
 ---
 isDraft: false
+isLimited: false
 title: Matplotlib スクリプト集
 category: tech
 tags: [python]

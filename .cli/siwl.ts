@@ -48,7 +48,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `---\nisDraft: true\ntitle: \ncategory: tech\ntags: []\ndescription: ""\npublishDate: ${toISOStringWithTimezone(new Date())}\nupdateDate: ${toISOStringWithTimezone(new Date())}\nrelatedArticles: []\n---`,
+        `---\nisDraft: true\nisLimited: false\ntitle: \ncategory: tech\ntags: []\ndescription: ""\npublishDate: ${toISOStringWithTimezone(new Date())}\nupdateDate: ${toISOStringWithTimezone(new Date())}\nrelatedArticles: []\n---`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.md`)}`);
