@@ -19,7 +19,7 @@
 			"attention",
 		];
 
-		const hRe = /(?<hashes>#+)\s?(?<title>.+)?/;
+		const hRe = /(?<hashes>#{2,4})\s?(?<title>.+)?/;
 		markdown = markdown.replace(new RegExp(hRe, "g"), (h) => {
 			const match = h.match(hRe);
 			if (!match || !match.groups) return h;
