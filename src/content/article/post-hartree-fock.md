@@ -6,7 +6,7 @@ category: tech
 tags: [comp-science]
 description: ""
 publishDate: 2025-02-10T17:42:48+09:00
-updateDate: 2025-02-10T21:42:08+09:00
+updateDate: 2025-02-10T21:55:29+09:00
 relatedArticles: []
 ---
 
@@ -75,4 +75,6 @@ $$
 
 **Full-CI 法**はすべての励起配置を考慮した配置間相互作用法である。非常に計算コストが高く、十分小さな系でないと適用できない。
 
-## Møller-Plesset 摂動法（MPn）
+## Møller-Plesset 摂動（MP）法
+
+## クラスター展開（CC）法

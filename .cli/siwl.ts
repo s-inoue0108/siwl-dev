@@ -203,7 +203,7 @@ program
   .option("-m, --model <model>", 'which model to use (article|tag|bookmark|work)')
   .option("-R, --reset", "reset publish date (article only)")
   .option("-L, --limited", "set limited release (article only)")
-  .option("-U, --unlimited", "unset limited release (article only)")
+  // .option("-U, --unlimited", "unset limited release (article only)")
   .action((cmd) => {
 
     const filename = getFilename(cmd);
@@ -225,8 +225,7 @@ program
         }
         if (cmd.limited) {
           newData = newData.replace(/isLimited: false/, 'isLimited: true');
-        }
-        if (cmd.unlimited) {
+        } else {
           newData = newData.replace(/isLimited: true/, 'isLimited: false');
         }
         fs.writeFile(file, newData, (err) => {
