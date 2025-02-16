@@ -10,7 +10,7 @@ interface Props {
 const { slug } = Astro.props;
 
 const articles = await getCollection("article", ({ data }) => {
-	return import.meta.env.PROD ? data.isDraft === false : true;
+	return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
 });
 
 const getSideArticles = async (

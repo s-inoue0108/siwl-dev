@@ -195,7 +195,7 @@ Kohn-Sham 方程式は、適当な試行電子密度 $\rho$ を与えてやる�
 
 計算機での解法においては、Kohn-Sham 軌道 $\phi_i$ を所与の基底関数[^1]の組 $\{\chi_\mu\}$ で線形結合展開して表現する：
 
-[^1]: 一般には原子軌道で、Slater 軌道 $e^{-\zeta r}$ よりも縮約 Gauss 軌道 $\sum_k e^{-\alpha_k r^2}$ が用いられる。これらは一般に規格直交でなく、重なり積分 $S_\{\mu \nu} = \braket{\chi_\mu|\chi_\nu}$ を考慮せねばならない。
+[^1]: 一般には原子軌道で、Slater 軌道 $e^{-\zeta r}$ よりも縮約 Gauss 軌道 $\sum_k e^{-\alpha_k r^2}$ が用いられる。これらは一般に規格直交でなく、重なり積分 $S_{\mu \nu} = \braket{\chi_\mu|\chi_\nu}$ を考慮せねばならない。
 
 $$
 \phi_i(\bm{r}) = \sum_{\mu}C_{\mu i} \chi_\mu(\bm{r})
