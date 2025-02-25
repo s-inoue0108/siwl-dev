@@ -70,3 +70,21 @@ $$
 
 
 ### Nose-Hoover Thermostat
+
+> [!info] Nose-Hoover Thermostat
+>
+> 系が温度 $T_0$ の熱浴と平衡に熱平衡にあると考え、熱浴とエネルギーをやり取りする付加自由度 $\zeta$ を加える。
+
+熱浴の温度を $T_0$、質量を $Q$ とするとき、Hamilton 運動方程式は、
+
+$$
+\frac{d\bm{q}_i}{dt} = \frac{\bm{p}_i}{m_i}
+$$
+
+$$
+\frac{d\bm{p}_i}{dt} = \bm{F}_i - \zeta \bm{p}_i
+$$
+
+$$
+\frac{d\zeta}{dt} = \frac{1}{Q} (T - T_0)
+$$
