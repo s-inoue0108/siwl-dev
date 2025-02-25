@@ -66,7 +66,7 @@ program
 
       // 書き込み
       fs.writeFile(file,
-        `isDraft: true\nname: \nbelong: tech\nicon: ./icons/\nzennName: ""\nqiitaName: ""`,
+        `isDraft: true\nname: \nbelong: tech\nicon: ./icons/`,
         (err) => {
           if (err) throw err;
           console.log(`added ${chalk.green(`${model}/${filename}.yaml`)}`);
