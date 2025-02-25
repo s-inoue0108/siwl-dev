@@ -212,8 +212,17 @@ np.loadtxt("filename", arr, delimiter=",")
 
 https://numpy.org/doc/2.1/reference/routines.linalg.html
 
+特に固有値問題にかかわるメソッドは、`np.linalg` 名前空間にある。
 
-
+```py
+np.vdot()           # Dot Product
+np.matmul()         # Matrix Product
+np.linalg.cross()   # Cross Product (3-Vectors)
+np.linalg.eig()     # Eigvalues and Right-Eigvecs
+np.linalg.norm()    # Norm
+np.linalg.det()     # Determinant
+np.trace()          # Trace
+```
 
 
 
