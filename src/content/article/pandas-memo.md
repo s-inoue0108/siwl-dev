@@ -1,12 +1,12 @@
 ---
 isDraft: false
 isLimited: false
-title: Python/Pandas 備忘録
+title: Python / Pandas 備忘録
 category: tech
-tags: [python]
+tags: [python, pandas]
 description: Python で2次元データを扱うライブラリである Pandas の備忘録です。
 publishDate: 2024-11-24T10:52:31+09:00
-updateDate: 2024-11-25T11:54:11+09:00
+updateDate: 2025-02-26T10:15:28+09:00
 relatedArticles: []
 ---
 
