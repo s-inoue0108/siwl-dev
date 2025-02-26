@@ -6,13 +6,17 @@ category: tech
 tags: [perl, gaussian, comp-science]
 description: Gaussian16 では、結合長、二面角といったパラメータを固定しながら構造最適化計算を繰り返す Relaxed Scan 計算が利用できます。今回は、Scan 計算の結果から最適構造の座標情報を抽出し、TD-DFT 計算を実行するためのインプットファイルを生成するスクリプトを Perl で作成しましたので、紹介します。
 publishDate: 2024-12-10T20:53:35+09:00
-updateDate: 2025-01-07T23:34:48+09:00
+updateDate: 2025-02-26T10:05:45+09:00
 relatedArticles: []
 ---
 
 ## ソースコード
 
-https://github.com/s-inoue0108/gen-tddft
+> [!info] 
+>
+> リポジトリを移しました。
+
+https://github.com/s-inoue0108/sotuken-code
 
 ## 参考
 
@@ -255,14 +259,6 @@ sub processed_coordinate {
   
   return $cleaned_coordinate;
 }
-```
-
-## 使用法
-
-`calc.out` のあるディレクトリまで移動して次のコマンドを実行します：
-
-```bash
-$ perl ./gen-tddft.pl ./opt_result.out
 ```
 
 同様の記事を Zenn にも公開しています：
