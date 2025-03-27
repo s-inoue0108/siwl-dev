@@ -1,8 +1,16 @@
 # SIWL.dev
 
+Personal website of [@s-inoue0108](https://github.com/s-inoue0108).
+
 https://siwl.dev
 
-Personal website of [@s-inoue0108](https://github.com/s-inoue0108), built with [AstroJS](https://astro.build/), [SolidJS](https://solidjs.com) and [Tailwind CSS](https://tailwindcss.com).
+- [View README on GitHub](https://github.com/s-inoue0108/siwl-dev/blob/main/README.md)
+- [View README on Website](https://siwl.dev/readme)
+
+Built with:
+- [AstroJS](https://astro.build/) v4.15.9
+- [SolidJS](https://solidjs.com) v1.8.23
+- [Tailwind CSS](https://tailwindcss.com) v3.4.13
 
 ## 💿 GitHub Repo
 

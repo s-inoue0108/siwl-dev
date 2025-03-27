@@ -118,10 +118,6 @@
 			code {
 				@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
 			}
-
-			.katex {
-				@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
-			}
 		}
 
 		th {
@@ -161,10 +157,6 @@
 
 		code {
 			@apply font-code text-lg lg:text-xl xl:text-2xl;
-		}
-
-		.katex {
-			@apply text-[1.2rem] lg:text-[1.32rem] xl:text-[1.6rem];
 		}
 	}
 
@@ -401,14 +393,10 @@
 
 	/* math block */
 	.katex {
-		@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
+		@apply sm:text-[1.2rem] lg:text-[1.32rem] xl:text-[1.44rem];
 	}
 	.katex-display {
 		@apply py-4 overflow-x-auto overflow-y-clip;
-	}
-
-	.katex-display > .katex {
-		@apply sm:text-[1.2rem] lg:text-[1.2rem] xl:text-[1.32rem];
 	}
 
 	/* iframe */
