@@ -24,10 +24,10 @@ gem "rack-cors"
 ```
 
 ```bash:Gemの更新
-$ bundle install
+bundle install
 ```
 
 ```bash:インストールと初期化
-$ rails g devise:install
-$ rails g devise_token_auth:install User auth
+rails g devise:install
+rails g devise_token_auth:install User auth
 ```

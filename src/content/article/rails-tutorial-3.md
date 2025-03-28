@@ -13,7 +13,7 @@ relatedArticles: []
 ## コントローラの作成
 
 ```bash:コントローラの作成
-$ rails g controller Reagents
+rails g controller Reagents
 ```
 
 これで `/app/controllers` にコントローラのひな型ができますが、今回は API エンドポイントを `/api/v1/` におくため、`/app/controllers/api/v1/` に配置しなおします。
@@ -56,7 +56,7 @@ end
 ```
 
 ```bash:確認
-$ rails routes
+rails routes
 ```
 
 ## ダミーデータの作成
@@ -76,7 +76,7 @@ end
 ```
 
 ```bash:ダミーデータを生成
-$ rails db:seed
+rails db:seed
 ```
 
 `localhost:3000/api/v1/reagents` にアクセスするか、`$ curl localhost:3000/api/v1/reagents` を実行して動作を確認できます。

@@ -21,7 +21,7 @@ relatedArticles: []
 https://rubyinstaller.org/downloads/
 
 ```bash:バージョン確認
-$ ruby -v
+ruby -v
 ```
 
 今回は Ruby + DevKit `v3.1.6` をインストールしました。
@@ -31,11 +31,11 @@ $ ruby -v
 ### インストール
 
 ```bash:インストール
-$ gem install rails -v 7
+gem install rails -v 7
 ```
 
 ```bash:バージョン確認
-$ rails -v
+rails -v
 ```
 
 今回は Ruby on Rails `v7.0.0` をインストールしました。
@@ -45,16 +45,17 @@ $ rails -v
 今回は JSON API を作成するため、`--api` オプションをつけてプロジェクトを作成します。データベースは PostgreSQL を使います。
 
 ```bash:新規プロジェクトの作成
-$ mkdir RailsApp
-$ cd RailsApp
+mkdir RailsApp
+cd RailsApp
+
 # 作成
-$ rails new [app-name] --api --database=postgresql
+rails new <app-name> --api --database=postgresql
 ```
 
 ### サーバ起動
 
 ```bash:起動
-$ rails s
+rails s
 ```
 
 `localhost:3000` にアクセスするとランディングページが表示されます。
@@ -62,9 +63,9 @@ $ rails s
 ### ブランチを切る
 
 ```bash:ブランチを切る
-$ git switch -c develop
-$ git merge main
-$ git push -u origin develop
+git switch -c develop
+git merge main
+git push -u origin develop
 ```
 
 ## 参考

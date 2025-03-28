@@ -29,7 +29,7 @@ https://yamnor.me/2024-11-08-1904/
 構造最適化計算のアウトプット `opt_result.out (.log)` のあるディレクトリに移動し、次のコマンドを実行してみましょう：
 
 ```bash:ターミナル
-$ grep "Standard orientation" opt_result.out | wc -l
+grep "Standard orientation" opt_result.out | wc -l
 ```
 
 このコマンドは、計算された分子の座標情報の総数を表示します（[詳しくはこちら](https://www.hpc.co.jp/chem/software/gaussian/help/keywords/symmetry/)）。
@@ -37,7 +37,7 @@ $ grep "Standard orientation" opt_result.out | wc -l
 同様に、次のコマンドを実行してみましょう：
 
 ```bash:ターミナル
-$ grep "Optimization completed" opt_result.out | wc -l
+grep "Optimization completed" opt_result.out | wc -l
 ```
 
 このコマンドは、Scan で得られた最終構造の数を表示します。正常に Scan 計算が実行されていれば、インプットファイルで指定したスキャン回数に等しくなるはずです。したがって、上の記事にもある通り、

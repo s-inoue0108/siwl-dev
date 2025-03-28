@@ -11,7 +11,7 @@ relatedArticles: []
 ---
 
 ```bash:インストール
-$ npm i katex
+npm i katex
 ```
 
 ## KaTeX の SSR
@@ -29,7 +29,7 @@ HTML をパースするために `cheerio` を利用します。
 https://github.com/cheeriojs/cheerio
 
 ```bash:インストール
-$ npm i cheerio
+npm i cheerio
 ```
 
 ```ts

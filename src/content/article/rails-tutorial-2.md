@@ -15,7 +15,7 @@ relatedArticles: []
 `model` はデータベースのテーブルに対応します。今回は試薬を管理する `Reagents` テーブルを `rails g model` コマンドで作成します。
 
 ```bash:モデルの作成
-$ rails g model Reagent name:string chem_formula:string amount:float amount_unit:string
+rails g model Reagent name:string chem_formula:string amount:float amount_unit:string
 ```
 
 *[!table] カラムの型*
@@ -54,7 +54,7 @@ end
 マイグレーションを実行します。
 
 ```bash:マイグレーション
-$ rails db:migrate
+rails db:migrate
 ```
 
 ## マイグレーションの作成
@@ -62,7 +62,7 @@ $ rails db:migrate
 手動でマイグレーションを作成するには `rails g migration` コマンドを実行します。今回は `Reagents` テーブルに `maker` カラムを追加するマイグレーションを作成します。
 
 ```bash:マイグレーションの作成
-$ rails g migration AddMakerToReagents maker:string
+rails g migration AddMakerToReagents maker:string
 ```
 
 `/db/migrate/` に以下のマイグレーションファイルが作成されます。
@@ -78,7 +78,7 @@ end
 マイグレーションを実行します。
 
 ```bash:マイグレーション
-$ rails db:migrate
+rails db:migrate
 ```
 
 ## PostgreSQL を使う

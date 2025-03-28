@@ -138,7 +138,7 @@ onMount(() => {
 型補完のために `@types/grecaptcha` をインストールします。
 
 ```bash
-$ npm i -D @types/grecaptcha
+npm i -D @types/grecaptcha
 ```
 
 `executeRecaptcha` 関数はサイトキーの情報をもとにトークンを取得し、State にセットします。これをフォームの値とともに `/api/contact` エンドポイントへ送信します。レスポンスを受けとったら、フォームのリセットとレスポンス内容の画面通知を行います。
@@ -318,8 +318,8 @@ Astro のエンドポイントを用いて、reCAPTCHA サーバーに検証リ�
 
 Astro `v4` では SSR（On-demand Rendering）を利用するために、ホスト先のランタイム環境に対応したアダプターを用意する必要があります。今回は Cloudflare のアダプターを用います（他にも Vercel や Netlify 向けのアダプターがあります）。
 
-```bash:インストール
-$ npm astro add cloudflare
+```bash
+npm astro add cloudflare
 ```
 
 `astro.config.mjs` に次の内容を追記します。
