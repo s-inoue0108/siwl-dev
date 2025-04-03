@@ -371,7 +371,7 @@ program
   .action((cmd) => {
 
     const openURL = (url: string) => {
-      exec(`bash ./.cli/siwl/view.sh ${url}`, (error, stdout, stderr) => {
+      exec(`bash ./cli/siwl/view.sh ${url}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error executing command: ${error.message}`);
           return;
