@@ -6,7 +6,7 @@ category: tech
 tags: [shell]
 description: "Bash の基本的なコードスニペットを集めた備忘録です。"
 publishDate: 2025-04-03T20:05:55+09:00
-updateDate: 2025-04-06T11:22:29+09:00
+updateDate: 2025-04-10T22:30:49+09:00
 relatedArticles: []
 ---
 
@@ -90,6 +90,16 @@ cat << EOF > "file.txt"
 hoge
 fuga
 EOF
+```
+
+## find コマンドの活用
+
+```bash
+# ファイルを検索して消す
+find . -name "*.txt" -type f | xargs rm
+
+# ファイルから特定の行を抽出
+find . -name "*.txt" -type f | xargs cat | grep "string" 
 ```
 
 ## sed
