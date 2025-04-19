@@ -6,7 +6,7 @@ category: tech
 tags: [shell]
 description: "Bash の基本的なコードスニペットを集めた備忘録です。"
 publishDate: 2025-04-03T20:05:55+09:00
-updateDate: 2025-04-19T21:07:13+09:00
+updateDate: 2025-04-19T21:07:50+09:00
 relatedArticles: []
 ---
 
@@ -106,10 +106,6 @@ find . -name "*.txt" -type f | xargs cat | grep "string"
 
 # ファイルを特定のディレクトリに移動
 find . -name "*.txt" -type f | xargs -I{} mv {} ./path/to/dir
-```
-
-```bash
-find . -name 
 ```
 
 ## sed
