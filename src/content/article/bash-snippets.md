@@ -6,7 +6,7 @@ category: tech
 tags: [shell]
 description: "Bash の基本的なコードスニペットを集めた備忘録です。"
 publishDate: 2025-04-03T20:05:55+09:00
-updateDate: 2025-04-10T22:30:49+09:00
+updateDate: 2025-04-19T21:07:13+09:00
 relatedArticles: []
 ---
 
@@ -51,7 +51,7 @@ done
 `seq` を使った連番生成：
 
 ```bash
-for i in `seq 1 10`; do
+for i in $(seq 1 10); do
   echo $i
 done
 ```
@@ -98,8 +98,18 @@ EOF
 # ファイルを検索して消す
 find . -name "*.txt" -type f | xargs rm
 
-# ファイルから特定の行を抽出
+# ファイルの容量を見る
+find . -name "*.txt" -type f | xargs ls -lh
+
+# ファイルから共通する行を抽出
 find . -name "*.txt" -type f | xargs cat | grep "string" 
+
+# ファイルを特定のディレクトリに移動
+find . -name "*.txt" -type f | xargs -I{} mv {} ./path/to/dir
+```
+
+```bash
+find . -name 
 ```
 
 ## sed
