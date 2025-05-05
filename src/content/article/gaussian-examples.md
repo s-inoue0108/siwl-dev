@@ -1,5 +1,5 @@
 ---
-isDraft: false
+isDraft: true
 isLimited: false
 title: Gaussian インプットファイルの例
 category: tech

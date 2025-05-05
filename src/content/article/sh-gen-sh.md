@@ -1,5 +1,5 @@
 ---
-isDraft: false
+isDraft: true
 isLimited: false
 title: シェルスクリプトからシェルスクリプトを生成する
 category: tech

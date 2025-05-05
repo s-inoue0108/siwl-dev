@@ -1,6 +1,6 @@
 ---
-isDraft: false
-isLimited: true
+isDraft: true
+isLimited: false
 title: シェルスクリプトで楽曲ファイルを管理する
 category: tech
 tags: [shell, dj]

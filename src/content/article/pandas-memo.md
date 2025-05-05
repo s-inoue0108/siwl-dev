@@ -1,5 +1,5 @@
 ---
-isDraft: false
+isDraft: true
 isLimited: false
 title: Python / Pandas 備忘録
 category: tech

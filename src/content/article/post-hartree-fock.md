@@ -1,6 +1,6 @@
 ---
-isDraft: false
-isLimited: true
+isDraft: true
+isLimited: false
 title: Post Hartree-Fock 法
 category: tech
 tags: [comp-science]
