@@ -6,7 +6,7 @@ category: tech
 tags: [ml, python, pandas, numpy, sklearn]
 description: "Kaggle などのコンペでも使える機械学習モデルの実装についてまとめていきます。"
 publishDate: 2025-05-05T14:04:11+09:00
-updateDate: 2025-05-10T14:19:59+09:00
+updateDate: 2025-05-12T22:53:20+09:00
 relatedArticles: []
 ---
 
@@ -24,8 +24,10 @@ https://zenn.dev/colum2131/articles/fffac4654e7c7c
   - カテゴリの存在を T/F で表現する新しいカラムを作成します。特徴量の次元が増大します。
 - Count Encoding
   - カテゴリの出現回数に変換します。不均衡なデータであっても、重みを表現しやすいです。
+- Target Encoding
+  - 目的変数の値を使用したエンコーディング方式です。
 
-Count Encoder を除く Encoder 各種は Scikit-learn に実装されていますが、自前での実装も可能です。
+Count Encoder を除く Encoder 各種は Scikit-learn や category_encoders に実装されていますが、自前での実装も可能です。
 \
 **Label Encoder**:
 
@@ -50,16 +52,17 @@ from sklearn.model_selection import KFold
 
 # LightGBM のモデル初期化
 params = {
-  "boosting_type": "gbdt",    # 勾配ブースティング決定木
-  "objective": "regression",  # 回帰
-  "metric": "mse",            # 評価指標は MSE
+    "boosting_type": "gbdt",    # 勾配ブースティング決定木
+    "objective": "regression",  # 回帰
+    "metric": "mse",            # 評価指標は MSE
+    "random_state": 42          # seed を固定
 }
 
 model = lgb.LGBMRegressor(**params)
 
 # 交差検証
 fold_num = 5
-kf = KFold(n_splits=fold_num, shuffle=True, random_state=1)
+kf = KFold(n_splits=fold_num, shuffle=True, random_state=42)
 folds = []
 
 for (train_index, true_index) in kf.split(X, y):
@@ -81,13 +84,17 @@ for (train_index, true_index) in kf.split(X, y):
     # 予測
     y_pred = model.predict(X_true)
 
+    # Accuracy の評価
+    accuracy = model.score(y_true, y_pred)
+
     # MSE の評価
-    score = mean_squared_error(y_true, y_pred)
+    mse = mean_squared_error(y_true, y_pred)
 
     # 結果を格納
     folds.append({
       "model": model,
-      "score": score,
+      "accuracy": accuracy,
+      "mse": mse,
       "true": y_true,
       "pred": y_pred
     })
@@ -96,16 +103,16 @@ for (train_index, true_index) in kf.split(X, y):
 preds = []
 
 for fold in folds:
-  model = fold["model"]
-  y_pred = model.predict(X)
-  preds.append(y_pred)
+    model = fold["model"]
+    y_pred = model.predict(X)
+    preds.append(y_pred)
 ```
 
 ## LightGBM の実装関連
 
 ### 評価指標を自前で実装する
 
-LightGBM にビルトインされていない評価指標を自前で実装し、 `model.fit()` の引数 `eval_metric` に渡すこともできます。
+LightGBM にビルトインされていない評価指標を自前で実装し、 `model.fit()` の引数 `eval_metrics` に渡すこともできます。
 
 https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.LGBMRegressor.html
 
@@ -120,10 +127,11 @@ $$
 ```py
 from sklearn.metrics import root_mean_squared_log_error
 
-def rmsle_metrics(y_true, y_pred):
-  y_pred = np.maximum(0, y_pred)   # 予測値が負になる場合があるので、折り返す
-  rmsle = root_mean_squared_log_error(y_true, y_pred)
-  return "RMSLE", rmsle, False
+def rmsle(y_true, y_pred):
+    # 予測値が負になる場合があるので、折り返す
+    y_pred = np.maximum(0, y_pred)
+    rmsle = root_mean_squared_log_error(y_true, y_pred)
+    return "RMSLE", rmsle, False
 ```
 
 を用いて、
@@ -132,7 +140,7 @@ def rmsle_metrics(y_true, y_pred):
 import lightgbm as lgb
 
 params = {
-  "metric": "none", # ビルトインの評価指標を使わない
+    "metric": "none", # ビルトインの評価指標を使わない
 }
 
 model = lgb.LGBMRegressor(**params)
@@ -140,7 +148,7 @@ model = lgb.LGBMRegressor(**params)
 model.fit(
     X_train,
     y_train,
-    eval_metrics=rmsle_metrics
+    eval_metrics=rmsle,
     callbacks=[
         lgb.early_stopping(stopping_rounds=100, verbose=False),
     ],
@@ -148,3 +156,9 @@ model.fit(
 ```
 
 のようにすることができます。
+
+## ハイパーパラメータ最適化
+
+### グリッドサーチ
+
+### Optuna の使用
