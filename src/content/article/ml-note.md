@@ -6,7 +6,7 @@ category: tech
 tags: [ml, python, pandas, numpy, sklearn]
 description: "Kaggle などのコンペでも使える機械学習モデルの実装についてまとめていきます。"
 publishDate: 2025-05-05T14:04:11+09:00
-updateDate: 2025-05-12T22:53:20+09:00
+updateDate: 2025-05-16T23:11:09+09:00
 relatedArticles: []
 ---
 
@@ -37,11 +37,15 @@ https://gist.github.com/s-inoue0108/62dd4fe322dee02e0e06034a7f5f0d7e
 
 https://gist.github.com/s-inoue0108/74b58fc969ac70c266a2b69097c6bb36
 
-## クロスバリデーション (CV)
+## クロスバリデーション
 
 @{wiki}(交差検証)
 
-機械学習においては、トレーニングデータの一部をバリデーションデータとして分割し、モデルの汎化性能を評価する手法です。モデルに LightGBM を用いた、データ `(X, y)` の k-Fold 交差検証は以下のように実装できます。
+機械学習においては、トレーニングデータの一部をバリデーションデータとして分割し、モデルの汎化性能を評価する手法です。
+
+### K-Fold
+
+モデルに LightGBM を用いた、データ `(X, y)` の k-Fold 交差検証は以下のように実装できます。
 
 ```py:k-fold.py
 import numpy as np
@@ -75,7 +79,7 @@ for (train_index, true_index) in kf.split(X, y):
     model.fit(
         X_train,
         y_train,
-        eval_set=[(X_true, y_true)],
+        eval_set=(X_true, y_true),
         callbacks=[
             lgb.early_stopping(stopping_rounds=100, verbose=False),
         ],
@@ -92,11 +96,11 @@ for (train_index, true_index) in kf.split(X, y):
 
     # 結果を格納
     folds.append({
-      "model": model,
-      "accuracy": accuracy,
-      "mse": mse,
-      "true": y_true,
-      "pred": y_pred
+        "model": model,
+        "accuracy": accuracy,
+        "mse": mse,
+        "true": y_true,
+        "pred": y_pred
     })
 
 # 予測
@@ -108,11 +112,35 @@ for fold in folds:
     preds.append(y_pred)
 ```
 
-## LightGBM の実装関連
+### Stratified K-Fold
 
-### 評価指標を自前で実装する
+トレーニングデータの分布に偏りがある場合、ターゲットにラベル付けすることで分布を保ちながら交差検証を行うことができます。これを Stratified K-Fold といいます。回帰タスクでターゲットが連続値の場合、適当にビニングする必要があります。
 
-LightGBM にビルトインされていない評価指標を自前で実装し、 `model.fit()` の引数 `eval_metrics` に渡すこともできます。
+```py
+# ターゲットを4つのビンに分割
+y_label = pd.cut(y, cols=[10, 20, 30], label=["a", "b", "c"])
+```
+
+```py:stratified-k-fold.py
+from sklearn.model_selection import StratifiedKFold
+
+# 交差検証
+fold_num = 5
+skf = StratifiedKFold(n_splits=fold_num, shuffle=True, random_state=42)
+folds = []
+
+for (train_index, true_index) in skf.split(X, y_label):
+
+    # バリデーションデータを分割
+    X_train, X_true = X.iloc[train_index], X.iloc[true_index]
+    y_train, y_true = y.iloc[train_index], y.iloc[true_index]
+```
+
+## LightGBM の実装
+
+### 独自の評価指標を使う
+
+LightGBM にビルトインされていない評価指標を自前で実装し、 `model.fit()` の引数 `eval_metrics` に渡すことができます。
 
 https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.LGBMRegressor.html
 
@@ -136,7 +164,7 @@ def rmsle(y_true, y_pred):
 
 を用いて、
 
-```py:k-fold.py
+```py
 import lightgbm as lgb
 
 params = {
@@ -158,7 +186,5 @@ model.fit(
 のようにすることができます。
 
 ## ハイパーパラメータ最適化
-
-### グリッドサーチ
 
 ### Optuna の使用
