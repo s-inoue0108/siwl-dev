@@ -4,9 +4,9 @@ isLimited: false
 title: 線形回帰モデルの理論
 category: idea
 tags: [ml, python, sklearn]
-description: "線形回帰モデルの理論について、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
+description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-17T23:40:36+09:00
+updateDate: 2025-05-18T04:44:27+09:00
 relatedArticles: []
 ---
 
@@ -22,14 +22,14 @@ $$
 
 を用いる場合、モデルは**重回帰モデル**とよばれ、線形回帰の基本的な形式です。ここで $\bm{\beta} = [\beta_0, \beta_1, \beta_2, \ldots, \beta_p]^\top$ は各説明変数の重みで、これを回帰係数といいます。
 
-また、$\varepsilon$ は誤差項で、たいていはガウス分布にしたがう場合 $\varepsilon \sim N(0, \sigma^2)$ を仮定します。
+また、$\varepsilon$ は誤差項で、たいていはガウス分布にしたがう場合 ($\varepsilon \sim N(0, \sigma^2)$) を仮定します。
 
 ### 最小二乗法
 
 重回帰モデルでは、$\bm{\beta}$ の推定量 $\hat{\bm{\beta}} = [\hat{\beta_0}, \hat{\beta_1}, \hat{\beta_2}, \ldots, \hat{\beta_p}]^\top$ をデータを使用して求めることを行います。いま、サイズ $n$ のデータセット：
 
 $$
-\bm{X} = \begin{bmatrix} x_{11} & x_{12} & \cdots & x_{1p} \\ x_{21} & x_{22} & \cdots & x_{2p} \\ \vdots & \vdots & \ddots & \vdots \\ x_{n1} & x_{n2} & \cdots & x_{np} \end{bmatrix}, \quad \bm{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}
+\bm{X} = \begin{bmatrix} 1 & x_{11} & x_{12} & \cdots & x_{1p} \\ 1 & x_{21} & x_{22} & \cdots & x_{2p} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & x_{n2} & \cdots & x_{np} \end{bmatrix}, \quad \bm{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}
 $$
 
 を重回帰モデルにあてはめると、
@@ -90,7 +90,32 @@ $$
 >
 > ※ベクトルの微分については[このページ](https://manabitimes.jp/math/2719)などを参照
 
-### Python, NumPy による実装
+### Python による実装
+
+ここでは、重回帰モデルを NumPy, Pandas で実装してみましょう。`LinearRegression` クラスを実装し、そのメソッドとして以下を定義します。
+
+*[!table] LinearRegression クラスのメソッド*
+
+| メソッド           | 説明                                                                                               |
+| :----------------- | :------------------------------------------------------------------------------------------------- |
+| `fit(X, y)`        | トレーニングデータセット $(\bm{X}, \bm{y})$ から最小二乗推定量 $\hat{\bm{\beta}}$ を計算します。   |
+| `transform(X)`     | テストデータ $\bm{X}$ から目的変数の推定量 $\hat{\bm{y}} = \bm{X} \hat{\bm{\beta}}$ を計算します。 |
+| `score(y, y_pred)` | 回帰の決定係数 $R^2$ を計算します。                                                                |
+
+```py:linear_regression.py
+import numpy as np
+import pandas as pd
+
+class LinearRegresssion:
+    def __init__(self, X, y):
+        self.X = X
+        self.y = y
+        self.beta = np.zeros(y.shape)
+      
+    def fit(self):
+        beta = np.linalg.inv(self.X.T * self.X) * self.X.T * self.y
+        self.beta = beta
+```
 
 ## Lasso 回帰
 
@@ -122,4 +147,6 @@ $$
 
 ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
 
-### Python, NumPy による実装
+### Python による実装
+
+ここでは、`sklearn.linear_model` を用いて簡単に実装してみたいと思います。
