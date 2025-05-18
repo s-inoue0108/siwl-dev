@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-18T09:49:07+09:00
+updateDate: 2025-05-18T10:14:21+09:00
 relatedArticles: []
 ---
 
@@ -110,9 +110,15 @@ $$
 | `transform(X)`     | テストデータ $\bm{X}$ から目的変数の推定量 $\hat{\bm{y}} = \bm{X} \hat{\bm{\beta}}$ を計算します。 |
 | `score(y, y_pred)` | 回帰の決定係数 $R^2$ を計算します。                                                                |
 
+データセットは、[『化学のための Python によるデータ解析・機械学習入門 第1版』](https://www.amazon.co.jp/%E5%8C%96%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE-Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E8%A7%A3%E6%9E%90%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80-%E9%87%91%E5%AD%90-%E5%BC%98%E6%98%8C/dp/4274224414) における「有機化合物の水溶解度データセット」を利用させていただきます。
+
+https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv
+
 ```py:linear_regression.py
 import numpy as np
 import pandas as pd
+
+df = pd.read_csv("https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv", index_col=0)
 
 class LinearRegresssion:
     def __init__(self):
