@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-18T04:44:27+09:00
+updateDate: 2025-05-18T09:49:07+09:00
 relatedArticles: []
 ---
 
@@ -90,11 +90,19 @@ $$
 >
 > ※ベクトルの微分については[このページ](https://manabitimes.jp/math/2719)などを参照
 
+### 決定係数
+
+目的変数の予測値を $\hat{\bm{y}}= {\bm{X}}^\top \hat{\bm{\beta}}$ とします。また、目的変数の平均 $\bar{y} = (1 / n) \sum_{i=1}^n y_i$ を定義するとき、**決定係数** $R^2$ は次のように書くことができます。
+
+$$
+R^2 = 1 - \frac{|| \bm{y} - \hat{\bm{y}} ||^2}{|| \bm{y} - \bar{y} \bm{1} ||^2}, \quad \bm{1} := [1, 1, \ldots, 1]^\top \in \mathbb{R}^n
+$$
+
 ### Python による実装
 
 ここでは、重回帰モデルを NumPy, Pandas で実装してみましょう。`LinearRegression` クラスを実装し、そのメソッドとして以下を定義します。
 
-*[!table] LinearRegression クラスのメソッド*
+*[!table] LinearRegression クラス*
 
 | メソッド           | 説明                                                                                               |
 | :----------------- | :------------------------------------------------------------------------------------------------- |
@@ -107,14 +115,21 @@ import numpy as np
 import pandas as pd
 
 class LinearRegresssion:
-    def __init__(self, X, y):
+    def __init__(self):
+        self.X = None
+        self.y = None
+        self.beta = None
+      
+    def fit(self, X, y):
         self.X = X
         self.y = y
-        self.beta = np.zeros(y.shape)
-      
-    def fit(self):
-        beta = np.linalg.inv(self.X.T * self.X) * self.X.T * self.y
-        self.beta = beta
+        self.beta = np.linalg.inv(self.X.T @ self.X) @ self.X.T @ self.y
+    
+    def transform(self, X):
+        return X.T @ self.beta
+    
+    def score(self, y, y_pred):
+        return 1 - (np.norm(y - y_pred) ** 2 / np.norm(y - np.mean(y) * np.ones(y.shape)) ** 2)
 ```
 
 ## Lasso 回帰
