@@ -106,7 +106,7 @@
 	}
 
 	table {
-		@apply table mx-auto whitespace-nowrap min-w-[1px] max-w-full tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		@apply table mx-auto min-w-[1px] w-full tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 
 		thead {
 			@apply bg-muted-background/50;
@@ -121,11 +121,11 @@
 		}
 
 		th {
-			@apply p-2 lg:px-4;
+			@apply break-normal p-2 lg:px-4;
 		}
 
 		td {
-			@apply text-muted-foreground p-2 lg:px-4;
+			@apply break-normal text-muted-foreground p-2 lg:px-4;
 		}
 	}
 

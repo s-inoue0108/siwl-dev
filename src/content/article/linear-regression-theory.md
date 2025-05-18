@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-18T10:14:21+09:00
+updateDate: 2025-05-18T23:21:28+09:00
 relatedArticles: []
 ---
 
@@ -114,12 +114,24 @@ $$
 
 https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv
 
-```py:linear_regression.py
+特徴量として、SMILES を RDKit で MACCSKeys フィンガープリントに展開したものを用います。
+
+```py:fingerprint.py
 import numpy as np
 import pandas as pd
+from rdkit import Chem
+from rdkit.Chem import AllChem
 
-df = pd.read_csv("https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv", index_col=0)
+df = pd.read_csv(
+    "https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv", 
+    index_col=0
+)
 
+mols = [Chem.MolFromSmiles(smiles) for smiles in df["SMILES"]]
+fps = [AllChem.GetMACCSKeysFingerprint(mol) for mol in mols]
+```
+
+```py:linear_regression.py
 class LinearRegresssion:
     def __init__(self):
         self.X = None
@@ -131,11 +143,17 @@ class LinearRegresssion:
         self.y = y
         self.beta = np.linalg.inv(self.X.T @ self.X) @ self.X.T @ self.y
     
-    def transform(self, X):
+    def predict(self, X):
         return X.T @ self.beta
     
     def score(self, y, y_pred):
         return 1 - (np.norm(y - y_pred) ** 2 / np.norm(y - np.mean(y) * np.ones(y.shape)) ** 2)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+r2_score = model.score(y_train, y_pred)
 ```
 
 ## Lasso 回帰
