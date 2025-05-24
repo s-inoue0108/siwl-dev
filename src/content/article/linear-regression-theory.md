@@ -4,13 +4,13 @@ isLimited: false
 title: 線形回帰モデルの理論
 category: idea
 tags: [ml, python, sklearn]
-description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
+description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR モデルの実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-24T18:13:03+09:00
+updateDate: 2025-05-25T00:37:19+09:00
 relatedArticles: []
 ---
 
-## 線形回帰モデル
+## 重回帰モデル
 
 ### 定義
 
@@ -128,63 +128,158 @@ $$
 R^2 = 1 - \frac{|| \bm{y} - \hat{\bm{y}} ||^2}{|| \bm{y} - \bar{y} \bm{1} ||^2}, \quad \bm{1} := [1, 1, \ldots, 1]^\top \in \mathbb{R}^n
 $$
 
-### Python による実装
+## Python による重回帰モデルの実装
 
-ここでは、重回帰モデルを NumPy, Pandas で実装してみましょう。`LinearRegression` クラスを実装し、そのメソッドとして以下を定義します。
-
-*[!table] LinearRegression クラス*
-
-| メソッド           | 説明                                                                                               |
-| :----------------- | :------------------------------------------------------------------------------------------------- |
-| `fit(X, y)`        | トレーニングデータセット $(\bm{X}, \bm{y})$ から最小二乗推定量 $\hat{\bm{\beta}}$ を計算します。   |
-| `transform(X)`     | テストデータ $\bm{X}$ から目的変数の推定量 $\hat{\bm{y}} = \bm{X} \hat{\bm{\beta}}$ を計算します。 |
-| `score(y, y_pred)` | 回帰の決定係数 $R^2$ を計算します。                                                                |
+ここでは、分子の SMILES と物理化学データを用いた重回帰モデルを Scikit-learn で実装してみましょう。
 
 データセットは、[『化学のための Python によるデータ解析・機械学習入門 第1版』](https://www.amazon.co.jp/%E5%8C%96%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE-Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E8%A7%A3%E6%9E%90%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80-%E9%87%91%E5%AD%90-%E5%BC%98%E6%98%8C/dp/4274224414) における「有機化合物の水溶解度データセット」を利用させていただきます。
 
 https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv
 
-特徴量として、SMILES を RDKit で MACCSKeys フィンガープリントに展開したものを用います。
+また、Python ライブラリは以下のものを使用しました。
 
-```py:fingerprint.py
-import numpy as np
-import pandas as pd
-from rdkit import Chem
-from rdkit.Chem import AllChem
+- NumPy `1.26.4`
+- Pandas `2.2.2`
+- Scikit-learn `1.5.0`
+- RDKit `2023.9.6`
 
-df = pd.read_csv(
-    "https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv", 
-    index_col=0
-)
+### 特徴量の構築
 
-mols = [Chem.MolFromSmiles(smiles) for smiles in df["SMILES"]]
-fps = [AllChem.GetMACCSKeysFingerprint(mol) for mol in mols]
-```
+物理化学的に、分子の水溶解度は $\mathrm{OH}$ 基の数などの特徴量と相関があると推測できます。そこで、`RDkit` の `Chem.Lipinski` モジュールを用い、分子の Lipinski パラメータ[^1]を特徴量として使用します。
 
-```py:linear_regression.py
-class LinearRegresssion:
-    def __init__(self):
-        self.X = None
-        self.y = None
-        self.beta = None
-      
-    def fit(self, X, y):
-        self.X = X
-        self.y = y
-        self.beta = np.linalg.inv(self.X.T @ self.X) @ self.X.T @ self.y
-    
-    def predict(self, X):
-        return X.T @ self.beta
-    
-    def score(self, y, y_pred):
-        return 1 - (np.norm(y - y_pred) ** 2 / np.norm(y - np.mean(y) * np.ones(y.shape)) ** 2)
+[^1]: Lipinski パラメータについては、https://www.chem-station.com/blog/2015/02/sp3.html などを参照してください。
 
-model = LinearRegression()
-model.fit(X_train, y_train)
+> [!info:fold] コード
+> 
+> ```py
+> import numpy as np
+> import pandas as pd
+> from rdkit import Chem
+> from rdkit.Chem import Lipinski
+> 
+> # データの URL
+> url = "https://raw.githubusercontent.com/hkaneko1985/python_data_analysis_ohmsha/refs/heads/master/sample_data/molecules_with_logS.csv"
+> 
+> # データフレームとして読み込む
+> df = pd.read_csv(url, index_col=0)
+> 
+> # MOL オブジェクト
+> mols = [Chem.MolFromSmiles(smiles) for smiles in df["SMILES"]]
+> 
+> # Lipinski パラメータでデータフレームを作る
+> fps = pd.DataFrame(
+>     [
+>         {
+>             "FractionCSP3": Lipinski.FractionCSP3(mol),
+>             "NHOHCount": Lipinski.NHOHCount(mol),
+>             "NOCount": Lipinski.NOCount(mol),
+>             "NumAliphaticCarbocycles": Lipinski.NumAliphaticCarbocycles(mol),
+>             "NumAliphaticHeterocycles": Lipinski.NumAliphaticHeterocycles(mol),
+>             "NumAliphaticRings": Lipinski.NumAliphaticRings(mol),
+>             "NumAromaticCarbocycles": Lipinski.NumAromaticCarbocycles(mol),
+>             "NumAromaticHeterocycles": Lipinski.NumAromaticHeterocycles(mol),
+>             "NumAromaticRings": Lipinski.NumAromaticRings(mol),
+>             "NumRotatableBonds": Lipinski.NumRotatableBonds(mol),
+>             "NumSaturatedCarbocycles": Lipinski.NumSaturatedCarbocycles(mol),
+>             "NumSaturatedHeterocycles": Lipinski.NumSaturatedHeterocycles(mol),
+>             "NumSaturatedRings": Lipinski.NumSaturatedRings(mol),
+>             "NumHAcceptors": Lipinski.NumHAcceptors(mol),
+>             "NumHDonors": Lipinski.NumHDonors(mol),
+>         }
+>         for mol in mols
+>     ],
+>     index=df.index,
+> )
+> 
+> # 結合
+> dataset = pd.concat([df["logS"], fps], axis=1)
+> ```
 
-y_pred = model.predict(X_test)
-r2_score = model.score(y_train, y_pred)
-```
+### 前処理
+
+データセットを $7:3$ の比率でトレーニングデータとテストデータへ分割し、正規化を行います。ここでは、Min-Max スケーリング：
+
+$$
+x_{j, \mathrm{scaled}} = \frac{x_j - x_{j, \mathrm{min}}}{x_{j, \mathrm{max}} - x_{j, \mathrm{min}}}, \quad x_j \in [x_1, x_2, \ldots, x_p]^\top
+$$
+
+を用います。
+
+> [!info:fold] コード
+> 
+> ```py
+> # 前処理
+> from sklearn.model_selection import train_test_split
+> from sklearn.preprocessing import MinMaxScaler
+> 
+> # データの分割
+> train, test = train_test_split(dataset, test_size=0.3, random_state=42)
+> 
+> # 説明変数と目的変数を分離
+> X_train, y_train = train.drop("logS", axis=1), train["logS"].to_numpy()
+> X_test, y_test = test.drop("logS", axis=1), test["logS"].to_numpy()
+> 
+> # 正規化
+> scaler = MinMaxScaler()
+> X_train = scaler.fit_transform(X_train)
+> X_test = scaler.transform(X_test)
+> ```
+
+### 学習と予測
+
+前処理したトレーニングデータセットでモデルを構築し、テストデータセットで予測を行います。
+
+> [!info:fold] コード
+>
+> ```py
+> from sklearn.linear_model import LinearRegression
+> from sklearn.metrics import r2_score
+> 
+> # 学習
+> model = LinearRegression()
+> model.fit(X_train, y_train)
+> 
+> # 予測と決定係数の計算
+> y_pred = model.predict(X_test)
+> score = r2_score(y_test, y_pred)
+> ```
+
+テストデータによる予測では $R^2 = 0.568$ となりました。
+
+### 性能評価
+
+モデルがどのくらいの予測精度となったかを、散布図で確認してみます。
+
+> [!info:fold] コード
+>
+> ```py
+> import matplotlib.pyplot as plt
+> 
+> fig = plt.figure(figsize=(6, 6))
+> ax = fig.add_subplot(1, 1, 1)
+> 
+> ax.set_title("Actual vs Predict plot", size=18, weight="semibold")
+> ax.set_xlabel(r"Actual $y$", size=16)
+> ax.set_ylabel(r"Predicted $\hat{y}$", size=16)
+> 
+> # 散布図
+> ax.scatter(y_test, y_pred, color="cyan", edgecolors="blue")
+> 
+> # 回帰直線
+> x = np.linspace(y_test.min(), y_test.max())
+> y = x
+> ax.plot(x, y, color="red")
+> 
+> plt.tight_layout()
+> plt.savefig("actual_pred.png")
+> plt.show()
+> ```
+
+![散布図](./images/linear-regression-theory/actual_pred.png)
+
+*[!image] 予測精度の可視化*
+
+おおむね悪くはなさそうですが、図の左下に大きく予測が外れたエントリーがあることがわかります。こういったデータを精査して得た情報は、より優れたモデルを構築するためにフィードバックできます。
 
 ## Lasso 回帰
 
@@ -216,6 +311,25 @@ $$
 
 ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
 
-### Python による実装
+## Python による ElasticNet の実装
 
-ここでは、`sklearn.linear_model` を用いて簡単に実装してみたいと思います。
+`sklearn.linear_model` を用いて ElasticNet を実装してみます。データセットは[前節](#h3-前処理)で前処理したものを用います。
+
+また、適切なハイパーパラメータ $(\alpha, \rho)$ を決めるためにグリッドサーチを実装します。
+
+> [!info:fold] コード
+>
+> ```py
+> from sklearn.linear_model import ElasticNet
+> from sklearn.metrics import r2_score
+> 
+> # 学習
+> 
+> model = ElasticNet() 
+> model.fit(X_train, y_train)
+> 
+> # 予測と決定係数の計算
+> y_pred = model.predict(X_test)
+> score = r2_score(y_test, y_pred)
+> ```
+
