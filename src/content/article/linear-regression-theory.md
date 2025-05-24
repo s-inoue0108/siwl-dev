@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、重回帰、Lasso, Ridge, ElasticNet の実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-18T23:21:28+09:00
+updateDate: 2025-05-24T18:13:03+09:00
 relatedArticles: []
 ---
 
@@ -14,7 +14,7 @@ relatedArticles: []
 
 ### 定義
 
-説明変数の組 $\bm{x} = [x_1, x_2, \ldots, x_p]^\top$ を用いて目的変数 $y$ を予測する1次式モデル：
+説明変数の組 $\bm{x} = [x_1, x_2, \ldots, x_p]^\top$ を用いて目的変数 $y$ を予測する次の1次式モデル：
 
 $$
 y = \beta_0 + \beta_1 x_1 + \cdots \beta_p x_p + \varepsilon
@@ -22,7 +22,7 @@ $$
 
 を用いる場合、モデルは**重回帰モデル**とよばれ、線形回帰の基本的な形式です。ここで $\bm{\beta} = [\beta_0, \beta_1, \beta_2, \ldots, \beta_p]^\top$ は各説明変数の重みで、これを回帰係数といいます。
 
-また、$\varepsilon$ は誤差項で、たいていはガウス分布にしたがう場合 ($\varepsilon \sim N(0, \sigma^2)$) を仮定します。
+また、$\varepsilon$ は誤差項で、たいていは正規分布にしたがう場合 ($\varepsilon \sim N(0, \sigma^2)$) を仮定します（Gauss-Markov モデル）。
 
 ### 最小二乗法
 
@@ -38,7 +38,7 @@ $$
 \bm{y} = \bm{X}\bm{\beta} + \bm{\varepsilon}
 $$
 
-となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top$ は独立かつ同じガウス分布 $N(0, \sigma^2)$ にしたがう誤差項）。いま、回帰の程度を評価する指標（損失関数 $L$）として、平均二乗誤差（MSE）：
+となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。いま、回帰の程度を評価する指標（損失関数 $L$）として、平均二乗誤差（MSE）：
 
 $$
 \operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
@@ -89,6 +89,36 @@ $$
 > $$
 >
 > ※ベクトルの微分については[このページ](https://manabitimes.jp/math/2719)などを参照
+
+### 最尤法
+
+最尤法は、パラメータ $\bm{\theta}$ による対数尤度関数：
+
+$$
+\log L(\bm{\theta}) = \sum_{i=1}^n \log f(y_i | \bm{\theta})
+$$
+
+を最大化することで $\hat{\bm{\beta}}$ を推定する手法です。
+
+ただし、$f(y_i | \bm{\theta})$ はデータ $y_i$ をサンプリングした確率分布の確率密度関数です。Gauss-Markov 重回帰モデルでは、$y_i$ に対応する確率変数 $Y_i$ について $Y_i \sim N(\bm{x}_i\bm{\beta}, \sigma^2)$ ですから、$f(y_i | \bm{\theta})$ は正規分布の確率密度関数になります：
+
+$$
+f(y_i | \bm{x}_i\bm{\beta}, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ -\frac{(y_i - \bm{x}_i \bm{\beta})^2}{2\sigma^2} \right]
+$$
+
+したがって、対数尤度関数は
+
+$$
+\log L(\bm{\beta}) =  -\frac{1}{2\sigma^2} ||\bm{y} - \bm{X}\bm{\beta}||^2 - \frac{n}{2} \log 2\pi\sigma^2
+$$
+
+となります。これを $\bm{\beta}$ の変化に対して最大化することを考えると、$\bm{\beta}$ に依存する部分は第一項の $||\bm{y} - \bm{X}\bm{\beta}||^2$ ですから、
+
+$$
+\frac{\partial \log L(\bm{\beta})}{\partial \bm{\beta}} = \bm{0} \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} || \bm{y} - \bm{X}\bm{\beta} ||^2 = \bm{0} \Longleftrightarrow \hat{\bm{\beta}} = (\bm{X}^\top \bm{X})^{-1} \bm{X}^\top \bm{y}
+$$
+
+となって、**最小二乗推定量と最尤推定量は一致する**ことがわかります。
 
 ### 決定係数
 
