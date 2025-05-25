@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR モデルの実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-25T12:58:39+09:00
+updateDate: 2025-05-25T19:36:43+09:00
 relatedArticles: []
 ---
 
@@ -38,13 +38,19 @@ $$
 \bm{y} = \bm{X}\bm{\beta} + \bm{\varepsilon}
 $$
 
-となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。いま、回帰の程度を評価する指標（損失関数 $L$）として、平均二乗誤差（MSE）：
+となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。
 
 $$
 \operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
 $$
 
-を考えます。最小二乗法は、MSE を最小化するような $\bm{\beta}$ として推定量 $\hat{\bm{\beta}}$ を求める手法です。すなわち、
+を考えます。最小二乗法は、平均二乗誤差（MSE）：
+
+$$
+\operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
+$$
+
+を最小化するような $\bm{\beta}$ として推定量 $\hat{\bm{\beta}}$ を求める手法です。すなわち、
 
 $$
 \hat{\bm{\beta}} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \operatorname{MSE}(\bm{\beta}) \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} \operatorname{MSE}(\bm{\beta}) = \bm{0} \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} || \bm{y} - \bm{X}\bm{\beta} ||^2 = \bm{0}
@@ -92,15 +98,15 @@ $$
 
 ### 最尤法
 
-最尤法は、パラメータ $\bm{\theta}$ による対数尤度関数：
+最尤法は、パラメータ $\bm{\theta}$ についての対数尤度関数：
 
 $$
 \log L(\bm{\theta}) = \sum_{i=1}^n \log f(y_i | \bm{\theta})
 $$
 
-を最大化することで $\hat{\bm{\beta}}$ を推定する手法です。
+を最大化することで、パラメータの推定量 $\hat{\bm{\theta}}$ を得る手法として知られています。
 
-ただし、$f(y_i | \bm{\theta})$ はデータ $y_i$ をサンプリングした確率分布の確率密度関数です。Gauss-Markov 重回帰モデルでは、$y_i$ に対応する確率変数 $Y_i$ について $Y_i \sim N(\bm{x}_i\bm{\beta}, \sigma^2)$ ですから、$f(y_i | \bm{\theta})$ は正規分布の確率密度関数になります：
+ただし、$f(y_i | \bm{\theta})$ はデータ $y_i$ をサンプリングした確率分布の確率密度関数です。Gauss-Markov 重回帰モデルにおいては、$y_i$ を与える確率変数 $Y_i$ について $Y_i \sim N(\bm{x}_i\bm{\beta}, \sigma^2)$ ですから、$f(y_i | \bm{\theta})$ は正規分布の確率密度関数になります：
 
 $$
 f(y_i | \bm{x}_i\bm{\beta}, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ -\frac{(y_i - \bm{x}_i \bm{\beta})^2}{2\sigma^2} \right]
@@ -112,7 +118,7 @@ $$
 \log L(\bm{\beta}) =  -\frac{1}{2\sigma^2} ||\bm{y} - \bm{X}\bm{\beta}||^2 - \frac{n}{2} \log 2\pi\sigma^2
 $$
 
-となります。これを $\bm{\beta}$ の変化に対して最大化することを考えると、$\bm{\beta}$ に依存する部分は第一項の $||\bm{y} - \bm{X}\bm{\beta}||^2$ ですから、
+となります。これを $\bm{\beta}$ の変化に対して最大化することを考えると、$\bm{\beta}$ に依存する部分は第一項 $||\bm{y} - \bm{X}\bm{\beta}||^2$ のみですから、
 
 $$
 \frac{\partial \log L(\bm{\beta})}{\partial \bm{\beta}} = \bm{0} \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} || \bm{y} - \bm{X}\bm{\beta} ||^2 = \bm{0} \Longleftrightarrow \hat{\bm{\beta}} = (\bm{X}^\top \bm{X})^{-1} \bm{X}^\top \bm{y}
@@ -128,19 +134,47 @@ $$
 R^2 = 1 - \frac{|| \bm{y} - \hat{\bm{y}} ||^2}{|| \bm{y} - \bar{y} \bm{1} ||^2}, \quad \bm{1} := [1, 1, \ldots, 1]^\top \in \mathbb{R}^n
 $$
 
+決定係数は $0 < R^2 \le 1$ の値をとり、その値が大きいほどモデルの予測精度が高いことを示します。
+
+決定係数は説明変数の数に依存して大きくなる傾向があるため、説明変数の数が多いモデルの精度評価においては、変数自由度を調整した決定係数：
+
+$$
+R^2_{\mathrm{adj}} = 1 - \frac{|| \bm{y} - \hat{\bm{y}} ||^2 / (n - d - 1)}{|| \bm{y} - \bar{y} \bm{1} ||^2 / (n - 1)}
+$$
+
+を用いる場合もあります。
+
+### 変数選択
+
+よい重回帰モデルを構築するためには、説明力のある説明変数を適切に選択する必要があります。$F$ 統計量による仮説検定では、モデルの回帰係数 $\beta_j ~ (j = 1, \ldots, d, ~ d \le p)$ が非ゼロであるかどうか（説明変数として有効かどうか）を検証できます。
+
+帰無仮説 $H_0: \beta_1 = \beta_2 = \cdots = \beta_d = 0$ のもとでの $F$ 統計量は、
+
+$$
+F = \frac{|| \hat{\bm{y}} - \bar{y}\bm{1} ||^2 / d}{|| \bm{y} - \hat{\bm{y}} ||^2 / (n - d - 1)} \sim F(d, n - d -1)
+$$
+
+となります。この結果を変数選択の判断に活用することができます。
+
+また、赤池情報量基準（AIC）：
+
+$$
+\operatorname{AIC}(d) = n \left(\log \sum_{i = 1}^d {\varepsilon_i}^2 + \log \frac{2\pi}{n} + 1 \right) + 2(p + 2)
+$$
+
+の値を計算し、これができるだけ小さくなるような変数選択も有効です。
+
 ## 正則化線形回帰モデル
 
-説明変数が多い場合、線形回帰モデルが**過学習 (Overfitting)** を起こしてしまう場合があります。これを抑えるため、目的関数である MSE に**正則化項**と呼ばれる項を加えたものを損失関数として最小化する手法が知られています。
+### 多重共線性
 
-### Lasso 回帰
+上で示したように、$\hat{\bm{\beta}}$ の計算では逆行列 $(\bm{X}^\top \bm{X})^{-1}$ を求める必要があります。Cramer の公式により、この逆行列は $1 / \det (\bm{X}^\top \bm{X})$ に比例しますが、近い値（説明力）をもった説明変数の列が複数あるとき、行列式がゼロに近い値をとり、対応する $\hat{\beta}$ が発散してしまいます。
 
-**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+このような現象を**多重共線性**といい、これを回避するための方法として、重回帰モデルの目的関数である MSE に**正則化項**と呼ばれる項を加えたものを損失関数として最小化する手法が知られています。
 
-$$
-\hat{\bm{\beta}}_\mathrm{Lasso} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \lambda \sum_{j = 1}^p |\beta_j| \right)
-$$
+### 過学習
 
-$\lambda$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。
+機械学習モデルのトレーニングにおいて、モデルがトレーニングに使用したデータセットに過剰適合し、他のデータセットに対する予測精度が低下する現象を**過学習**といいます。正則化項は回帰係数にペナルティを与え、過学習を抑制します。
 
 ### Ridge 回帰
 
@@ -150,7 +184,27 @@ $$
 \hat{\bm{\beta}}_\mathrm{Ridge} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \frac{\alpha}{2} \sum_{j = 1}^p {\beta_j}^2 \right)
 $$
 
-同様に $\alpha$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。係数 $1/2$ は微分の都合上導入しています。
+ここで $\alpha > 0$ は正則化項の重みで、ユーザーが恣意的に決定する**ハイパーパラメータ**です。係数 $1/2$ は微分の都合上導入しています。
+
+Ridge 回帰の推定量は解析的に求めることができ、
+
+$$
+\hat{\bm{\beta}}_\mathrm{Ridge} = (\bm{X}^\top \bm{X} + \alpha \bm{I}) \bm{X}^\top \bm{y}
+$$
+
+となります（$\bm{I}$ は $p$ 次の単位行列）。行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ は必ず正則であるため、多重共線性に対してロバストになります。
+
+### Lasso 回帰
+
+**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+
+$$
+\hat{\bm{\beta}}_\mathrm{Lasso} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \lambda \sum_{j = 1}^p |\beta_j| \right)
+$$
+
+$\lambda > 0$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。$L_1$-ノルムは不連続点を持つため推定量を解析的に求めることはできず、数値計算で求めます。
+
+Lasso 回帰のメリットは、変数選択性をもつことです。Ridge 回帰モデルは正則化によって回帰係数の大きさを縮小するのみですが、Lasso 回帰モデルでは回帰係数を強制的にゼロにし、対応する説明変数をモデルから除去します。この効果を**スパース**といいます。
 
 ### ElasticNet 回帰
 
@@ -162,11 +216,13 @@ $$
 
 ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
 
+Lasso 回帰モデルは、多重共線性のある説明変数間のスパースが不安定になるデメリットを持ちます。これを回避するため、ElasticNet 回帰モデルでは Ridge 回帰モデルのもつ多重共線性へのロバスト性を導入し、安定した変数選択を可能にします。
+
 ## Python による重回帰モデルの実装
 
-ここでは、分子の SMILES と物理化学データを用いた重回帰モデルを Scikit-learn で実装してみましょう。
+ここでは、有機化合物の [SMILES](https://ja.wikipedia.org/wiki/SMILES記法) から物理化学データを予測する重回帰モデルを Scikit-learn で実装してみましょう。
 
-データセットは、[『化学のための Python によるデータ解析・機械学習入門 第1版』](https://www.amazon.co.jp/%E5%8C%96%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE-Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E8%A7%A3%E6%9E%90%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80-%E9%87%91%E5%AD%90-%E5%BC%98%E6%98%8C/dp/4274224414) における「有機化合物の水溶解度データセット」を利用させていただきます。
+データセットは、金子 弘昌先生の[『化学のための Python によるデータ解析・機械学習入門』](https://www.amazon.co.jp/%E5%8C%96%E5%AD%A6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE-Python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E8%A7%A3%E6%9E%90%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E5%85%A5%E9%96%80-%E9%87%91%E5%AD%90-%E5%BC%98%E6%98%8C/dp/4274224414) における有機化合物の水溶解度 $(\log S)$ データセットを利用させていただきます。
 
 https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_data/molecules_with_logS.csv
 
@@ -179,7 +235,7 @@ https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_da
 
 ### 特徴量の構築
 
-物理化学的に、分子の水溶解度は $\mathrm{OH}$ 基の数などの特徴量と相関があると推測できます。そこで、`RDkit` の `Chem.Lipinski` モジュールを用い、分子の Lipinski パラメータ[^1]を特徴量として使用します。
+分子の水溶解度は、水素結合する $\mathrm{OH}$ 基の数などのパラメータとの相関があると推測できます。そこで、`RDkit` の `Chem.Lipinski` モジュールを用い、分子の Lipinski パラメータ[^1]で説明変数を作成します。
 
 [^1]: Lipinski パラメータについては、https://www.chem-station.com/blog/2015/02/sp3.html などを参照してください。
 
@@ -197,10 +253,10 @@ https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_da
 > # データフレームとして読み込む
 > df = pd.read_csv(url, index_col=0)
 > 
-> # MOL オブジェクト
+> # SMILES を MOL オブジェクトへ変換
 > mols = [Chem.MolFromSmiles(smiles) for smiles in df["SMILES"]]
 > 
-> # Lipinski パラメータで特徴量を作る
+> # Lipinski パラメータで説明変数を作る
 > features = pd.DataFrame(
 >     [
 >         {
@@ -225,7 +281,7 @@ https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_da
 >     index=df.index,
 > )
 > 
-> # 結合
+> # 目的変数と説明変数を結合
 > dataset = pd.concat([df["logS"], features], axis=1)
 > ```
 
@@ -314,3 +370,8 @@ $$
 *[!image] 予測精度の可視化*
 
 おおむね悪くはなさそうですが、図の左下に大きく予測が外れたエントリーがあることがわかります。こういったデータを精査して得た情報は、より優れたモデルを構築するためにフィードバックできます。
+
+## 参考
+
+- 一般社団法人 日本統計学会『統計学実践ワークブック』第1版 (学術図書出版社, 2020)
+- 金子 弘昌『化学のための Python によるデータ解析・機械学習入門』第1版 (オーム社, 2019)
