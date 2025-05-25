@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR モデルの実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-25T00:37:19+09:00
+updateDate: 2025-05-25T12:58:39+09:00
 relatedArticles: []
 ---
 
@@ -128,6 +128,40 @@ $$
 R^2 = 1 - \frac{|| \bm{y} - \hat{\bm{y}} ||^2}{|| \bm{y} - \bar{y} \bm{1} ||^2}, \quad \bm{1} := [1, 1, \ldots, 1]^\top \in \mathbb{R}^n
 $$
 
+## 正則化線形回帰モデル
+
+説明変数が多い場合、線形回帰モデルが**過学習 (Overfitting)** を起こしてしまう場合があります。これを抑えるため、目的関数である MSE に**正則化項**と呼ばれる項を加えたものを損失関数として最小化する手法が知られています。
+
+### Lasso 回帰
+
+**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+
+$$
+\hat{\bm{\beta}}_\mathrm{Lasso} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \lambda \sum_{j = 1}^p |\beta_j| \right)
+$$
+
+$\lambda$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。
+
+### Ridge 回帰
+
+**Rigde 回帰モデル**では MSE に加えて $L_2$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+
+$$
+\hat{\bm{\beta}}_\mathrm{Ridge} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \frac{\alpha}{2} \sum_{j = 1}^p {\beta_j}^2 \right)
+$$
+
+同様に $\alpha$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。係数 $1/2$ は微分の都合上導入しています。
+
+### ElasticNet 回帰
+
+**ElasticNet 回帰モデル** は Lasso 回帰と Ridge 回帰の混合モデルです。
+
+$$
+\hat{\bm{\beta}}_\mathrm{ElasticNet} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \alpha \left( \rho \sum_{j = 1}^p |\beta_j| + \frac{1 - \rho}{2} \sum_{j = 1}^p {\beta_j}^2 \right) \right)
+$$
+
+ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
+
 ## Python による重回帰モデルの実装
 
 ここでは、分子の SMILES と物理化学データを用いた重回帰モデルを Scikit-learn で実装してみましょう。
@@ -166,8 +200,8 @@ https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_da
 > # MOL オブジェクト
 > mols = [Chem.MolFromSmiles(smiles) for smiles in df["SMILES"]]
 > 
-> # Lipinski パラメータでデータフレームを作る
-> fps = pd.DataFrame(
+> # Lipinski パラメータで特徴量を作る
+> features = pd.DataFrame(
 >     [
 >         {
 >             "FractionCSP3": Lipinski.FractionCSP3(mol),
@@ -192,7 +226,7 @@ https://github.com/hkaneko1985/python_data_analysis_ohmsha/blob/master/sample_da
 > )
 > 
 > # 結合
-> dataset = pd.concat([df["logS"], fps], axis=1)
+> dataset = pd.concat([df["logS"], features], axis=1)
 > ```
 
 ### 前処理
@@ -280,56 +314,3 @@ $$
 *[!image] 予測精度の可視化*
 
 おおむね悪くはなさそうですが、図の左下に大きく予測が外れたエントリーがあることがわかります。こういったデータを精査して得た情報は、より優れたモデルを構築するためにフィードバックできます。
-
-## Lasso 回帰
-
-説明変数が多い場合、線形回帰モデルが**過学習 (Overfitting)** を起こしてしまう場合があります。これを抑えるため、**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した損失関数を最小化します。
-
-$$
-\hat{\bm{\beta}}_\mathrm{Lasso} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \lambda \sum_{j = 1}^p |\beta_j| \right)
-$$
-
-$\lambda$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。
-
-## Ridge 回帰
-
-**Rigde 回帰モデル**では MSE に加えて $L_2$-ノルムを用いた正則化項を導入した損失関数を最小化します。
-
-$$
-\hat{\bm{\beta}}_\mathrm{Ridge} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \frac{\alpha}{2} \sum_{j = 1}^p {\beta_j}^2 \right)
-$$
-
-同様に $\alpha$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。係数 $1/2$ は微分の都合上導入しています。
-
-## ElasticNet 回帰
-
-**ElasticNet 回帰モデル** は Lasso 回帰と Ridge 回帰の混合モデルです。
-
-$$
-\hat{\bm{\beta}}_\mathrm{ElasticNet} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \alpha \left( \rho \sum_{j = 1}^p |\beta_j| + \frac{1 - \rho}{2} \sum_{j = 1}^p {\beta_j}^2 \right) \right)
-$$
-
-ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
-
-## Python による ElasticNet の実装
-
-`sklearn.linear_model` を用いて ElasticNet を実装してみます。データセットは[前節](#h3-前処理)で前処理したものを用います。
-
-また、適切なハイパーパラメータ $(\alpha, \rho)$ を決めるためにグリッドサーチを実装します。
-
-> [!info:fold] コード
->
-> ```py
-> from sklearn.linear_model import ElasticNet
-> from sklearn.metrics import r2_score
-> 
-> # 学習
-> 
-> model = ElasticNet() 
-> model.fit(X_train, y_train)
-> 
-> # 予測と決定係数の計算
-> y_pred = model.predict(X_test)
-> score = r2_score(y_test, y_pred)
-> ```
-
