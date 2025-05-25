@@ -1,12 +1,12 @@
 ---
 isDraft: false
 isLimited: false
-title: 線形回帰モデルの理論
+title: 線形回帰モデルの理論 (1)
 category: idea
 tags: [ml, python, sklearn]
-description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR モデルの実装を交えながらまとめていきます。"
+description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR 重回帰モデルの実装を交えながらまとめていきます。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-25T19:36:43+09:00
+updateDate: 2025-05-26T03:53:16+09:00
 relatedArticles: []
 ---
 
@@ -38,13 +38,7 @@ $$
 \bm{y} = \bm{X}\bm{\beta} + \bm{\varepsilon}
 $$
 
-となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。
-
-$$
-\operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
-$$
-
-を考えます。最小二乗法は、平均二乗誤差（MSE）：
+となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。最小二乗法は、平均二乗誤差（MSE）：
 
 $$
 \operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
