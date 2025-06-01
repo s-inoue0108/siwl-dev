@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "重回帰モデルをはじめとした線形回帰モデルの理論について解説します。さらに、Scikit-learn と RDKit を用い、定量的構造-活性相関（QSAR）を例に、モデルの実装を行います。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-06-01T15:16:38+09:00
+updateDate: 2025-06-01T15:24:01+09:00
 relatedArticles: []
 ---
 
@@ -190,7 +190,7 @@ $$
 
 > [!tip:fold] 行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ の正則性
 >
-> ゼロベクトルでないような任意のベクトル $\bm{t} \in \mathbb{R}^{n}$ をとり、$\bm{X}^\top \bm{X} + \alpha \bm{I}$ の二次形式を求めると、
+> ゼロベクトルでないような任意のベクトル $\bm{t} \in \mathbb{R}^{p + 1}$ をとり、$\bm{X}^\top \bm{X} + \alpha \bm{I}$ の二次形式を求めると、
 >
 > $$
 > \bm{t}^\top(\bm{X}^\top \bm{X} + \alpha \bm{I})\bm{t} = \bm{t}^\top \bm{X}^\top \bm{X} \bm{t} + \alpha \bm{t}^\top \bm{t}
@@ -391,3 +391,4 @@ $$
 
 - 一般社団法人 日本統計学会『統計学実践ワークブック』第1版 (学術図書出版社, 2020)
 - 金子 弘昌『化学のための Python によるデータ解析・機械学習入門』第1版 (オーム社, 2019)
+- [スパースモデリング（基本編）| ごちきか](https://gochikika.ntt.com/Modeling/regularization.html)
