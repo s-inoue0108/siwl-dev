@@ -6,7 +6,7 @@ category: idea
 tags: [ml, python, sklearn]
 description: "重回帰モデルをはじめとした線形回帰モデルの理論について解説します。さらに、Scikit-learn と RDKit を用い、定量的構造-活性相関（QSAR）を例に、モデルの実装を行います。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-06-01T11:14:07+09:00
+updateDate: 2025-06-01T15:16:38+09:00
 relatedArticles: []
 ---
 
@@ -183,12 +183,12 @@ $$
 Ridge 回帰の推定量は解析的に求めることができ、
 
 $$
-\hat{\bm{\beta}} = (\bm{X}^\top \bm{X} + \alpha \bm{I}) \bm{X}^\top \bm{y}
+\hat{\bm{\beta}} = (\bm{X}^\top \bm{X} + \alpha \bm{I})^{-1} \bm{X}^\top \bm{y}
 $$
 
 となります（$\bm{I}$ は $p + 1$ 次の単位行列）。行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ は必ず正則であるため、多重共線性に対してロバストになります。
 
-> [!tip:fold] $\bm{X}^\top \bm{X} + \alpha \bm{I}$ が必ず正則である理由
+> [!tip:fold] 行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ の正則性
 >
 > ゼロベクトルでないような任意のベクトル $\bm{t} \in \mathbb{R}^{n}$ をとり、$\bm{X}^\top \bm{X} + \alpha \bm{I}$ の二次形式を求めると、
 >
