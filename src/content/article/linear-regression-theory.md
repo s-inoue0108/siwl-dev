@@ -1,12 +1,12 @@
 ---
 isDraft: false
 isLimited: false
-title: 線形回帰モデルの理論 (1)
+title: 線形回帰モデルの理論と実装
 category: idea
 tags: [ml, python, sklearn]
-description: "線形回帰モデルの理論について、Scikit-learn と RDKit を用いた QSAR 重回帰モデルの実装を交えながらまとめていきます。"
+description: "重回帰モデルをはじめとした線形回帰モデルの理論について解説します。さらに、Scikit-learn と RDKit を用い、定量的構造-活性相関（QSAR）を例に、モデルの実装を行います。"
 publishDate: 2025-05-17T22:10:46+09:00
-updateDate: 2025-05-26T03:53:16+09:00
+updateDate: 2025-06-01T11:14:07+09:00
 relatedArticles: []
 ---
 
@@ -26,25 +26,25 @@ $$
 
 ### 最小二乗法
 
-重回帰モデルでは、$\bm{\beta}$ の推定量 $\hat{\bm{\beta}} = [\hat{\beta_0}, \hat{\beta_1}, \hat{\beta_2}, \ldots, \hat{\beta_p}]^\top$ をデータを使用して求めることを行います。いま、サイズ $n$ のデータセット：
+$\bm{\beta}$ の推定量 $\hat{\bm{\beta}} = [\hat{\beta_0}, \hat{\beta_1}, \hat{\beta_2}, \ldots, \hat{\beta_p}]^\top$ を、データを使用して求めることを考えます。いま、サイズ $n$ のデータセット：
 
 $$
 \bm{X} = \begin{bmatrix} 1 & x_{11} & x_{12} & \cdots & x_{1p} \\ 1 & x_{21} & x_{22} & \cdots & x_{2p} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & x_{n2} & \cdots & x_{np} \end{bmatrix}, \quad \bm{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}
 $$
 
-を重回帰モデルにあてはめると、
+が得られているとき、重回帰モデルは
 
 $$
 \bm{y} = \bm{X}\bm{\beta} + \bm{\varepsilon}
 $$
 
-となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。最小二乗法は、平均二乗誤差（MSE）：
+となります（$\bm{\varepsilon} = [\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n]^\top \sim N(\bm{0}, \Sigma^2)$）。最小二乗法は、目的関数として平均二乗誤差（MSE）：
 
 $$
 \operatorname{MSE} = \frac{1}{n}\sum_{i = 1}^n {\varepsilon_i}^2 = \frac{1}{n} || \bm{y} - \bm{X}\bm{\beta} ||^2
 $$
 
-を最小化するような $\bm{\beta}$ として推定量 $\hat{\bm{\beta}}$ を求める手法です。すなわち、
+を採用し、これを最小化するような $\bm{\beta}$ として推定量 $\hat{\bm{\beta}}$ を求める手法です。すなわち、
 
 $$
 \hat{\bm{\beta}} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \operatorname{MSE}(\bm{\beta}) \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} \operatorname{MSE}(\bm{\beta}) = \bm{0} \Longleftrightarrow \frac{\partial}{\partial \bm{\beta}} || \bm{y} - \bm{X}\bm{\beta} ||^2 = \bm{0}
@@ -163,54 +163,76 @@ $$
 ### 多重共線性
 
 上で示したように、$\hat{\bm{\beta}}$ の計算では逆行列 $(\bm{X}^\top \bm{X})^{-1}$ を求める必要があります。Cramer の公式により、この逆行列は $1 / \det (\bm{X}^\top \bm{X})$ に比例しますが、近い値（説明力）をもった説明変数の列が複数あるとき、行列式がゼロに近い値をとり、対応する $\hat{\beta}$ が発散してしまいます。
-
+\
 このような現象を**多重共線性**といい、これを回避するための方法として、重回帰モデルの目的関数である MSE に**正則化項**と呼ばれる項を加えたものを損失関数として最小化する手法が知られています。
 
 ### 過学習
 
-機械学習モデルのトレーニングにおいて、モデルがトレーニングに使用したデータセットに過剰適合し、他のデータセットに対する予測精度が低下する現象を**過学習**といいます。正則化項は回帰係数にペナルティを与え、過学習を抑制します。
+機械学習モデルのトレーニングにおいて、モデルがトレーニングに使用したデータセットに過剰適合し、他のデータセットに対する予測精度が低下する現象を**過学習**といいます。正則化項は回帰係数の大きさを抑え、過学習を抑制します。
 
 ### Ridge 回帰
 
-**Rigde 回帰モデル**では MSE に加えて $L_2$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+**Rigde 回帰モデル**では、MSE に加えて $L_2$-ノルムを用いた正則化項を導入した目的関数：
 
 $$
-\hat{\bm{\beta}}_\mathrm{Ridge} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \frac{\alpha}{2} \sum_{j = 1}^p {\beta_j}^2 \right)
+E(\bm{\beta}) = \frac{1}{2n} || \bm{y} - \bm{X}\bm{\beta} ||^2 + \frac{\alpha}{2} \sum_{j = 1}^p {\beta_j}^2
 $$
 
-ここで $\alpha > 0$ は正則化項の重みで、ユーザーが恣意的に決定する**ハイパーパラメータ**です。係数 $1/2$ は微分の都合上導入しています。
+を最小化します。ここで $\alpha > 0$ は正則化項の重みで、ユーザーが恣意的に決定する**ハイパーパラメータ**です。係数 $1/2$ は微分の都合上導入しています。
 
 Ridge 回帰の推定量は解析的に求めることができ、
 
 $$
-\hat{\bm{\beta}}_\mathrm{Ridge} = (\bm{X}^\top \bm{X} + \alpha \bm{I}) \bm{X}^\top \bm{y}
+\hat{\bm{\beta}} = (\bm{X}^\top \bm{X} + \alpha \bm{I}) \bm{X}^\top \bm{y}
 $$
 
-となります（$\bm{I}$ は $p$ 次の単位行列）。行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ は必ず正則であるため、多重共線性に対してロバストになります。
+となります（$\bm{I}$ は $p + 1$ 次の単位行列）。行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ は必ず正則であるため、多重共線性に対してロバストになります。
+
+> [!tip:fold] $\bm{X}^\top \bm{X} + \alpha \bm{I}$ が必ず正則である理由
+>
+> ゼロベクトルでないような任意のベクトル $\bm{t} \in \mathbb{R}^{n}$ をとり、$\bm{X}^\top \bm{X} + \alpha \bm{I}$ の二次形式を求めると、
+>
+> $$
+> \bm{t}^\top(\bm{X}^\top \bm{X} + \alpha \bm{I})\bm{t} = \bm{t}^\top \bm{X}^\top \bm{X} \bm{t} + \alpha \bm{t}^\top \bm{t}
+> $$
+>
+> となります。ここで、$\alpha > 0$ であることから
+>
+> $$
+> \bm{t}^\top \bm{X}^\top \bm{X} \bm{t} + \alpha \bm{t}^\top \bm{t} = || \bm{X}\bm{t} ||^2 + \alpha || \bm{t} ||^2 > 0
+> $$
+>
+> となるため、行列 $\bm{X}^\top \bm{X} + \alpha \bm{I}$ は正定値であり、ゆえに正則となります。
 
 ### Lasso 回帰
 
-**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した損失関数を最小化します。
+**Lasso 回帰モデル**では MSE に加えて $L_1$-ノルムを用いた正則化項を導入した目的関数：
 
 $$
-\hat{\bm{\beta}}_\mathrm{Lasso} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \lambda \sum_{j = 1}^p |\beta_j| \right)
+E(\bm{\beta}) = \frac{1}{2n} || \bm{y} - \bm{X}\bm{\beta} ||^2 + \lambda \sum_{j = 1}^p |\beta_j|
 $$
 
-$\lambda > 0$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。$L_1$-ノルムは不連続点を持つため推定量を解析的に求めることはできず、数値計算で求めます。
-
-Lasso 回帰のメリットは、変数選択性をもつことです。Ridge 回帰モデルは正則化によって回帰係数の大きさを縮小するのみですが、Lasso 回帰モデルでは回帰係数を強制的にゼロにし、対応する説明変数をモデルから除去します。この効果を**スパース**といいます。
+を最小化します。$\lambda > 0$ は正則化項の重みで、ユーザーが恣意的に決定するハイパーパラメータです。$L_1$-ノルムは不連続点を持つため推定量を解析的に求めることはできず、数値計算で求めます。
+\
+Lasso 回帰のメリットは、変数選択性をもつことです。Ridge 回帰モデルにおける正則化は回帰係数の大きさを縮小するのみですが、Lasso 回帰モデルは$L_1$-ノルムに微分不能点があることから、回帰係数をゼロに誘導する効果があります。これを**スパース**といいます。
 
 ### ElasticNet 回帰
 
-**ElasticNet 回帰モデル** は Lasso 回帰と Ridge 回帰の混合モデルです。
+**ElasticNet 回帰モデル** は Lasso 回帰と Ridge 回帰の混合モデルです。目的関数は、
 
 $$
-\hat{\bm{\beta}}_\mathrm{ElasticNet} = \argmin_{\bm{\beta} \in \mathbb{R}^{p + 1}} \left( \operatorname{MSE}(\bm{\beta}) + \alpha \left( \rho \sum_{j = 1}^p |\beta_j| + \frac{1 - \rho}{2} \sum_{j = 1}^p {\beta_j}^2 \right) \right)
+E(\bm{\beta}) = \frac{1}{2n} || \bm{y} - \bm{X}\bm{\beta} ||^2 + \alpha \left( \rho \sum_{j = 1}^p |\beta_j| + \frac{1 - \rho}{2} \sum_{j = 1}^p {\beta_j}^2 \right)
 $$
 
-ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
-
+となります。ハイパーパラメータは正則化項全体の重みを決める $\alpha$ と、$L_1$ 正則化の比率を決める $\rho$ の二つになります。
+\
 Lasso 回帰モデルは、多重共線性のある説明変数間のスパースが不安定になるデメリットを持ちます。これを回避するため、ElasticNet 回帰モデルでは Ridge 回帰モデルのもつ多重共線性へのロバスト性を導入し、安定した変数選択を可能にします。
+
+### スパースモデリング
+
+データセットのサイズよりも特徴量の数が大きい場合、そのまま重回帰分析を行ってしまうと多重共線性や過学習の影響が大きくなってしまいます。そこで、モデルが一部の特徴量のみで説明できると仮定し（スパース性の仮定）、変数選択効果のあるアルゴリズムを組み込み、少ない変量数で問題を解く手法が多く提案されています。
+\
+これを**スパースモデリング**といいます。Lasso や ElasticNet はスパースモデリングでよく用いられる回帰モデルです。
 
 ## Python による重回帰モデルの実装
 
@@ -363,7 +385,7 @@ $$
 
 *[!image] 予測精度の可視化*
 
-おおむね悪くはなさそうですが、図の左下に大きく予測が外れたエントリーがあることがわかります。こういったデータを精査して得た情報は、より優れたモデルを構築するためにフィードバックできます。
+おおむね悪くはなさそうですが、図の左側に大きく予測が外れたエントリーがあることがわかります。こういったデータを精査して得た情報は、より優れたモデルを構築するためにフィードバックできます。
 
 ## 参考
 
