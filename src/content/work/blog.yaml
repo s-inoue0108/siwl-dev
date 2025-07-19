@@ -1,6 +1,6 @@
 isDraft: false
 title: ブログ
-description: 統計学、化学などの情報をまとめる目的で作成したブログサイトです。静的サイトジェネレータとして Astro 、バックエンドにヘッドレス CMS を使用し、SSG を実現しています。GSAP を使用して動きのあるサイトに仕上げています。
+description: 旧ブログサイトです。静的サイトジェネレータとして Astro 、バックエンドにヘッドレス CMS を使用し、SSG により動作します。GSAP を使用して動きのあるサイトに仕上げています。
 url: https://si-library.net
 github: https://github.com/s-inoue0108/astro-library
 keywords: [SSG, GSAP, Headless CMS, Astro, Vue, SASS, Vercel, Vercel Edge]

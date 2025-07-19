@@ -5,8 +5,6 @@ import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import ProfileImage from "../assets/images/profile-image.jpg";
 import { SiGithub, SiTwitter, SiZenn, SiQiita } from "solid-icons/si";
-import ExperienceYears from "../components/card/ExperienceYears";
-import Age from "../components/card/Age";
 import { ImLink } from "solid-icons/im";
 
 import IconTS from "../content/tag/icons/typescript.svg";
@@ -22,8 +20,13 @@ import IconTailwind from "../content/tag/icons/tailwindcss.svg";
 import { getCollection } from "astro:content";
 
 import WorkCard from "../components/card/WorkCard";
+import AchievementCard from "../components/card/AchievementCard";
 
 const works = await getCollection("work", ({ data }) => {
+	return import.meta.env.PROD ? !data.isDraft : true;
+});
+
+const achievements = await getCollection("achievement", ({ data }) => {
 	return import.meta.env.PROD ? !data.isDraft : true;
 });
 
@@ -261,7 +264,7 @@ const { meta } = routes.getSubsetPageMeta();
 			<div
 				class="w-full lg:w-1/2 text-[1.125rem] lg:text-[1.875rem] leading-normal lg:leading-relaxed text-muted-foreground"
 			>
-				有機半導体結晶の構造について、分子動力学シミュレーション・量子化学計算と機械学習を用いた研究を行っています。
+				分子動力学シミュレーション・量子化学計算と機械学習を用いて、有機半導体の結晶構造を予測する手法の確立に取り組んでいます。
 			</div>
 			<div
 				class="w-full lg:w-1/2 flex flex-col gap-4 text-[1.125rem] lg:text-[1.875rem] leading-normal lg:leading-relaxed text-muted-foreground"
@@ -290,8 +293,14 @@ const { meta } = routes.getSubsetPageMeta();
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">
 			Achievements
 		</h2>
-		<ul>
-			<li>Coming soon...</li>
+		<ul class="w-full mx-auto flex flex-col lg:flex-row lg:flex-wrap items-center gap-8">
+			{
+				achievements.map((achievement) => (
+					<li class="w-full lg:w-fit">
+						<AchievementCard achievement={achievement} client:load />
+					</li>
+				))
+			}
 		</ul>
 		<hr class="border-[0.5px] border-muted-background" />
 		<h2 class="tracking-wider font-extrabold text-[1.875rem] lg:text-[2.25rem] xl:text-[3rem]">

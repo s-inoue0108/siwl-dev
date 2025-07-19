@@ -78,7 +78,20 @@ const workCollection = defineCollection({
     keywords: z.array(z.string()),
     image: image(),
   }),
-})
+});
+
+// 業績
+const achievementCollection = defineCollection({
+  type: "data",
+  schema: ({ image }) => z.object({
+    isDraft: z.boolean().default(false),
+    title: z.string(),
+    description: z.string().optional(),
+    url: z.string(),
+    keywords: z.array(z.string()),
+    image: image(),
+  }),
+});
 
 export const collections = {
   "article": articleCollection,
@@ -87,4 +100,5 @@ export const collections = {
   "fixed": fixedCollection,
   "bookmark": bookmarkCollection,
   "work": workCollection,
+  "achievement": achievementCollection
 };

@@ -1,6 +1,6 @@
 isDraft: false
 title: テックブログ
-description: 当サイトです。Astro とローカルマークダウンで記事を管理できるようにしています。できるだけシンプルにコンテンツを管理できるように作成し、自作CLIを活用して簡単にコンテンツの作成や更新ができるようになっています。また、フォームのバックエンドは Google Apps Script を利用して自前で作成しています。
+description: 当サイトです。Astro を用い、ローカルに Markdown を配置して記事を管理できます。自作CLIを活用して、シンプルにコンテンツの作成や更新ができるようになっています。フォームのバックエンドは Google Apps Script を利用して作成しています。
 url: https://siwl.dev
 github: https://github.com/s-inoue0108/siwl-dev
 keywords:
