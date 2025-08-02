@@ -1,6 +1,6 @@
 import { type CollectionEntry } from "astro:content";
 import { Portal, Show } from "solid-js/web";
-import { createSignal, onMount } from "solid-js";
+import { createSignal } from "solid-js";
 import { IoCloseCircleOutline, IoLogoGithub } from "solid-icons/io";
 import { ImLink } from "solid-icons/im";
 import { BsCardImage } from "solid-icons/bs";
