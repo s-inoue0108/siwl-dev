@@ -1,3 +1,5 @@
+export const prerender = false;
+
 import type { APIContext, APIRoute } from "astro";
 import ogs from "open-graph-scraper";
 

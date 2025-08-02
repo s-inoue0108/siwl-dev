@@ -34,7 +34,7 @@ const { meta } = route.getRootPageMeta();
 						page.data.map((bookmark) => {
 							return (
 								<li class="w-full lg:w-fit">
-									<BookmarkCard bookmark={bookmark} />
+									<BookmarkCard bookmark={bookmark} client:visible />
 								</li>
 							);
 						})
