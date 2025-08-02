@@ -1,26 +1,32 @@
 import { type CollectionEntry } from "astro:content";
-import { createSignal, onMount } from "solid-js";
+// import { createSignal, onMount } from "solid-js";
 import { BsCardImage } from "solid-icons/bs";
+import ogs from "open-graph-scraper";
 
 interface Props {
 	bookmark: CollectionEntry<"bookmark">;
 }
 
-const BookmarkCard = ({ bookmark }: Props) => {
-	const [ogp, setOgp] = createSignal<any>(undefined);
+const BookmarkCard = async ({ bookmark }: Props) => {
+	// const [ogp, setOgp] = createSignal<any>(undefined);
 
-	const getOgpImage = async () => {
-		const response = await fetch(`/api/ogp?url=${encodeURIComponent(bookmark.data.url)}`);
-		const data = await response.json();
+	const { result } = await ogs({ url: bookmark.data.url });
 
-		if (response.ok) {
-			setOgp(data);
-		}
-	};
+	const title = result.ogTitle ?? "No Title";
+	const image = result.ogImage?.[0]?.url ?? "";
 
-	onMount(async () => {
-		await getOgpImage();
-	});
+	// const getOgpImage = async () => {
+	// 	const response = await fetch(`/api/ogp?url=${encodeURIComponent(bookmark.data.url)}`);
+	// 	const data = await response.json();
+
+	// 	if (response.ok) {
+	// 		setOgp(data);
+	// 	}
+	// };
+
+	// onMount(async () => {
+	// 	await getOgpImage();
+	// });
 
 	return (
 		<a
@@ -30,9 +36,10 @@ const BookmarkCard = ({ bookmark }: Props) => {
 			class="relative w-full lg:w-96 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl hover:opacity-70 transition-opacity duration-200"
 		>
 			<span class="w-full h-40">
-				{ogp() && ogp().ogImage && ogp().ogImage[0] && ogp().ogImage[0].url ? (
+				{image ? (
 					<img
-						src={ogp().ogImage[0].url}
+						src={image}
+						alt={title}
 						loading="lazy"
 						class="rounded-t-xl object-cover w-full h-full"
 					/>
