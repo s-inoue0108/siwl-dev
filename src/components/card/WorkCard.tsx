@@ -14,7 +14,7 @@ const WorkCard = ({ work }: Props) => {
 		<>
 			<button
 				type="button"
-				class="relative w-full lg:w-96 h-64 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl"
+				class="relative w-full lg:w-96 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl"
 				onClick={() => setIsOpenCard(true)}
 			>
 				<span class="w-full h-40">

@@ -1,9 +1,11 @@
 import type { CollectionEntry } from "astro:content";
 import { SiFacebook, SiMisskey, SiTwitter, SiHatenabookmark } from "solid-icons/si";
-import { BsQrCode } from "solid-icons/bs";
+import { BsQrCode, BsCheckLg } from "solid-icons/bs";
+import { ImLink } from "solid-icons/im";
 import Panel from "./Panel";
 import { setIsOpenQRModal } from "../../utils/store/is-open-qrmodal";
 import QRModal from "./QRModal";
+import { createSignal } from "solid-js";
 
 interface Props {
 	appOwner: string;
@@ -20,6 +22,16 @@ const Shares = ({ appOwner, appUrl, title, slug }: Props) => {
 	const xLink = `https://x.com/share?url=${url}&text=${text}&via=si_library_net`;
 	const hatenaLink = `http://b.hatena.ne.jp/entry/${url}`;
 	const misskeyLink = `https://misskey-hub.net/share/?text=${text}&url=${url}&visibility=public&localOnly=0`;
+
+	const [isClickLinkCopyBtn, setIsClickLinkCopyBtn] = createSignal(false);
+
+	const handleCopyLink = () => {
+		navigator.clipboard.writeText(url);
+		setIsClickLinkCopyBtn(true);
+
+		setTimeout(() => setIsClickLinkCopyBtn(false), 1000);
+	};
+
 	return (
 		<>
 			<Panel
@@ -61,6 +73,13 @@ const Shares = ({ appOwner, appUrl, title, slug }: Props) => {
 						</a>
 						<button type="button" onClick={() => setIsOpenQRModal(true)}>
 							<BsQrCode class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150" />
+						</button>
+						<button type="button" onClick={() => handleCopyLink()}>
+							{isClickLinkCopyBtn() ? (
+								<BsCheckLg class="text-muted-foreground text-2xl" />
+							) : (
+								<ImLink class="text-muted-foreground text-2xl hover:text-foreground transition-colors duration-150" />
+							)}
 						</button>
 					</div>
 				}

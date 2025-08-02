@@ -1,5 +1,5 @@
 import { createEffect, createSignal } from "solid-js";
-import { IoPricetags } from "solid-icons/io";
+import { IoPricetags, IoClose } from "solid-icons/io";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -46,7 +46,7 @@ const ArticleCardLayerButton = ({ article, category }: Props) => {
 		>
 			<div class="absolute top-[calc(50%+2px)] left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<div class="flex items-center gap-2">
-					<IoPricetags size={"0.7rem"} />
+					{isOpen() ? <IoClose size={"0.7rem"} /> : <IoPricetags size={"0.7rem"} />}
 					<span class="text-sm font-bold whitespace-nowrap">Tag</span>
 				</div>
 			</div>

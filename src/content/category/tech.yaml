@@ -1,5 +1,5 @@
 name: Tech
-description: ソフトウェア、Web技術を始めとしたプログラミングや関連の内容を扱うカテゴリです。
+description: Web や機械学習に関するプログラミングや関連の内容を扱うカテゴリです。
 colors:
   text: "text-accent-sub-base"
   textHover: "hover:text-accent-sub-base"

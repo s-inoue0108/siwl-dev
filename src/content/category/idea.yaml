@@ -1,5 +1,5 @@
 name: Idea
-description: 書評など、プログラミングに直接関係しない内容をつぶやくカテゴリです。
+description: プログラムの実装に直接関係しない内容をまとめる雑多なカテゴリです。
 colors:
   text: "text-accent-base"
   textHover: "hover:text-accent-base"

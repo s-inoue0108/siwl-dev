@@ -51,7 +51,7 @@ export class AllowedRoutes {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "サイト運営者のプロフィールや制作物を掲載しています。",
+      description: "サイト運営者のプロフィールを掲載しています。",
       subsets: [],
     },
     {
