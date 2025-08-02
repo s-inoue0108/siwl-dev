@@ -7,7 +7,7 @@ import { AllowedRoutes } from "../../route";
 import Pager from "../../components/button/Pager";
 import ProfileCard from "../../components/card/ProfileCard.astro";
 import NoItem from "../../components/common/NoItem.astro";
-import BookmarkCard from "../../components/card/BookmarkCard";
+import BookmarkCard from "../../components/card/BookmarkCard.astro";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 	const bookmarks = await getCollection("bookmark", ({ data }) => {
@@ -34,7 +34,7 @@ const { meta } = route.getRootPageMeta();
 						page.data.map((bookmark) => {
 							return (
 								<li class="w-full lg:w-fit">
-									<BookmarkCard bookmark={bookmark} client:visible />
+									<BookmarkCard bookmark={bookmark} />
 								</li>
 							);
 						})
