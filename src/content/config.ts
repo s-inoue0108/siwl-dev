@@ -59,9 +59,8 @@ const fixedCollection = defineCollection({
 const bookmarkCollection = defineCollection({
   type: "data",
   schema: z.object({
-    isDraft: z.boolean().default(true),
+    isDraft: z.boolean().default(false),
     name: z.string(),
-    description: z.string().optional(),
     url: z.string(),
   }),
 });
@@ -74,9 +73,9 @@ const workCollection = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     url: z.string(),
-    github: z.string().optional(),
+    suburl: z.string().optional(),
     keywords: z.array(z.string()),
-    image: image(),
+    image: image().optional(),
   }),
 });
 
@@ -88,8 +87,9 @@ const achievementCollection = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     url: z.string(),
+    suburl: z.string().optional(),
     keywords: z.array(z.string()),
-    image: image(),
+    image: image().optional(),
   }),
 });
 

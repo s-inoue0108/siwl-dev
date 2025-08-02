@@ -2,7 +2,7 @@ isDraft: false
 title: テックブログ
 description: 当サイトです。Astro を用い、ローカルに Markdown を配置して記事を管理できます。自作CLIを活用して、シンプルにコンテンツの作成や更新ができるようになっています。フォームのバックエンドは Google Apps Script を利用して作成しています。
 url: https://siwl.dev
-github: https://github.com/s-inoue0108/siwl-dev
+suburl: https://github.com/s-inoue0108/siwl-dev
 keywords:
   [SSG, Markdown, Astro, SolidJS, Tailwind CSS, CLI, Shellscript, Cloudflare, Google Apps Script]
 image: ./images/siwl_dev.png

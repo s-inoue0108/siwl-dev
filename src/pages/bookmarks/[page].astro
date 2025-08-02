@@ -6,8 +6,8 @@ import Breadcrumbs from "../../components/common/Breadcrumbs.astro";
 import { AllowedRoutes } from "../../route";
 import Pager from "../../components/button/Pager";
 import ProfileCard from "../../components/card/ProfileCard.astro";
-import { ImLink } from "solid-icons/im";
 import NoItem from "../../components/common/NoItem.astro";
+import BookmarkCard from "../../components/card/BookmarkCard";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 	const bookmarks = await getCollection("bookmark", ({ data }) => {
@@ -26,24 +26,15 @@ const { meta } = route.getRootPageMeta();
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
-			<Breadcrumbs count={page.total} />
+			<Breadcrumbs count={page.data.length} />
 			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
-			<ul class="flex flex-col gap-6">
+			<ul class="flex justify-center flex-wrap gap-8 lg:gap-16">
 				{
 					page.data.length > 0 ? (
-						page.data.map(({ data }) => {
+						page.data.map((bookmark) => {
 							return (
-								<li class="flex flex-col gap-2">
-									<a
-										href={data.url}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="w-fit flex items-center gap-2 text-xl lg:text-2xl xl:text-3xl underline underline-offset-4 text-sky hover:opacity-70 transition-opacity duration-150"
-									>
-										<ImLink />
-										<h1 class="font-semibold">{data.name}</h1>
-									</a>
-									<p class="text-sm lg:text-base">{data.description}</p>
+								<li class="w-full lg:w-fit">
+									<BookmarkCard bookmark={bookmark} client:visible />
 								</li>
 							);
 						})

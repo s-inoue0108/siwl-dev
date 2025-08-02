@@ -1,10 +1,12 @@
 import { type CollectionEntry } from "astro:content";
 import { Portal, Show } from "solid-js/web";
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import { IoCloseCircleOutline, IoLogoGithub } from "solid-icons/io";
+import { ImLink } from "solid-icons/im";
+import { BsCardImage } from "solid-icons/bs";
 
 interface Props {
-	work: CollectionEntry<"work">;
+	work: CollectionEntry<"work" | "achievement">;
 }
 
 const WorkCard = ({ work }: Props) => {
@@ -14,17 +16,21 @@ const WorkCard = ({ work }: Props) => {
 		<>
 			<button
 				type="button"
-				class="relative w-full lg:w-96 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl"
+				class="relative w-full lg:w-96 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl hover:opacity-70 transition-opacity duration-200"
 				onClick={() => setIsOpenCard(true)}
 			>
 				<span class="w-full h-40">
-					<img
-						src={work.data.image.src}
-						loading="lazy"
-						class="rounded-t-xl object-cover w-full h-full"
-					/>
+					{work.data.image ? (
+						<img
+							src={work.data.image.src}
+							loading="lazy"
+							class="rounded-t-xl object-cover w-full h-full"
+						/>
+					) : (
+						<BsCardImage class="w-full h-full from-accent-sub-base to-accent-base bg-gradient-to-r rounded-t-xl" />
+					)}
 				</span>
-				<span class="px-2 py-4 w-full border-t border-muted-background h-24">
+				<span class="px-2 py-4 w-full border-t border-muted-background h-48">
 					<span class="font-bold text-xl tracking-wide">{work.data.title}</span>
 					<ul class="absolute bottom-2 left-0 flex items-center gap-2">
 						<li>
@@ -48,7 +54,11 @@ const WorkCard = ({ work }: Props) => {
 							>
 								<IoCloseCircleOutline size={"3rem"} />
 							</button>
-							<img src={work.data.image.src} loading="lazy" class="w-full" />
+							{work.data.image ? (
+								<img src={work.data.image.src} loading="lazy" class="w-2/3 h-2/3 mx-auto" />
+							) : (
+								<BsCardImage class="w-1/4 h-1/4 mx-auto" />
+							)}
 							<div class="p-2 text-xl font-bold">{work.data.title}</div>
 							<div class="flex justify-between items-center">
 								<a
@@ -59,9 +69,15 @@ const WorkCard = ({ work }: Props) => {
 								>
 									{work.data.url}
 								</a>
-								<a href={work.data.github} class="p-2" target="_blank" rel="noopener noreferrer">
-									<IoLogoGithub size={"1.5rem"} />
-								</a>
+								{work.data.suburl && (
+									<a href={work.data.suburl} class="p-2" target="_blank" rel="noopener noreferrer">
+										{/^https?:\/\/github\.com\//.test(work.data.suburl) ? (
+											<IoLogoGithub size={"1.5rem"} />
+										) : (
+											<ImLink size={"1.5rem"} />
+										)}
+									</a>
+								)}
 							</div>
 							<div class="p-2">{work.data.description}</div>
 							<ul class="p-2 flex flex-wrap items-center gap-2">
