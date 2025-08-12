@@ -23,14 +23,14 @@ const { meta } = routes.getRootPageMeta();
 		>
 			<div class="flex flex-col lg:flex-row justify-center mx-auto items-center gap-16">
 				<div class="flex flex-col">
-					<div class="flex flex-col text-metalic-light dark:text-metalic-dark">
+					<div class="flex flex-col">
 						<div class="mx-auto flex flex-col">
 							<span
 								class="font-semibold text-[1.25rem] lg:text-[2rem] xl:text-[2.5rem] mb-[-0.625rem] lg:mb-[-1.5rem]"
 								>Hello, I'm</span
 							>
 							<span
-								class="font-extrabold text-[3rem] lg:text-[4rem] xl:text-[6rem] whitespace-nowrap"
+								class="text-metalic-light dark:text-metalic-dark font-extrabold text-[3rem] lg:text-[4rem] xl:text-[6rem] whitespace-nowrap"
 							>
 								{import.meta.env.APP_OWNER}
 							</span>
@@ -58,7 +58,7 @@ const { meta } = routes.getRootPageMeta();
 								</a>
 							</li>
 						</ul>
-						<ul class="flex items-center gap-6 lg:ml-6">
+						<ul class="flex items-center gap-6 mt-4 lg:mt-0 lg:ml-6">
 							<li>
 								<a
 									href={import.meta.env.ZENN_URL}
