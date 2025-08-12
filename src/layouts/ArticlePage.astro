@@ -32,7 +32,7 @@ import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import Sidebar from "../components/common/Sidebar";
 // View Transitions
-// import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 import type { MarkdownHeading } from "astro";
 
 interface Props {
@@ -70,7 +70,7 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141830" />
 
 		<!--View Transitions-->
-		<!-- <ViewTransitions /> -->
+		<ViewTransitions />
 
 		<!--noindex nofollow in limited pages-->
 		{

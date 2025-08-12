@@ -11,9 +11,9 @@ interface Props {
 const Pager = ({ page }: Props) => {
 	const { currentPage, lastPage, url } = page;
 	return (
-		<>
+		<section class="mx-auto w-fit h-fit rounded-xl">
 			{page.data.length > 0 && (
-				<ul class="mx-auto flex items-center w-fit bg-muted-background rounded-xl text-muted-foreground font-medium text-sm sm:text-base lg:text-lg">
+				<ul class="mx-auto flex items-center w-fit border border-muted-background bg-muted-background/30 rounded-xl text-muted-foreground font-medium text-sm sm:text-base lg:text-lg">
 					<li class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12">
 						<a
 							href={url.prev}
@@ -229,7 +229,7 @@ const Pager = ({ page }: Props) => {
 					</li>
 				</ul>
 			)}
-		</>
+		</section>
 	);
 };
 

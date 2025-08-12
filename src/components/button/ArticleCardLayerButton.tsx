@@ -41,10 +41,10 @@ const ArticleCardLayerButton = ({ article, category }: Props) => {
 				isOpen()
 					? `${category.data.colors.bg} text-foreground`
 					: `bg-muted-background ${category.data.colors.bgHover} text-muted-foreground hover:text-foreground`
-			} transition-colors duration-150 rounded-t-lg w-16 h-8 translate-y-[2px]`}
+			} transition-colors duration-150 rounded-t-lg w-16 h-8 translate-y-[1px]`}
 			onClick={() => setIsOpen(!isOpen())}
 		>
-			<div class="absolute top-[calc(50%+2px)] left-1/2 -translate-x-1/2 -translate-y-1/2">
+			<div class="absolute top-[calc(50%+1px)] left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<div class="flex items-center gap-2">
 					{isOpen() ? <IoClose size={"0.7rem"} /> : <IoPricetags size={"0.7rem"} />}
 					<span class="text-sm font-bold whitespace-nowrap">Tag</span>

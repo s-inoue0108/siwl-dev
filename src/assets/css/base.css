@@ -12,6 +12,7 @@
 		--muted: 228, 232, 250;
 		--muted-foreground: 75, 85, 99;
 
+		--accent-dot: 0, 0, 0;
 		--accent-vivid: 120, 82, 220;
 		--accent-base: 183, 154, 237;
 		--accent-sub-base: 82, 152, 236;
@@ -26,6 +27,7 @@
 		--muted: 20, 24, 48;
 		--muted-foreground: 134, 136, 147;
 
+		--accent-dot: 255, 255, 255;
 		--accent-vivid: 64, 32, 208;
 		--accent-base: 120, 82, 220;
 		--accent-sub-base: 30, 70, 180;
@@ -64,5 +66,52 @@
 
 	.toc-scrollbar::-webkit-scrollbar-thumb {
 		background: rgba(var(--muted-foreground), var(--opacity));
+	}
+
+	.dot-pattern {
+		background-image: radial-gradient(rgba(var(--accent-dot), 0.1) 1px, transparent 1px);
+		background-size: 20px 20px;
+	}
+
+	.index-gradient {
+		background: radial-gradient(ellipse at top center, rgb(var(--background)), transparent 70%),
+			radial-gradient(ellipse at left center, rgb(var(--accent-sub-base)) 0%, transparent 70%),
+			radial-gradient(ellipse at right center, rgb(var(--accent-base)) 0%, transparent 70%),
+			rgb(var(--background));
+	}
+
+	.text-metalic-dark {
+		background: linear-gradient(
+			135deg,
+			#c0c0c0 0%,
+			#ffffff 25%,
+			#c0c0c0 50%,
+			#a0a0a0 75%,
+			#c0c0c0 100%
+		);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+	}
+
+	.text-metalic-light {
+		background: linear-gradient(
+			180deg,
+			rgb(40, 40, 40) 0%,
+			rgb(10, 10, 10) 20%,
+			rgb(80, 80, 80) 40%,
+			rgb(3, 3, 3) 50%,
+			rgb(60, 60, 60) 60%,
+			rgb(15, 15, 15) 80%,
+			rgb(40, 40, 40) 100%
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+		/* 光沢と立体感 */
+		text-shadow: 0 1px 0 rgb(0, 0, 0), 0 2px 4px rgba(0, 0, 0, 0.6),
+			0 0 10px rgba(255, 255, 255, 0.1);
 	}
 }

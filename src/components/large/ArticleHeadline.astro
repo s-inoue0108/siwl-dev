@@ -71,7 +71,7 @@ const { minutes } = getReadingTime(body);
 		</ul>
 	</div>
 	<ul class="inline-flex flex-wrap items-center gap-2 pt-8 lg:pt-12">
-		<li>
+		<li transition:name={`category-${slug}`}>
 			<ClassifyCard collection={category} />
 		</li>
 		{

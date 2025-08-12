@@ -2,7 +2,7 @@ import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
 import { AllowedRoutes } from "../../route";
-import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
+import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
 import { IoLogoRss } from "solid-icons/io";
 
 interface Props {
@@ -21,8 +21,10 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 	return (
 		<aside
 			class={`fixed top-0 left-0 pt-4 px-4 lg:px-8 w-3/4 sm:w-[360px] transition duration-300 ${
-				!isOpenSidebar() && "-translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
-			} bg-muted-background min-h-dvh z-[100] overflow-clip`}
+				!isOpenSidebar()
+					? "bg-muted-background/30 -translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
+					: "bg-background"
+			} dot-pattern min-h-dvh z-[100] overflow-clip border-r border-muted-background`}
 		>
 			<nav>
 				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>
@@ -34,19 +36,9 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 							href={zennUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
 						>
 							<SiZenn />
-						</a>
-					</li>
-					<li>
-						<a
-							href={qiitaUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
-						>
-							<SiQiita />
 						</a>
 					</li>
 					<li>
@@ -54,7 +46,7 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 							href={xUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
 						>
 							<SiTwitter />
 						</a>
@@ -64,7 +56,7 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 							href={githubUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
 						>
 							<SiGithub />
 						</a>
@@ -74,7 +66,7 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 							href="/rss.xml"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
 						>
 							<IoLogoRss />
 						</a>
@@ -98,10 +90,10 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 				{metas.map(({ name, rootpath, subsets }) => (
 					<li>
 						<div class="flex items-center gap-3 xl:gap-4">
-							<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
+							<div class="bg-foreground w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 							<a
 								href={rootpath}
-								class="tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-70"
+								class="tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold hover:opacity-50 transition duration-200"
 								data-astro-reload
 							>
 								{name}
@@ -114,10 +106,10 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, qiitaUrl, githubUrl }: P
 									.map((subset) => (
 										<li>
 											<div class="flex items-center gap-3 xl:gap-4">
-												<div class="bg-gradient-to-b from-accent-sub-base to-accent-base w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
+												<div class="bg-foreground w-[6px] h-[6px] sm:w-[7px] sm:h-[7px] lg:w-[8px] lg:h-[8px] rounded-full"></div>
 												<a
 													href={subset.rootpath}
-													class="tracking-wide font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-70"
+													class="tracking-wide font-medium text-lg sm:text-xl lg:text-2xl hover:opacity-50 transition duration-200"
 													data-astro-reload
 												>
 													{subset.name}

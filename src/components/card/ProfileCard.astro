@@ -1,16 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import ProfileImage from "../../assets/images/profile-image.jpg";
-import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
+import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import { IoLogoRss } from "solid-icons/io";
 ---
 
-<section
-	class="relative w-screen -mx-4 sm:w-full sm:mx-0 lg:rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg"
->
+<section class="relative w-full rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
 	<Image
 		src={ProfileImage}
 		alt="Profile Image"
-		class="w-full h-full object-cover absolute top-0 left-0 z-0 sm:rounded-xl filter grayscale select-none shadow-lg"
+		class="w-full h-full object-cover absolute top-0 left-0 z-0 rounded-xl filter grayscale select-none shadow-lg"
 		width={1008}
 		height={756}
 	/>
@@ -46,16 +45,6 @@ import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
 				</li>
 				<li>
 					<a
-						href={import.meta.env.QIITA_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-md xl:text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
-					>
-						<SiQiita />
-					</a>
-				</li>
-				<li>
-					<a
 						href={import.meta.env.X_URL}
 						target="_blank"
 						rel="noopener noreferrer"
@@ -72,6 +61,16 @@ import { SiGithub, SiZenn, SiTwitter, SiQiita } from "solid-icons/si";
 						class="text-md xl:text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 					>
 						<SiGithub />
+					</a>
+				</li>
+				<li>
+					<a
+						href="/rss.xml"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-md xl:text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+					>
+						<IoLogoRss />
 					</a>
 				</li>
 			</ul>

@@ -1,8 +1,6 @@
 import Hamburger from "../button/Hamburger";
 import SearchModal from "../button/SearchModal";
 import NavigationLink from "../button/NavigationLink";
-import LinkButton from "../button/LinkButton";
-import { IoLogoRss } from "solid-icons/io";
 import SearchInput from "../form/SearchInput";
 import SearchResult from "../form/SearchResult";
 import { createSignal, Show, createEffect } from "solid-js";
@@ -21,7 +19,7 @@ interface Props {
 
 const Header = ({ appName, currentPath, headings }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
-	const metas = routes.getRootPageMetaAll(["Home", "Bookmarks", "Privacy Policy", "Readme"]);
+	const metas = routes.getRootPageMetaAll(["Home", "Privacy Policy", "Readme"]);
 
 	const [direction, setDirection] = createSignal<"up" | "down">("up");
 	let beforePosition = 0,
@@ -75,7 +73,7 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 						</li>
 					</ul>
 				</ul>
-				<ul class="hidden lg:flex items-center gap-4 2xl:gap-8">
+				<ul class="hidden lg:flex items-center gap-2 2xl:gap-6">
 					{metas.map(({ name, rootpath, matchers }) => (
 						<li>
 							<NavigationLink
@@ -85,13 +83,10 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 							/>
 						</li>
 					))}
-					<li>
-						<LinkButton Icon={<IoLogoRss size="1.6rem" />} href="/rss.xml" isExternal={true} />
-					</li>
+					<div class="hidden lg:block">
+						<SearchInput />
+					</div>
 				</ul>
-				<div class="hidden lg:block">
-					<SearchInput />
-				</div>
 				<Show when={keyword() !== ""}>
 					<div class="hidden lg:block bg-gradient-to-r from-accent-sub-base to-accent-base p-2 shadow-2xl rounded-lg absolute top-16 right-[3.95rem]">
 						<div class="w-96 max-h-[50dvh] p-2 rounded-md bg-muted-background/50 overflow-y-auto hidden-scrollbar">

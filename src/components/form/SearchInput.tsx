@@ -1,3 +1,4 @@
+import { createEffect } from "solid-js";
 import { IoSearchOutline, IoClose } from "solid-icons/io";
 import { keyword, setKeyword } from "../../utils/store/search";
 
@@ -7,11 +8,29 @@ const SearchInput = () => {
 		setKeyword(value);
 	};
 
+	createEffect(() => {
+		const input = document.getElementById("search") as HTMLInputElement;
+		window.addEventListener("keydown", (e) => {
+			if (e.shiftKey && e.key === "Backspace") {
+				e.preventDefault();
+				setKeyword("");
+			}
+			if (e.altKey && e.key.toLowerCase() === "k") {
+				e.preventDefault();
+				input.focus();
+			}
+			if (e.key === "Escape") {
+				e.preventDefault();
+				input.blur();
+			}
+		});
+	});
+
 	return (
-		<div class="rounded-lg flex items-center bg-muted-background xl:w-[16.4rem]">
-			<label class="relative w-12 h-12">
+		<div class="relative rounded-xl flex items-center border border-muted-background xl:w-[16.4rem]">
+			<label class="rounded-l-xl relative w-12 h-12 bg-muted-background" for="search">
 				<button
-					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-muted-foreground text-lg"
+					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-muted-foreground text-lg hover:text-foreground transition-colors duration-150"
 					onClick={() => setKeyword("")}
 				>
 					{keyword() === "" ? <IoSearchOutline /> : <IoClose />}
@@ -19,11 +38,16 @@ const SearchInput = () => {
 			</label>
 			<input
 				type="text"
-				class="rounded-r-lg bg-muted-background border-none placeholder:text-muted-foreground w-full h-12 py-1 pr-2 text-lg focus:outline-none focus:ring-0"
+				id="search"
+				name="search"
+				class="truncate border-none bg-muted-background/30 placeholder:text-muted-foreground w-full h-12 py-1 pr-12 text-lg focus:outline-none focus:ring-0"
 				value={keyword()}
-				placeholder="Search..."
+				placeholder="Search"
 				onInput={(e) => bind(e)}
 			/>
+			<span class="absolute top-1/2 -translate-y-[calc(50%-1px)] right-2 text-muted-foreground">
+				⌥ K
+			</span>
 		</div>
 	);
 };

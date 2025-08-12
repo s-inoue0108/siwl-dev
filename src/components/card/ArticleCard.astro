@@ -23,12 +23,15 @@ const { minutes } = getReadingTime(body);
 	<div class="flex flex-col sm:flex-row gap-2">
 		<a
 			href={`/blog/articles/${slug}`}
-			class=`sm:w-80 h-28 sm:h-[11.25rem] hover:opacity-80 transition-opacity duration-150 rounded-md ${category.data.colors.bg}`
+			class=`sm:w-80 h-28 sm:h-[11.25rem] hover:opacity-80 transition-opacity duration-150 rounded-xl ${category.data.colors.bg}`
 		>
 			<div class="relative w-full h-full">
 				{
 					(
-						<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
+						<div
+							class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2"
+							transition:name={`category-${article.slug}`}
+						>
 							<span class="text-4xl lg:text-4xl">
 								{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
 							</span>
@@ -40,7 +43,7 @@ const { minutes } = getReadingTime(body);
 				}
 			</div>
 		</a>
-		<div class="w-full flex flex-col border-b-2 border-muted-background">
+		<div class="w-full flex flex-col border-b border-muted-background">
 			<div class="relative h-28 sm:h-full">
 				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
 					<div class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">

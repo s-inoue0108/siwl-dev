@@ -3,7 +3,7 @@ import { createMemo } from "solid-js";
 import { SearchClient } from "../../utils/api/fuse";
 import { allArticles } from "../../utils/store/collections";
 import { keyword } from "../../utils/store/search";
-import { IoSearchOutline } from "solid-icons/io";
+import { IoKey } from "solid-icons/io";
 
 const searchClient = new SearchClient(allArticles);
 const fuse = await searchClient.createClient();
@@ -26,12 +26,10 @@ const SearchResult = () => {
 
 	return (
 		<ul class="flex flex-col gap-4">
-			<div class="text-muted-foreground w-full flex items-center justify-between">
+			<div class="font-semibold text-foreground w-full flex items-center justify-between">
 				<div class="flex items-center gap-1">
-					<span>
-						<IoSearchOutline />
-					</span>
-					<span class="max-w-[12rem] whitespace-nowrap overflow-x-clip">{viewKeyword()}</span>
+					<IoKey />
+					<span class="max-w-[12rem] whitespace-nowrap truncate">{viewKeyword()}</span>
 				</div>
 				<span>{viewResultLength()}</span>
 			</div>

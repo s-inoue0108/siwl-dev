@@ -4,8 +4,9 @@ import { AllowedRoutes } from "../route";
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import ProfileImage from "../assets/images/profile-image.jpg";
-import { SiGithub, SiTwitter, SiZenn, SiQiita } from "solid-icons/si";
+import { SiGithub, SiTwitter, SiZenn } from "solid-icons/si";
 import { ImLink } from "solid-icons/im";
+import { IoLogoRss } from "solid-icons/io";
 
 import IconTS from "../content/tag/icons/typescript.svg";
 import IconReact from "../content/tag/icons/react.svg";
@@ -63,16 +64,6 @@ const { meta } = routes.getSubsetPageMeta();
 					</li>
 					<li>
 						<a
-							href={import.meta.env.QIITA_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
-						>
-							<SiQiita />
-						</a>
-					</li>
-					<li>
-						<a
 							href={import.meta.env.X_URL}
 							target="_blank"
 							rel="noopener noreferrer"
@@ -89,6 +80,16 @@ const { meta } = routes.getSubsetPageMeta();
 							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 						>
 							<SiGithub />
+						</a>
+					</li>
+					<li>
+						<a
+							href="/rss.xml"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
+						>
+							<IoLogoRss />
 						</a>
 					</li>
 				</ul>
