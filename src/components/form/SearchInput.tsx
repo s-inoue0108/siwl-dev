@@ -40,7 +40,7 @@ const SearchInput = () => {
 				type="text"
 				id="search"
 				name="search"
-				class="truncate border-none bg-muted-background/30 placeholder:text-muted-foreground w-full h-12 py-1 pr-12 text-lg focus:outline-none focus:ring-0"
+				class="truncate border-none bg-muted-transparent placeholder:text-muted-foreground w-full h-12 py-1 pr-12 text-lg focus:outline-none focus:ring-0"
 				value={keyword()}
 				placeholder="Search"
 				onInput={(e) => bind(e)}

@@ -37,7 +37,7 @@
 
 	/* link card */
 	.rlc-container {
-		@apply my-8 lg:my-12 flex items-center w-full h-28 sm:h-32 lg:h-36 rounded-xl border border-muted-background bg-muted-background/30 hover:bg-muted-background transition duration-200;
+		@apply my-8 lg:my-12 flex items-center w-full h-28 sm:h-32 lg:h-36 rounded-xl border border-muted-background bg-muted-transparent hover:bg-muted-background transition duration-200;
 	}
 
 	.rlc-info {
@@ -109,14 +109,14 @@
 		@apply table mx-auto min-w-[1px] w-full tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 
 		thead {
-			@apply bg-muted-background/50;
+			@apply bg-muted-transparent;
 		}
 
 		tr {
 			@apply border-collapse border-b border-muted-background;
 
 			code {
-				@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 px-1 py-[0.125rem] rounded-md;
+				@apply font-code text-sm lg:text-base xl:text-lg bg-muted-transparent px-1 py-[0.125rem] rounded-md;
 			}
 		}
 
@@ -140,11 +140,11 @@
 		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
 
 		.remark-code-title {
-			@apply bg-background border border-background;
+			@apply bg-muted-background;
 		}
 
 		.code-block {
-			@apply border border-background;
+			@apply border border-muted-background;
 		}
 
 		.astro-code {
@@ -169,11 +169,11 @@
 	}
 
 	.callout-quote {
-		@apply bg-muted-background/30 border border-muted-background;
+		@apply bg-muted-transparent border border-muted-background;
 	}
 
 	.callout-quote p code {
-		@apply border border-muted-background/50 bg-muted-background/30;
+		@apply border border-muted-background bg-muted-transparent;
 	}
 
 	.callout-title-quote {
@@ -181,11 +181,11 @@
 	}
 
 	.callout-note {
-		@apply bg-muted-background/30 border border-muted-background;
+		@apply bg-muted-transparent border border-muted-background;
 	}
 
 	.callout-note p code {
-		@apply border border-muted-background/50 bg-muted-background/30;
+		@apply border border-muted-background bg-muted-transparent;
 	}
 
 	.callout-title-note {
@@ -193,11 +193,11 @@
 	}
 
 	.callout-remark {
-		@apply bg-muted-background/30 border border-muted-background;
+		@apply bg-muted-transparent border border-muted-background;
 	}
 
 	.callout-remark p code {
-		@apply border border-muted-background/50 bg-muted-background/30;
+		@apply border border-muted-background bg-muted-transparent;
 	}
 
 	.callout-title-remark {
@@ -326,7 +326,7 @@
 
 	/* code block */
 	.remark-code-title {
-		@apply text-muted-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
+		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
 	}
 
 	.code-block {
@@ -365,7 +365,7 @@
 	}
 
 	.code-copy-button {
-		@apply absolute top-[6px] right-2 z-10 bg-muted-background/30 hover:bg-muted-background p-2 rounded-full transition duration-200;
+		@apply absolute top-[6px] right-2 z-10 bg-muted-background/50 hover:bg-muted-background p-2 rounded-full transition duration-200;
 	}
 
 	.code-copy-button svg path {
@@ -375,7 +375,7 @@
 	/* inline code */
 	p > code,
 	li > code {
-		@apply font-code text-sm lg:text-base xl:text-lg bg-muted-background/50 border border-muted-background px-1 py-[0.125rem] rounded-md;
+		@apply font-code text-sm lg:text-base xl:text-lg bg-muted-transparent border border-muted-background px-1 py-[0.125rem] rounded-md;
 	}
 
 	.astro-code {

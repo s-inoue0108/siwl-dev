@@ -44,7 +44,7 @@ const { prev, next } = await getSideArticles(
 		prev && (
 			<a
 				href={`/blog/articles/${prev.slug}`}
-				class="w-full lg:w-[calc(50%-1rem)] h-20 border border-muted-background bg-muted-background/30 hover:bg-muted-background text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-xl"
+				class="w-full lg:w-[calc(50%-1rem)] h-20 border border-muted-background bg-muted-transparent hover:bg-muted-background text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-xl"
 			>
 				<div class="h-full flex justify-between items-center">
 					<div class="w-1/6 h-full bg-muted-background rounded-l-[11px] relative">
@@ -61,7 +61,7 @@ const { prev, next } = await getSideArticles(
 		next && (
 			<a
 				href={`/blog/articles/${next.slug}`}
-				class={`w-full lg:w-[calc(50%-1rem)] ${!prev && "lg:ml-[calc(50%+2rem)]"} h-20 border border-muted-background bg-muted-background/30 hover:bg-muted-background text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-xl`}
+				class={`w-full lg:w-[calc(50%-1rem)] ${!prev && "lg:ml-[calc(50%+2rem)]"} h-20 border border-muted-background bg-muted-transparent hover:bg-muted-background text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-xl`}
 			>
 				<div class="h-full flex justify-between items-center">
 					<div class="w-5/6 h-full p-2">

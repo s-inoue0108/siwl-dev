@@ -10,6 +10,7 @@
 		--foreground: 3, 3, 3;
 
 		--muted: 228, 232, 250;
+		--muted-transparent: 243, 244, 249;
 		--muted-foreground: 75, 85, 99;
 
 		--accent-dot: 0, 0, 0;
@@ -25,6 +26,7 @@
 		--foreground: 252, 252, 252;
 
 		--muted: 20, 24, 48;
+		--muted-transparent: 9, 13, 31;
 		--muted-foreground: 134, 136, 147;
 
 		--accent-dot: 255, 255, 255;
@@ -108,9 +110,8 @@
 			rgb(40, 40, 40) 100%
 		);
 		-webkit-background-clip: text;
+		background-clip: text;
 		-webkit-text-fill-color: transparent;
-
-		/* 光沢と立体感 */
 		text-shadow: 0 1px 0 rgb(0, 0, 0), 0 2px 4px rgba(0, 0, 0, 0.6),
 			0 0 10px rgba(255, 255, 255, 0.1);
 	}

@@ -45,7 +45,7 @@ const { minutes } = getReadingTime(body);
 		</a>
 		<div class="w-full flex flex-col border-b border-muted-background">
 			<div class="relative h-28 sm:h-full">
-				<div id={`article-card-${slug}-tags`} class="absolute bg-background" style="opacity: 0;">
+				<div id={`article-card-${slug}-tags`} class="absolute" style="opacity: 0;">
 					<div class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
 						{tags && tags.map((tag) => <ClassifyCard collection={tag} />)}
 					</div>

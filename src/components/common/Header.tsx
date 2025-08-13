@@ -73,7 +73,7 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 						</li>
 					</ul>
 				</ul>
-				<ul class="hidden lg:flex items-center gap-2 2xl:gap-6">
+				<ul class="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6">
 					{metas.map(({ name, rootpath, matchers }) => (
 						<li>
 							<NavigationLink

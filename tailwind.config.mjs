@@ -13,6 +13,7 @@ export default {
 				muted: {
 					background: "rgba(var(--muted), var(--opacity))",
 					foreground: "rgba(var(--muted-foreground), var(--opacity))",
+					transparent: "rgba(var(--muted-transparent), var(--opacity))",
 				},
 				accent: {
 					vivid: "rgba(var(--accent-vivid), var(--opacity))",

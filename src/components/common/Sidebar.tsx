@@ -20,10 +20,8 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 	return (
 		<aside
 			class={`fixed top-0 left-0 pt-4 px-4 lg:px-8 w-3/4 sm:w-[360px] transition duration-300 ${
-				!isOpenSidebar()
-					? "bg-muted-background/30 -translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
-					: "bg-background"
-			} dot-pattern min-h-dvh z-[100] overflow-clip border-r border-muted-background`}
+				!isOpenSidebar() && "-translate-x-full lg:translate-x-[calc(-360px+3.95rem)]"
+			} bg-muted-transparent dot-pattern min-h-dvh z-[100] overflow-clip border-r border-muted-background`}
 		>
 			<nav>
 				<a href="/" class="text-4xl lg:text-5xl font-extrabold" data-astro-reload>

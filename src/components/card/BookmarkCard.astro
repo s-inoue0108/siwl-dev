@@ -29,9 +29,9 @@ const image = ogp.ogImage?.[0]?.url ?? "";
 	href={bookmark.data.url}
 	target="_blank"
 	rel="noopener noreferrer"
-	class="relative w-full lg:w-96 flex flex-col border border-muted-background bg-muted-background/30 rounded-xl hover:opacity-70 transition-opacity duration-200"
+	class="relative w-full lg:w-80 2xl:w-96 flex flex-col border border-muted-background bg-muted-transparent rounded-xl hover:opacity-70 transition-opacity duration-200"
 >
-	<span class="w-full h-40">
+	<span class="w-full lg:h-40 2xl:h-48">
 		{
 			image ? (
 				<img

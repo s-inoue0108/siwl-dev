@@ -18,16 +18,14 @@ import { IoLogoRss } from "solid-icons/io";
 			<div class="w-2 h-5 lg:h-7 bg-gradient-to-b from-accent-sub-base to-accent-base"></div>
 			<h1 class="text-xl md:text-2xl xl:text-3xl font-extrabold tracking-wide">Shota Inoue</h1>
 		</div>
-		<p class="text-sm xl:text-md text-muted-foreground font-medium">
-			<span>計算化学の大学院生です。</span>
-			<br />
-			<span>MDと機械学習を用いた機能性材料探索をやっています。</span>
+		<p class="mx-auto px-4 text-sm xl:text-md text-muted-foreground font-medium">
+			{import.meta.env.APP_OWNER_ROLE}
 		</p>
 		<ul class="w-full px-2 xl:px-4 flex items-center justify-center gap-8">
 			<li>
 				<a
 					href="/about"
-					class="whitespace-nowrap text-sm xl:text-md font-semibold tracking-wide bg-gradient-to-r from-accent-sub-base to-accent-base px-2 py-1 rounded-xl"
+					class="whitespace-nowrap text-sm xl:text-md font-semibold tracking-wide bg-gradient-to-r from-accent-sub-base to-accent-base px-2 py-1 rounded-xl hover:opacity-70 transition duration-200"
 				>
 					About Me
 				</a>

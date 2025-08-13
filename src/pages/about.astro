@@ -11,16 +11,19 @@ import { IoLogoRss } from "solid-icons/io";
 import IconTS from "../content/tag/icons/typescript.svg";
 import IconReact from "../content/tag/icons/react.svg";
 import IconVue from "../content/tag/icons/vue.svg";
-import IconNuxt from "../content/tag/icons/nuxt.svg";
 import IconAstro from "../content/tag/icons/astro.svg";
 import IconPython from "../content/tag/icons/python.svg";
 import IconBash from "../content/tag/icons/bash.svg";
-
-import IconSolid from "../content/tag/icons/solid.svg";
 import IconTailwind from "../content/tag/icons/tailwindcss.svg";
+import IconNodejs from "../content/tag/icons/nodejs.svg";
+
 import { getCollection } from "astro:content";
 
 import WorkCard from "../components/card/WorkCard";
+import MacintoshInterfaceCard from "../components/card/MacintoshInterfaceCard";
+import { SiMoleculer } from "solid-icons/si";
+import { IoCodeSlash, IoDesktopOutline } from "solid-icons/io";
+import { ImHeadphones } from "solid-icons/im";
 
 const works = await getCollection("work", ({ data }) => {
 	return import.meta.env.PROD ? !data.isDraft : true;
@@ -32,12 +35,122 @@ const achievements = await getCollection("achievement", ({ data }) => {
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
+
+const whoami = {
+	contentType: "whoami",
+	title: import.meta.env.APP_OWNER,
+	role: import.meta.env.APP_OWNER_ROLE,
+	description:
+		"計算化学の大学院生です。分子動力学 (MD) シミュレーションや機械学習の技術を用いて、機能性材料の物性予測や新奇材料の探索を行っています。モダンな Web フロントエンド開発もたまにやったりしています。",
+};
+
+const skills = {
+	contentType: "skills",
+	title: "Skills",
+	list: [
+		{ name: "TypeScript", link: "https://www.typescriptlang.org/", icon: IconTS },
+		{ name: "Vue.js", link: "https://ja.vuejs.org/", icon: IconVue },
+		{ name: "Tailwind CSS", link: "https://tailwindcss.com/", icon: IconTailwind },
+		{ name: "Astro", link: "https://astro.build/", icon: IconAstro },
+		{ name: "Node.js", link: "https://nodejs.org/ja/", icon: IconNodejs },
+		{ name: "Python", link: "https://www.python.org/", icon: IconPython },
+		{ name: "Bash", link: "https://www.gnu.org/software/bash/", icon: IconBash },
+	],
+};
+
+const major = {
+	contentType: "major",
+	title: "Computational Chemistry & Machine Learning",
+	description:
+		"特異な電子的性質を示す有機半導体材料の物性予測、ならびに新奇半導体材料開発に資する分子科学的知見の獲得を目指して研究を行っています。",
+};
+
+const tech = {
+	contentType: "tech",
+	title: "Web Frontend Development",
+	description:
+		"Vue.js やメタフレームワークによる Web アプリケーションの UI 開発や静的 Web サイト構築をやっています。最近は Astro を好んで使います。",
+};
+
+const interest = {
+	contentType: "interest",
+	title: "Indies Electronic Music",
+	description:
+		"インディーズの電子音楽をしょっちゅう聴いています。最近は聴くだけでなく、DJ コントローラーで MIX するなどして遊んでいます。",
+};
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<section class="pt-8 w-full flex flex-col gap-8">
+	<section class="flex flex-col gap-8 index-gradient py-8 px-4 md:px-8 lg:px-12 2xl:px-24 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]">
 		<Breadcrumbs />
-		<div
+		<div class="w-full flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-8 2xl:gap-16">
+			<section
+				class="p-2 border border-muted-background bg-muted-transparent w-full rounded-xl flex flex-col gap-2 lg:gap-4 shadow-lg lg:mb-24"
+			>
+				<div class="w-full flex gap-8 border-b border-muted-background pb-2">
+					<ul class="w-fit flex gap-2 pt-1">
+						<li class="bg-red-500 w-3 h-3 rounded-full"></li>
+						<li class="bg-yellow-500 w-3 h-3 rounded-full"></li>
+						<li class="bg-green-500 w-3 h-3 rounded-full"></li>
+					</ul>
+					<div class="font-code font-semibold text-sm">$ {whoami.contentType} && ls -lh skills</div>
+				</div>
+				<div class="w-full flex items-center gap-4">
+					<div class="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24">
+						<Image
+							src={ProfileImage}
+							alt="Profile Image"
+							class="w-full h-full object-cover rounded-full"
+						/>
+					</div>
+					<div class="w-2/3 flex flex-col gap-2">
+						<h2 class="font-bold text-2xl lg:text-3xl xl:text-5xl">
+						  {whoami.title}
+					  </h2>
+						<span class="text-xs xl:text-sm font-code">{whoami.role}</span>
+					</div>
+				</div>
+				<p class="mt-4 text-muted-foreground">{whoami.description}</p>
+				<div class="w-full border-b border-muted-background mb-2" />
+				<ul class="flex flex-col gap-2 mb-2">
+					{
+						skills.list.map((skill) => (
+							<li class="flex items-center gap-6">
+								<div class="font-code text-lg text-muted-foreground">rwx</div>
+								<Image src={skill.icon} alt={skill.name} class="max-w-6 h-6" />
+								<a href={skill.link} target="_blank" rel="noopener noreferrer" class="font-code font-semibold text-lg text-muted-foreground hover:text-foreground transition duration-150">
+									{skill.name}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+			<div class="flex flex-col items-center gap-4 mb-24">
+				<MacintoshInterfaceCard
+					contentType={major.contentType}
+					title={major.title}
+					description={major.description}
+				>
+					<SiMoleculer size="2.5rem" />
+				</MacintoshInterfaceCard>
+				<MacintoshInterfaceCard
+					contentType={tech.contentType}
+					title={tech.title}
+					description={tech.description}
+				>
+					<IoDesktopOutline size="2.5rem" />
+				</MacintoshInterfaceCard>
+				<MacintoshInterfaceCard
+					contentType={interest.contentType}
+					title={interest.title}
+					description={interest.description}
+				>
+					<ImHeadphones size="2.5rem" />
+				</MacintoshInterfaceCard>
+			</div>
+		</div>
+		<!-- <div
 			class="pt-8 lg:pb-24 xl:pt-16 flex flex-col sm:flex-row sm:justify-center items-center gap-8 xl:gap-24 2xl:gap-36"
 		>
 			<div
@@ -314,6 +427,6 @@ const { meta } = routes.getSubsetPageMeta();
 					</li>
 				))
 			}
-		</ul>
+		</ul> -->
 	</section>
 </Base>

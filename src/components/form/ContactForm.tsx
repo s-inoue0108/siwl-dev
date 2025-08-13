@@ -92,7 +92,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<input
-						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
+						class="rounded-lg p-2 bg-muted-transparent border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						type="text"
 						id="contact-name"
 						value={name()}
@@ -106,7 +106,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<input
-						class="rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
+						class="rounded-lg p-2 bg-muted-transparent border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						type="email"
 						id="contact-email"
 						value={email()}
@@ -120,7 +120,7 @@ const ContactForm = () => {
 						<span class="text-red-500"> *</span>
 					</label>
 					<textarea
-						class="resize-none rounded-lg p-2 bg-muted-background/30 border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
+						class="resize-none rounded-lg p-2 bg-muted-transparent border-muted-background focus:ring-0 focus:outline-accent-vivid focus:outline-2"
 						id="contact-content"
 						value={content()}
 						onInput={(e) => setContent(e.target.value)}
@@ -135,7 +135,7 @@ const ContactForm = () => {
 						type="checkbox"
 						checked={isAgree()}
 						onInput={(e) => setIsAgree(e.target.checked)}
-						class="w-4 h-4 text-accent-vivid bg-muted-background/30 border-muted-background rounded focus:ring-blue-500 focus:ring-2"
+						class="w-4 h-4 text-accent-vivid bg-muted-transparent border-muted-background rounded focus:ring-blue-500 focus:ring-2"
 						required
 					/>
 					<label for="contact-checkbox" class="ms-2 text-sm font-medium">
