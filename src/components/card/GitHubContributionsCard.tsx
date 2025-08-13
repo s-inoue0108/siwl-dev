@@ -21,13 +21,13 @@ const getContribIntensity = (count: number) => {
 	} else if (count === 0) {
 		return "bg-background";
 	} else if (count < 3) {
-		return "bg-accent-base";
-	} else if (count < 5) {
-		return "bg-[#9599ED] dark:bg-[#5A4ECF]";
-	} else if (count < 10) {
-		return "bg-[#7499EC] dark:bg-[#3C4CC1]";
-	} else {
 		return "bg-accent-sub-base";
+	} else if (count < 5) {
+		return "bg-[#7499EC] dark:bg-[#3C4CC1]";
+	} else if (count < 10) {
+		return "bg-[#9599ED] dark:bg-[#5A4ECF]";
+	} else {
+		return "bg-accent-base";
 	}
 };
 
