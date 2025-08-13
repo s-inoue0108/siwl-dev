@@ -4,7 +4,7 @@ import { AllowedRoutes } from "../route";
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import ProfileImage from "../assets/images/profile-image.jpg";
-import { SiGithub, SiTwitter, SiZenn, SiMoleculer } from "solid-icons/si";
+import { SiGithub, SiMoleculer } from "solid-icons/si";
 import { ImLink } from "solid-icons/im";
 import { IoLogoRss } from "solid-icons/io";
 
@@ -22,7 +22,7 @@ import { getCollection } from "astro:content";
 import WorkCard from "../components/card/WorkCard";
 import MacintoshInterfaceCard from "../components/card/MacintoshInterfaceCard";
 import GitHubContributionsCard from "../components/card/GitHubContributionsCard";
-import { IoCodeSlash, IoDesktopOutline } from "solid-icons/io";
+import { IoDesktopOutline } from "solid-icons/io";
 import { ImHeadphones } from "solid-icons/im";
 
 const works = await getCollection("work", ({ data }) => {
@@ -104,9 +104,9 @@ const skills = {
 
 const major = {
 	contentType: "major",
-	title: "Computational Chemistry & Machine Learning",
+	title: "Computational Chemistry",
 	description:
-		"特異な電子的性質を示す有機半導体材料の物性予測、ならびに新奇半導体材料開発に資する分子科学的知見の獲得を目指して研究を行っています。",
+		"分子動力学 (MD) シミュレーションや機械学習を用いて、卓越した電子的性質を示す有機半導体材料の探索に取り組んでいます。",
 };
 
 const tech = {
@@ -125,8 +125,9 @@ const interest = {
 ---
 
 <Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
-	<section class="flex flex-col gap-8 index-gradient py-8 px-4 md:px-8 lg:px-12 2xl:px-24 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]">
+	<section class="flex flex-col gap-8 xl:gap-16 index-gradient py-8 px-4 md:px-8 lg:px-12 2xl:px-48 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]">
 		<Breadcrumbs />
+		<h2 class="text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide">Who am I?</h2>
 		<MacintoshInterfaceCard title="$ whoami">
 			<div class="flex flex-col xl:flex-row xl:justify-between gap-8 xl:gap-16">
 				<div class="w-full xl:w-1/2">
@@ -139,10 +140,10 @@ const interest = {
 							/>
 						</div>
 						<div class="w-2/3 flex flex-col gap-2">
-							<h2 class="font-bold text-2xl lg:text-5xl 2xl:text-6xl">
+							<h3 class="font-bold text-2xl lg:text-5xl 2xl:text-6xl">
 								{whoami.title}
-							</h2>
-							<span class="text-xs lg:text-sm 2xl:text-lg font-code">{whoami.role}</span>
+							</h3>
+							<span class="text-[0.6rem] md:text-xs lg:text-sm 2xl:text-lg">{whoami.role}</span>
 						</div>
 					</div>
 					<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-4 text-muted-foreground">{whoami.description}</p>
@@ -150,5 +151,36 @@ const interest = {
 				<GitHubContributionsCard calendar={gitHubCalendar} githubUsername={import.meta.env.GITHUB_USERNAME} githubUrl={import.meta.env.GITHUB_URL} />
 			</div>
 		</MacintoshInterfaceCard>
+		<h2 class="text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide">Profile</h2>
+		<div class="flex flex-col lg:flex-row lg:justify-around gap-8">
+			<MacintoshInterfaceCard title={`$ cat ${major.contentType}.dat`}>
+				<div class="flex items-center gap-4">
+					<SiMoleculer size="2rem" />
+					<h3 class="font-bold text-lg lg:text-xl xl:text-2xl">
+						{major.title}
+					</h3>
+				</div>
+				<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-4 text-muted-foreground">{major.description}</p>
+			</MacintoshInterfaceCard>
+			<MacintoshInterfaceCard title={`$ cat ${tech.contentType}.dat`}>
+				<div class="flex items-center gap-4">
+					<IoDesktopOutline size="2rem" />
+					<h3 class="font-bold text-lg lg:text-xl xl:text-2xl">
+						{tech.title}
+					</h3>
+				</div>
+				<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-4 text-muted-foreground">{tech.description}</p>
+			</MacintoshInterfaceCard>
+			<MacintoshInterfaceCard title={`$ cat ${interest.contentType}.dat`}>
+				<div class="flex items-center gap-4">
+					<ImHeadphones size="2rem" />
+					<h3 class="font-bold text-lg lg:text-xl xl:text-2xl">
+						{interest.title}
+					</h3>
+				</div>
+				<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-4 text-muted-foreground">{interest.description}</p>
+			</MacintoshInterfaceCard>
+		</div>
+		<h2 class="text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide">Recent Works</h2>
 	</section>
 </Base>

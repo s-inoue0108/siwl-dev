@@ -61,7 +61,7 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 	];
 
 	return (
-		<div class="w-full xl:w-1/2 flex flex-col gap-4 2xl:gap-8">
+		<div class="w-full xl:w-1/2 flex flex-col gap-4 2xl:gap-8 pb-4">
 			<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-2">
 				<div class="flex items-center gap-2 lg:gap-3 2xl:gap-4">
 					<SiGithub class="w-6 h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
