@@ -46,6 +46,8 @@ const ArchivesCalendar = () => {
 
 	const availableYears = getAvailableYears(2024, new Date().getFullYear());
 
+	console.log(allArticles);
+
 	return (
 		<div class="w-full md:w-fit flex justify-center p-4 bg-muted-background/30 border border-muted-background rounded-xl">
 			<ul class="flex flex-col">

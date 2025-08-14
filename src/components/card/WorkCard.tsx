@@ -31,11 +31,13 @@ const WorkCard = ({ work }: Props) => {
 					)}
 				</div>
 				<div class="w-full border-t border-muted-background h-36">
-					<div class="relative w-full">
+					<div class="p-2 w-full">
 						{isOpenCard() ? (
-							<div class="p-2 absolute w-full">{description}</div>
+							<div class="min-w-[352px] lg:min-w-0 w-full">{description}</div>
 						) : (
-							<div class="p-2 absolute w-full font-bold text-xl tracking-wide">{title}</div>
+							<div class="min-w-[352px] lg:min-w-0 w-full font-bold text-xl tracking-wide">
+								{title}
+							</div>
 						)}
 					</div>
 					<ul class="absolute bottom-1 left-2 flex items-center gap-2">
