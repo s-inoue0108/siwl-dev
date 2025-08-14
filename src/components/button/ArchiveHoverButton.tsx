@@ -46,11 +46,11 @@ const ArchiveHoverButton = ({ articles, inYear, date }: Props) => {
 						<Index each={articles}>
 							{(article) => (
 								<li
-									class={`w-32 leading-3 border ${
+									class={`w-28 leading-3 border ${
 										article().category.id == "tech"
 											? "border-accent-sub-base"
 											: "border-accent-base"
-									} bg-background px-2 py-1 rounded-lg shadow-2xl`}
+									} bg-background p-1 rounded-lg shadow-2xl`}
 								>
 									<a
 										class="font-semibold text-xs hover:opacity-50 transition duration-150"
