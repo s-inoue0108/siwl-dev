@@ -21,12 +21,12 @@ const WorkCard = ({ work }: Props) => {
 			<div class="dot-pattern relative w-full flex flex-col border border-muted-background bg-muted-transparent rounded-xl shadow-lg">
 				<div class="w-full h-36 overflow-clip rounded-t-xl">
 					{image ? (
-						<img src={image.src} loading="lazy" class="object-cover object-center" />
+						<img src={image.src} loading="lazy" class="w-full object-cover object-center" />
 					) : (
 						<img
 							src="/profile-image.jpg"
 							loading="lazy"
-							class="object-cover object-center grayscale"
+							class="w-full object-cover object-center grayscale"
 						/>
 					)}
 				</div>
