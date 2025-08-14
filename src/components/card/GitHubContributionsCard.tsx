@@ -1,5 +1,6 @@
 import { For } from "solid-js";
 import { SiGithub } from "solid-icons/si";
+import GitHubContributionsHoverButton from "../button/GitHubContributionsHoverButton";
 
 interface Props {
 	calendar: {
@@ -14,21 +15,6 @@ interface Props {
 	githubUsername: string;
 	githubUrl: string;
 }
-
-const getContribIntensity = (count: number) => {
-	if (count < 0) {
-		return "bg-muted-background";
-	} else if (count === 0) {
-		return "bg-background";
-	} else if (count < 3) {
-		return "bg-accent-sub-base";
-	} else if (count < 5) {
-		return "bg-[#7499EC] dark:bg-[#3C4CC1]";
-	} else if (count < 10) {
-		return "bg-[#9599ED] dark:bg-[#5A4ECF]";
-	}
-	return "bg-accent-base";
-};
 
 const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props) => {
 	const weeks = calendar.weeks;
@@ -89,18 +75,18 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 			<div class="w-full h-fit scrollbar overflow-x-auto">
 				<div class="w-fit h-fit flex gap-[2px] mb-2">
 					<For each={modifiedWeeks}>
-						{({ contributionDays }) => (
+						{({ contributionDays }, weekPos) => (
 							<ul class="flex flex-col gap-[2px]">
 								<For each={contributionDays}>
-									{({ contributionCount, date }) => (
-										<li
-											class={`relative w-5 h-5 border border-muted-background rounded-md ${getContribIntensity(
-												contributionCount
-											)}`}
-										>
-											<span class="font-semibold whitespace-nowrap absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12px]">
-												{new Date(date).getDate() === 1 ? new Date(date).getMonth() + 1 : ""}
-											</span>
+									{({ contributionCount, date }, pos) => (
+										<li class="relative">
+											<GitHubContributionsHoverButton
+												contributionCount={contributionCount}
+												date={date}
+												weekPos={weekPos()}
+												numOfWeeks={weeks.length}
+												pos={pos()}
+											/>
 										</li>
 									)}
 								</For>

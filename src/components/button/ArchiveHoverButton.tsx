@@ -37,8 +37,7 @@ const ArchiveHoverButton = ({ articles, inYear, date, pos }: Props) => {
 				</span>
 			</button>
 			<Show when={isHover() && articles && inYear}>
-				<button
-					type="button"
+				<div
 					class={`z-[1000] absolute ${
 						new Date(articles[0].publishDateYMD).getMonth() == 11 ? "right-8" : "left-8"
 					} ${pos < 3 ? "top-0" : "bottom-0"}`}
@@ -65,7 +64,7 @@ const ArchiveHoverButton = ({ articles, inYear, date, pos }: Props) => {
 							)}
 						</Index>
 					</ul>
-				</button>
+				</div>
 			</Show>
 		</>
 	);
