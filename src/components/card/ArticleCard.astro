@@ -50,13 +50,13 @@ const { minutes } = getReadingTime(body);
 						{tags && tags.map((tag) => <ClassifyCard collection={tag} />)}
 					</div>
 				</div>
-				<div id={`article-card-${slug}-description`} class="absolute bg-background">
+				<div id={`article-card-${slug}-description`} class="absolute">
 					<a
 						href={`/blog/articles/${slug}`}
 						class=`${category.id === "tech" ? "hover:text-accent-sub-base" : "hover:text-accent-base"} transition-colors duration-150`
 					>
 						<h2
-							class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 overflow-clip"
+							class="font-bold text-xl lg:text-2xl xl:text-3xl px-2 lg:py-2 truncate"
 							transition:name={`title-${article.slug}`}
 						>
 							{data.title}
