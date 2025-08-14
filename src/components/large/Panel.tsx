@@ -16,7 +16,9 @@ const Panel = ({ Content, title, href, isShowToggleButton = true }: Props) => {
 				<a
 					href={href}
 					class={`${
-						href ? "cursor-pointer" : "pointer-events-none"
+						href
+							? "cursor-pointer hover:opacity-70 transition-opacity duration-150"
+							: "pointer-events-none"
 					} flex items-center gap-3 lg:gap-4`}
 				>
 					<div class="w-2 h-[1.5rem] lg:h-[1.8rem] bg-gradient-to-b from-accent-sub-base to-accent-base" />

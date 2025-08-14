@@ -15,16 +15,17 @@ interface Props {
 	articles: any;
 	inYear: boolean;
 	date: string;
+	pos: number;
 }
 
-const ArchiveHoverButton = ({ articles, inYear, date }: Props) => {
+const ArchiveHoverButton = ({ articles, inYear, date, pos }: Props) => {
 	const [isHover, setIsHover] = createSignal(false);
 
 	return (
 		<>
 			<button
 				type="button"
-				class={`relative w-8 h-8 border border-muted-background rounded-lg ${getContribColor(
+				class={`relative w-8 h-8 border border-muted-background rounded-lg hover:opacity-70 transition-opacity duration-150 ${getContribColor(
 					articles,
 					inYear
 				)}`}
@@ -38,15 +39,17 @@ const ArchiveHoverButton = ({ articles, inYear, date }: Props) => {
 			<Show when={isHover() && articles && inYear}>
 				<button
 					type="button"
-					class="z-[1000] absolute bottom-0 left-8"
+					class={`z-[1000] absolute ${
+						new Date(articles[0].publishDateYMD).getMonth() == 11 ? "right-8" : "left-8"
+					} ${pos < 3 ? "top-0" : "bottom-0"}`}
 					onMouseEnter={() => setIsHover(true)}
 					onMouseLeave={() => setIsHover(false)}
 				>
-					<ul class="flex flex-col items-center gap-2">
+					<ul class="flex flex-col items-center gap-1">
 						<Index each={articles}>
 							{(article) => (
 								<li
-									class={`w-28 leading-3 border ${
+									class={`w-32 leading-3 border ${
 										article().category.id == "tech"
 											? "border-accent-sub-base"
 											: "border-accent-base"

@@ -101,9 +101,14 @@ const ArchivesCalendar = () => {
 							{({ contributionDays }) => (
 								<ul class="flex flex-col gap-[2px]">
 									<For each={contributionDays}>
-										{({ date, inYear, articles }) => (
+										{({ date, inYear, articles }, pos) => (
 											<li class="relative">
-												<ArchiveHoverButton articles={articles} inYear={inYear} date={date} />
+												<ArchiveHoverButton
+													articles={articles}
+													inYear={inYear}
+													date={date}
+													pos={pos()}
+												/>
 											</li>
 										)}
 									</For>
