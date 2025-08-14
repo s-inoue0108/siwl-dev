@@ -2,17 +2,7 @@ import { createMemo, createSignal, For, Index } from "solid-js";
 import { getAnnualCalendar } from "../../utils/common/utilfuncs";
 import { allArticles } from "../../utils/store/collections";
 import MacintoshInterfaceCard from "./MacintoshInterfaceCard";
-
-const getContribColor = (articles: any, inYear: boolean) => {
-	if (!inYear) {
-		return "bg-muted-background";
-	} else if (!articles) {
-		return "bg-background";
-	} else if (articles[0].category.id == "tech") {
-		return "bg-accent-sub-base";
-	}
-	return "bg-accent-base";
-};
+import ArchiveHoverButton from "../button/ArchiveHoverButton";
 
 const ArchivesCalendar = () => {
 	const [selectedYear, setSelectedYear] = createSignal<number>(new Date().getFullYear());
@@ -112,17 +102,8 @@ const ArchivesCalendar = () => {
 								<ul class="flex flex-col gap-[2px]">
 									<For each={contributionDays}>
 										{({ date, inYear, articles }) => (
-											<li
-												class={`relative w-8 h-8 border border-muted-background rounded-lg ${getContribColor(
-													articles,
-													inYear
-												)}`}
-											>
-												<span class="font-semibold whitespace-nowrap absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-base">
-													{inYear && new Date(date).getDate() === 1
-														? new Date(date).getMonth() + 1
-														: ""}
-												</span>
+											<li class="relative">
+												<ArchiveHoverButton articles={articles} inYear={inYear} date={date} />
 											</li>
 										)}
 									</For>
