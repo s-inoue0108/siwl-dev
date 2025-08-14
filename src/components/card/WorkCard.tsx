@@ -33,9 +33,9 @@ const WorkCard = ({ work }: Props) => {
 				<div class="p-2 w-full border-t border-muted-background h-36">
 					<div class="w-full">
 						{isOpenCard() ? (
-							<span>{description}</span>
+							<div class="w-full">{description}</div>
 						) : (
-							<span class="font-bold text-xl tracking-wide">{title}</span>
+							<div class="w-full font-bold text-xl tracking-wide">{title}</div>
 						)}
 					</div>
 					<ul class="absolute bottom-1 left-2 flex items-center gap-2">
