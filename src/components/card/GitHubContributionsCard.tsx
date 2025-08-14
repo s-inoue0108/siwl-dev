@@ -26,9 +26,8 @@ const getContribIntensity = (count: number) => {
 		return "bg-[#7499EC] dark:bg-[#3C4CC1]";
 	} else if (count < 10) {
 		return "bg-[#9599ED] dark:bg-[#5A4ECF]";
-	} else {
-		return "bg-accent-base";
 	}
+	return "bg-accent-base";
 };
 
 const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props) => {
@@ -75,16 +74,14 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 					</a>
 				</div>
 				<div class="text-xs lg:text-base 2xl:text-lg text-muted-foreground flex justify-between lg:justify-start lg:flex-col gap-1">
-					<div class="font-bold">{calendar.totalContributions} Contributions</div>
+					<div class="font-bold">{calendar.totalContributions} contributions</div>
 					<ul class="tracking-tight flex items-center gap-1">
 						<li>Less</li>
-						{[0, 2, 4, 9, 11].map((count) => (
-							<li
-								class={`relative w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm ${getContribIntensity(
-									count
-								)}`}
-							></li>
-						))}
+						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-background" />
+						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-accent-sub-base" />
+						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-[#7499EC] dark:bg-[#3C4CC1]" />
+						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-[#9599ED] dark:bg-[#5A4ECF]" />
+						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-accent-base" />
 						<li>More</li>
 					</ul>
 				</div>

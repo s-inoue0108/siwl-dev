@@ -159,3 +159,54 @@ export const toISOStringWithTimezone = (date: Date): string => {
 
   return `${year}-${month}-${day}T${hour}:${min}:${sec}${sign}${tzHour}:${tzMin}`;
 }
+
+type AnnualCalendar = {
+  contributionDays: {
+    date: string;
+    inYear: boolean;
+    [key: string]: any;
+  }[];
+}[];
+
+export const getAnnualCalendar = (year: number): AnnualCalendar => {
+  const startOfISOWeek = (d: Date) => {
+    const date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    const day = date.getDay();
+    date.setDate(date.getDate() - day);
+    return date;
+  }
+
+  const endOfISOWeek = (d: Date) => {
+    const s = startOfISOWeek(d);
+    const e = new Date(s);
+    e.setDate(e.getDate() + 6);
+    return e;
+  }
+
+  const generateFullWeeks = () => {
+    const jan1 = new Date(year, 0, 1);
+    const dec31 = new Date(year, 11, 31);
+
+    let cursor = startOfISOWeek(jan1);      // 2024年末になる可能性あり
+    const last = endOfISOWeek(dec31);       // 2026年頭になる可能性あり
+
+    const result = [];
+    while (cursor <= last) {
+      const week = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(cursor);
+        d.setDate(cursor.getDate() + i);
+        week.push({
+          date: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
+          inYear: d.getFullYear() === year,
+        });
+      }
+      result.push({ contributionDays: week });
+      cursor.setDate(cursor.getDate() + 7);
+    }
+    return result;
+  }
+
+  const fullWeeks = generateFullWeeks();
+  return fullWeeks;
+}

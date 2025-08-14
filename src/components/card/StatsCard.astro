@@ -2,6 +2,7 @@
 import { getReadingTime } from "../../utils/common/reading-time";
 import { allArticles } from "../../utils/store/collections";
 import { allTags } from "../../utils/store/collections";
+import MacintoshInterfaceCard from "./MacintoshInterfaceCard";
 
 const getTotalReadingTime = () => {
 	let totalReadingTime = 0;
@@ -23,14 +24,7 @@ const getTotalReadingTime = () => {
 const { totalReadingTime, totalWordCount } = getTotalReadingTime();
 ---
 
-<div
-	class="px-8 py-4 w-full md:w-fit h-fit flex flex-col gap-8 bg-muted-transparent border border-muted-background rounded-xl"
->
-	<h2
-		class="flex justify-center text-4xl tracking-wide font-bold border-b border-muted-background pb-2"
-	>
-		Total
-	</h2>
+<MacintoshInterfaceCard title="$ stats archives.dat">
 	<ul class="flex flex-col gap-8 pt-4">
 		<li class="flex flex-col gap-2 border-b border-muted-background pb-2">
 			<div class="w-full flex justify-center text-xl">
@@ -65,4 +59,4 @@ const { totalReadingTime, totalWordCount } = getTotalReadingTime();
 			</div>
 		</li>
 	</ul>
-</div>
+</MacintoshInterfaceCard>

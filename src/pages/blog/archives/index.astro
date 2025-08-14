@@ -17,9 +17,7 @@ const { meta } = route.getSubsetPageMeta();
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
 			<Breadcrumbs />
 			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
-			<div
-				class="w-full flex flex-col items-center md:flex-row md:items-start justify-center gap-8 md:gap-12"
-			>
+			<div class="w-full flex flex-col items-center gap-8">
 				<ArchivesCalendar client:load />
 				<StatsCard />
 			</div>

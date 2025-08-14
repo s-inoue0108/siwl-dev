@@ -1,7 +1,18 @@
 import { createMemo, createSignal, For, Index } from "solid-js";
-import { IoChevronForward, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
-import { getMonths } from "../../utils/common/utilfuncs";
+import { getAnnualCalendar } from "../../utils/common/utilfuncs";
 import { allArticles } from "../../utils/store/collections";
+import MacintoshInterfaceCard from "./MacintoshInterfaceCard";
+
+const getContribColor = (articles: any, inYear: boolean) => {
+	if (!inYear) {
+		return "bg-muted-background";
+	} else if (!articles) {
+		return "bg-background";
+	} else if (articles[0].category.id == "tech") {
+		return "bg-accent-sub-base";
+	}
+	return "bg-accent-base";
+};
 
 const ArchivesCalendar = () => {
 	const [selectedYear, setSelectedYear] = createSignal<number>(new Date().getFullYear());
@@ -13,28 +24,41 @@ const ArchivesCalendar = () => {
 		setSelectedYear(value);
 	};
 
-	const months = getMonths();
+	const getAnuualCalendarWithArticleInfo = (year: number) => {
+		const annualCalendar = getAnnualCalendar(year);
 
-	const numberOfArticleEachMonths = createMemo(() => {
-		const currentYearArticles = allArticles.filter(({ data }) => {
-			return data.publishDate.getFullYear() === selectedYear();
+		const articles = allArticles.map(({ slug, data }) => {
+			const publishDateYMD = new Date(data.publishDate).toISOString().split("T")[0];
+			return {
+				slug,
+				...data,
+				publishDateYMD,
+			};
 		});
 
-		const numberOfArticlesEachMonths = months.map((m) => {
-			return { ...m, numberOf: { tech: 0, idea: 0 } };
+		const articlesPubDates = articles.map(({ publishDateYMD }) => {
+			return publishDateYMD;
 		});
 
-		currentYearArticles.forEach(({ data }) => {
-			const idx = data.publishDate.getMonth();
-			if (data.category.id === "tech") {
-				numberOfArticlesEachMonths[idx].numberOf.tech++;
-			} else {
-				numberOfArticlesEachMonths[idx].numberOf.idea++;
+		const total = articlesPubDates.filter((date) => {
+			return new Date(date).getFullYear() === year;
+		});
+
+		for (let w = 0; w < annualCalendar.length; w++) {
+			const week = annualCalendar[w].contributionDays;
+
+			for (let d = 0; d < week.length; d++) {
+				const day = week[d];
+				if (articlesPubDates.includes(day.date) && day.inYear) {
+					annualCalendar[w].contributionDays[d].articles = articles.filter(({ publishDateYMD }) => {
+						return publishDateYMD === day.date;
+					});
+				}
 			}
-		});
+		}
 
-		return numberOfArticlesEachMonths;
-	});
+		return { calender: annualCalendar, total: total.length };
+	};
 
 	const getAvailableYears = (start: number, end: number): number[] => {
 		const arr = [];
@@ -45,63 +69,70 @@ const ArchivesCalendar = () => {
 	};
 
 	const availableYears = getAvailableYears(2024, new Date().getFullYear());
-
-	console.log(allArticles);
+	const annualCalendar = createMemo(() => getAnuualCalendarWithArticleInfo(selectedYear()));
 
 	return (
-		<div class="w-full md:w-fit flex justify-center p-4 bg-muted-background/30 border border-muted-background rounded-xl">
-			<ul class="flex flex-col">
-				<select
-					id="select-year"
-					name="select-year"
-					onChange={(e) => handleChange(e)}
-					class="mb-8 border-muted-background bg-muted-background/30 text-center text-lg xl:text-2xl font-semibold rounded-lg"
-				>
-					<Index each={availableYears}>
-						{(year) => (
-							<option value={year()} selected={year() === selectedYear()}>
-								{year()}
-							</option>
-						)}
-					</Index>
-				</select>
-				<For each={numberOfArticleEachMonths()}>
-					{({ name, value, numberOf }) => {
-						return (
-							<li class="border-b border-muted-background">
-								<ul class="flex justify-between items-center gap-8 py-4">
-									<li>
-										<ul class="flex font-code text-2xl lg:text-3xl xl:text-4xl gap-4">
-											<li class="flex items-center gap-1 text-accent-sub-base">
-												<IoDesktopOutline />
-												<span>{numberOf.tech.toString().padStart(2, "0")}</span>
+		<MacintoshInterfaceCard title="$ ls archives/">
+			<div class="w-full flex flex-col gap-4">
+				<div class="w-full flex flex-col lg:flex-row lg:justify-between items-center gap-4">
+					<div class="font-bold text-xl w-full">
+						{annualCalendar().total} contributions in {selectedYear()}
+					</div>
+					<div class="w-full flex items-center justify-between lg:justify-start gap-4">
+						<ul class="text-lg flex items-center gap-4">
+							<ul class="flex items-center gap-1">
+								<li class="w-4 h-4 border border-muted-background rounded-sm bg-accent-sub-base" />
+								<li>Tech</li>
+							</ul>
+							<ul class="flex items-center gap-1">
+								<li class="w-4 h-4 border border-muted-background rounded-sm bg-accent-base" />
+								<li>Idea</li>
+							</ul>
+						</ul>
+						<select
+							id="select-year"
+							name="select-year"
+							onChange={(e) => handleChange(e)}
+							class="py-2 w-fit border-none bg-muted-background font-semibold text-muted-foreground text-center text-sm rounded-xl"
+						>
+							<Index each={availableYears}>
+								{(year) => (
+									<option value={year()} selected={year() === selectedYear()}>
+										{year()}
+									</option>
+								)}
+							</Index>
+						</select>
+					</div>
+				</div>
+				<div class="w-full h-fit scrollbar overflow-x-auto mb-2">
+					<div class="w-fit h-fit flex gap-[2px] mb-2">
+						<For each={annualCalendar().calender}>
+							{({ contributionDays }) => (
+								<ul class="flex flex-col gap-[2px]">
+									<For each={contributionDays}>
+										{({ date, inYear, articles }) => (
+											<li
+												class={`relative w-8 h-8 border border-muted-background rounded-lg ${getContribColor(
+													articles,
+													inYear
+												)}`}
+											>
+												<span class="font-semibold whitespace-nowrap absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-base">
+													{inYear && new Date(date).getDate() === 1
+														? new Date(date).getMonth() + 1
+														: ""}
+												</span>
 											</li>
-											<li class="flex items-center gap-1 text-accent-base">
-												<IoBulbOutline />
-												<span>{numberOf.idea.toString().padStart(2, "0")}</span>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a
-											href={`/blog/archives/${selectedYear()}-${value}`}
-											class={`${
-												numberOf.tech + numberOf.idea === 0
-													? "select-none pointer-events-none opacity-30"
-													: "hover:opacity-70"
-											} font-code tracking-wide font-bold text-3xl lg:text-4xl xl:text-5xl transition-opacity duration-150 flex items-center`}
-										>
-											<span>{name.slice(0, 3)}</span>
-											<IoChevronForward />
-										</a>
-									</li>
+										)}
+									</For>
 								</ul>
-							</li>
-						);
-					}}
-				</For>
-			</ul>
-		</div>
+							)}
+						</For>
+					</div>
+				</div>
+			</div>
+		</MacintoshInterfaceCard>
 	);
 };
 
