@@ -74,13 +74,13 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 						github.com/{githubUsername}
 					</a>
 				</div>
-				<div class="font-code text-xs lg:text-base 2xl:text-lg text-muted-foreground flex flex-col gap-1">
+				<div class="text-xs lg:text-base 2xl:text-lg text-muted-foreground flex justify-between lg:justify-start lg:flex-col gap-1">
 					<div class="font-bold">{calendar.totalContributions} Contributions</div>
 					<ul class="tracking-tight flex items-center gap-1">
 						<li>Less</li>
 						{[0, 2, 4, 9, 11].map((count) => (
 							<li
-								class={`relative w-3 h-3 border border-muted-background rounded-sm ${getContribIntensity(
+								class={`relative w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm ${getContribIntensity(
 									count
 								)}`}
 							></li>

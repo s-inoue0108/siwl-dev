@@ -72,20 +72,7 @@ const workCollection = defineCollection({
     isDraft: z.boolean().default(false),
     title: z.string(),
     description: z.string().optional(),
-    url: z.string(),
-    suburl: z.string().optional(),
-    keywords: z.array(z.string()),
-    image: image().optional(),
-  }),
-});
-
-// 業績
-const achievementCollection = defineCollection({
-  type: "data",
-  schema: ({ image }) => z.object({
-    isDraft: z.boolean().default(false),
-    title: z.string(),
-    description: z.string().optional(),
+    date: z.date(),
     url: z.string(),
     suburl: z.string().optional(),
     keywords: z.array(z.string()),
@@ -100,5 +87,4 @@ export const collections = {
   "fixed": fixedCollection,
   "bookmark": bookmarkCollection,
   "work": workCollection,
-  "achievement": achievementCollection
 };

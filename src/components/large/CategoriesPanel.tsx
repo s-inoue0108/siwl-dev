@@ -30,7 +30,7 @@ const CategoriesPanel = ({ currentPath = "" }: Props) => {
 											: `${id === "tech" ? "text-accent-sub-base" : "text-accent-base"}`
 									} cursor-pointer ${
 										data.colors.bgHover
-									} w-full hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-lg px-1`}
+									} w-full hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-xl px-1`}
 								>
 									<div class="relative w-full h-[96px] sm:h-[128px]">
 										{

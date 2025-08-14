@@ -17,10 +17,6 @@
 			"path": "src/content/bookmark"
 		},
 		{
-			"name": "Achievements",
-			"path": "src/content/achievement"
-		},
-		{
 			"name": "Works",
 			"path": "src/content/work"
 		},

@@ -1,7 +1,8 @@
 isDraft: false
-title: ブログ
-description: 旧ブログサイトです。静的サイトジェネレータとして Astro 、バックエンドにヘッドレス CMS を使用し、SSG により動作します。GSAP を使用して動きのあるサイトに仕上げています。
+title: ブログサイト
+description: 静的サイトジェネレータとして Astro, バックエンドに Headless CMS を使用したブログサイトです。GSAP によるアニメーションを多用しています。
+date: 2024-10-01T22:00:00+09:00
 url: https://astro-library.vercel.app
 suburl: https://github.com/s-inoue0108/astro-library
-keywords: [SSG, GSAP, Headless CMS, Astro, Vue, SASS, Vercel, Vercel Edge]
+keywords: [Astro, Vue, SASS]
 image: ./images/si_library.png
