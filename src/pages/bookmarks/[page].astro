@@ -7,14 +7,54 @@ import { AllowedRoutes } from "../../route";
 import Pager from "../../components/button/Pager";
 import ProfileCard from "../../components/card/ProfileCard.astro";
 import NoItem from "../../components/common/NoItem.astro";
-import BookmarkCard from "../../components/card/BookmarkCard.astro";
+import BookmarkCard from "../../components/card/BookmarkCard";
+import ogs from "open-graph-scraper";
+import type { ImageObject } from "open-graph-scraper/types";
+
+export type BookmarkWithOgp = {
+	url: string;
+	resUrl?: string;
+	name: string;
+	sitename?: string;
+	title?: string;
+	description?: string;
+	image?: ImageObject[];
+	favicon?: string;
+};
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+	const getOgp = async (url: string) => {
+		try {
+			const { result } = await ogs({ url });
+			return result;
+		} catch (error) {
+			console.error("Error fetching Open Graph Data:", error);
+			return {};
+		}
+	};
+
 	const bookmarks = await getCollection("bookmark", ({ data }) => {
 		return import.meta.env.PROD ? !data.isDraft : true;
 	});
 
-	return paginate(bookmarks, { pageSize: 10 });
+	const bookmarksWithOgp = await Promise.all(
+		bookmarks.map(async ({ data }) => {
+			const ogp = await getOgp(data.url);
+
+			return {
+				url: data.url,
+				resUrl: ogp.ogUrl,
+				name: data.name,
+				sitename: ogp.ogSiteName,
+				title: ogp.ogTitle,
+				description: ogp.ogDescription,
+				image: ogp.ogImage,
+				favicon: ogp.favicon,
+			} satisfies BookmarkWithOgp;
+		})
+	);
+
+	return paginate(bookmarksWithOgp, { pageSize: 10 });
 };
 
 const { page } = Astro.props;
@@ -28,12 +68,12 @@ const { meta } = route.getRootPageMeta();
 		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
 			<Breadcrumbs count={page.data.length} />
 			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
-			<ul class="flex justify-center flex-wrap gap-8 lg:gap-16">
+			<ul class="flex flex-col gap-8">
 				{
 					page.data.length > 0 ? (
 						page.data.map((bookmark) => {
 							return (
-								<li class="w-full lg:w-fit">
+								<li class="w-full">
 									<BookmarkCard bookmark={bookmark} />
 								</li>
 							);

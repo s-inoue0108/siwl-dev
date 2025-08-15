@@ -5,6 +5,8 @@ export default function rehypeInlineAnchor() {
   return (tree: Root) => {
     visit(tree, "element", (node) => {
       if (node.tagName !== "a") return;
+      if ((node.properties.className && Array.isArray(node.properties.className) && node.properties.className.includes("bare-link-card"))) return
+
       const id = node.properties.id as string;
       const className = node.properties.className as string[];
       if (id && /^user-content-fnref-\d+$/.test(id)) return;

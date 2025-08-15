@@ -10,8 +10,6 @@ import cloudflare from "@astrojs/cloudflare";
 import remarkMath from "remark-math";
 import remarkCodeTitles from "remark-flexible-code-titles";
 import remarkBreaks from "remark-breaks";
-// @ts-ignore
-import rlc from "remark-link-card";
 import rehypeRaw from "rehype-raw";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
@@ -19,6 +17,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeWrapAll from "rehype-wrap-all";
 
 // Remark/Rehype Plugins from made
+import remarkBareLink from "./src/plugins/remark/remark-bare-link";
 import remarkCallout from "./src/plugins/remark/remark-callout";
 import remarkFigureCaption from "./src/plugins/remark/remark-figure-caption";
 import remarkTwitterEmbed from "./src/plugins/remark/remark-twitter-embed";
@@ -93,7 +92,7 @@ export default defineConfig({
 			remarkCallout,
 			remarkMath,
 			remarkCodeTitles,
-			[rlc, { cache: false, shortenUrl: true }],
+			remarkBareLink,
 		],
 		rehypePlugins: [
 			rehypeRaw,

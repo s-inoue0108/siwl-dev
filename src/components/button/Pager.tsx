@@ -3,9 +3,10 @@ import type { CollectionEntry } from "astro:content";
 import { IoChevronBack, IoChevronForward } from "solid-icons/io";
 import { BsThreeDots } from "solid-icons/bs";
 import { getSerialNumbers } from "../../utils/common/utilfuncs";
+import type { BookmarkWithOgp } from "../../pages/bookmarks/[page].astro";
 
 interface Props {
-	page: Page<CollectionEntry<"article" | "bookmark">>;
+	page: Page<CollectionEntry<"article"> | BookmarkWithOgp>;
 }
 
 const Pager = ({ page }: Props) => {
