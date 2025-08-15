@@ -37,7 +37,6 @@ export default function remarkBareLink() {
             value: linkCard,
           }
 
-          // node.children.splice(0, 1, linkCardNode as { type: "text", value: string });
           tree.children.splice(index, 1, linkCardNode as { type: "text", value: string });
         });
       });
@@ -115,18 +114,25 @@ const validateFaviconUrl = async (url: string, favicon: string) => {
 
   if (/^https?:\/\//.test(favicon)) {
     reqUrl = favicon;
-  }
-
-  if (favicon.startsWith("/")) {
+  } else if (favicon.startsWith("/")) {
     reqUrl = `${new URL(url).origin}${favicon}`;
   } else {
     reqUrl = `${new URL(url).origin}/${favicon}`;
   }
 
   try {
-    const res = await fetch(reqUrl, { method: "GET" });;
-    if (res.ok && res.headers.get("content-type")?.startsWith("image/")) {
-      return reqUrl;
+    const res = await fetch(reqUrl, {
+      method: "GET",
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+      },
+    });
+
+    const contentType = res.headers.get("content-type");
+
+    if (res.ok && contentType?.startsWith("image/")) {
+      return res.url;
     } else {
       return "";
     }
@@ -157,20 +163,20 @@ const generateLinkCard = (data: OgpData): string => {
             `}
           </div>
           <div class="relative flex flex-col gap-2 xl:gap-4 px-2 py-1 xl:px-3 xl:py-2 w-full h-24 xl:h-36">
-            <div class="font-bold xl:text-2xl truncate">${title ?? sitename}</div>
-            <div class="h-12 xl:h-16 text-xs xl:text-lg text-muted-foreground truncate">${description}</div>
-            <div class="absolute bottom-1 left-1 xl:bottom-2 xl:left-2 flex items-center gap-1 w-[calc(100%-1rem)]">
+            <div class="font-bold xl:text-xl truncate">${title ?? sitename}</div>
+            <div class="h-12 xl:h-16 text-xs xl:text-base text-muted-foreground truncate">${description}</div>
+            <div class="absolute bottom-1 left-1 xl:bottom-2 xl:left-2 flex items-center gap-1 xl:gap-2 w-[calc(100%-1rem)]">
               ${favicon && favicon !== "" ? `
-                <div class="h-4 xl:h-5">
+                <div class="h-3 xl:h-4">
                   <img src="${favicon}" class="h-full object-contain" />
                 </div>
               ` : `
-                <div class="h-4 xl:h-5">
+                <div class="h-3 xl:h-4">
                   <svg class="h-full fill-muted-foreground" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48Z"></path><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M256 48c-58.07 0-112.67 93.13-112.67 208S197.93 464 256 464s112.67-93.13 112.67-208S314.07 48 256 48Z"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M117.33 117.33c38.24 27.15 86.38 43.34 138.67 43.34s100.43-16.19 138.67-43.34M394.67 394.67c-38.24-27.15-86.38-43.34-138.67-43.34s-100.43 16.19-138.67 43.34"></path><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M256 48 256 464"></path><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M464 256 48 256"></path></svg>
                 </div>
               `}
-              <span class="font-code text-xs xl:text-base text-muted-foreground whitespace-nowrap truncate">
-                ${resUrl && resUrl !== "" ? resUrl : url}
+              <span class="font-code text-xs xl:text-sm text-muted-foreground whitespace-nowrap truncate">
+                ${resUrl && resUrl !== "" ? new URL(resUrl).origin : new URL(url).origin}
               </span>
             </div>
           </div>
