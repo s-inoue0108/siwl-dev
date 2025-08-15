@@ -24,8 +24,6 @@ const BookmarkCard = ({ bookmark }: Props) => {
 	const { url, resUrl, name, sitename, title, description, image, favicon } = bookmark;
 	const faviconUrl = getFaviconUrl(url, favicon);
 
-	console.log(faviconUrl);
-
 	return (
 		<div class="w-full h-24 xl:h-36 border border-muted-background bg-muted-transparent rounded-xl shadow-lg hover:bg-muted-background transition duration-200">
 			<a href={resUrl ?? url} target="_blank" rel="noopener noreferrer">
