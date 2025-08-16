@@ -41,6 +41,7 @@ const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
 	return (
 		<button
 			type="button"
+			title={isDark() ? "Light theme" : "Dark theme"}
 			onClick={toggleTheme}
 			class={`${
 				isBorder &&

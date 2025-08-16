@@ -153,7 +153,8 @@ const ContactForm = () => {
 
 				<div class="mx-auto">
 					<button
-						class="w-40 flex items-center justify-center font-bold bg-gradient-to-r from-accent-sub-base to-accent-base px-4 py-2 rounded-lg"
+						title="Submit form"
+						class="w-40 flex items-center justify-center font-bold bg-gradient-to-r from-accent-sub-base to-accent-base px-4 py-2 rounded-lg hover:opacity-70 transition duration-200"
 						type="submit"
 					>
 						{isSubmitting() ? (

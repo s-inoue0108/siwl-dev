@@ -5,6 +5,7 @@ const PageTopButton = () => {
 		<div class="w-32 h-full border border-muted-background bg-muted-transparent rounded-xl shadow-lg">
 			<button
 				type="button"
+				title="Return to top"
 				onClick={() => window.scrollTo({ top: 0 })}
 				class="w-full h-full flex flex-col justify-center items-center text-muted-foreground hover:text-foreground transition-colors duration-150"
 			>

@@ -30,6 +30,8 @@ const SearchInput = () => {
 		<div class="relative rounded-xl flex items-center border border-muted-background xl:w-[16.4rem]">
 			<label class="rounded-l-xl relative w-12 h-12 bg-muted-background" for="search">
 				<button
+					type="button"
+					title={keyword() === "" ? "Search" : "Clear"}
 					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-muted-foreground text-lg hover:text-foreground transition-colors duration-150"
 					onClick={() => setKeyword("")}
 				>

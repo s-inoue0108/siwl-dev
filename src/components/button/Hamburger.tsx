@@ -50,6 +50,7 @@ const Hamburger = ({ size = "1.6rem", isBorder = false }: Props) => {
 	return (
 		<button
 			type="button"
+			title="Menu"
 			onClick={toggleOpen}
 			class={`${
 				isBorder &&

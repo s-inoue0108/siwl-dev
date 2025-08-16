@@ -48,7 +48,9 @@ const { Content, headings } = await article.render();
 					<Shares
 						appOwner={import.meta.env.APP_OWNER}
 						appUrl={import.meta.env.APP_URL}
+						body={article.body}
 						title={article.data.title}
+						description={article.data.description}
 						slug={article.slug}
 						client:visible
 					/>
@@ -69,6 +71,8 @@ const { Content, headings } = await article.render();
 						appOwner={import.meta.env.APP_OWNER}
 						appUrl={import.meta.env.APP_URL}
 						title={article.data.title}
+						body={article.body}
+						description={article.data.description}
 						slug={article.slug}
 						client:visible
 					/>

@@ -27,6 +27,7 @@ const Panel = ({ Content, title, href, isShowToggleButton = true }: Props) => {
 				{isShowToggleButton && (
 					<button
 						type="button"
+						title={isOpen() ? "Fold" : "Expand"}
 						onClick={() => setIsOpen(!isOpen())}
 						class="text-3xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 					>
