@@ -1,16 +1,8 @@
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
-import ogs from "open-graph-scraper";
+import type { OgpData } from "../../utils/common/utilfuncs";
+import { fetchOgp } from "../../utils/common/utilfuncs";
 
-interface OgpData {
-  url: string;
-  resUrl: string;
-  sitename: string;
-  title: string;
-  description: string;
-  image: string;
-  favicon: string;
-};
 
 export default function remarkBareLink() {
   return async (tree: Root) => {
@@ -94,93 +86,3 @@ const generateLinkCard = (data: OgpData): string => {
   return dom
 }
 
-const validateImageUrl = async (image: string) => {
-  if (!image || image === "") return "";
-
-  try {
-    const res = await fetch(image, { method: "GET" });
-    const contentType = res.headers.get("content-type");
-
-    if (res.ok && contentType?.startsWith("image/")) {
-
-      // base64 encode
-      if (image.length > 1000) {
-        const buffer = await res.arrayBuffer();
-        const base64 = Buffer.from(buffer).toString("base64");
-        return `data:${contentType};base64,${base64}`
-      }
-
-      return image;
-    } else {
-      return "";
-    }
-  } catch (err) {
-    return "";
-  }
-}
-
-const validateFaviconUrl = async (url: string, favicon: string) => {
-  if (!favicon || favicon === "") return "";
-
-  let reqUrl;
-
-  if (/^https?:\/\//.test(favicon)) {
-    reqUrl = favicon;
-  } else if (favicon.startsWith("/")) {
-    reqUrl = `${new URL(url).origin}${favicon}`;
-  } else {
-    reqUrl = `${new URL(url).origin}/${favicon}`;
-  }
-
-  try {
-    const res = await fetch(reqUrl, {
-      method: "GET",
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
-      },
-    });
-
-    const contentType = res.headers.get("content-type");
-
-    if (res.ok && contentType?.startsWith("image/")) {
-      return res.url;
-    } else {
-      return "";
-    }
-  } catch (err) {
-    return "";
-  }
-};
-
-const fetchOgp = async (url: string): Promise<OgpData> => {
-
-  const data = {
-    url: url,
-    resUrl: "",
-    sitename: "No title",
-    title: "No title",
-    description: "No description",
-    image: "",
-    favicon: "",
-  }
-
-  try {
-    const { result } = await ogs({ url });
-
-    const image = await validateImageUrl(result.ogImage?.[0]?.url ?? "");
-    const favicon = await validateFaviconUrl(url, result.favicon ?? "");
-
-    data.resUrl = result.ogUrl ?? "";
-    data.sitename = result.ogSiteName ?? "";
-    data.title = result.ogTitle ?? "";
-    data.description = result.ogDescription ?? "";
-    data.image = image;
-    data.favicon = favicon;
-
-    return data;
-  } catch (error) {
-    console.error(`[remark-bare-link] Error: ${error}`);
-    return data;
-  }
-};
