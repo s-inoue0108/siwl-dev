@@ -37,7 +37,7 @@ const Shares = ({ appOwner, appUrl, body, title, description, slug }: Props) => 
 
 	const shareLink = () => {
 		navigator.share({
-			title: encodeURIComponent(`${title} | ${appOwner}`),
+			title: `${title} | ${appOwner}`,
 			text: description ?? "",
 			url,
 		});
