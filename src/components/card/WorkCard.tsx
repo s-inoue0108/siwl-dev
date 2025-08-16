@@ -15,58 +15,56 @@ const WorkCard = ({ work }: Props) => {
 	return (
 		<button
 			type="button"
-			class="hover:opacity-70 transition-opacity duration-200"
+			title={isOpenCard() ? "Display description" : "Display title"}
+			class="relative w-full hover:bg-muted-background border border-muted-background bg-muted-transparent rounded-xl shadow-lg transition duration-200"
 			onClick={() => setIsOpenCard(!isOpenCard())}
 		>
-			<div class="dot-pattern relative w-full flex flex-col border border-muted-background bg-muted-transparent rounded-xl shadow-lg">
-				<div class="w-full h-36 overflow-clip rounded-t-xl">
-					{image ? (
-						<img src={image.src} loading="lazy" class="w-full object-cover object-center" />
-					) : (
-						<img
-							src="/profile-image.jpg"
-							loading="lazy"
-							class="w-full object-cover object-center grayscale"
-						/>
-					)}
+			<div class="flex flex-col">
+				<div class="w-full h-36 rounded-t-xl overflow-clip">
+					<img
+						src={image ? image.src : "/profile-image.jpg"}
+						loading="lazy"
+						class="block w-full object-cover"
+					/>
 				</div>
 				<div class="w-full border-t border-muted-background h-36">
-					<div class="p-2 w-full">
-						{isOpenCard() ? (
-							<div class="min-w-[320px] lg:min-w-0 w-full">{description}</div>
-						) : (
-							<div class="min-w-[320px] lg:min-w-0 w-full font-bold text-xl tracking-wide">
-								{title}
-							</div>
-						)}
-					</div>
-					<ul class="absolute bottom-1 left-2 flex items-center gap-2">
-						<li>
-							<a href={url} target="_blank" rel="noopener noreferrer">
-								<TbExternalLink size="1.5rem" />
-							</a>
-						</li>
-						{suburl && (
-							<li>
-								<a href={suburl} target="_blank" rel="noopener noreferrer">
-									{/^https?:\/\/github.com\/.*/.test(suburl) ? (
-										<IoLogoGithub size="1.5rem" />
-									) : (
-										<ImLink size="1.5rem" />
-									)}
-								</a>
-							</li>
-						)}
-					</ul>
-					<ul class="absolute bottom-1 right-1 flex items-center gap-2">
-						<li>
-							{keywords.slice(0, 3).map((word: string) => (
-								<span class="p-1 text-xs tracking-tight font-semibold text-muted-foreground">{`# ${word}`}</span>
-							))}
-						</li>
-					</ul>
+					{isOpenCard() ? (
+						<div class="p-2">{description}</div>
+					) : (
+						<div class="p-2 font-bold text-xl tracking-wide">{title}</div>
+					)}
 				</div>
 			</div>
+			<ul class="absolute bottom-1 left-2 flex items-center gap-2">
+				<li>
+					<a href={url} target="_blank" rel="noopener noreferrer">
+						<TbExternalLink size="1.5rem" />
+					</a>
+				</li>
+				{suburl && (
+					<li>
+						<a
+							class="hover:opacity-70 transition duration-150"
+							href={suburl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{/^https?:\/\/github.com\/.*/.test(suburl) ? (
+								<IoLogoGithub size="1.5rem" />
+							) : (
+								<ImLink size="1.5rem" />
+							)}
+						</a>
+					</li>
+				)}
+			</ul>
+			<ul class="absolute bottom-1 right-1 flex items-center gap-2">
+				<li>
+					{keywords.slice(0, 3).map((word: string) => (
+						<span class="p-1 text-xs tracking-tight font-semibold text-muted-foreground">{`# ${word}`}</span>
+					))}
+				</li>
+			</ul>
 		</button>
 	);
 };

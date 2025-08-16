@@ -52,7 +52,7 @@ const Shares = ({ appOwner, appUrl, body, title, description, slug }: Props) => 
 					<button
 						type="button"
 						title="Share"
-						class="text-muted-foreground border border-muted-background px-2 py-1 rounded-lg text-lg hover:text-foreground hover:bg-muted-background transition duration-150 flex items-center gap-2"
+						class="text-muted-foreground font-semibold border border-muted-background px-2 py-1 rounded-lg text-lg hover:text-foreground hover:bg-muted-background transition duration-150 flex items-center gap-2"
 						onClick={() => shareLink()}
 					>
 						<IoShareSocialOutline />
