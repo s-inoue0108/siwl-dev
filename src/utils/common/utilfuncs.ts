@@ -223,38 +223,6 @@ export interface OgpData {
   favicon: string;
 };
 
-export const fetchOgp = async (url: string): Promise<OgpData> => {
-
-  const data = {
-    url: url,
-    resUrl: "",
-    sitename: "No title",
-    title: "No title",
-    description: "No description",
-    image: "",
-    favicon: "",
-  }
-
-  try {
-    const { result } = await ogs({ url });
-
-    const image = await validateImageUrl(result.ogImage?.[0]?.url ?? "");
-    const favicon = await validateFaviconUrl(url, result.favicon ?? "");
-
-    data.resUrl = result.ogUrl ?? "";
-    data.sitename = result.ogSiteName ?? "";
-    data.title = result.ogTitle ?? "";
-    data.description = result.ogDescription ?? "";
-    data.image = image;
-    data.favicon = favicon;
-
-    return data;
-  } catch (error) {
-    console.error(`[remark-bare-link] Error: ${error}`);
-    return data;
-  }
-};
-
 const validateImageUrl = async (image: string) => {
   if (!image || image === "") return "";
 
@@ -311,5 +279,37 @@ const validateFaviconUrl = async (url: string, favicon: string) => {
     }
   } catch (err) {
     return "";
+  }
+};
+
+export const fetchOgp = async (url: string): Promise<OgpData> => {
+
+  const data = {
+    url: url,
+    resUrl: "",
+    sitename: "No title",
+    title: "No title",
+    description: "No description",
+    image: "",
+    favicon: "",
+  }
+
+  try {
+    const { result } = await ogs({ url });
+
+    const image = await validateImageUrl(result.ogImage?.[0]?.url ?? "");
+    const favicon = await validateFaviconUrl(url, result.favicon ?? "");
+
+    data.resUrl = result.ogUrl ?? "";
+    data.sitename = result.ogSiteName ?? "";
+    data.title = result.ogTitle ?? "";
+    data.description = result.ogDescription ?? "";
+    data.image = image;
+    data.favicon = favicon;
+
+    return data;
+  } catch (error) {
+    console.error(`[remark-bare-link] Error: ${error}`);
+    return data;
   }
 };
