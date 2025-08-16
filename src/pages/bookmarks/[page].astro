@@ -9,104 +9,27 @@ import ProfileCard from "../../components/card/ProfileCard.astro";
 import NoItem from "../../components/common/NoItem.astro";
 import BookmarkCard from "../../components/card/BookmarkCard";
 import ogs from "open-graph-scraper";
+import type { ImageObject } from "open-graph-scraper/types";
 
-export interface OgpData {
+export type BookmarkWithOgp = {
 	url: string;
-	resUrl: string;
-	sitename: string;
-	title: string;
-	description: string;
-	image: string;
-	favicon: string;
-}
+	resUrl?: string;
+	name: string;
+	sitename?: string;
+	title?: string;
+	description?: string;
+	image?: ImageObject[];
+	favicon?: string;
+};
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
-	const validateImageUrl = async (image: string) => {
-		if (!image || image === "") return "";
-
-		try {
-			const res = await fetch(image, { method: "GET" });
-			const contentType = res.headers.get("content-type");
-
-			if (res.ok && contentType?.startsWith("image/")) {
-				// base64 encode
-				if (image.length > 1000) {
-					const buffer = await res.arrayBuffer();
-					const base64 = Buffer.from(buffer).toString("base64");
-					return `data:${contentType};base64,${base64}`;
-				}
-
-				return image;
-			} else {
-				return "";
-			}
-		} catch (err) {
-			return "";
-		}
-	};
-
-	const validateFaviconUrl = async (url: string, favicon: string) => {
-		if (!favicon || favicon === "") return "";
-
-		let reqUrl;
-
-		if (/^https?:\/\//.test(favicon)) {
-			reqUrl = favicon;
-		} else if (favicon.startsWith("/")) {
-			reqUrl = `${new URL(url).origin}${favicon}`;
-		} else {
-			reqUrl = `${new URL(url).origin}/${favicon}`;
-		}
-
-		try {
-			const res = await fetch(reqUrl, {
-				method: "GET",
-				headers: {
-					"User-Agent":
-						"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-				},
-			});
-
-			const contentType = res.headers.get("content-type");
-
-			if (res.ok && contentType?.startsWith("image/")) {
-				return res.url;
-			} else {
-				return "";
-			}
-		} catch (err) {
-			return "";
-		}
-	};
-
-	const fetchOgp = async (url: string): Promise<OgpData> => {
-		const data = {
-			url: url,
-			resUrl: "",
-			sitename: "No title",
-			title: "No title",
-			description: "No description",
-			image: "",
-			favicon: "",
-		};
-
+	const getOgp = async (url: string) => {
 		try {
 			const { result } = await ogs({ url });
-
-			const image = await validateImageUrl(result.ogImage?.[0]?.url ?? "");
-			const favicon = await validateFaviconUrl(url, result.favicon ?? "");
-
-			data.resUrl = result.ogUrl ?? "";
-			data.sitename = result.ogSiteName ?? "";
-			data.title = result.ogTitle ?? "";
-			data.description = result.ogDescription ?? "";
-			data.image = image;
-			data.favicon = favicon;
-
-			return data;
+			return result;
 		} catch (error) {
-			console.error(`[remark-bare-link] Error: ${error}`);
-			return data;
+			console.error("Error fetching Open Graph Data:", error);
+			return {};
 		}
 	};
 
@@ -116,8 +39,18 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 
 	const bookmarksWithOgp = await Promise.all(
 		bookmarks.map(async ({ data }) => {
-			const ogp = await fetchOgp(data.url);
-			return { name: data.name, ...ogp };
+			const ogp = await getOgp(data.url);
+
+			return {
+				url: data.url,
+				resUrl: ogp.ogUrl,
+				name: data.name,
+				sitename: ogp.ogSiteName,
+				title: ogp.ogTitle,
+				description: ogp.ogDescription,
+				image: ogp.ogImage,
+				favicon: ogp.favicon,
+			} satisfies BookmarkWithOgp;
 		})
 	);
 

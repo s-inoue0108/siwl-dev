@@ -1,31 +1,36 @@
-import type { CollectionEntry } from "astro:content";
-
-interface OgpData {
-	url: string;
-	resUrl: string;
-	sitename: string;
-	title: string;
-	description: string;
-	image: string;
-	favicon: string;
-}
+import type { BookmarkWithOgp } from "../../pages/bookmarks/[page].astro";
 
 interface Props {
-	bookmark: OgpData & { name: CollectionEntry<"bookmark">["data"]["name"] };
+	bookmark: BookmarkWithOgp;
 }
+
+const getFaviconUrl = (url: string, favicon: string | undefined) => {
+	if (!favicon) return;
+
+	if (/^https?:\/\//.test(favicon)) {
+		return favicon;
+	}
+
+	if (favicon.startsWith("/")) {
+		return `${new URL(url).origin}${favicon}`;
+	}
+
+	return `${new URL(url).origin}/${favicon}`;
+};
 
 const BookmarkCard = ({ bookmark }: Props) => {
 	const { url, resUrl, name, description, image, favicon } = bookmark;
+	const faviconUrl = getFaviconUrl(url, favicon);
 
 	return (
 		<div class="w-full h-24 xl:h-36 border border-muted-background bg-muted-transparent rounded-xl hover:bg-muted-background transition duration-200">
 			<a class="bare-link-card" href="${url}" target="_blank" rel="noopener noreferrer">
 				<div class="flex flex-row-reverse items-center">
 					<div class="border-l border-muted-background w-32 h-24 xl:w-96 xl:h-36">
-						{image && image !== ""
+						{image && image[0]
 							? `
               <img
-                src="${image}"
+                src="${image[0].url}"
                 class="w-full h-full object-cover rounded-r-[calc(0.75rem-1px)]"
               />
             `
@@ -41,10 +46,10 @@ const BookmarkCard = ({ bookmark }: Props) => {
 							{description}
 						</div>
 						<div class="absolute bottom-1 left-1 xl:bottom-2 xl:left-2 flex items-center gap-1 xl:gap-2 w-[calc(100%-1rem)]">
-							{favicon && favicon !== ""
+							{faviconUrl && faviconUrl !== ""
 								? `
                 <div class="h-3 xl:h-4">
-                  <img src="${favicon}" class="h-full object-contain" />
+                  <img src="${faviconUrl}" class="h-full object-contain" />
                 </div>
               `
 								: `
