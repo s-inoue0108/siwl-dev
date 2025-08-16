@@ -102,7 +102,7 @@ const whoami = {
 	title: import.meta.env.APP_OWNER,
 	role: import.meta.env.APP_OWNER_ROLE,
 	description:
-		"計算化学の大学院生、Web フロントエンド開発者です。研究では分子動力学 (MD) シミュレーション、量子化学計算、機械学習を扱っています。Web 開発は趣味。",
+		"計算化学の大学院生 / Web フロントエンド開発者です。研究では分子動力学 (MD)、量子化学計算、機械学習を扱っています。Web 開発は趣味として手すさび程度にやっていますが、その知見が研究活動に活きることがあるのが地味にうれしいところです。",
 };
 
 const major = {
@@ -112,7 +112,7 @@ const major = {
 		icon: SiMoleculer,
 	},
 	description:
-		"分子動力学 (MD) シミュレーションや機械学習を用いて、卓越した電子的性質を示す有機半導体材料の探索に取り組んでいます。",
+		"ソフトマターと呼ばれる物質群の性質に関する研究をしています。とりわけ、優れた電気伝導性を示す有機半導体材料を計算化学で効率的に探索することをやっています。",
 	skills: [
 		{ icon: SiPython, link: "https://www.python.org/" },
 		{ icon: SiNumpy, link: "https://numpy.org/" },
@@ -126,11 +126,11 @@ const major = {
 const tech = {
 	type: "tech",
 	title: {
-		text: "Web Frontend Development",
+		text: "Web Development",
 		icon: IoDesktopOutline,
 	},
 	description:
-		"Vue.js やメタフレームワークによる Web アプリケーションの UI 開発や静的 Web サイト構築をやっています。最近は Astro を好んで使います。",
+		"Vue.js やメタフレームワークによる静的 Web サイト構築を得意としています。最近は Astro を好んで使います。バックエンドも遊びで触ることがあります。",
 	skills: [
 		{ icon: SiTypescript, link: "https://www.typescriptlang.org/" },
 		{ icon: SiVuedotjs, link: "https://ja.vuejs.org/" },
@@ -149,7 +149,7 @@ const interest = {
 		icon: ImHeadphones,
 	},
 	description:
-		"インディーズの電子音楽をしょっちゅう聴いています。最近は聴くだけでなく、DJ コントローラーで MIX するなどして遊んでいます。",
+		"インディーズの電子音楽を好んで聴いています。最近は聴くだけでなく、DJ コントローラーで MIX して遊ぶとかもします。いつか作曲もできるようになるといいなぁ。",
 	skills: [
 		{ icon: SiPioneerdj, link: "https://www.pioneerdj.com/", subText: "rekordbox / DDJ-FLX4" },
 	],
@@ -184,10 +184,10 @@ const interest = {
 							<span class="text-[0.6rem] md:text-xs lg:text-sm 2xl:text-lg">{whoami.role}</span>
 						</div>
 					</div>
-					<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-4 text-muted-foreground">
+					<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-3 text-muted-foreground">
 						{whoami.description}
 					</p>
-					<ul class="flex items-center gap-4 2xl:gap-6 mt-4">
+					<ul class="flex items-center gap-4 mt-3">
 						<li>
 							<a
 								class="text-muted-foreground hover:text-foreground transition duration-150"
@@ -195,7 +195,7 @@ const interest = {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<SiZenn class="w-6 h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
+								<SiZenn class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
 							</a>
 						</li>
 						<li>
@@ -205,7 +205,7 @@ const interest = {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<SiTwitter class="w-6 h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
+								<SiTwitter class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
 							</a>
 						</li>
 						<li>
@@ -215,7 +215,7 @@ const interest = {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<IoLogoRss class="w-6 h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
+								<IoLogoRss class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
 							</a>
 						</li>
 					</ul>
