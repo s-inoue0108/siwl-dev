@@ -1,5 +1,14 @@
-import type { OgpData } from "../../utils/common/utilfuncs";
 import type { CollectionEntry } from "astro:content";
+
+interface OgpData {
+	url: string;
+	resUrl: string;
+	sitename: string;
+	title: string;
+	description: string;
+	image: string;
+	favicon: string;
+}
 
 interface Props {
 	bookmark: OgpData & { name: CollectionEntry<"bookmark">["data"]["name"] };

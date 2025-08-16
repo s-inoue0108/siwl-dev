@@ -3,7 +3,16 @@ import type { CollectionEntry } from "astro:content";
 import { IoChevronBack, IoChevronForward } from "solid-icons/io";
 import { BsThreeDots } from "solid-icons/bs";
 import { getSerialNumbers } from "../../utils/common/utilfuncs";
-import type { OgpData } from "../../utils/common/utilfuncs";
+
+interface OgpData {
+	url: string;
+	resUrl: string;
+	sitename: string;
+	title: string;
+	description: string;
+	image: string;
+	favicon: string;
+}
 
 interface Props {
 	page: Page<CollectionEntry<"article"> | OgpData>;
