@@ -146,7 +146,7 @@ const generateLinkCard = (data: OgpData): string => {
 
   const dom =
     `<div class="my-8 w-full h-24 xl:h-36 border border-muted-background bg-muted-transparent rounded-xl hover:bg-muted-background transition duration-200">
-      <a class="bare-link-card" href="${resUrl && resUrl !== "" ? resUrl : url}" target="_blank" rel="noopener noreferrer">
+      <a class="bare-link-card" href="${url}" target="_blank" rel="noopener noreferrer">
         <div class="flex items-center">
           <div class="border-r border-muted-background w-32 h-24 xl:w-64 xl:h-36">
             ${image && image !== "" ? `

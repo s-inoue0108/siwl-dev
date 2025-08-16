@@ -8,20 +8,20 @@ export class AllowedRoutes {
       name: "Home",
       matchers: [/^\/$/,],
       rootpath: "/",
-      description: "とある大学院生のテックブログです。計算化学、MI・機械学習の研究をしています。",
+      description: "大学院生です。計算化学、MI・機械学習の研究をしています。Web フロントエンドが好き。",
       subsets: [],
     },
     {
       name: "Blog",
       matchers: [/^\/blog\/[0-9]+/,],
       rootpath: "/blog/1",
-      description: "とある大学院生のテックブログです。計算化学、MI・機械学習の研究をしています。",
+      description: "Web フロントエンド開発、計算化学と機械学習に関する記事を中心に書いています。",
       subsets: [
         {
           name: "Categories",
           matchers: [/^\/blog\/categories/, /^\/blog\/categories\/[tech|idea]+\/[0-9]+/,],
           rootpath: "/blog/categories",
-          description: "カテゴリの一覧を掲載しています。",
+          description: "記事カテゴリの一覧を掲載しています。",
           subsets: [],
         },
         {
@@ -51,7 +51,7 @@ export class AllowedRoutes {
       name: "About",
       matchers: [/^\/about/],
       rootpath: "/about",
-      description: "サイト運営者のプロフィールを掲載しています。",
+      description: "計算化学の大学院生、Web フロントエンド開発者です。研究では分子動力学 (MD) シミュレーション、量子化学計算、機械学習を扱っています。Web 開発は趣味。",
       subsets: [],
     },
     {
@@ -72,7 +72,7 @@ export class AllowedRoutes {
       name: "Privacy Policy",
       matchers: [/^\/privacy-policy/],
       rootpath: "/privacy-policy",
-      description: "当サイトのプライバシーポリシーを掲載しています。",
+      description: "プライバシーポリシーを掲載しています。",
       subsets: [],
     },
     {
