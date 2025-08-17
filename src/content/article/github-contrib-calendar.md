@@ -6,7 +6,7 @@ category: tech
 tags: [astro, ts]
 description: "GitHub のコントリビューションカレンダーを Web API から取得して、Astro サイトに埋め込む実装を行いました。"
 publishDate: 2025-08-16T10:22:10+09:00
-updateDate: 2025-08-16T11:32:39+09:00
+updateDate: 2025-08-17T11:24:28+09:00
 relatedArticles: []
 ---
 
@@ -22,7 +22,7 @@ https://github.com/settings/tokens
 
 発行した API Token を環境変数に控えておきます。
 
-```env:.env
+```dotenv:.env
 GITHUB_ACCESS_TOKEN=ghp_*****
 ```
 
@@ -32,7 +32,7 @@ GITHUB_ACCESS_TOKEN=ghp_*****
 
 以下の GraphQL を使ってコントリビューションカレンダーを取得できます。
 
-```txt:query.txt
+```json:query.txt
 {
   "query":
     "query($user: String!) {
@@ -60,7 +60,7 @@ GITHUB_ACCESS_TOKEN=ghp_*****
 
 cURL で GraphQL API を叩いてレスポンスを確認します。エンドポイントは `https://api.github.com/graphql` です。また、リクエストヘッダーに先で発行した API Token を含めます。
 
-```curl:cURL
+```bash:ターミナル
 curl https://api.github.com/graphql \
 -H "Authorization: Bearer ghp_*****" \
 -d @query.txt

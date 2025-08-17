@@ -8,7 +8,7 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 	const notoSansJPRegular = fs.readFileSync("src/assets/fonts/NotoSansJP-Regular.ttf");
 	const notoSansJPBold = fs.readFileSync("src/assets/fonts/NotoSansJP-Bold.ttf");
 
-	const siwl = fs.readFileSync("src/assets/images/siwl-logo.svg").toString("base64");
+	const siwl = fs.readFileSync("src/assets/images/siwl-logo-white.svg").toString("base64");
 	const profileImage = fs.readFileSync("src/assets/images/profile-image.jpg").toString("base64");
 
 	const width = 1280;
@@ -23,8 +23,8 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 					width: "100%",
 					height: "100%",
 					fontFamily: "Montserrat, Noto Sans JP, sans-serif",
-					backgroundImage:
-						"linear-gradient(90deg, rgb(30, 70, 180), rgb(82, 152, 236), rgb(183, 154, 237), rgb(120, 82, 220))",
+					background:
+						"radial-gradient(ellipse at top center, rgb(4, 8, 24), transparent 70%), radial-gradient(ellipse at left center, rgb(30, 70, 180) 0%, transparent 70%), radial-gradient(ellipse at right center, rgb(120, 82, 220) 0%, transparent 70%), radial-gradient(ellipse at bottom center, rgb(4, 8, 24), transparent 70%)",
 				},
 				children: [
 					{
@@ -37,9 +37,6 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 								top: "50%",
 								left: "50%",
 								transform: "translate(-50%, -50%)",
-								backgroundColor: "#fcfcfc",
-								borderRadius: "16px",
-								boxShadow: "4px 4px 4px 4px rgba(0, 0, 0, 0.3)",
 								padding: "0 32px",
 							},
 							children: [
@@ -48,7 +45,7 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 									props: {
 										style: {
 											width: "100%",
-											color: "#030303",
+											color: "rgb(252, 252, 252)",
 											fontWeight: "700",
 											fontSize: "4.6rem",
 										},
@@ -66,7 +63,7 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 										src: `data:image/svg+xml;base64,${siwl}`,
 										width: 320,
 										height: 320,
-										alt: "siwl.dev",
+										alt: "SIWL.dev",
 									},
 								},
 								{
@@ -111,14 +108,14 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 													src: `data:image/jpeg;base64,${profileImage}`,
 													width: 1008,
 													height: 756,
-													alt: "siwl.dev",
+													alt: "SIWL.dev",
 												},
 											},
 											{
 												type: "p",
 												props: {
 													style: {
-														color: "#030303",
+														color: "rgb(252, 252, 252)",
 														fontWeight: "400",
 														fontSize: "3.45rem",
 													},

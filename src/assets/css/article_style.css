@@ -6,11 +6,11 @@
 
 	/* list */
 	ul {
-		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-disc my-8;
+		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-disc my-4;
 	}
 
 	ol {
-		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-decimal my-8;
+		@apply pl-[1.125rem] xl:pl-[1.25rem] list-outside list-decimal my-4;
 	}
 
 	ol > li::marker {
@@ -19,7 +19,7 @@
 
 	ul > li,
 	ol > li {
-		@apply py-3 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
+		@apply py-1 tracking-wide leading-relaxed 2xl:leading-loose lg:text-[1.125rem] xl:text-[1.25rem];
 	}
 
 	ul > li > ul {
@@ -37,20 +37,20 @@
 
 	/* image */
 	p > img {
-		@apply rounded-md lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-16;
+		@apply rounded-md lg:max-w-[75%] xl:max-w-[66.6666%] mx-auto mt-8 xl:mt-12;
 	}
 
 	/* caption */
 	.caption-image {
-		@apply mb-8;
+		@apply mb-8 xl:mb-12;
 	}
 
 	.caption-table {
-		@apply mt-8;
+		@apply mt-8 xl:mt-12;
 	}
 
 	.table-block {
-		@apply mx-auto mb-16 w-full overflow-x-auto;
+		@apply mx-auto mb-8 xl:mb-12 w-full overflow-x-auto;
 	}
 
 	.table-block::-webkit-scrollbar {
@@ -94,13 +94,13 @@
 
 	/* blockquote */
 	blockquote {
-		@apply block text-muted-foreground border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 lg:my-12;
+		@apply block text-muted-foreground border-l-8 border-muted-background px-4 py-2 w-full h-fit my-8 xl:my-12;
 	}
 
 	/* callout */
 
 	.callout {
-		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 lg:my-12;
+		@apply block px-4 py-2 w-full h-fit rounded-xl my-8 xl:my-12;
 
 		.remark-code-title {
 			@apply bg-muted-background;
@@ -289,11 +289,11 @@
 
 	/* code block */
 	.remark-code-title {
-		@apply text-foreground w-fit mt-8 lg:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
+		@apply text-foreground w-fit mt-8 xl:mt-12 text-sm lg:text-base xl:text-lg tracking-wide font-semibold px-3 py-1 rounded-t-lg bg-muted-background border border-muted-background;
 	}
 
 	.code-block {
-		@apply w-full h-fit block relative my-8 lg:my-12 rounded-lg border border-muted-background;
+		@apply w-full h-fit block relative my-8 xl:my-12 rounded-lg border border-muted-background;
 	}
 
 	.code-block > pre {
@@ -301,7 +301,7 @@
 	}
 
 	.remark-code-title + .code-block {
-		@apply mt-0 lg:mt-0 rounded-tl-none;
+		@apply mt-0 rounded-tl-none;
 	}
 
 	.remark-code-title + .code-block > pre {
@@ -351,7 +351,7 @@
 
 	/* hr */
 	hr {
-		@apply my-4 border-[0.5px] border-muted-background;
+		@apply my-8 xl:my-12 border-[0.5px] border-muted-background;
 	}
 
 	/* math block */
