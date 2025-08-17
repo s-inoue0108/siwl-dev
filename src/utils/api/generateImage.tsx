@@ -24,7 +24,7 @@ export const getImageResponse = async (title: string): Promise<Response> => {
 					height: "100%",
 					fontFamily: "Montserrat, Noto Sans JP, sans-serif",
 					background:
-						"radial-gradient(ellipse at top center, rgb(4, 8, 24), transparent 70%), radial-gradient(ellipse at left center, rgb(30, 70, 180) 0%, transparent 70%), radial-gradient(ellipse at right center, rgb(120, 82, 220) 0%, transparent 70%), radial-gradient(ellipse at bottom center, rgb(4, 8, 24), transparent 70%)",
+						"radial-gradient(ellipse at top center, rgb(4, 8, 24), transparent 100%), radial-gradient(ellipse at left center, rgb(30, 70, 180) 0%, transparent 70%), radial-gradient(ellipse at right center, rgb(120, 82, 220) 0%, transparent 70%), radial-gradient(ellipse at bottom center, rgb(4, 8, 24), transparent 100%)",
 				},
 				children: [
 					{
