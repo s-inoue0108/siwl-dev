@@ -29,6 +29,7 @@ import remarkSpeakerDeckEmbed from "./src/plugins/remark/remark-speakerdeck-embe
 import remarkDocswellEmbed from "./src/plugins/remark/remark-docswell-embed";
 import remarkSpotifyEmbed from "./src/plugins/remark/remark-spotify-embed";
 import remarkSoundCloudEmbed from "./src/plugins/remark/remark-soundcloud-embed";
+import remarkBandcampEmbed from "./src/plugins/remark/remark-bandcamp-embed";
 import remarkWikimediaEmbed from "./src/plugins/remark/remark-wikimedia-embed";
 import remarkNoteEmbed from "./src/plugins/remark/remark-note-embed";
 import remarkHatenablogEmbed from "./src/plugins/remark/remark-hatenablog-embed";
@@ -84,6 +85,7 @@ export default defineConfig({
 			remarkDocswellEmbed,
 			remarkSpotifyEmbed,
 			remarkSoundCloudEmbed,
+			remarkBandcampEmbed,
 			remarkWikimediaEmbed,
 			remarkMisskeyEmbed,
 			remarkNoteEmbed,

@@ -6,7 +6,7 @@ category: tech
 tags: [markdown]
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-01-17T22:46:24+09:00
+updateDate: 2025-08-17T15:25:07+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -16,15 +16,15 @@ relatedArticles: [renewal-note]
 
 ```yaml:フロントマターの例
 ---
-isDraft: false                         # required [true|false]
-isLimited: false                       # required [true|false]
-title: ~~~                             # required
-category: tech                         # required [tech|idea]
-tags: [html, css, js]                  # optional
-description: ~~~                       # optional
-publishDate: yyyy-MM-ddTHH:mm:ss+09:00 # required
-updateDate: yyyy-MM-ddTHH:mm:ss+09:00  # optional
-relatedArticles: [~~~]                 # optional
+isDraft: false                         # required (boolean)
+isLimited: false                       # required (boolean)
+title: hoge                            # required (string)
+category: tech                         # required ("tech"|"idea")
+tags: [html, css, js]                  # optional (string[])
+description: fuga                      # required (string[])
+publishDate: yyyy-MM-ddTHH:mm:ss+09:00 # required (Date)
+updateDate: yyyy-MM-ddTHH:mm:ss+09:00  # optional (Date)
+relatedArticles: [one, two, three]     # optional (string[])
 ---
 ```
 
@@ -134,6 +134,8 @@ relatedArticles: [~~~]                 # optional
 -----
 ```
 
+-----
+
 ## リンク
 
 ### むき出しのリンク
@@ -153,14 +155,14 @@ https://siwl.dev/blog/articles/renewal-note
 ### インラインリンク
 
 ```md:インラインリンク
-[リニューアルノート](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
+[この URL](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
 
 https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 
 [相対パスによるリンク](/blog/articles/renewal-note) は内部リンクです。
 ```
 
-[リニューアルノート](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
+[この URL](https://siwl.dev/blog/articles/renewal-note) はインラインリンクです。
 
 https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 
@@ -572,11 +574,11 @@ $$
 
 ## 埋め込み
 
-いくつかの Web サービスは oEmbed API をはじめとする外部 API を利用した特殊な埋め込みに対応しています。
+以下の Web サービスのリンクを書き込むと、リンクカードの代わりにサービスの埋め込みを生成します。
 
 *[!table] 対応済みの Web サービス*
 
-| サービス名   | サービス形態     | URL                        |
+| サービス名   | サービス形態     | ベース URL                 |
 | :----------- | :--------------- | :------------------------- |
 | GitHub Gist  | ソースコード共有 | `https://gist.github.com`  |
 | CodePen      | ソースコード共有 | `https://codepen.io`       |
@@ -584,9 +586,10 @@ $$
 | Docswell     | スライド共有     | `https://docswell.com`     |
 | Spotify      | 音楽配信         | `https://open.spotify.com` |
 | SoundCloud   | 音楽配信         | `https://soundcloud.com`   |
+| Bandcamp     | 音楽配信         | `https://bandcamp.com`     |
 | YouTube      | 動画配信         | `https://youtube.com`      |
 | Twitter (X)  | SNS              | `https://x.com`            |
-| Misskey      | SNS              | `https://misskey.io` ほか  |
+| Misskey      | SNS              | `https://misskey.io`       |
 | Wikipedia    | 百科事典         | `https://ja.wikipedia.org` |
 | note         | ブログ           | `https://note.com`         |
 | Hatena Blog  | ブログ           | `https://hatenablog.blog`  |
@@ -648,6 +651,16 @@ https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
 ```
 
 https://soundcloud.com/porter-robinson/porter-robinson-madeon-shelter-5
+
+### Bandcamp
+
+```md
+<!--https://hoge.bandcamp.com/<album|track>/<title>-->
+https://synthion.bandcamp.com/album/cyanotype
+```
+
+https://synthion.bandcamp.com/album/cyanotype
+
 
 ### YouTube
 

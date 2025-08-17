@@ -43,7 +43,7 @@ export default function remarkTwitterEmbed() {
     try {
       await Promise.all(transformer.map((t) => t()));
     } catch (error) {
-      console.error(`[remark-youtube-embed] Error: ${error}`);
+      console.error(`[remark-twitter-embed] Error: ${error}`);
     }
   }
 }
