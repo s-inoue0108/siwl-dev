@@ -1,13 +1,20 @@
 ---
 isDraft: false
-isLimited: true
+isLimited: false
 title: Lasso でスパースモデリング
 category: tech
-tags: [ml, python, pandas, numpy, sklearn]
+tags:
+  - ml
+  - python
+  - pandas
+  - numpy
+  - sklearn
 description: L1正則化による変数選択をともなう機械学習の基本手法と実装についてまとめます。
-publishDate: 2025-08-10T12:35:32+09:00
-updateDate: 2025-08-11T22:55:17+09:00
-relatedArticles: [linear-regression-theory, ml-note]
+publishDate: 2025-08-27T21:21:30+09:00
+updateDate: 2025-08-27T21:21:30+09:00
+relatedArticles:
+  - linear-regression-theory
+  - ml-note
 ---
 
 ## Lasso
