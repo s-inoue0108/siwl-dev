@@ -11,7 +11,7 @@ tags:
   - sklearn
 description: L1正則化による変数選択をともなう機械学習の基本手法と実装についてまとめます。
 publishDate: 2025-08-27T21:21:30+09:00
-updateDate: 2025-08-27T21:21:30+09:00
+updateDate: 2025-08-27T21:24:30+09:00
 relatedArticles:
   - linear-regression-theory
   - ml-note
@@ -126,6 +126,6 @@ best_params = optuna.best_params
 
 ## Stability Selection
 
-Lasso は[変数選択の結果と推定量の一致性（**オラクル性**）が統計的に満たされないという欠点を持ちます](https://gochikika.ntt.com/Modeling/regularization_advanced.html)。この性質を改善するための方法の一つとして、ブートストラップリサンプリングを組み合わせた [**Stability Selection**]([https://doi.org/10.1111/j.1467-9868.2010.00740.x](https://doi.org/10.1111/j.1467-9868.2010.00740.x)) という手法が提案されています。
+Lasso は[変数選択の結果と推定量の一致性（**オラクル性**）が統計的に満たされないという欠点を持ちます](https://gochikika.ntt.com/Modeling/regularization_advanced.html)。この性質を改善するための方法の一つとして、ブートストラップリサンプリングを組み合わせた [**Stability Selection**](https://doi.org/10.1111/j.1467-9868.2010.00740.x) という手法が提案されています。
 \
 考え方は至って単純です。ブートストラップ法で得られたサンプルごとに Lasso モデルを組み、変数ごとに選択確率を算出することで、より安定した変数選択が行えるようになります。
