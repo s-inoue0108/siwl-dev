@@ -24,7 +24,6 @@ Lasso の大きな特徴は、有効でない変数の回帰係数をゼロに�
 
 ### 実装
 
-
 カリフォルニアの住宅価格データセットを Lasso で予測してみます。
 
 scikit-learn を用いることで簡単に実装ができます。`LassoCV` を用いると、交差検証によって適当な正則化係数の値を抽出してくれます。
@@ -118,7 +117,8 @@ study.optimize(objective, n_trials=100)
 best_params = optuna.best_params
 ```
 
-## Adaptive Lasso
+## Stability Selection
 
-
-## Randomized Lasso
+Lasso は[変数選択の結果と推定量の一致性（**オラクル性**）が統計的に満たされないという欠点を持ちます](https://gochikika.ntt.com/Modeling/regularization_advanced.html)。この性質を改善するための方法の一つとして、ブートストラップリサンプリングを組み合わせた [**Stability Selection**]([https://doi.org/10.1111/j.1467-9868.2010.00740.x](https://doi.org/10.1111/j.1467-9868.2010.00740.x)) という手法が提案されています。
+\
+考え方は至って単純です。ブートストラップ法で得られたサンプルごとに Lasso モデルを組み、変数ごとに選択確率を算出することで、より安定した変数選択が行えるようになります。
