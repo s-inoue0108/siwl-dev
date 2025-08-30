@@ -3,13 +3,11 @@ isDraft: false
 isLimited: false
 title: PySCF で量子化学計算
 category: tech
-tags:
-  - python
-  - comp-science
+tags: [python, comp-science]
 description: Python API を利用して量子化学計算を行うことができるライブラリ「PySCF」の実装例を示します。
 publishDate: 2025-08-30T15:24:30+09:00
 updateDate: 2025-08-30T15:24:30+09:00
-relatedArticles:
+relatedArticles: []
 ---
 - 公式サイト
 
