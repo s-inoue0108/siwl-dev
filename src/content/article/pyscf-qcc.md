@@ -6,7 +6,7 @@ category: tech
 tags: [python, comp-science]
 description: Python API を利用して量子化学計算を行うことができるライブラリ「PySCF」の実装例を示します。
 publishDate: 2025-08-30T15:24:30+09:00
-updateDate: 2025-08-30T15:24:30+09:00
+updateDate: 2025-09-02T07:07:30+09:00
 relatedArticles: []
 ---
 - 公式サイト
@@ -64,8 +64,12 @@ https://libxc.gitlab.io/functionals/
 
 https://pyscf.org/user/geomopt.html
 
-PySCF では、`geomeTRIC` または `PyBerny` を構造最適化のバックエンドに用いるため、いずれかをあらかじめインストールしておく必要があります。下の例では `geomeTRIC` を用いており、対応するソルバーは `pyscf.geomopt.geometric_solver.optimize` です。
-\
+PySCF では、`geomeTRIC` または `PyBerny` を構造最適化のバックエンドに用いるため、いずれかをあらかじめインストールしておく必要があります。ここでは `geomeTRIC` を用います。対応するソルバーは `pyscf.geomopt.geometric_solver.optimize` です。
+
+```bash:インストール
+pip install geometric
+```
+
 また、PySCF では入出力フォーマットとして `xyz` ファイルを使用することができます。
 
 ```py
@@ -92,24 +96,90 @@ mol_opt = optimize(mf, maxsteps=1000)
 mol_opt.tofile("output.xyz", format="xyz")
 ```
 
+### 各種物性の計算
+
+拡張ライブラリの `pyscf/properties` を用いることで様々な電子物性を計算できます。
+
+```bash:インストール
+pip install git+https://github.com/pyscf/properties
+```
+
+以下の例では分極率（テンソル）を計算しています。
+
+```
+from pyscf import gto, dft
+from pyscf.prop.polarizability.rks import Polarizability
+
+# define molecule and basis set (load xyz file)
+mol = gto.M(atom="input.xyz", basis="ccpvdz")
+
+# initalize dft solver
+mf = dft.RKS(mol)
+
+# set functional
+mf.xc = "b3lyp"
+
+# scf algorithm
+mf = mf.newton()
+
+# compute energy
+mf.kernel()
+
+# compute polarizability
+polar = mf.Polarizability().polarizability()
+```
+
+### mpi の使用
+
+https://github.com/pyscf/mpi4pyscf
+
+`mpi4pyscf` モジュールを用いることで並列計算を行うことができます。
+
+```bash:インストール
+pip install mpi4pyscf
+```
+
+以下は、MPI で CCSD を行うサンプルです。
+
+```py
+from pyscf import gto, scf
+from mpi4pyscf import cc as mpi_cc
+
+# define molecule and basis set (load xyz file)
+mol = gto.M(atom="input.xyz", basis="ccpvdz")
+
+# initialize solver
+mf = scf.RHF(mol).run()
+
+# compute ccsd energy
+cc = mpi_cc.RCCSD(mf)
+cc.kernel()
+```
+
 ### GPU の使用
 
 https://pyscf.org/user/gpu.html
 
-`gpu4pyscf` モジュールを用いることで、一部の計算プロセスを GPU 上で行うことができます。API もシンプルで、ソルバーのインスタンスを `to_gpu` または `to_cpu` メソッドで適宜変換することで、容易にデバイスの切り替えが可能となっています。
+`gpu4pyscf` モジュールを用いることで、一部の計算プロセスを GPU 上で行うことができます。
+
+```bash:インストール
+pip install gpu4pyscf-cuda12x
+```
+
+API もシンプルで、ソルバーのインスタンスを `to_gpu` または `to_cpu` メソッドで適宜変換することで、容易にデバイスの切り替えが可能となっています。
 \
 以下は、GPU で DFT による構造最適化を行うサンプルです。
 
 ```py
 from pyscf import gto
-from gpu4pyscf.dft import rks
+from gpu4pyscf import dft as gpu_dft
 from pyscf.geomopt.geometric_solver import optimize
 
 # define molecule and basis set (load xyz file)
 mol = gto.M(atom="input.xyz", basis="ccpvdz")
 
 # initalize dft solver and set functional
-mf = rks.RKS(mol, xc="b3lyp").to_gpu()
+mf = gpu_dft.RKS(mol, xc="b3lyp").to_gpu()
 
 # scf algorithm
 mf = mf.newton()
