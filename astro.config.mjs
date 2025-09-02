@@ -71,8 +71,8 @@ export default defineConfig({
 		syntaxHighlight: "shiki",
 		shikiConfig: {
 			themes: {
-				light: "github-light",
-				dark: "ayu-dark",
+				light: "catppuccin-latte",
+				dark: "catppuccin-macchiato",
 			},
 		},
 		remarkPlugins: [
