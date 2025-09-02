@@ -6,7 +6,7 @@ category: tech
 tags: [python, comp-science]
 description: Python API を利用して量子化学計算を行うことができるライブラリ「PySCF」の実装例を示します。
 publishDate: 2025-08-30T15:24:30+09:00
-updateDate: 2025-09-02T07:07:30+09:00
+updateDate: 2025-09-02T18:40:04+09:00
 relatedArticles: []
 ---
 - 公式サイト
@@ -106,7 +106,7 @@ pip install git+https://github.com/pyscf/properties
 
 以下の例では分極率（テンソル）を計算しています。
 
-```
+```py
 from pyscf import gto, dft
 from pyscf.prop.polarizability.rks import Polarizability
 

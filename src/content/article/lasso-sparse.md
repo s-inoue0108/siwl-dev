@@ -6,7 +6,7 @@ category: tech
 tags: [ml, python, pandas, numpy, sklearn]
 description: L1正則化による変数選択をともなう機械学習の基本手法と実装についてまとめます。
 publishDate: 2025-08-27T21:21:30+09:00
-updateDate: 2025-08-30T10:53:30+09:00
+updateDate: 2025-09-02T18:39:57+09:00
 relatedArticles: [linear-regression-theory, ml-note]
 ---
 
@@ -123,7 +123,7 @@ Lasso は[変数選択の結果と推定量の一致性（**オラクル性**）
 \
 考え方は至って単純です。ブートストラップ法で得られたサンプルごとに Lasso モデルを組み、変数ごとに選択確率を算出することで、より安定した変数選択が行えるようになります。
 \
-以下は Lasso による Stability Selection を並列で行うためのコード例です。
+以下の例では Lasso による Stability Selection を並列で行うためのクラスを定義しています。正則化係数のチューニングは Optuna で行います。
 
 ```py
 import numpy as np
@@ -146,7 +146,7 @@ def worker(subsample_idx, X, y, seed):
     X_sub, y_sub = X.iloc[subsample_idx], y.iloc[subsample_idx]
     
     # K-Fold クロスバリデータ
-    kf = KFold(n_splits=n_fold, shuffle=True, random_state=seed)
+    kf = KFold(n_splits=5, shuffle=True, random_state=seed)
     kf_split = list(kf.split(X_sub, y_sub))
     
     # 損失関数の定義
@@ -188,8 +188,6 @@ def worker(subsample_idx, X, y, seed):
             model.fit(X_train_weight, y_train)
         
             y_pred = model.predict(X_true_scaled)
-            y_pred = np.maximum(0, y_pred)
-            y_pred = np.minimum(90, y_pred)
             
             # CVE を計算
             score = mean_squared_error(y_true, y_pred)
@@ -207,8 +205,6 @@ def worker(subsample_idx, X, y, seed):
     # 特徴量選択の実行
     settings = {
         "random_state": seed,
-        "max_iter": 10000,
-        "fit_intercept": True
     }
     
     # 全てのパラメタについてモデルを作成
@@ -293,4 +289,20 @@ class StabilitySelectionLasso:
     # transform
     def transform(self, X):
         return X.iloc[:, self.selected_features_]
+```
+
+```py
+from sklearn.datasets import fetch_california_housing
+
+X, y = fetch_california_housing(return_X_y=True, as_frame=True)
+
+model = StabilitySelectionLasso(
+    seed=42,
+    n_bootstrap=100,
+    n_vars=5,
+    subsample_fraction=0.5
+)
+
+model.fit(X, y)
+X_sparse = model.transform(X)
 ```
