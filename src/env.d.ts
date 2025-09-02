@@ -15,6 +15,7 @@ interface ImportMetaEnv {
   readonly ZENN_URL: string;
   readonly QIITA_URL: string;
   readonly X_OWNER: string;
+  readonly WANTEDLY_URL: string;
 }
 
 interface ImportMeta {

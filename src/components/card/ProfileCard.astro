@@ -1,8 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ProfileImage from "../../assets/images/profile-image.jpg";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
-import { IoLogoRss } from "solid-icons/io";
+import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 ---
 
 <section class="relative w-full rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
@@ -63,12 +62,12 @@ import { IoLogoRss } from "solid-icons/io";
 				</li>
 				<li>
 					<a
-						href="/rss.xml"
+						href={import.meta.env.WANTEDLY_URL}
 						target="_blank"
 						rel="noopener noreferrer"
 						class="text-md xl:text-xl text-muted-foreground hover:text-foreground transition-colors duration-150"
 					>
-						<IoLogoRss />
+						<SiWantedly />
 					</a>
 				</li>
 			</ul>

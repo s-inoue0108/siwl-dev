@@ -2,7 +2,7 @@ import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
 import { AllowedRoutes } from "../../route";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
+import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 import { IoLogoRss } from "solid-icons/io";
 
 interface Props {
@@ -11,9 +11,10 @@ interface Props {
 	xUrl: string;
 	zennUrl: string;
 	githubUrl: string;
+	wantedlyUrl: string;
 }
 
-const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
+const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl, wantedlyUrl }: Props) => {
 	const routes = new AllowedRoutes(currentPath);
 	const metas = routes.getRootPageMetaAll(["Home", "Privacy Policy", "Readme"]);
 
@@ -56,6 +57,16 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl }: Props) => {
 							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
 						>
 							<SiGithub />
+						</a>
+					</li>
+					<li>
+						<a
+							href={wantedlyUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
+						>
+							<SiWantedly />
 						</a>
 					</li>
 					<li>

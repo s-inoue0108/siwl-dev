@@ -5,8 +5,7 @@ import { getCollection } from "astro:content";
 import { AllowedRoutes } from "../route";
 import CategoriesPanel from "../components/large/CategoriesPanel";
 import TagCardsPanel from "../components/large/TagCardsPanel";
-import { SiGithub, SiZenn, SiTwitter } from "solid-icons/si";
-import { IoLogoRss } from "solid-icons/io";
+import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 
 const articles = await getCollection("article", ({ data }) => {
 	return import.meta.env.PROD ? !data.isDraft && !data.isLimited : true;
@@ -91,12 +90,12 @@ const { meta } = routes.getRootPageMeta();
 							</li>
 							<li>
 								<a
-									href="/rss.xml"
+									href={import.meta.env.WANTEDLY_URL}
 									target="_blank"
 									rel="noopener noreferrer"
 									class="text-xl lg:text-2xl xl:text-3xl text-foreground hover:opacity-70 transition duration-150"
 								>
-									<IoLogoRss />
+									<SiWantedly />
 								</a>
 							</li>
 						</ul>

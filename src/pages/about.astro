@@ -23,9 +23,10 @@ import {
 	SiNuxtdotjs,
 	SiNodedotjs,
 	SiPioneerdj,
+	SiWantedly,
 } from "solid-icons/si";
 
-import { IoDesktopOutline, IoLogoRss } from "solid-icons/io";
+import { IoDesktopOutline } from "solid-icons/io";
 import { ImHeadphones } from "solid-icons/im";
 
 import { getCollection } from "astro:content";
@@ -187,7 +188,7 @@ const interest = {
 					<p class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-3 text-muted-foreground">
 						{whoami.description}
 					</p>
-					<ul class="flex items-center gap-4 mt-3">
+					<ul class="flex items-center gap-4 lg:gap-6 mt-2">
 						<li>
 							<a
 								class="text-muted-foreground hover:text-foreground transition duration-150"
@@ -211,11 +212,14 @@ const interest = {
 						<li>
 							<a
 								class="text-muted-foreground hover:text-foreground transition duration-150"
-								href="/rss.xml"
+								href={import.meta.env.WANTEDLY_URL}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<IoLogoRss class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
+								<div class="-ml-2 bg-muted-background px-2 py-1 rounded-xl flex items-center gap-2">
+									<SiWantedly class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
+									<span class="text-sm">I'm job seeking</span>
+								</div>
 							</a>
 						</li>
 					</ul>
