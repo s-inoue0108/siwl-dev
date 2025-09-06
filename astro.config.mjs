@@ -72,7 +72,7 @@ export default defineConfig({
 		shikiConfig: {
 			themes: {
 				light: "catppuccin-latte",
-				dark: "catppuccin-macchiato",
+				dark: "catppuccin-mocha",
 			},
 		},
 		remarkPlugins: [
