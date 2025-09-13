@@ -6,7 +6,7 @@ category: tech
 tags: [shell]
 description: ターミナルの分割やセッション画面を行うためのソフトウェアツールである tmux の使用法と、セットアップについてまとめます。
 publishDate: 2025-09-07T23:44:30+09:00
-updateDate: 2025-09-07T23:44:30+09:00
+updateDate: 2025-09-13T22:17:28+09:00
 relatedArticles: []
 ---
 
@@ -68,7 +68,7 @@ prefix + x   # ウインドウを破棄 (exit でもよい)
 ペインはウインドウの分割窓のことを指します。
 
 ```bash
-prefix + "       # 上下にペイン分割
+prefix + \"       # 上下にペイン分割
 prefix + %       # 左右にペイン分割
 prefix + Arrow   # ペインを移動
 prefix + x       # ペインを破棄 (exit でもよい)
@@ -120,6 +120,18 @@ bind - split-window -v
 
 # ドラッグした文字をクリップボードにコピーする
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+```
+
+## conda 環境との併用
+
+conda を使う場合、分割後のペインで `python3` コマンドがプリインストールされている Python（`/usr/bin/python3`）になってしまうことがありました。
+
+この場合、conda で現在起動している環境が `$CONDA_DEFAULT_ENV` に格納されることを利用して、conda の Python をエイリアスとして貼ることで解決できます（かなり力技ですが）。
+\
+conda の Python しか使わないのであればこの方法で十分かと思います。
+
+```bash:~/.bashrc
+alias python3="${HOME}/anaconda3/envs/${CONDA_DEFAULT_ENV}/bin/python3"
 ```
 
 ## 参考
