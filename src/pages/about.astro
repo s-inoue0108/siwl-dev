@@ -162,11 +162,11 @@ const interest = {
 		class="flex flex-col gap-8 xl:gap-16 index-gradient py-8 px-4 md:px-8 lg:px-12 2xl:px-48 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]"
 	>
 		<Breadcrumbs />
-		<h2
+		<!-- <h2
 			class="text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
 		>
 			Who am I?
-		</h2>
+		</h2> -->
 		<MacintoshInterfaceCard title="$ whoami">
 			<div class="flex flex-col xl:flex-row xl:justify-between gap-8 xl:gap-16">
 				<div class="w-full xl:w-1/2">
@@ -191,7 +191,7 @@ const interest = {
 					<ul class="flex items-center gap-4 lg:gap-6 mt-2">
 						<li>
 							<a
-								class="text-muted-foreground hover:text-foreground transition duration-150"
+								class="text-foreground hover:opacity-70 transition duration-150"
 								href={import.meta.env.ZENN_URL}
 								target="_blank"
 								rel="noopener noreferrer"
@@ -201,7 +201,7 @@ const interest = {
 						</li>
 						<li>
 							<a
-								class="text-muted-foreground hover:text-foreground transition duration-150"
+								class="text-foreground hover:opacity-70 transition duration-150"
 								href={import.meta.env.X_URL}
 								target="_blank"
 								rel="noopener noreferrer"
@@ -211,14 +211,14 @@ const interest = {
 						</li>
 						<li>
 							<a
-								class="text-muted-foreground hover:text-foreground transition duration-150"
+								class="text-foreground hover:opacity-70 transition duration-150"
 								href={import.meta.env.WANTEDLY_URL}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<div class="-ml-2 bg-muted-background px-2 py-1 rounded-xl flex items-center gap-2">
+								<div class="ribbon -ml-2">
 									<SiWantedly class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6" />
-									<span class="text-sm">I'm job seeking</span>
+									<span class="text-md font-semibold">Job Waiting!</span>
 								</div>
 							</a>
 						</li>
@@ -233,21 +233,21 @@ const interest = {
 				/>
 			</div>
 		</MacintoshInterfaceCard>
-		<h2
+		<!-- <h2
 			class="mt-32 xl:mt-16 text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
 		>
 			Profile
-		</h2>
+		</h2> -->
 		<div class="flex flex-col lg:flex-row lg:justify-around gap-8">
 			<ProfileContentCard data={major} />
 			<ProfileContentCard data={tech} />
 			<ProfileContentCard data={interest} />
 		</div>
-		<h2
+		<!-- <h2
 			class="mt-32 xl:mt-16 text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
 		>
 			Recent Works
-		</h2>
+		</h2> -->
 		<ul class="w-full flex flex-col lg:flex-row lg:flex-wrap items-center gap-8">
 			{
 				sortedWorks.map((work) => (
@@ -259,3 +259,39 @@ const interest = {
 		</ul>
 	</section>
 </Base>
+
+<style>
+	.ribbon {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		background-color: #a3e635;
+		gap: 0.5rem;
+		height: 40px;
+		padding: 0 0 0 30px;
+		color: rgba(var(--foreground), 1);
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.ribbon::before,
+	.ribbon::after {
+		position: absolute;
+		top: 0;
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 20px 0px 20px 20px;
+		content: "";
+	}
+
+	.ribbon::before {
+		left: 0;
+		border-color: transparent rgba(var(--background), 1);
+	}
+
+	.ribbon::after {
+		right: -20px;
+		border-color: transparent #a3e635;
+	}
+</style>
