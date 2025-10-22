@@ -1,0 +1,8 @@
+isDraft: false
+title: CHIROpy
+description: 量子化学計算ソフトウェア Gaussian を使用した分子の光学特性解析を効率的に行うための CLI ツールです。
+date: 2025-10-22T22:00:00+09:00
+url: https://github.com/s-inoue0108/chiropy
+suburl: https://github.com/s-inoue0108/chiropy
+keywords: [Python, Gaussian, Cheminformatics]
+# image:
