@@ -8,9 +8,25 @@ interface Props {
 	work: CollectionEntry<"work">;
 }
 
+const getImageSrc = (image: Props["work"]["data"]["image"], url?: string): string => {
+	if (!image && url && /^https?:\/\/(?:www\.)?github\.com/.test(url)) {
+		const token = Math.floor(Date.now() / 1000).toString();
+		const match = /^https?:\/\/(?:www\.)?github\.com\/([^\/]+)\/([^\/]+)/.exec(url);
+		if (!match) return "/profile-image.jpg";
+		const owner = match[1];
+		const repo = match[2];
+		return `https://opengraph.githubassets.com/${token}/${owner}/${repo}`;
+	} else if (image) {
+		return image.src;
+	}
+	return "/profile-image.jpg";
+};
+
 const WorkCard = ({ work }: Props) => {
 	const [isOpenCard, setIsOpenCard] = createSignal(false);
 	const { title, description, image, keywords, url, suburl } = work.data;
+
+	const imageSrc = getImageSrc(image, suburl);
 
 	return (
 		<button
@@ -21,11 +37,7 @@ const WorkCard = ({ work }: Props) => {
 		>
 			<div class="flex flex-col">
 				<div class="w-full h-36 rounded-t-xl overflow-clip">
-					<img
-						src={image ? image.src : "/profile-image.jpg"}
-						loading="lazy"
-						class="block w-full object-cover"
-					/>
+					<img src={imageSrc} loading="lazy" class="block w-full object-cover" />
 				</div>
 				<div class="w-full border-t border-muted-background h-36">
 					{isOpenCard() ? (

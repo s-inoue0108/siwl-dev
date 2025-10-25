@@ -5,4 +5,4 @@ date: 2024-09-25T22:00:00+09:00
 url: https://siwl.dev
 suburl: https://github.com/s-inoue0108/siwl-dev
 keywords: [Astro, SolidJS, Tailwind CSS]
-image: ./images/siwl_dev.png
+# image: ./images/siwl_dev.png
