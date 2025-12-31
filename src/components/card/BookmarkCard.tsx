@@ -24,7 +24,7 @@ const BookmarkCard = ({ bookmark }: Props) => {
 
 	return (
 		<div class="w-full h-24 xl:h-36 border border-muted-background bg-muted-transparent rounded-xl hover:bg-muted-background transition duration-200">
-			<a class="bare-link-card" href="${url}" target="_blank" rel="noopener noreferrer">
+			<a class="bare-link-card" href={url} target="_blank" rel="noopener noreferrer">
 				<div class="flex flex-row-reverse items-center">
 					<div class="border-l border-muted-background w-32 lg:w-64 h-24 xl:w-96 xl:h-36">
 						{image && image[0]
