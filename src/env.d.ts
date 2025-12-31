@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly GOOGLE_APPS_SCRIPT_URL: string;
   readonly PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY: string;
   readonly GOOGLE_RECAPTCHA_SECRET_KEY: string;
+  readonly GTAG: string;
   readonly GITHUB_USERNAME: string;
   readonly GITHUB_ACCESS_TOKEN: string;
   readonly GITHUB_URL: string;

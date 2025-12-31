@@ -57,7 +57,9 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 		<meta property="og:title" content={title} />
 		<meta
 			property="og:image"
-			content={ogImage ? ogImage : new URL("/siwl-logo.png", import.meta.env.APP_URL)}
+			content={ogImage
+				? ogImage
+				: new URL("/siwl-logo.png", import.meta.env.APP_URL)}
 		/>
 
 		<!-- Twitter OGP -->
@@ -66,8 +68,16 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 		<meta name="twitter:creator" content={import.meta.env.X_OWNER} />
 
 		<!--Scroll Bar -->
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#e4e8fa" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141830" />
+		<meta
+			name="theme-color"
+			media="(prefers-color-scheme: light)"
+			content="#e4e8fa"
+		/>
+		<meta
+			name="theme-color"
+			media="(prefers-color-scheme: dark)"
+			content="#141830"
+		/>
 
 		<!--View Transitions-->
 		<!-- <ViewTransitions /> -->
@@ -95,7 +105,8 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 			is:inline
 			type="text/partytown"
 			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-CYF55805ED"></script>
+			src=`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.GTAG}`
+		></script>
 
 		<script is:inline type="text/partytown">
 			window.dataLayer = window.dataLayer || [];
@@ -104,7 +115,7 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 			}
 			gtag("js", new Date());
 
-			gtag("config", "G-CYF55805ED");
+			gtag("config", import.meta.env.GTAG);
 		</script>
 
 		<!--initialize theme -->
@@ -121,7 +132,10 @@ const { title, description, ogImage, headings, isLimited } = Astro.props;
 						rootClass.remove("dark");
 					}
 				} else {
-					if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					if (
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches
+					) {
 						rootClass.add("dark");
 						rootClass.remove("light");
 					} else {
