@@ -1,10 +1,10 @@
-import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
-import initRDKitModule from "@rdkit/rdkit";
+import * as RDKit from "@rdkit/rdkit";
+
 
 export default function remarkSmilesEmbed() {
-  return async (tree: Root) => {
-    const transformer: any[] = [];
+  return async (tree) => {
+    const transformer = [];
     visit(tree, "paragraph", (node) => {
       if (node.children.length !== 1) return;
       const paragraphNode = node.children[0];
@@ -25,7 +25,7 @@ export default function remarkSmilesEmbed() {
             value: embed,
           }
 
-          node.children.splice(0, 1, iframeNode as { type: "text", value: string });
+          node.children.splice(0, 1, iframeNode);
         });
       });
     });
@@ -38,8 +38,8 @@ export default function remarkSmilesEmbed() {
   }
 }
 
-const buildChemicalStructure = async (smiles: string): Promise<string> => {
-  const rdkit = await initRDKitModule();
+const buildChemicalStructure = async (smiles) => {
+  const rdkit = await RDKit.default();
   const mol = rdkit.get_mol(smiles);
 
   let svg = mol.get_svg();
