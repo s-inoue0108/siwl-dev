@@ -33,6 +33,7 @@ import remarkBandcampEmbed from "./src/plugins/remark/remark-bandcamp-embed";
 import remarkWikimediaEmbed from "./src/plugins/remark/remark-wikimedia-embed";
 import remarkNoteEmbed from "./src/plugins/remark/remark-note-embed";
 import remarkHatenablogEmbed from "./src/plugins/remark/remark-hatenablog-embed";
+import remarkSmilesEmbed from "./src/plugins/remark/remark-smiles-embed";
 import rehypeHeadings from "./src/plugins/rehype/rehype-headings";
 import rehypeInlineAnchor from "./src/plugins/rehype/rehype-inline-anchor";
 import rehypeCodeCopyButton from "./src/plugins/rehype/rehype-code-copy-button";
@@ -77,6 +78,7 @@ export default defineConfig({
 		},
 		remarkPlugins: [
 			remarkBreaks,
+			remarkSmilesEmbed,
 			remarkTwitterEmbed,
 			remarkYoutubeEmbed,
 			remarkGistEmbed,

@@ -993,6 +993,11 @@
   dependencies:
     dotenv "^16.4.7"
 
+"@rdkit/rdkit@^2025.3.4-1.0.0":
+  version "2025.3.4-1.0.0"
+  resolved "https://registry.yarnpkg.com/@rdkit/rdkit/-/rdkit-2025.3.4-1.0.0.tgz#9accce8e0c1b825c155f045a080b11a1689fa639"
+  integrity sha512-MJzNoeW2SWt2KCdIibfY213uLWyHZjFfS2ntJ/HuYNHdu6dEiim7jb6ZMU9wnt9Oovkc85BHMuupxkufIMvftQ==
+
 "@resvg/resvg-js-android-arm-eabi@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@resvg/resvg-js-android-arm-eabi/-/resvg-js-android-arm-eabi-2.6.2.tgz#e761e0b688127db64879f455178c92468a9aeabe"

@@ -23,6 +23,7 @@
     "@fontsource/montserrat": "^5.0.17",
     "@fontsource/noto-sans-jp": "^5.0.18",
     "@fontsource/source-code-pro": "^5.0.17",
+    "@rdkit/rdkit": "^2025.3.4-1.0.0",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.15.9",
     "fuse.js": "^7.0.0",
