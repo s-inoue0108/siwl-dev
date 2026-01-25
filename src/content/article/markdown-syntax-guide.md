@@ -6,7 +6,7 @@ category: tech
 tags: [markdown]
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2025-08-17T15:25:07+09:00
+updateDate: 2026-01-25T17:55:58+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -29,7 +29,7 @@ relatedArticles: [one, two, three]     # optional (string[])
 ```
 
 > [!tip] CLIについて
-> 
+>
 > CLI を使用したコンテンツ管理を利用できます。
 >
 > ```bash:CLI
@@ -47,7 +47,7 @@ relatedArticles: [one, two, three]     # optional (string[])
 ```
 
 > [!important] 見出しのレベルについて
-> 
+>
 > 見出しは `<h2>` から始めます。
 > `<h1>` , `<h5>` , `<h6>` はスタイルを定義してありますが、使用は非推奨です。
 
@@ -266,32 +266,32 @@ const displayTextType = (text: string) => {
 
 ```md:引用
 > ここは引用ブロックです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 ```
 
 > ここは引用ブロックです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
 ### コールアウト
@@ -302,17 +302,17 @@ const displayTextType = (text: string) => {
 > [!type:fold] title
 >
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 ```
 
@@ -336,212 +336,212 @@ const displayTextType = (text: string) => {
 | `tip`       | 小ネタ      | green   |
 | `break`     | 閑話休題    | green   |
 
-> [!quote:fold] 
-> 
+> [!quote:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!note:fold] 
-> 
+> [!note:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!remark:fold] 
-> 
+> [!remark:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!info:fold] 
-> 
+> [!info:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!todo:fold] 
-> 
+> [!todo:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!important:fold] 
-> 
+> [!important:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!example:fold] 
+> [!example:fold]
 >
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!warn:fold] 
-> 
+> [!warn:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!question:fold] 
-> 
+> [!question:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!alert:fold] 
-> 
+> [!alert:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!attention:fold] 
-> 
+> [!attention:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!tip:fold] 
-> 
+> [!tip:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
-> [!break:fold] 
-> 
+> [!break:fold]
+>
 > これはコールアウトです。
-> 
+>
 > ```python:Python
 > x = 1
 > y = 2
 >
 > def add(x, y):
 >   return x + y
-> 
+>
 > print(add(x, y))
 > ```
-> 
+>
 > `inline code` や $inline math$ も使えます。
 
 ## 数式
@@ -571,6 +571,26 @@ $$
 $$
 f(t) = \sum_{n = 0}^\infty \frac{t^n}{n!} \left. \frac{d^{n}f(t)}{dt^n}\right|_{t = 0}
 $$
+
+## 化学構造式
+
+RDKit.js を使用して SMILES から化学構造式をレンダリングすることができます。
+
+https://github.com/rdkit/rdkit-js
+
+比較的単純な低分子化合物であれば綺麗に描くことができます。
+
+```md
+<!--@{smi|smiles|chem}(SMILES文字列)-->
+<!--ブラケット [, ] はエスケープが必要です-->
+@{chem}(N\[C@@H\](Cc1c\[nH\]c2ccccc12)C(=O)O)
+
+<!--キャプションをつけることもできます-->
+*[!chem] トリプトファン*
+```
+@{chem}(N\[C@@H\](Cc1c\[nH\]c2ccccc12)C(=O)O)
+
+*[!chem] トリプトファン*
 
 ## 埋め込み
 
