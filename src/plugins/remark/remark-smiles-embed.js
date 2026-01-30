@@ -49,7 +49,7 @@ const buildChemicalStructure = async (smiles) => {
   // fix width, height
   svg = svg.replace(
     /(width|height)='(\d+(?:\.\d+)?)px'/g,
-    (_, attr, value) => `${attr}='${Number(value) * scale}px'`
+    (_, attr) => `${attr}='100%'`
   );
 
   // remove bg color
@@ -73,5 +73,5 @@ const buildChemicalStructure = async (smiles) => {
   );
 
   mol.delete();
-  return "<div class='w-fit mx-auto'>" + svg + "</div>";
+  return "<div class='relative w-fit mx-auto'>" + svg + "</div>";
 }
