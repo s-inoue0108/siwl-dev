@@ -44,8 +44,6 @@ const buildChemicalStructure = async (smiles) => {
 
   let svg = mol.get_svg();
 
-  const scale = 1.8
-
   // fix width, height
   svg = svg.replace(
     /(width|height)='(\d+(?:\.\d+)?)px'/g,
