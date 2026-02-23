@@ -6,7 +6,7 @@ category: tech
 tags: [markdown]
 description: このブログで利用可能な Markdown 記法をまとめています。
 publishDate: 2024-09-25T00:00:00+09:00
-updateDate: 2026-01-25T17:55:58+09:00
+updateDate: 2026-02-23T18:43:33+09:00
 relatedArticles: [renewal-note]
 ---
 
@@ -208,7 +208,7 @@ https://siwl.dev/blog/articles/renewal-note はインラインリンクです。
 
 シンタックスハイライトには Shiki を使用しています。
 
-https://shiki.matsu.io/languages
+https://shiki.style/
 
 ### インラインコード
 
