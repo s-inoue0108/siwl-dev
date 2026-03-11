@@ -4,5 +4,5 @@ description: 量子化学計算ソフトウェア Gaussian を使用した分子
 date: 2025-10-22T22:00:00+09:00
 url: https://pypi.org/project/chiropy/
 suburl: https://github.com/s-inoue0108/chiropy
-keywords: [Python, Gaussian, Cheminformatics]
+keywords: [Cheminformatics]
 # image:
