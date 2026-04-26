@@ -15,12 +15,17 @@ const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getRootPageMeta();
 ---
 
-<Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
+<Base
+	title={`${meta.name} | ${import.meta.env.APP_NAME}`}
+	description=`${meta.description}`
+>
 	<section class="flex flex-col">
 		<section
 			class="index-gradient py-24 px-16 2xl:pr-24 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]"
 		>
-			<div class="flex flex-col lg:flex-row justify-center mx-auto items-center gap-16">
+			<div
+				class="flex flex-col lg:flex-row justify-center mx-auto items-center gap-16"
+			>
 				<div class="flex flex-col">
 					<div class="flex flex-col">
 						<div class="mx-auto flex flex-col">
@@ -38,7 +43,9 @@ const { meta } = routes.getRootPageMeta();
 							{import.meta.env.APP_OWNER_ROLE}
 						</span>
 					</div>
-					<ul class="flex flex-col lg:flex-row items-center gap-4 mt-8">
+					<ul
+						class="flex flex-col lg:flex-row items-center gap-4 mt-8"
+					>
 						<ul class="flex items-center gap-4">
 							<li>
 								<a
@@ -57,7 +64,9 @@ const { meta } = routes.getRootPageMeta();
 								</a>
 							</li>
 						</ul>
-						<ul class="flex items-center gap-6 mt-4 lg:mt-0 lg:ml-6">
+						<ul
+							class="flex items-center gap-6 mt-4 lg:mt-0 lg:ml-6"
+						>
 							<li>
 								<a
 									href={import.meta.env.ZENN_URL}
@@ -88,7 +97,7 @@ const { meta } = routes.getRootPageMeta();
 									<SiGithub />
 								</a>
 							</li>
-							<li>
+							<!-- <li>
 								<a
 									href={import.meta.env.WANTEDLY_URL}
 									target="_blank"
@@ -97,20 +106,28 @@ const { meta } = routes.getRootPageMeta();
 								>
 									<SiWantedly />
 								</a>
-							</li>
+							</li> -->
 						</ul>
 					</ul>
 				</div>
 			</div>
 		</section>
 		<section class="pt-8 w-full flex flex-col lg:flex-row">
-			<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
-				<div class="text-center lg:text-left text-3xl xl:text-5xl xl:mb-4 font-bold">
+			<article
+				class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]"
+			>
+				<div
+					class="text-center lg:text-left text-3xl xl:text-5xl xl:mb-4 font-bold"
+				>
 					Latest Articles
 				</div>
 				<ArticleCardsPanel
 					articles={articles
-						.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+						.sort(
+							(a, b) =>
+								b.data.publishDate.getTime() -
+								a.data.publishDate.getTime(),
+						)
 						.slice(0, 5)}
 				/>
 			</article>

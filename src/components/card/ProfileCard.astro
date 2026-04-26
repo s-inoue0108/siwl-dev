@@ -4,7 +4,9 @@ import ProfileImage from "../../assets/images/profile-image.jpg";
 import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 ---
 
-<section class="relative w-full rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg">
+<section
+	class="relative w-full rounded-xl flex flex-col items-center gap-2 lg:gap-4 p-4 shadow-lg"
+>
 	<Image
 		src={ProfileImage}
 		alt="Profile Image"
@@ -12,12 +14,23 @@ import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 		width={1008}
 		height={756}
 	/>
-	<div class="bg-background/80 z-10 p-2 xl:p-4 rounded-xl flex flex-col items-center gap-4">
+	<div
+		class="bg-background/80 z-10 p-2 xl:p-4 rounded-xl flex flex-col items-center gap-4"
+	>
 		<div class="flex items-center gap-3 lg:gap-4">
-			<div class="w-2 h-5 lg:h-7 bg-gradient-to-b from-accent-sub-base to-accent-base"></div>
-			<h1 class="text-xl md:text-2xl xl:text-3xl font-extrabold tracking-wide">Shota Inoue</h1>
+			<div
+				class="w-2 h-5 lg:h-7 bg-gradient-to-b from-accent-sub-base to-accent-base"
+			>
+			</div>
+			<h1
+				class="text-xl md:text-2xl xl:text-3xl font-extrabold tracking-wide"
+			>
+				Shota Inoue
+			</h1>
 		</div>
-		<p class="mx-auto px-4 text-sm xl:text-md text-muted-foreground font-medium">
+		<p
+			class="mx-auto px-4 text-sm xl:text-md text-muted-foreground font-medium"
+		>
 			{import.meta.env.APP_OWNER_ROLE}
 		</p>
 		<ul class="w-full px-2 xl:px-4 flex items-center justify-center gap-8">
@@ -60,7 +73,7 @@ import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 						<SiGithub />
 					</a>
 				</li>
-				<li>
+				<!-- <li>
 					<a
 						href={import.meta.env.WANTEDLY_URL}
 						target="_blank"
@@ -69,7 +82,7 @@ import { SiGithub, SiZenn, SiTwitter, SiWantedly } from "solid-icons/si";
 					>
 						<SiWantedly />
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</ul>
 	</div>
