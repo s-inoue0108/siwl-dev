@@ -12,7 +12,7 @@ relatedArticles: [bayesian-modeling-regression]
 
 ## LASSO の Bayes 的解釈
 
-[こちらの記事](bayesian-modeling-regression)で示したように、LASSO はラプラス事前分布を課した回帰係数の MAP 推定と見なすことができます。
+[こちらの記事](/blog/articles/bayesian-modeling-regression)で示したように、LASSO はラプラス事前分布を課した回帰係数の MAP 推定と見なすことができます。
 
 まず、これを示します。ここでは、データ $\mathcal{D} = (X, \bm{y})$：
 
