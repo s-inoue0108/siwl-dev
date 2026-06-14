@@ -6,15 +6,11 @@ category: idea
 tags: [ml]
 description: "Bayes 統計に基づいた線形回帰における変数選択について、その理論と Python による簡単な実装をまとめます。"
 publishDate: 2026-06-11T21:09:17+09:00
-updateDate: 2026-06-12T14:36:14+09:00
+updateDate: 2026-06-14T15:48:05+09:00
 relatedArticles: [bayesian-modeling-regression]
 ---
 
-## LASSO の Bayes 的解釈
-
-[こちらの記事](/blog/articles/bayesian-modeling-regression)で示したように、LASSO はラプラス事前分布を課した回帰係数の MAP 推定と見なすことができます。
-
-まず、これを示します。ここでは、データ $\mathcal{D} = (X, \bm{y})$：
+この記事では、サイズ ($N, p$) のデータ $(X, \bm{y})$：
 
 $$
 \begin{aligned}
@@ -26,12 +22,18 @@ $$
 に対する線形回帰モデル
 
 $$
-\bm{y} = X\bm{\beta} + \bm{\varepsilon}, \quad \bm{\varepsilon} \sim N(\bm{0}, \sigma^2I_N)
+\bm{y} = X\bm{\beta} + \bm{\varepsilon}, \quad \bm{\varepsilon} \sim \mathcal{N}(\bm{0}, \sigma^2I_N)
 $$
 
-を考えます。線形回帰モデルを構成する特徴量 $\bm{x}_j$ について、一部の係数はゼロ ($\beta_j = 0$) であるとみなす仮定を**スパース性**の仮定といい、スパース性を仮定した統計モデリングを総称して**スパースモデリング**といいます。
+について、回帰係数 $\bm{\beta} = [\beta_1, \ldots, \beta_p]^\top$ の推定を Bayesian の枠組みで考えます。
+\
+特に、線形回帰モデルを構成する特徴量 $\bm{x}_j$ について、一部の係数はゼロ ($\beta_j = 0$) であるとみなす仮定 (**スパース性**の仮定) を扱います。スパース性を仮定した統計モデリングを総称して**スパースモデリング**といい、真に予測に寄与する変数のサブセットを推定できることから、モデル解釈性が求められる場面で有用な手段となります。
+
+## LASSO の Bayes 的解釈
 
 ### Laplace 分布
+
+[こちらの記事](/blog/articles/bayesian-modeling-regression)で示したように、LASSO は Laplace 事前分布を課した回帰係数の MAP 推定と見なすことができます。
 
 Laplace 分布 $\mathrm{Laplace}(\mu, b)$ は、以下の確率密度関数：
 
@@ -116,7 +118,7 @@ Laplace 分布は $\mathrm{Laplace}(0, b)$ は指数分布と正規分布の混�
 > [!tip] Laplace 分布の階層表現
 > $$
 > \begin{aligned}
-> \beta_j ~|~ \tau & \sim N(0, \tau) \\
+> \beta_j ~|~ \tau & \sim \mathcal{N}(0, \tau) \\
 > \tau             & \sim \mathrm{Exp}(1/(2b^2))
 > \end{aligned}
 > $$
@@ -185,8 +187,8 @@ $$
 > [!tip] Bayesian LASSO の階層表現
 > $$
 > \begin{aligned}
-> \bm{y} ~|~ X, \bm{\beta}, \sigma^2 & \sim N(X\bm{\beta}, \sigma^2I_N) \\
-> \beta_j ~|~ \lambda_j, \sigma^2    & \sim N(0, \sigma^2\lambda_j) \\
+> \bm{y} ~|~ X, \bm{\beta}, \sigma^2 & \sim \mathcal{N}(X\bm{\beta}, \sigma^2I_N) \\
+> \beta_j ~|~ \lambda_j, \sigma^2    & \sim \mathcal{N}(0, \sigma^2\lambda_j) \\
 > \lambda_j                          &\sim \mathrm{Exp}(\tau^2/2)
 > \end{aligned}
 > $$
@@ -199,7 +201,7 @@ $$
 
 $$
 \begin{aligned}
-\bm{y} & = \bm{\beta} + \bm{\varepsilon}, \quad \bm{\varepsilon} \sim N(\bm{0}, \sigma^2I_N) \\
+\bm{y} & = \bm{\beta} + \bm{\varepsilon}, \quad \bm{\varepsilon} \sim \mathcal{N}(\bm{0}, \sigma^2I_N) \\
 y_j    & = \beta_j + \varepsilon_j
 \end{aligned}
 $$
@@ -208,7 +210,7 @@ $$
 
 $$
 \begin{aligned}
-\beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim N(0, \sigma^2\tau^2\lambda_j^2) \\
+\beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim \mathcal{N}(0, \sigma^2\tau^2\lambda_j^2) \\
 \lambda_j                             & \sim P(\cdot)
 \end{aligned}
 $$
@@ -334,7 +336,7 @@ $$
 >
 > $$
 > \begin{aligned}
-> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim N(0, \sigma^2\tau^2\lambda_j^2) \\
+> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim \mathcal{N}(0, \sigma^2\tau^2\lambda_j^2) \\
 > \tau                                  & \sim \mathrm{HalfCauchy}(0, 1) \\
 > \lambda_j                             & \sim \mathrm{HalfCauchy}(0, 1)
 > \end{aligned}
@@ -356,8 +358,8 @@ $$
 >
 > $$
 > \begin{aligned}
-> \bm{y} ~|~ X, \bm{\beta}, \sigma^2    & \sim N(X\bm{\beta}, \sigma^2 I_N) \\
-> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim N(0, \sigma^2\tau^2\lambda_j^2) \\
+> \bm{y} ~|~ X, \bm{\beta}, \sigma^2    & \sim \mathcal{N}(X\bm{\beta}, \sigma^2 I_N) \\
+> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim \mathcal{N}(0, \sigma^2\tau^2\lambda_j^2) \\
 > \tau                                  & \sim \mathrm{HalfCauchy}(0, 1) \\
 > \lambda_j                             & \sim \mathrm{HalfCauchy}(0, 1)
 > \end{aligned}
@@ -367,7 +369,7 @@ $$
 
 馬蹄分布のデメリットとして、半 Cauchy 事前分布の性質上、解析的な事後分布を得にくい点が挙げられます。この問題に対処するため、解析的な事後分布を得やすい逆ガンマ分布 $\mathrm{InvGamma}(a, b)$ で半 Cauchy 分布を書き直すことができます。
 \
-形状パラメータ $a$、尺度パラメータ $b$ を持つ逆ガンマ関数の確率密度関数は以下です：
+形状パラメータ $a$、尺度パラメータ $b$ を持つ逆ガンマ分布の確率密度関数は以下です：
 
 $$
 p_{a,b}(x) = \frac{b^a}{\Gamma(a)}\frac{1}{x^{a + 1}}\exp \left( -\frac{b}{x} \right)
@@ -396,7 +398,7 @@ $$
 >
 > $$
 > \begin{aligned}
-> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim N(0, \sigma^2\tau^2\lambda_j^2) \\
+> \beta_j ~|~ \sigma^2, \tau, \lambda_j & \sim \mathcal{N}(0, \sigma^2\tau^2\lambda_j^2) \\
 > \tau^2 ~|~ \xi                        & \sim \mathrm{InvGamma}(1/2, 1/\xi) \\
 > \xi                                   & \sim \mathrm{InvGamma}(1/2, 1) \\
 > \lambda_j^2 ~|~ \nu_j                 & \sim \mathrm{InvGamma}(1/2, 1/\nu_j) \\
@@ -404,7 +406,57 @@ $$
 > \end{aligned}
 > $$
 
-という階層表現を得ることができます。$\sigma^2$ の事前分布も逆ガンマ分布を使えば、馬蹄分布をすべて逆ガンマ分布で表現できたことになります。正規分布の分散パラメータに対応する共役事前分布は逆ガンマ分布ですから、このように構成した馬蹄分布は事後分布の一部もまた逆ガンマ分布で表現できます。
+という階層表現を得ることができます。$\sigma^2$ の事前分布も逆ガンマ分布を使えば、馬蹄分布をすべて逆ガンマ分布で表現できたことになります。正規分布の分散パラメータ推定に対応する共役事前分布は逆ガンマ分布ですから、このように構成した馬蹄分布は事後分布の一部もまた逆ガンマ分布で表現できます。
+
+## 関連度自動決定 (ARD)
+
+有名なスパースモデリング手法の一つに、**関連度自動決定 (Automatic Relevance Determination: ARD)** というものがあります。この手法は、回帰係数 $\beta_j$ ごとに異なる事前分布を置く発想の最も基本的な形式と言えそうです。
+
+### 逆ガンマ表現
+
+ARD の階層 Bayes 表現として以下のようなものが挙げられます。逆ガンマ分布を用いることで、事後分布の解析を容易にすることができます。
+
+> [!tip] ARD の逆ガンマ表現
+>
+> $$
+> \begin{aligned}
+> \beta_j ~|~ \lambda_j^2 & \sim \mathcal{N}(0, \lambda_j^2) \\
+> \lambda_j^2             & \sim \mathrm{InvGamma}(a, b) \\
+> \end{aligned}
+> $$
+
+### エビデンス最大化
+
+線形回帰モデルの尤度 $P(X | \bm{\beta})$ を局所縮小パラメータ $\bm{\lambda} = [\lambda_1, \ldots, \lambda_p]^\top$ で周辺化します。確率密度関数を $p(\cdot)$ と書くことにすれば、
+
+$$
+p(X | \bm{\lambda}) = \int_{\bm{\beta}} p(X | \bm{\beta}) p(\bm{\beta} | \bm{\lambda}) ~ d\bm{\beta}
+$$
+
+です。この $p(X | \bm{\lambda})$ は局所縮小パラメータ $\bm{\lambda}$ が所与のもとでの $X$ の尤もらしさを表し、これを**エビデンス**といいます。$p(\bm{\beta} | \bm{\lambda})$ は、例えば以下のような事前分布とすることができます。
+
+$$
+\bm{\beta} ~|~ \bm{\lambda} \sim \mathcal{N}(\bm{0}, \mathrm{diag}(\bm{\lambda}^2))
+$$
+
+ARD のもう一つの定式化では、局所縮小パラメータの推定量 $\hat{\bm{\lambda}}$ の事前分布を直接モデリングするのではなく、エビデンスを最大化するように点推定します。すなわち、
+
+$$
+\hat{\bm{\lambda}} = \argmax_{\bm{\lambda}} p(X | \bm{\lambda})
+$$
+
+を求めます。
+
+> [!tip] ARD のエビデンスによる定式化
+>
+> $$
+> \begin{aligned}
+> \bm{\beta}         & \sim \mathcal{N}(\bm{0}, \mathrm{diag}(\hat{\bm{\lambda}}^2)) \\
+> \hat{\bm{\lambda}} & = \argmax_{\bm{\lambda}} p(X | \bm{\lambda})
+> \end{aligned}
+> $$
+
+エビデンス最大化による ARD をサポートベクトルマシン (SVM) に応用したモデルとして、**関連ベクトルマシン (Relevance Vector Machine: RVM)** というものが知られています。
 
 ## References
 
