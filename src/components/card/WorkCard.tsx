@@ -1,32 +1,34 @@
-import { type CollectionEntry } from "astro:content";
 import { createSignal } from "solid-js";
 import { IoLogoGithub } from "solid-icons/io";
 import { ImLink } from "solid-icons/im";
 import { TbExternalLink } from "solid-icons/tb";
 
 interface Props {
-	work: CollectionEntry<"work">;
+	work: {
+		title: string;
+		description: string;
+		github_url: string;
+		keywords: string[];
+	};
 }
 
-const getImageSrc = (image: Props["work"]["data"]["image"], url?: string): string => {
-	if (!image && url && /^https?:\/\/(?:www\.)?github\.com/.test(url)) {
+const getGitHubImageUrl = (url: string): string => {
+	if (/^https?:\/\/(?:www\.)?github\.com/.test(url)) {
 		const token = Math.floor(Date.now() / 1000).toString();
 		const match = /^https?:\/\/(?:www\.)?github\.com\/([^\/]+)\/([^\/]+)/.exec(url);
 		if (!match) return "/profile-image.jpg";
 		const owner = match[1];
 		const repo = match[2];
 		return `https://opengraph.githubassets.com/${token}/${owner}/${repo}`;
-	} else if (image) {
-		return image.src;
-	}
+	};
 	return "/profile-image.jpg";
-};
+}
 
 const WorkCard = ({ work }: Props) => {
 	const [isOpenCard, setIsOpenCard] = createSignal(false);
-	const { title, description, image, keywords, url, suburl } = work.data;
+	const { title, description, github_url, keywords } = work;
 
-	const imageSrc = getImageSrc(image, suburl);
+	const imageSrc = getGitHubImageUrl(github_url);
 
 	return (
 		<button
@@ -49,26 +51,15 @@ const WorkCard = ({ work }: Props) => {
 			</div>
 			<ul class="absolute bottom-1 left-2 flex items-center gap-2">
 				<li>
-					<a href={url} target="_blank" rel="noopener noreferrer">
-						<TbExternalLink size="1.5rem" />
+					<a
+						class="hover:opacity-70 transition duration-150"
+						href={github_url}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<IoLogoGithub size="1.5rem" />
 					</a>
 				</li>
-				{suburl && (
-					<li>
-						<a
-							class="hover:opacity-70 transition duration-150"
-							href={suburl}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{/^https?:\/\/github.com\/.*/.test(suburl) ? (
-								<IoLogoGithub size="1.5rem" />
-							) : (
-								<ImLink size="1.5rem" />
-							)}
-						</a>
-					</li>
-				)}
 			</ul>
 			<ul class="absolute bottom-1 right-1 flex items-center gap-2">
 				<li>

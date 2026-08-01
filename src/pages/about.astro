@@ -4,47 +4,13 @@ import { AllowedRoutes } from "../route";
 import Breadcrumbs from "../components/common/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import ProfileImage from "../assets/images/profile-image.jpg";
-
-import {
-	SiMoleculer,
-	SiZenn,
-	SiTwitter,
-	SiPython,
-	SiPandas,
-	SiScikitlearn,
-	SiNumpy,
-	SiScipy,
-	SiGnubash,
-	SiTypescript,
-	SiVuedotjs,
-	SiSolid,
-	SiTailwindcss,
-	SiAstro,
-	SiNuxtdotjs,
-	SiNodedotjs,
-	SiPioneerdj,
-	SiWantedly,
-	SiPytorch,
-	SiPyg,
-} from "solid-icons/si";
-
-import { IoDesktopOutline } from "solid-icons/io";
-import { ImHeadphones } from "solid-icons/im";
-
-import { getCollection } from "astro:content";
-
-import WorkCard from "../components/card/WorkCard";
+import InterestBarhCard from "../components/card/InterestBarhCard";
 import MacintoshInterfaceCard from "../components/card/MacintoshInterfaceCard";
-import ProfileContentCard from "../components/card/ProfileContentCard";
+import { SiPioneerdj } from "solid-icons/si";
+import { BiSolidCoffeeAlt, BiSolidTerminal } from "solid-icons/bi";
+import { ImHeadphones } from "solid-icons/im";
 import GitHubContributionsCard from "../components/card/GitHubContributionsCard";
-
-const works = await getCollection("work", ({ data }) => {
-	return import.meta.env.PROD ? !data.isDraft : true;
-});
-
-const sortedWorks = works.sort((a, b) => {
-	return b.data.date.getTime() - a.data.date.getTime();
-});
+import WorkCard from "../components/card/WorkCard";
 
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
@@ -101,234 +67,311 @@ const gitHubContributions = await response.json();
 const gitHubCalendar =
 	gitHubContributions.data.user.contributionsCollection.contributionCalendar;
 
-const whoami = {
-	contentType: "whoami",
-	title: import.meta.env.APP_OWNER,
-	role: import.meta.env.APP_OWNER_ROLE,
-	description:
-		"計算化学の大学院生です。分子シミュレーションや材料科学のための機械学習を扱っています。たまに Web フロントエンド開発もやったりしますが、その知見が研究活動に活きることがあるのが地味にうれしいところです。",
-};
+// skills
+const skills = [
+	{ label: "Materials Informatics", value: 90 },
+	{ label: "Chemistry", value: 80 },
+	{ label: "Statistics", value: 70 },
+	{ label: "Web", value: 50 },
+	{ label: "Networks", value: 10 },
+];
 
-const major = {
-	type: "major",
-	title: {
-		text: "Computational Chemistry",
-		icon: SiMoleculer,
+// publications
+const author_me = "S. Inoue";
+const publications = [
+	{
+		authors: ["D. Tauchi", "S. Inoue", "M. Hasegawa"],
+		et_al: true,
+		title: "Structure and chiroptical properties of platinum(II) complexes with chiral BINOL ligands",
+		year: 2025,
+		journal: "Chemistry Letters",
+		volume: "54",
+		page: "upaf140",
+		link: "https://doi.org/10.1093/chemle/upaf140",
 	},
-	description:
-		"ソフトマターと呼ばれる物質群を対象に研究をしています。分子動力学シミュレーションや深層学習による有機半導体材料の探索を主なテーマとしています。",
-	skills: [
-		{ icon: SiPython, link: "https://www.python.org/" },
-		{ icon: SiNumpy, link: "https://numpy.org/" },
-		{ icon: SiPandas, link: "https://pandas.pydata.org/" },
-		{ icon: SiScikitlearn, link: "https://scikit-learn.org/" },
-		{ icon: SiScipy, link: "https://www.scipy.org/" },
-		{ icon: SiPytorch, link: "https://pytorch.org/" },
-		{
-			icon: SiPyg,
-			link: "https://pytorch-geometric.readthedocs.io/en/latest/",
-		},
-		{ icon: SiGnubash, link: "https://www.gnu.org/software/bash/" },
-	],
-};
+	{
+		authors: ["T. Seki", "Y. Shinozaki", "S. Inoue", "G. Watanabe"],
+		et_al: true,
+		title: "Machine learning-based prediction of molecular packing in organic semiconductors",
+		year: 2026,
+		journal: "Chemistry Letters",
+		volume: "55",
+		page: "upag066",
+		link: "https://doi.org/10.1093/chemle/upag066",
+	},
+];
 
-const tech = {
-	type: "tech",
-	title: {
-		text: "Web Development",
-		icon: IoDesktopOutline,
+// presentations
+const presentations = [
+	{
+		authors: ["S. Inoue", "G. Watanabe"],
+		et_al: true,
+		title: "スパースモデリングを用いた有機半導体における隣接分子間の二面角予測",
+		year: 2025,
+		month: "September",
+		conference: "The 86th JSAP Autumn Meeting",
+		place: "Aichi, Japan",
+		type: "Poster",
+		link: "https://pub.confit.atlas.jp/ja/event/jsap2025a/presentation/7p-P04-6",
 	},
-	description:
-		"JavaScript フレームワークによる静的 Web サイト構築 (Jamstack) を得意としています。最近は Astro を好んで使います。バックエンドも遊びで触ることがあります。",
-	skills: [
-		{ icon: SiTypescript, link: "https://www.typescriptlang.org/" },
-		{ icon: SiVuedotjs, link: "https://ja.vuejs.org/" },
-		{ icon: SiSolid, link: "https://www.solidjs.com/" },
-		{ icon: SiTailwindcss, link: "https://tailwindcss.com/" },
-		{ icon: SiAstro, link: "https://astro.build/" },
-		{ icon: SiNuxtdotjs, link: "https://nuxt.com/" },
-		{ icon: SiNodedotjs, link: "https://nodejs.org/ja/" },
-	],
-};
+	{
+		authors: ["S. Inoue", "G. Watanabe"],
+		et_al: true,
+		title: "機械学習による有機半導体結晶の隣接分子間の二面角予測",
+		year: 2025,
+		month: "October",
+		conference: "15th CSJ Chemistry Festa",
+		place: "Tokyo, Japan",
+		type: "Poster",
+		link: "https://festa.csj.jp/2025/program/#ps-P3",
+	},
+];
 
-const interest = {
-	type: "interest",
-	title: {
-		text: "Indies Electronic Music",
-		icon: ImHeadphones,
+// qualifications
+const qualifications = [
+	{ name: "普通自動車第一種運転免許", year: 2023, month: "March" },
+	{ name: "統計検定 2級", year: 2023, month: "December" },
+];
+
+// works
+const works = [
+	{
+		title: "SIWL.dev",
+		description: "テックブログ & ポートフォリオ",
+		github_url: "https://github.com/s-inoue0108/siwl-dev",
+		keywords: ["Astro", "Tech blog", "Portfolio"],
 	},
-	description:
-		"インディーズの電子音楽を好んで聴いています。最近は聴くだけでなく、DJ コントローラーで MIX して遊ぶとかもします。DTM をやってみたいと思っています。",
-	skills: [
-		{
-			icon: SiPioneerdj,
-			link: "https://www.pioneerdj.com/",
-			subText: "rekordbox / DDJ-FLX4",
-		},
-	],
-};
+	{
+		title: "CHIROpy",
+		description:
+			"Gaussian 量子化学計算によるキラル光学特性解析のためのバインディングツール",
+		github_url: "https://github.com/s-inoue0108/chiropy",
+		keywords: ["量子化学", "OLED"],
+	},
+	{
+		title: "smiles2mol",
+		description: "SMILES表現から3次元化学構造を生成する CLI ツール",
+		github_url: "https://github.com/s-inoue0108/smiles2mol",
+		keywords: ["マテインフォ", "化学"],
+	},
+];
 ---
 
 <Base
 	title={`${meta.name} | ${import.meta.env.APP_NAME}`}
 	description=`${meta.description}`
 >
-	<section
-		class="flex flex-col gap-8 xl:gap-16 index-gradient py-8 px-4 md:px-8 lg:px-12 2xl:px-48 w-[calc(100%+2rem)] sm:w-[calc(100%+12rem)] lg:w-[calc(100%+8rem)] mx-[-1rem] sm:mx-[-6rem] lg:mx-[-4rem]"
-	>
+	<section class="pt-8 w-full flex flex-col gap-8">
 		<Breadcrumbs />
-		<!-- <h2
-			class="text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
-		>
-			Who am I?
-		</h2> -->
-		<MacintoshInterfaceCard title="$ whoami">
-			<div
-				class="flex flex-col xl:flex-row xl:justify-between gap-8 xl:gap-16"
-			>
-				<div class="w-full xl:w-1/2">
-					<div class="w-full flex items-center gap-4">
-						<div
-							class="w-16 h-16 lg:w-28 lg:h-28 2xl:w-36 2xl:h-36"
-						>
-							<Image
-								src={ProfileImage}
-								alt="Profile Image"
-								class="w-full h-full object-cover rounded-full"
-							/>
-						</div>
-						<div class="w-2/3 flex flex-col gap-2">
-							<h3
-								class="font-bold text-2xl lg:text-5xl 2xl:text-6xl"
-							>
-								{whoami.title}
-							</h3>
-							<span
-								class="text-[0.6rem] md:text-xs lg:text-sm 2xl:text-lg"
-								>{whoami.role}</span
-							>
-						</div>
-					</div>
-					<p
-						class="tracking-wide sm:text-[1.125rem] lg:text-[1.25rem] mt-3 text-muted-foreground"
+		<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">
+			{meta.name}
+		</h1>
+		<div class="w-full flex flex-col xl:flex-row gap-16 justify-between">
+			<div class="w-full xl:w-[40%] flex flex-col gap-8 items-center">
+				<MacintoshInterfaceCard title="$ whoami">
+					<div
+						class="flex flex-col justify-between xl:justify-center gap-4"
 					>
-						{whoami.description}
-					</p>
-					<!-- <ul class="flex items-center gap-4 lg:gap-6 mt-2">
-						<li>
-							<a
-								class="text-foreground hover:opacity-70 transition duration-150"
-								href={import.meta.env.ZENN_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<SiZenn
-									class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6"
+						<ul class="flex justify-center items-center gap-8">
+							<li class="w-28 h-28">
+								<Image
+									src={ProfileImage}
+									alt="Profile Image"
+									class="border-2 border-muted-background w-full h-full object-cover rounded-full"
 								/>
-							</a>
-						</li>
-						<li>
-							<a
-								class="text-foreground hover:opacity-70 transition duration-150"
-								href={import.meta.env.X_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<SiTwitter
-									class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6"
-								/>
-							</a>
-						</li>
-						<li>
-							<a
-								class="text-foreground hover:opacity-70 transition duration-150"
-								href={import.meta.env.WANTEDLY_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<div class="ribbon -ml-2">
-									<SiWantedly
-										class="w-4 h-4 lg:w-5 lg:h-5 2xl:w-6 2xl:h-6"
-									/>
-									<span class="text-md font-semibold"
-										>JOB WANTED!</span
+							</li>
+							<li>
+								<h3 class="text-4xl font-bold">
+									{import.meta.env.APP_OWNER}
+								</h3>
+								<p class="text-base text-muted-foreground">
+									{import.meta.env.APP_OWNER_ROLE}
+								</p>
+							</li>
+						</ul>
+						<ul class="flex justify-center items-center gap-6">
+							<li class="flex flex-col text-muted-foreground">
+								<h3 class="text-center text-lg font-semibold">
+									# what-i-love
+								</h3>
+								<ul class="mt-2 flex gap-4 items-center">
+									<li class="text-4xl">
+										<BiSolidCoffeeAlt />
+									</li>
+									<li class="text-4xl">
+										<BiSolidTerminal />
+									</li>
+									<li class="text-3xl">
+										<ImHeadphones />
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div
+									class="relative
+										w-24
+										h-24
+										border-4
+										border-accent-sub-base
+										object-cover
+										rounded-full
+										text-accent-sub-base"
+								>
+									<p
+										class="text-center absolute top-[20%] left-1/2 -translate-x-1/2 text-4xl font-extrabold whitespace-nowrap"
 									>
+										<SiPioneerdj />
+									</p>
+									<p
+										class="text-center absolute top-[60%] left-1/2 -translate-x-1/2 text-xs whitespace-nowrap"
+									>
+										DDJ-FLX4
+									</p>
 								</div>
-							</a>
-						</li>
-					</ul> -->
-				</div>
-				<div class="lg:hidden w-full border-t border-muted-background">
-				</div>
-				<GitHubContributionsCard
-					calendar={gitHubCalendar}
-					githubUsername={import.meta.env.GITHUB_USERNAME}
-					githubUrl={import.meta.env.GITHUB_URL}
-					client:load
-				/>
+							</li>
+							<li>
+								<div
+									class="relative
+										w-24
+										h-24
+										border-4
+										border-accent-base
+										object-cover
+										rounded-full
+										text-accent-base"
+								>
+									<p
+										class="text-center absolute top-[20%] left-1/2 -translate-x-1/2 text-2xl font-extrabold whitespace-nowrap"
+									>
+										INTP
+									</p>
+									<p
+										class="text-center absolute top-[60%] left-1/2 -translate-x-1/2 text-xs whitespace-nowrap"
+									>
+										Logician
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</MacintoshInterfaceCard>
+				<MacintoshInterfaceCard title="$ stat skills.dat">
+					<InterestBarhCard data={skills} />
+				</MacintoshInterfaceCard>
 			</div>
-		</MacintoshInterfaceCard>
-		<!-- <h2
-			class="mt-32 xl:mt-16 text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
-		>
-			Profile
-		</h2> -->
-		<div class="flex flex-col lg:flex-row lg:justify-around gap-8">
-			<ProfileContentCard data={major} />
-			<ProfileContentCard data={tech} />
-			<ProfileContentCard data={interest} />
+			<ul class="w-full xl:w-[60%] flex flex-col gap-16">
+				<li class="w-full">
+					<GitHubContributionsCard
+						calendar={gitHubCalendar}
+						githubUsername={import.meta.env.GITHUB_USERNAME}
+						githubUrl={import.meta.env.GITHUB_URL}
+						client:load
+					/>
+				</li>
+				<hr class="border border-muted-background w-full rounded-lg" />
+				<h3 class="text-left text-muted-foreground text-3xl font-bold">
+					Works
+				</h3>
+				<ul class="flex items-center gap-6">
+					{
+						works.map((work) => (
+							<li class="w-1/3">
+								<WorkCard work={work} client:visible />
+							</li>
+						))
+					}
+				</ul>
+				<hr class="border border-muted-background w-full rounded-lg" />
+				<h3 class="text-left text-muted-foreground text-3xl font-bold">
+					Publications & Presentations
+				</h3>
+				<ol class="flex flex-col gap-6 list-decimal list-outside pl-6">
+					{
+						publications.map((item) => {
+							return (
+								<li class="text-muted-foreground text-xl">
+									<a
+										href={item.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="hover:opacity-70 transition duration-150"
+									>
+										<span>
+											{item.authors.map((author, i) => (
+												<span>
+													{i > 0 && ", "}
+													{author === author_me ? (
+														<strong class="text-accent-base font-bold underline">
+															{author}
+														</strong>
+													) : (
+														author
+													)}
+												</span>
+											))}
+										</span>
+										{item.et_al ? <i>et al.</i> : ""},
+										{item.title}, <i>{item.journal}</i>{" "}
+										<strong>({item.volume})</strong>,{" "}
+										{item.page} ({item.year}).
+									</a>
+								</li>
+							);
+						})
+					}
+					{
+						presentations.map((item) => {
+							return (
+								<li class="text-muted-foreground text-xl">
+									<a
+										href={item.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="hover:opacity-70 transition duration-150"
+									>
+										<span>
+											{item.authors.map((author, i) => (
+												<span>
+													{i > 0 && ", "}
+													{author === author_me ? (
+														<strong class="text-accent-base font-bold underline">
+															{author}
+														</strong>
+													) : (
+														author
+													)}
+												</span>
+											))}
+										</span>
+										{item.et_al ? <i>et al.</i> : ""},
+										{item.title}, <i>{item.conference}</i>,{" "}
+										{item.place}, {item.month} {item.year}.{" "}
+										({item.type})
+									</a>
+								</li>
+							);
+						})
+					}
+				</ol>
+				<hr class="border border-muted-background w-full rounded-lg" />
+				<h3 class="text-left text-muted-foreground text-3xl font-bold">
+					Qualifications
+				</h3>
+				<ul class="flex flex-col gap-6">
+					{
+						qualifications.map((item) => {
+							return (
+								<li class="flex gap-8 text-muted-foreground text-xl">
+									<p class="min-w-64">{item.name}</p>
+									<p>
+										({item.month} {item.year})
+									</p>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</ul>
 		</div>
-		<!-- <h2
-			class="mt-32 xl:mt-16 text-metalic-light dark:text-metalic-dark text-center font-extrabold text-4xl lg:text-6xl tracking-wide"
-		>
-			Recent Works
-		</h2> -->
-		<ul
-			class="w-full flex flex-col lg:flex-row lg:flex-wrap items-center gap-8"
-		>
-			{
-				sortedWorks.map((work) => (
-					<li class="w-full md:w-[calc(50%-1rem)] xl:w-[calc(25%-1.5rem)]">
-						<WorkCard work={work} client:visible />
-					</li>
-				))
-			}
-		</ul>
 	</section>
 </Base>
-
-<style>
-	.ribbon {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		background-color: #a3e635;
-		gap: 0.5rem;
-		height: 40px;
-		padding: 0 0 0 30px;
-		color: rgba(var(--foreground), 1);
-		font-weight: bold;
-		text-align: center;
-	}
-
-	.ribbon::before,
-	.ribbon::after {
-		position: absolute;
-		top: 0;
-		width: 0px;
-		height: 0px;
-		border-style: solid;
-		border-width: 20px 0px 20px 20px;
-		content: "";
-	}
-
-	.ribbon::before {
-		left: 0;
-		border-color: transparent rgba(var(--background), 1);
-	}
-
-	.ribbon::after {
-		right: -20px;
-		border-color: transparent #a3e635;
-	}
-</style>
