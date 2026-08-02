@@ -43,10 +43,9 @@ const SwitchTheme = ({ size = "1.4rem", isBorder = false }: Props) => {
 			type="button"
 			title={isDark() ? "Light theme" : "Dark theme"}
 			onClick={toggleTheme}
-			class={`${
-				isBorder &&
+			class={`${isBorder &&
 				"p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background"
-			} relative`}
+				} relative`}
 		>
 			<Switch fallback={<BiRegularLoaderAlt size={size} class="animate-spin" />}>
 				<Match when={isDark() === true}>

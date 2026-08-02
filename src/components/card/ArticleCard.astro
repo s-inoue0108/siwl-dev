@@ -1,7 +1,12 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import ClassifyCard from "./ClassifyCard.astro";
-import { IoGitCommit, IoTimer, IoDesktopOutline, IoBulbOutline } from "solid-icons/io";
+import {
+	IoGitCommit,
+	IoTimer,
+	IoDesktopOutline,
+	IoBulbOutline,
+} from "solid-icons/io";
 import ArticleCardLayerButton from "../button/ArticleCardLayerButton";
 import { getEntry, getEntries } from "astro:content";
 import { getReadingTime } from "../../utils/common/reading-time";
@@ -33,7 +38,11 @@ const { minutes } = getReadingTime(body);
 							transition:name={`category-${article.slug}`}
 						>
 							<span class="text-4xl lg:text-4xl">
-								{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
+								{category.id === "tech" ? (
+									<IoDesktopOutline />
+								) : (
+									<IoBulbOutline />
+								)}
 							</span>
 							<span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">
 								{category.data.name}
@@ -45,9 +54,18 @@ const { minutes } = getReadingTime(body);
 		</a>
 		<div class="w-full flex flex-col border-b border-muted-background">
 			<div class="relative h-28 sm:h-full">
-				<div id={`article-card-${slug}-tags`} class="absolute" style="opacity: 0;">
+				<div
+					id={`article-card-${slug}-tags`}
+					class="absolute"
+					style="opacity: 0;"
+				>
 					<div class="flex flex-wrap gap-2 lg:gap-4 px-2 lg:py-2">
-						{tags && tags.map((tag) => <ClassifyCard collection={tag} />)}
+						{
+							tags &&
+								tags.map((tag) => (
+									<ClassifyCard collection={tag} />
+								))
+						}
 					</div>
 				</div>
 				<div id={`article-card-${slug}-description`} class="absolute">
@@ -88,10 +106,16 @@ const { minutes } = getReadingTime(body);
 						class="text-muted-foreground inline-flex items-center gap-1 font-semibold text-[0.8rem] sm:text-[1.2rem]"
 					>
 						<IoTimer />
-						<div class="text-xs sm:text-sm tracking-wider">{`${minutes} min`}</div>
+						<div class="text-xs sm:text-sm tracking-wider">
+							{`${minutes} min`}
+						</div>
 					</div>
 				</div>
-				<ArticleCardLayerButton article={article} category={category} client:load />
+				<ArticleCardLayerButton
+					article={article}
+					category={category}
+					client:load
+				/>
 			</div>
 		</div>
 	</div>

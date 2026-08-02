@@ -18,11 +18,10 @@ const Pager = ({ page }: Props) => {
 					<li class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12">
 						<a
 							href={url.prev}
-							class={`w-full h-full relative ${
-								url.prev
-									? "hover:text-foreground transition-colors duration-150"
-									: "opacity-30 pointer-events-none"
-							}`}
+							class={`w-full h-full relative ${url.prev
+								? "hover:text-foreground transition-colors duration-150"
+								: "opacity-30 pointer-events-none"
+								}`}
 						>
 							<span class="inline-flex justify-center items-center w-full h-full">
 								<IoChevronBack />
@@ -33,11 +32,10 @@ const Pager = ({ page }: Props) => {
 						<>
 							{getSerialNumbers(1, lastPage).map((n) => (
 								<li
-									class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-										currentPage === n
-											? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-											: ""
-									}`}
+									class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === n
+										? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+										: ""
+										}`}
 								>
 									<a
 										href={url.current.replace(`/${currentPage}`, `/${n}`)}
@@ -56,11 +54,10 @@ const Pager = ({ page }: Props) => {
 										<>
 											{getSerialNumbers(1, 2).map((n) => (
 												<li
-													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-														currentPage === n
-															? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-															: ""
-													}`}
+													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === n
+														? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+														: ""
+														}`}
 												>
 													<a
 														href={url.current.replace(`/${currentPage}`, `/${n}`)}
@@ -74,11 +71,10 @@ const Pager = ({ page }: Props) => {
 											))}
 											{(currentPage === 2 || currentPage === 3) && (
 												<li
-													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-														currentPage === 3
-															? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-															: ""
-													}`}
+													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === 3
+														? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+														: ""
+														}`}
 												>
 													<a
 														href={url.current.replace(`/${currentPage}`, `/${3}`)}
@@ -121,11 +117,10 @@ const Pager = ({ page }: Props) => {
 											)}
 											{(currentPage === lastPage - 1 || currentPage === lastPage - 2) && (
 												<li
-													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-														currentPage === lastPage - 2
-															? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-															: ""
-													}`}
+													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === lastPage - 2
+														? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+														: ""
+														}`}
 												>
 													<a
 														href={url.current.replace(`/${currentPage}`, `/${lastPage - 2}`)}
@@ -139,11 +134,10 @@ const Pager = ({ page }: Props) => {
 											)}
 											{getSerialNumbers(lastPage - 1, lastPage).map((n) => (
 												<li
-													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-														currentPage === n
-															? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-															: ""
-													}`}
+													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === n
+														? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+														: ""
+														}`}
 												>
 													<a
 														href={url.current.replace(`/${currentPage}`, `/${n}`)}
@@ -177,11 +171,10 @@ const Pager = ({ page }: Props) => {
 											</li>
 											{getSerialNumbers(currentPage - 1, currentPage + 1).map((n) => (
 												<li
-													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${
-														currentPage === n
-															? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
-															: ""
-													}`}
+													class={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${currentPage === n
+														? "font-bold text-foreground bg-gradient-to-r from-accent-sub-base to-accent-base rounded-lg"
+														: ""
+														}`}
 												>
 													<a
 														href={url.current.replace(`/${currentPage}`, `/${n}`)}
@@ -217,11 +210,10 @@ const Pager = ({ page }: Props) => {
 					<li class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12">
 						<a
 							href={url.next}
-							class={`w-full h-full relative ${
-								url.next
-									? "hover:text-foreground transition-colors duration-150"
-									: "opacity-30 pointer-events-none"
-							}`}
+							class={`w-full h-full relative ${url.next
+								? "hover:text-foreground transition-colors duration-150"
+								: "opacity-30 pointer-events-none"
+								}`}
 						>
 							<span class="inline-flex justify-center items-center w-full h-full">
 								<IoChevronForward />

@@ -61,9 +61,8 @@ const GitHubContributionsHoverButton = ({
 			</button>
 			<Show when={isHover() && contributionCount >= 0}>
 				<div
-					class={`z-[1000] absolute ${numOfWeeks - weekPos < 13 ? "right-7" : "left-7"} ${
-						pos < 3 ? "top-0" : "bottom-0"
-					}`}
+					class={`z-[1000] absolute ${numOfWeeks - weekPos < 13 ? "right-7" : "left-7"} ${pos < 3 ? "top-0" : "bottom-0"
+						}`}
 					onMouseEnter={() => setIsHover(true)}
 					onMouseLeave={() => setIsHover(false)}
 				>
@@ -75,8 +74,8 @@ const GitHubContributionsHoverButton = ({
 						{contributionCount == 0
 							? "No contributions"
 							: contributionCount == 1
-							? "1 contribution"
-							: `${contributionCount} contributions`}{" "}
+								? "1 contribution"
+								: `${contributionCount} contributions`}{" "}
 						on {new Date(date).toDateString()}.
 					</div>
 				</div>

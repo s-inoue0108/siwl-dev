@@ -16,9 +16,8 @@ const ContactForm = () => {
 	// reCAPTCHA v3 スクリプトを読み込む
 	onMount(() => {
 		const script = document.createElement("script");
-		script.src = `https://www.google.com/recaptcha/api.js?render=${
-			import.meta.env.PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY
-		}`;
+		script.src = `https://www.google.com/recaptcha/api.js?render=${import.meta.env.PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY
+			}`;
 		script.async = true;
 		document.head.appendChild(script);
 
@@ -174,9 +173,8 @@ const ContactForm = () => {
 			<Portal mount={document.body}>
 				<Show when={isOpen()}>
 					<div
-						class={`w-full z-[100] fixed bottom-0 left-0 ${
-							isSucsess() ? "bg-green-600" : "bg-red-600"
-						} } p-4 animate-fade-in-fast`}
+						class={`w-full z-[100] fixed bottom-0 left-0 ${isSucsess() ? "bg-green-600" : "bg-red-600"
+							} } p-4 animate-fade-in-fast`}
 					>
 						<button type="button" onClick={() => setIsOpen(false)} class="absolute top-2 right-2">
 							<IoCloseCircleOutline size={"1.5rem"} />

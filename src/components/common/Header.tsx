@@ -48,9 +48,8 @@ const Header = ({ appName, currentPath, headings }: Props) => {
 	return (
 		<header
 			id="header"
-			class={`sticky top-0 ${
-				direction() === "up" ? "translate-y-0" : "-translate-y-full"
-			} transition duration-300 lg:relative lg:translate-y-0 lg:left-[3.95rem] w-screen lg:w-[calc(100%-3.95rem)] h-12 sm:h-14 lg:h-16 bg-background border-b border-muted-background z-50`}
+			class={`sticky top-0 ${direction() === "up" ? "translate-y-0" : "-translate-y-full"
+				} transition duration-300 lg:relative lg:translate-y-0 lg:left-[3.95rem] w-screen lg:w-[calc(100%-3.95rem)] h-12 sm:h-14 lg:h-16 bg-background border-b border-muted-background z-50`}
 		>
 			<nav class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 lg:px-[1.975rem] xl:px-[3.95rem] 2xl:pr-[5.925rem]">
 				<a href="/">

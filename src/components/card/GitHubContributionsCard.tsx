@@ -48,7 +48,7 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 	return (
 		<div class="w-full flex flex-col gap-4 2xl:gap-8 pb-4">
 			<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-2">
-				<div class="text-muted-foreground flex items-center gap-2 lg:gap-3 2xl:gap-4">
+				<div class="flex items-center gap-2 lg:gap-3 2xl:gap-4">
 					<SiGithub class="w-6 h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
 					<a
 						href={githubUrl}
@@ -59,16 +59,16 @@ const GitHubContributionsCard = ({ calendar, githubUsername, githubUrl }: Props)
 						github.com/{githubUsername}
 					</a>
 				</div>
-				<div class="text-xs lg:text-base 2xl:text-lg text-muted-foreground flex justify-between lg:justify-start lg:flex-col gap-1">
-					<div class="font-bold">{calendar.totalContributions} contributions</div>
+				<div class="font-code text-xs lg:text-base 2xl:text-lg text-muted-foreground flex justify-between lg:justify-start lg:flex-col gap-1">
+					<div class="italic font-semibold"># {calendar.totalContributions} contributions</div>
 					<ul class="tracking-tight flex items-center gap-1">
-						<li>Less</li>
+						<li class="mr-1">Less</li>
 						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-background" />
 						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-accent-sub-base" />
 						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-[#7499EC] dark:bg-[#3C4CC1]" />
 						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-[#9599ED] dark:bg-[#5A4ECF]" />
 						<li class="w-[0.875rem] h-[0.875rem] border border-muted-background rounded-sm bg-accent-base" />
-						<li>More</li>
+						<li class="ml-1">More</li>
 					</ul>
 				</div>
 			</div>

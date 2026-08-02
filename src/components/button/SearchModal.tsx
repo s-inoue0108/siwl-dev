@@ -46,9 +46,8 @@ const SearchModal = () => {
 			<button
 				type="button"
 				onClick={toggleOpen}
-				class={`${
-					isOpenSearch() ? "text-foreground" : "text-muted-foreground"
-				} text-sm flex items-center gap-1 font-semibold`}
+				class={`${isOpenSearch() ? "text-foreground" : "text-muted-foreground"
+					} text-sm flex items-center gap-1 font-semibold`}
 			>
 				{isOpenSearch() ? <IoClose /> : <IoSearch />}
 				Search

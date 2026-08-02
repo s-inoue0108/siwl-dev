@@ -48,9 +48,8 @@ const TocModal = ({ headings }: Props) => {
 			<button
 				type="button"
 				onClick={toggleOpen}
-				class={`${
-					isOpenToc() ? "text-foreground" : "text-muted-foreground"
-				} text-sm flex items-center gap-1 font-semibold`}
+				class={`${isOpenToc() ? "text-foreground" : "text-muted-foreground"
+					} text-sm flex items-center gap-1 font-semibold`}
 			>
 				{isOpenToc() ? <IoClose /> : <IoList />}
 				Contents

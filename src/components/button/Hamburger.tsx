@@ -52,12 +52,10 @@ const Hamburger = ({ size = "1.6rem", isBorder = false }: Props) => {
 			type="button"
 			title="Menu"
 			onClick={toggleOpen}
-			class={`${
-				isBorder &&
-				`p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background ${
-					isOpenSidebar() && "bg-foreground text-muted-background"
+			class={`${isBorder &&
+				`p-[0.375rem] border border-muted-foreground rounded-md transition-colors duration-200 hover:bg-foreground hover:border-foreground hover:text-muted-background ${isOpenSidebar() && "bg-foreground text-muted-background"
 				}`
-			}`}
+				}`}
 		>
 			{isOpenSidebar() ? <IoClose size={size} /> : <IoMenu size={size} />}
 		</button>

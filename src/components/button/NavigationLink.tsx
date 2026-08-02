@@ -1,4 +1,4 @@
-import { TbExternalLink } from "solid-icons/tb";
+import { TbOutlineExternalLink } from "solid-icons/tb";
 
 interface Props {
 	name: string;
@@ -14,14 +14,13 @@ const NavigationLink = ({ name, href, isExternal = false, isReload = false, isCu
 			href={href}
 			target={isExternal ? "_blank" : "_self"}
 			rel={isExternal ? "noopener noreferrer" : undefined}
-			class={`${
-				isCurrent ? "bg-gradient-to-r from-accent-sub-base to-accent-base" : "bg-transparent"
-			} hover:bg-muted-background transition duration-150 px-3 py-2 rounded-full`}
+			class={`${isCurrent ? "bg-gradient-to-r from-accent-sub-base to-accent-base" : "bg-transparent"
+				} hover:bg-muted-background transition duration-150 px-3 py-2 rounded-full`}
 			data-astro-reload
 		>
 			<span class={`inline-flex items-center gap-1`}>
 				<span class={`text-xl ${isCurrent ? "font-bold" : "font-medium"}`}>{name}</span>
-				{isExternal && <TbExternalLink />}
+				{isExternal && <TbOutlineExternalLink />}
 			</span>
 		</a>
 	) : (
@@ -29,13 +28,12 @@ const NavigationLink = ({ name, href, isExternal = false, isReload = false, isCu
 			href={href}
 			target={isExternal ? "_blank" : "_self"}
 			rel={isExternal ? "noopener noreferrer" : undefined}
-			class={`${
-				isCurrent ? "bg-gradient-to-r from-accent-sub-base to-accent-base" : "bg-transparent"
-			} hover:bg-muted-background transition duration-150 px-3 py-2 rounded-full`}
+			class={`${isCurrent ? "bg-gradient-to-r from-accent-sub-base to-accent-base" : "bg-transparent"
+				} hover:bg-muted-background transition duration-150 px-3 py-2 rounded-full`}
 		>
 			<span class={`inline-flex items-center gap-1`}>
 				<span class={`text-xl ${isCurrent ? "font-bold" : "font-medium"}`}>{name}</span>
-				{isExternal && <TbExternalLink />}
+				{isExternal && <TbOutlineExternalLink />}
 			</span>
 		</a>
 	);

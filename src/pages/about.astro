@@ -12,6 +12,47 @@ import { ImHeadphones } from "solid-icons/im";
 import GitHubContributionsCard from "../components/card/GitHubContributionsCard";
 import WorkCard from "../components/card/WorkCard";
 
+import {
+	SiGnubash,
+	SiPython,
+	SiJupyter,
+	SiScikitlearn,
+	SiPandas,
+	SiNumpy,
+	SiScipy,
+	SiPytorch,
+	SiPyg,
+	SiStreamlit,
+	SiR,
+	SiHtml5,
+	SiCss,
+	SiSass,
+	SiTailwindcss,
+	SiMarkdown,
+	SiLatex,
+	SiLua,
+	SiJavascript,
+	SiTypescript,
+	SiNodedotjs,
+	SiJquery,
+	SiVuedotjs,
+	SiSolid,
+	SiNuxt,
+	SiAstro,
+	SiThreedotjs,
+	SiLaravel,
+	SiGit,
+	SiGithub,
+	SiCloudflare,
+	SiVercel,
+	SiGoogleappsscript,
+	SiVim,
+	SiClaude,
+	SiMacos,
+} from "solid-icons/si";
+import { BsOpenai, BsWindows } from "solid-icons/bs";
+import { VsVscode, VsMcp } from "solid-icons/vs";
+
 const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 
@@ -69,12 +110,214 @@ const gitHubCalendar =
 
 // skills
 const skills = [
-	{ label: "Materials Informatics", value: 80 },
-	{ label: "Computational Chemistry", value: 70 },
-	{ label: "Statistics", value: 65 },
-	{ label: "Organic Chemistry", value: 60 },
-	{ label: "Web development", value: 50 },
-	{ label: "Servers & Networks", value: 20 },
+	{ label: "計算化学", value: 80 },
+	{ label: "統計学・機械学習", value: 80 },
+	{ label: "Web", value: 60 },
+	{ label: "有機化学", value: 50 },
+	{ label: "IT インフラ", value: 20 },
+];
+
+const softwares = [
+	{
+		name: "Bash",
+		Icon: SiGnubash,
+		link: "https://www.gnu.org/software/bash/",
+	},
+	{
+		name: "Python",
+		Icon: SiPython,
+		link: "https://www.python.org/",
+	},
+	{
+		name: "Jupyter",
+		Icon: SiJupyter,
+		link: "https://jupyter.org/",
+	},
+	{
+		name: "NumPy",
+		Icon: SiNumpy,
+		link: "https://numpy.org/ja/",
+	},
+	{
+		name: "Pandas",
+		Icon: SiPandas,
+		link: "https://pandas.pydata.org/",
+	},
+	{
+		name: "SciPy",
+		Icon: SiScipy,
+		link: "https://scipy.org/ja/",
+	},
+	{
+		name: "scikit-learn",
+		Icon: SiScikitlearn,
+		link: "https://scikit-learn.org/",
+	},
+	{
+		name: "PyTorch",
+		Icon: SiPytorch,
+		link: "https://pytorch.org/",
+	},
+	{
+		name: "PyG",
+		Icon: SiPyg,
+		link: "https://pytorch-geometric.readthedocs.io/",
+	},
+	{
+		name: "Streamlit",
+		Icon: SiStreamlit,
+		link: "https://streamlit.io/",
+	},
+	{
+		name: "R",
+		Icon: SiR,
+		link: "https://www.r-project.org/",
+	},
+	{
+		name: "HTML5",
+		Icon: SiHtml5,
+		link: "https://www.w3.org/",
+	},
+	{
+		name: "CSS3",
+		Icon: SiCss,
+		link: "https://www.w3.org/",
+	},
+	{
+		name: "Sass",
+		Icon: SiSass,
+		link: "https://sass-lang.com/",
+	},
+	{
+		name: "Tailwind CSS",
+		Icon: SiTailwindcss,
+		link: "https://tailwindcss.com/",
+	},
+	{
+		name: "Markdown",
+		Icon: SiMarkdown,
+		link: "https://daringfireball.net/projects/markdown/",
+	},
+	{
+		name: "LaTeX",
+		Icon: SiLatex,
+		link: "https://www.latex-project.org/",
+	},
+	{
+		name: "Lua",
+		Icon: SiLua,
+		link: "https://www.lua.org/",
+	},
+	{
+		name: "JavaScript",
+		Icon: SiJavascript,
+		link: "https://ecma-international.org/",
+	},
+	{
+		name: "TypeScript",
+		Icon: SiTypescript,
+		link: "https://www.typescriptlang.org/ja/",
+	},
+	{
+		name: "Node.js",
+		Icon: SiNodedotjs,
+		link: "https://nodejs.org/ja",
+	},
+	{
+		name: "jQuery",
+		Icon: SiJquery,
+		link: "https://jquery.com/",
+	},
+	{
+		name: "Vue.js",
+		Icon: SiVuedotjs,
+		link: "https://ja.vuejs.org/",
+	},
+	{
+		name: "SolidJS",
+		Icon: SiSolid,
+		link: "https://www.solidjs.com/",
+	},
+	{
+		name: "Nuxt",
+		Icon: SiNuxt,
+		link: "https://nuxt.com/",
+	},
+	{
+		name: "Astro",
+		Icon: SiAstro,
+		link: "https://astro.build/",
+	},
+	{
+		name: "Three.js",
+		Icon: SiThreedotjs,
+		link: "https://threejs.org/",
+	},
+	{
+		name: "Laravel",
+		Icon: SiLaravel,
+		link: "https://laravel.com/",
+	},
+	{
+		name: "Git",
+		Icon: SiGit,
+		link: "https://git-scm.com/",
+	},
+	{
+		name: "GitHub",
+		Icon: SiGithub,
+		link: "https://github.com/",
+	},
+	{
+		name: "Cloudflare",
+		Icon: SiCloudflare,
+		link: "https://cloudflare.com/",
+	},
+	{
+		name: "Vercel",
+		Icon: SiVercel,
+		link: "https://vercel.com/",
+	},
+	{
+		name: "Google Apps Script",
+		Icon: SiGoogleappsscript,
+		link: "https://vercel.com/",
+	},
+	{
+		name: "Vim",
+		Icon: SiVim,
+		link: "https://www.vim.org/",
+	},
+	{
+		name: "Visual Studio Code",
+		Icon: VsVscode,
+		link: "https://code.visualstudio.com/",
+	},
+	{
+		name: "ChatGPT",
+		Icon: BsOpenai,
+		link: "https://chatgpt.com/",
+	},
+	{
+		name: "Claude",
+		Icon: SiClaude,
+		link: "https://claude.ai/",
+	},
+	{
+		name: "MCP",
+		Icon: VsMcp,
+		link: "https://modelcontextprotocol.io/",
+	},
+	{
+		name: "Microsoft Windows",
+		Icon: BsWindows,
+		link: "https://www.microsoft.com/ja-jp/windows",
+	},
+	{
+		name: "macOS",
+		Icon: SiMacos,
+		link: "https://www.apple.com/os/macos/",
+	},
 ];
 
 // publications
@@ -202,18 +445,27 @@ const works = [
 						<ul class="flex justify-center items-center gap-6">
 							<li class="flex flex-col text-muted-foreground">
 								<h3
-									class="whitespace-nowrap text-center text-base lg:text-lg font-semibold"
+									class="font-code whitespace-nowrap text-center text-sm lg:text-base italic font-semibold"
 								>
-									# what-i-love
+									// Likes
 								</h3>
 								<ul class="mt-2 flex gap-4 items-center">
-									<li class="text-3xl lg:text-4xl">
+									<li
+										class="text-3xl lg:text-4xl"
+										title="Caffeine"
+									>
 										<BiSolidCoffeeAlt />
 									</li>
-									<li class="text-3xl lg:text-4xl">
+									<li
+										class="text-3xl lg:text-4xl"
+										title="Coding"
+									>
 										<BiSolidTerminal />
 									</li>
-									<li class="text-2xl lg:text-3xl">
+									<li
+										class="text-2xl lg:text-3xl"
+										title="Electronic Dance Music"
+									>
 										<ImHeadphones />
 									</li>
 								</ul>
@@ -273,6 +525,34 @@ const works = [
 				</MacintoshInterfaceCard>
 				<MacintoshInterfaceCard title="$ stat skills.dat">
 					<InterestBarhCard data={skills} />
+					<div
+						class="my-4 border-b border-muted-background w-full rounded-lg"
+					>
+					</div>
+					<h3
+						class="font-code text-muted-foreground text-sm lg:text-base italic font-semibold"
+					>
+						&lt;!--Software Experience--&gt;
+					</h3>
+					<ul class="mt-4 mb-2 flex flex-wrap gap-3 items-center">
+						{
+							softwares.map((item) => {
+								return (
+									<li class="text-muted-foreground text-2xl xl:text-3xl">
+										<a
+											href={item.link}
+											title={item.name}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="hover:text-foreground transition duration-150"
+										>
+											<item.Icon />
+										</a>
+									</li>
+								);
+							})
+						}
+					</ul>
 				</MacintoshInterfaceCard>
 			</div>
 			<ul class="w-full xl:w-[60%] flex flex-col gap-16">
@@ -285,9 +565,7 @@ const works = [
 					/>
 				</li>
 				<hr class="border border-muted-background w-full rounded-lg" />
-				<h3 class="text-left text-muted-foreground text-3xl font-bold">
-					Works
-				</h3>
+				<h3 class="text-left text-3xl font-bold">Works</h3>
 				<ul class="w-full flex flex-wrap items-center gap-6">
 					{
 						works.map((work) => (
@@ -298,14 +576,14 @@ const works = [
 					}
 				</ul>
 				<hr class="border border-muted-background w-full rounded-lg" />
-				<h3 class="text-left text-muted-foreground text-3xl font-bold">
+				<h3 class="text-left text-3xl font-bold">
 					Publications & Presentations
 				</h3>
 				<ol class="flex flex-col gap-6 list-decimal list-outside pl-6">
 					{
 						publications.map((item) => {
 							return (
-								<li class="text-muted-foreground text-xl">
+								<li class="text-xl">
 									<a
 										href={item.link}
 										target="_blank"
@@ -338,7 +616,7 @@ const works = [
 					{
 						presentations.map((item) => {
 							return (
-								<li class="text-muted-foreground text-xl">
+								<li class="text-xl">
 									<a
 										href={item.link}
 										target="_blank"
@@ -370,14 +648,12 @@ const works = [
 					}
 				</ol>
 				<hr class="border border-muted-background w-full rounded-lg" />
-				<h3 class="text-left text-muted-foreground text-3xl font-bold">
-					Qualifications
-				</h3>
+				<h3 class="text-left text-3xl font-bold">Qualifications</h3>
 				<ul class="flex flex-col gap-6">
 					{
 						qualifications.map((item) => {
 							return (
-								<li class="flex flex-col md:flex-row gap-0 md:gap-4 text-muted-foreground text-xl">
+								<li class="flex flex-col md:flex-row gap-0 md:gap-4 text-xl">
 									<p class="min-w-64">{item.name}</p>
 									<p>
 										({item.month} {item.year})

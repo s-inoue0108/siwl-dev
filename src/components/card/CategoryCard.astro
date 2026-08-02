@@ -20,7 +20,11 @@ const category = await getEntry("category", id);
 				(
 					<div class="opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex sm:flex-col items-center gap-4 lg:gap-2">
 						<span class="text-4xl lg:text-4xl">
-							{category.id === "tech" ? <IoDesktopOutline /> : <IoBulbOutline />}
+							{category.id === "tech" ? (
+								<IoDesktopOutline />
+							) : (
+								<IoBulbOutline />
+							)}
 						</span>
 						<span class="text-3xl lg:text-2xl font-semibold whitespace-nowrap">
 							{category.data.name}
