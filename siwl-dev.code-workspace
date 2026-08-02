@@ -17,10 +17,6 @@
 			"path": "src/content/bookmark"
 		},
 		{
-			"name": "Works",
-			"path": "src/content/work"
-		},
-		{
 			"name": "Fixed",
 			"path": "src/content/fixed"
 		},
