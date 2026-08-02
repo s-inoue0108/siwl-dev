@@ -1,7 +1,5 @@
 import { createSignal } from "solid-js";
 import { IoLogoGithub } from "solid-icons/io";
-import { ImLink } from "solid-icons/im";
-import { TbExternalLink } from "solid-icons/tb";
 
 interface Props {
 	work: {
@@ -34,7 +32,7 @@ const WorkCard = ({ work }: Props) => {
 		<button
 			type="button"
 			title={isOpenCard() ? "Display description" : "Display title"}
-			class="relative w-full hover:bg-muted-background border border-muted-background bg-muted-transparent rounded-xl shadow-lg transition duration-200"
+			class="relative w-full hover:bg-muted-background border border-muted-background bg-muted-transparent rounded-xl transition duration-150"
 			onClick={() => setIsOpenCard(!isOpenCard())}
 		>
 			<div class="flex flex-col">
@@ -63,7 +61,7 @@ const WorkCard = ({ work }: Props) => {
 			</ul>
 			<ul class="absolute bottom-1 right-1 flex items-center gap-2">
 				<li>
-					{keywords.slice(0, 3).map((word: string) => (
+					{keywords.slice(0, 2).map((word: string) => (
 						<span class="p-1 text-xs tracking-tight font-semibold text-muted-foreground">{`# ${word}`}</span>
 					))}
 				</li>

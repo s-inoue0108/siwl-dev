@@ -37,7 +37,7 @@ const stats = [
 
 const StatsCard = () => {
 	return (
-		<MacintoshInterfaceCard title="$ stats archives.dat">
+		<MacintoshInterfaceCard title="$ stat archives.dat">
 			<ul class="flex flex-col xl:flex-row xl:justify-around gap-8 pt-4">
 				{stats.map(({ title, icon, value, unit }) => (
 					<li class="flex flex-col gap-4 pb-2">
