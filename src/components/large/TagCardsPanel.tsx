@@ -23,17 +23,14 @@ const TagCardsPanel = ({ currentPath = "", limit = 20 }: Props) => {
 								<li>
 									<a
 										href={`/blog/tags/${id}/1`}
-										class={`${
-											new RegExp(`^/blog/tags/${id}/`).test(currentPath)
-												? `${
-														data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
-												  } text-foreground`
+										class={`${new RegExp(`^/blog/tags/${id}/`).test(currentPath)
+												? `${data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
+												} text-foreground`
 												: "text-muted-foreground"
-										} cursor-pointer ${
-											data.belong.id === "tech"
+											} cursor-pointer ${data.belong.id === "tech"
 												? "hover:bg-accent-sub-base"
 												: "hover:bg-accent-base"
-										} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
+											} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
 									>
 										<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
 											{data.icon ? (
@@ -57,17 +54,14 @@ const TagCardsPanel = ({ currentPath = "", limit = 20 }: Props) => {
 								<li class={`${isMore() ? "" : "hidden"}`}>
 									<a
 										href={`/blog/tags/${id}/1`}
-										class={`${
-											new RegExp(`^/blog/tags/${id}/`).test(currentPath)
-												? `${
-														data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
-												  } text-foreground`
+										class={`${new RegExp(`^/blog/tags/${id}/`).test(currentPath)
+												? `${data.belong.id === "tech" ? "bg-accent-sub-base" : "bg-accent-base"
+												} text-foreground`
 												: "text-muted-foreground"
-										} cursor-pointer ${
-											data.belong.id === "tech"
+											} cursor-pointer ${data.belong.id === "tech"
 												? "hover:bg-accent-sub-base"
 												: "hover:bg-accent-base"
-										} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
+											} hover:text-foreground transition inline-flex items-center gap-1 lg:gap-[0.375rem] rounded-md px-1`}
 									>
 										<div class="w-3 h-3 text-sm lg:w-[1.125rem] lg:h-[1.125rem] lg:text-lg">
 											{data.icon ? (

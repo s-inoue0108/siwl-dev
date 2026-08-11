@@ -2,7 +2,7 @@ import Hamburger from "../button/Hamburger";
 import SwitchTheme from "../button/SwitchTheme";
 import { isOpenSidebar } from "../../utils/store/is-open-sidebar";
 import { AllowedRoutes } from "../../route";
-import { SiGithub, SiZenn, SiX, SiWantedly } from "solid-icons/si";
+import { SiGithub, SiZenn, SiX } from "solid-icons/si";
 import { IoLogoRss } from "solid-icons/io";
 
 interface Props {
@@ -58,16 +58,6 @@ const Sidebar = ({ appName, currentPath, xUrl, zennUrl, githubUrl, wantedlyUrl }
 							<SiGithub />
 						</a>
 					</li>
-					{/* <li>
-						<a
-							href={wantedlyUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-xl xl:text-2xl text-foreground hover:opacity-70 transition duration-150"
-						>
-							<SiWantedly />
-						</a>
-					</li> */}
 					<li>
 						<a
 							href="/rss.xml"
