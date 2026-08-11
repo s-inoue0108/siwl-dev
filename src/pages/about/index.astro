@@ -11,6 +11,7 @@ import { BiSolidCoffeeAlt, BiSolidTerminal } from "solid-icons/bi";
 import { ImHeadphones } from "solid-icons/im";
 import GitHubContributionsCard from "../../components/card/GitHubContributionsCard";
 import WorkCard from "../../components/card/WorkCard";
+import { getGithubContributions } from "../../utils/api/github-contributions";
 
 import {
 	SiGnubash,
@@ -61,10 +62,7 @@ const routes = new AllowedRoutes(Astro.url.pathname);
 const { meta } = routes.getSubsetPageMeta();
 
 // GitHub API
-const githubContribRes = await fetch(
-	`${Astro.url.origin}/api/github-contributions`,
-);
-const gitHubCalendar = await githubContribRes.json();
+const gitHubCalendar = await getGithubContributions();
 
 // skills
 const skills = [
