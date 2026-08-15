@@ -1,11 +1,35 @@
 package handler
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 )
+
+// find root
+func FindRoot() (string, error) {
+	dir, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+
+	for {
+		path := filepath.Join(dir, "package.json")
+
+		if info, err := os.Stat(path); err == nil && !info.IsDir() {
+			return dir, nil
+		}
+
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			return "", errors.New("package.json not found")
+		}
+
+		dir = parent
+	}
+}
 
 // build path
 func BuildPath(model string) (string, error) {
@@ -13,14 +37,14 @@ func BuildPath(model string) (string, error) {
 		return "", fmt.Errorf("only model is 'article' or 'tag' or 'bookmark'")
 	}
 
-	// current
-	cwd, err := os.Getwd()
+	// root
+	root, err := FindRoot()
 	if err != nil {
 		return "", err
 	}
 
 	// build path
-	path := filepath.Join(cwd, "..", "src", "content", model)
+	path := filepath.Join(root, "src", "content", model)
 	return path, nil
 }
 
