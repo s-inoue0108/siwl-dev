@@ -52,7 +52,7 @@ jobs:
             -trimpath \
             -ldflags="-s -w" \
             -o "$output" \
-            ./cmd/siwl
+            .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
