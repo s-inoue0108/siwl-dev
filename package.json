@@ -9,8 +9,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "siwl": "tsx cli/siwl.ts",
-    "deploy": "bash cli/deploy.sh"
+    "siwl": "go -C cli run ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
