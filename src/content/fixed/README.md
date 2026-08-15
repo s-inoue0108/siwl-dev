@@ -25,7 +25,7 @@ https://github.com/s-inoue0108/siwl-dev
 
 ## 🌐 System Structure
 
-![System Structure](./public/structure.drawio.svg)
+![System Structure](https://siwl.dev/structure.drawio.svg)
 
 ## 💻 General Commands
 
