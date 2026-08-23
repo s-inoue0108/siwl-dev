@@ -1,12 +1,12 @@
 ---
-isDraft:         false
+isDraft: false
 isLimited: false
 title: ブログ記事を Zenn, Qiita へエクスポートするコマンドを作る
 category: tech
 tags: [astro, ts, js, git]
 description: Markdown を変換し、Git Subtree として統合した Zenn, Qiita のリポジトリへ記事をコピーするコマンドを作成しました。Zenn リポジトリの統合を例に、その内容についてまとめます。
 publishDate: 2025-01-05T12:05:11+09:00
-updateDate: 2025-01-07T23:29:04+09:00
+updateDate: 2026-08-24T00:49:45+09:00
 relatedArticles: [markdown-syntax-guide, gas-contact-form, astro-giscus-comments]
 ---
 
@@ -61,7 +61,7 @@ https://zenn.dev/zenn/articles/install-zenn-cli
 ```bash
 cd ./zenn
 npm install zenn-cli
-npx zenn init 
+npx zenn init
 ```
 
 Zenn CLI の使い方は以下の記事にあります。
@@ -174,7 +174,7 @@ import { exec } from "child_process";
     input: rs,
     output: ws,
   });
-  
+
   // 1行ごとに変換処理
   for (const line of rl) {
     // ...
@@ -192,7 +192,7 @@ import { exec } from "child_process";
 ```ts:cli.ts
 // 1行ごとに変換処理
 for (const line of rl) {
-  
+
   if (/^\> \[\!.*\]/.test(line)) {
     // コールアウトを指定する行をスキップ
     return;
@@ -223,7 +223,7 @@ for (const line of rl) {
 
   // 1行ごとに変換処理
   for await (const line of rl) {
-    
+
     await (async => {
       if (/^https:\/\/(?:www\.)?speakerdeck\.com\/[a-z0-9_-]+\/[a-z0-9_-]+$/.test(line)) {
         // Speaker Deck の埋め込み URL を Zenn の独自構文へ変換

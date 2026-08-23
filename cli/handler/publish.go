@@ -20,7 +20,7 @@ func PublishArticle(bname string) error {
 	newUpdateDate := CastTimeStamp(GetTimeStamp())
 
 	// replace
-	err = ReplaceLine(fullpath, 1, "isDraft:         true")
+	err = ReplaceLine(fullpath, 1, "isDraft:         false")
 	err = ReplaceLine(fullpath, 8, "updateDate:      "+newUpdateDate)
 	if err != nil {
 		return err

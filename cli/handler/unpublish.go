@@ -16,7 +16,7 @@ func UnpublishArticle(bname string) error {
 	}
 
 	// replace
-	err = ReplaceLine(fullpath, 1, "isDraft:         false")
+	err = ReplaceLine(fullpath, 1, "isDraft:         true")
 	if err != nil {
 		return err
 	}
