@@ -1,12 +1,12 @@
 ---
-isDraft:         true
+isDraft:         false
 isLimited: false
 title: ブログ記事を Zenn, Qiita へエクスポートするコマンドを作る
 category: tech
 tags: [astro, ts, js, git]
 description: Markdown を変換し、Git Subtree として統合した Zenn, Qiita のリポジトリへ記事をコピーするコマンドを作成しました。Zenn リポジトリの統合を例に、その内容についてまとめます。
 publishDate: 2025-01-05T12:05:11+09:00
-updateDate: 2026-08-24T00:49:45+09:00
+updateDate:      2026-08-24T00:57:15+09:00
 relatedArticles: [markdown-syntax-guide, gas-contact-form, astro-giscus-comments]
 ---
 
