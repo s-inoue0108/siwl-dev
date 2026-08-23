@@ -2,10 +2,12 @@
 <html class="no-js" lang="ja" data-content_root="./">
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="#"><link rel="search" title="検索" href="search.html">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="genindex.html"><link rel="search" title="検索" href="search.html"><link rel="next" title="Recipes" href="recipes.html"><link rel="prev" title="Welcome to spmkit&#39;s documentation!" href="index.html">
 
-    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 --><title>索引 - spmkit 1.0.0 ドキュメント</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>Installation - spmkit 1.0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
     
@@ -189,8 +191,8 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 </ul>
 
@@ -211,7 +213,13 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/installation.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
@@ -224,182 +232,45 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
-<section class="genindex-section">
-  <h1 id="index">索引</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#W"><strong>W</strong></a></div>
+          <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># via gzip</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>spmkit-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>.tar.gz
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># via wheel</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>spmkit-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>-py3-none-any.whl
+</pre></div>
+</div>
 </section>
-<section id="A" class="genindex-section">
-  <h2>A</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.StabilitySelection.alphas_">alphas_ (spmkit.models.StabilitySelection の属性)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.plots.ave_importances_bar_plot">ave_importances_bar_plot() (spmkit.plots モジュール)</a>
-</li>
-        <li><a href="index.html#spmkit.plots.ave_selection_probs_bar_plot">ave_selection_probs_bar_plot() (spmkit.plots モジュール)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="C" class="genindex-section">
-  <h2>C</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.plots.coefs_waterfall_plot">coefs_waterfall_plot() (spmkit.plots モジュール)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="E" class="genindex-section">
-  <h2>E</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch">ExhaustiveSearch (spmkit.models のクラス)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="F" class="genindex-section">
-  <h2>F</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.fit">fit() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-
-        <ul>
-          <li><a href="index.html#spmkit.models.StabilitySelection.fit">(spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="G" class="genindex-section">
-  <h2>G</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.StabilitySelection.get_alphas">get_alphas() (spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.get_ave_importances">get_ave_importances() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.StabilitySelection.get_ave_selection_probs">get_ave_selection_probs() (spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.get_features">get_features() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.StabilitySelection.get_mask">get_mask() (spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.get_scores">get_scores() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.StabilitySelection.get_selection_path">get_selection_path() (spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.get_weights">get_weights() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    module
-
-        <ul>
-          <li><a href="index.html#module-spmkit.models">spmkit.models</a>
-</li>
-          <li><a href="index.html#module-spmkit.plots">spmkit.plots</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="P" class="genindex-section">
-  <h2>P</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.predict">predict() (spmkit.models.ExhaustiveSearch のメソッド)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="R" class="genindex-section">
-  <h2>R</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.ExhaustiveSearch.result_">result_ (spmkit.models.ExhaustiveSearch の属性)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="S" class="genindex-section">
-  <h2>S</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.StabilitySelection.selection_path_">selection_path_ (spmkit.models.StabilitySelection の属性)</a>
-</li>
-        <li><a href="index.html#spmkit.plots.selection_path_plot">selection_path_plot() (spmkit.plots モジュール)</a>
-</li>
-        <li>
-    spmkit.models
-
-        <ul>
-          <li><a href="index.html#module-spmkit.models">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    spmkit.plots
-
-        <ul>
-          <li><a href="index.html#module-spmkit.plots">module</a>
-</li>
-        </ul></li>
-        <li><a href="index.html#spmkit.models.StabilitySelection">StabilitySelection (spmkit.models のクラス)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="T" class="genindex-section">
-  <h2>T</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.models.StabilitySelection.transform">transform() (spmkit.models.StabilitySelection のメソッド)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="W" class="genindex-section">
-  <h2>W</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="index.html#spmkit.plots.weight_diagram">weight_diagram() (spmkit.plots モジュール)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="recipes.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Recipes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">

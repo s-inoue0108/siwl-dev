@@ -10,6 +10,8 @@ Welcome to spmkit's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   installation
+   recipes
 
 
 Indices and tables
