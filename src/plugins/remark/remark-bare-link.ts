@@ -1,5 +1,6 @@
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
+import { toString } from "mdast-util-to-string";
 import ogs from "open-graph-scraper";
 
 interface OgpData {
@@ -19,40 +20,34 @@ const FAVICON_TIMEOUT = 5_000;
 export default function remarkBareLink() {
   return async (tree: Root) => {
     const tasks: Array<{
-      parent: Root;
       index: number;
       url: string;
     }> = [];
 
-    visit(tree, "paragraph", (node, index, parent) => {
-      if (index == null || !parent) {
+    visit(tree, "paragraph", (node, index) => {
+      if (index == null) {
         return;
       }
 
-      // Bare URL だけの paragraph を対象にする
-      if (node.children.length !== 1) {
+      // paragraph 内の Markdown を文字列として取得
+      const text = toString(node).trim();
+
+      if (!text) {
         return;
       }
 
-      const child = node.children[0];
-
-      if (!child || child.type !== "text") {
-        return;
-      }
-
-      const urls = child.value.match(
+      const urls = text.match(
         /(https?:\/\/|www(?=\.))([-.\w]+)([^ \t\r\n]*)/g,
       );
 
-      if (!urls || urls.length !== 1) {
+      // paragraph 全体が URL 1個だけの場合
+      if (!urls || urls.length !== 1 || urls[0] !== text) {
         return;
       }
 
       const url = normalizeUrl(urls[0]);
 
-      // paragraph の親と index を保持する
       tasks.push({
-        parent: parent as Root,
         index,
         url,
       });
@@ -91,18 +86,15 @@ export default function remarkBareLink() {
         continue;
       }
 
-      const { index, html, url } = result;
-
-      // Root の paragraph を HTML node に置換
-      tree.children[index] = {
+      tree.children[result.index] = {
         type: "html",
-        value: html,
+        value: result.html,
       };
 
       generated++;
 
       console.log(
-        `[remark-bare-link] Generated link card: ${url}`,
+        `[remark-bare-link] Generated link card: ${result.url}`,
       );
     }
 
@@ -350,9 +342,7 @@ const withTimeout = async <T>(
       new Promise<never>((_, reject) => {
         timer = setTimeout(() => {
           reject(
-            new Error(
-              `Timeout after ${timeout} ms`,
-            ),
+            new Error(`Timeout after ${timeout} ms`),
           );
         }, timeout);
       }),
