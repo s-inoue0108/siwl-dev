@@ -1,12 +1,12 @@
 ---
-isDraft: false
-isLimited: false
-title: Astro, SolidJS で個人ブログを制作しました
-category: tech
-tags: [astro, solid, ts, tailwindcss]
+isDraft:     false
+isLimited:   false
+title:       Astro, SolidJS で個人ブログを制作しました
+category:    tech
+tags:        [astro, solid, ts, tailwindcss, go]
 description: Astro, SolidJS を使用してブログサイトをリニューアルしました。このエントリでは、使用した技術やライブラリについてまとめます。
 publishDate: 2024-10-06T00:00:00+09:00
-updateDate: 2025-08-16T11:57:02+09:00
+updateDate:  2026-09-13T11:23:59+09:00
 ---
 
 **Shota Inoue** と申します。大学生（非情報系）ですが、個人的に Web 制作に取り組んでおり、大学卒業という節目を迎えるにあたって何か新しく作りたいと思っていました。
@@ -62,7 +62,7 @@ https://github.github.com/gfm/
 
 https://tailwindcss.com/
 
-流行りものです。Astro や Vue のコンポーネントのスタイリングでは今まで CSS あるいは SASS を採用していましたが、SolidJS/JSX でそれらを用いる場合 CSS Modules を扱うことになるため、スタイルが分離することを嫌って採用しました。  
+流行りものです。Astro や Vue のコンポーネントのスタイリングでは今まで CSS あるいは SASS を採用していましたが、SolidJS/JSX でそれらを用いる場合 CSS Modules を扱うことになるため、スタイルが分離することを嫌って採用しました。
 \
 ダークモード対応しやすい点が結構お気に入りです。
 
@@ -191,21 +191,15 @@ Pages は Workers に統合されたため、ホスティング環境の見直�
 
 ### CLI
 
-Astro の Content Collections ではローカルの Markdown や JSON, YAML を扱うことになるため、一連のファイル操作をコマンドラインで行うことができると非常に便利です。せっかくなので作ってみることにしました。
+Go 言語を使って軽量なコンテンツ管理 CLI を作成しました。
 
-#### Commander.js
+https://go.dev
 
-Node.js のコマンドライン引数を扱うライブラリです。メソッドチェインを駆使して簡単に CLI を構築することができます。
+#### Cobra
 
-https://github.com/tj/commander.js
+Go で CLI を作るためのライブラリです。
 
-Node.js 標準のファイル操作 API による処理を Commander.js で CLI 化し、`tsx` で実行できるようにしています。
-
-https://github.com/privatenumber/tsx
-
-#### Bash スクリプト
-
-定型的な Git 操作を少ないコマンドで行えるように Bash スクリプトを別途組んであります。また、Commander.js で構築した CLI を経由して実行するスクリプトなども作成してあります。
+https://github.com/spf13/cobra
 
 ## 工夫点
 
@@ -242,7 +236,7 @@ https://siwl.dev/blog/articles/github-contrib-calendar
 ## 今後の展望
 
 個人で1年半ほど学習・活動してきましたが、実際にモノをつくってみて、Web 制作は非常に奥が深いと感じています。
-便利なフレームワークや、先人の知恵が詰まったコードスニペットで下駄を履かせてもらったとしても、まだまだ分からない部分は多いです。  
+便利なフレームワークや、先人の知恵が詰まったコードスニペットで下駄を履かせてもらったとしても、まだまだ分からない部分は多いです。
 \
 せっかく自分の Web サイトを持てたので、これからはコツコツ記事を書いて知見をためていきたいと思っています。
 
