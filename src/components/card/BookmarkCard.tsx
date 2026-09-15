@@ -1,4 +1,4 @@
-import type { BookmarkWithOgp } from "../../pages/bookmarks/[page].astro";
+import type { BookmarkWithOgp } from "../../pages/blog/bookmarks/[page].astro";
 
 interface Props {
 	bookmark: BookmarkWithOgp;
