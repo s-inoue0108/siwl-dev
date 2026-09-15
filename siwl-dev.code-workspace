@@ -17,6 +17,10 @@
 			"path": "src/content/bookmark"
 		},
 		{
+			"name": "Library",
+			"path": "src/content/library"
+		},
+		{
 			"name": "Fixed",
 			"path": "src/content/fixed"
 		},

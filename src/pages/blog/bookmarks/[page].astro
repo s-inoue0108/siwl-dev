@@ -1,13 +1,13 @@
 ---
-import Base from "../../layouts/Base.astro";
+import Base from "../../../layouts/Base.astro";
 import { type GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
-import Breadcrumbs from "../../components/common/Breadcrumbs.astro";
-import { AllowedRoutes } from "../../route";
-import Pager from "../../components/button/Pager";
-import ProfileCard from "../../components/card/ProfileCard.astro";
-import NoItem from "../../components/common/NoItem.astro";
-import BookmarkCard from "../../components/card/BookmarkCard";
+import Breadcrumbs from "../../../components/common/Breadcrumbs.astro";
+import { AllowedRoutes } from "../../../route";
+import Pager from "../../../components/button/Pager";
+import ProfileCard from "../../../components/card/ProfileCard.astro";
+import NoItem from "../../../components/common/NoItem.astro";
+import BookmarkCard from "../../../components/card/BookmarkCard";
 import ogs from "open-graph-scraper";
 import type { ImageObject } from "open-graph-scraper/types";
 
@@ -51,7 +51,7 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 				image: ogp.ogImage,
 				favicon: ogp.favicon,
 			} satisfies BookmarkWithOgp;
-		})
+		}),
 	);
 
 	return paginate(bookmarksWithOgp, { pageSize: 10 });
@@ -60,14 +60,21 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 const { page } = Astro.props;
 
 const route = new AllowedRoutes(Astro.url.pathname);
-const { meta } = route.getRootPageMeta();
+const { meta } = route.getSubsetPageMeta();
 ---
 
-<Base title={`${meta.name} | ${import.meta.env.APP_NAME}`} description=`${meta.description}`>
+<Base
+	title={`${meta.name} | ${import.meta.env.APP_NAME}`}
+	description=`${meta.description}`
+>
 	<section class="pt-8 w-full flex flex-col lg:flex-row">
-		<article class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]">
+		<article
+			class="min-h-[calc(100dvh-8rem)] sm:min-h-0 flex flex-col gap-8 lg:w-[65%]"
+		>
 			<Breadcrumbs count={page.data.length} />
-			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">{meta.name}</h1>
+			<h1 class="flex justify-center text-4xl lg:text-6xl font-extrabold">
+				{meta.name}
+			</h1>
 			<ul class="flex flex-col gap-8">
 				{
 					page.data.length > 0 ? (

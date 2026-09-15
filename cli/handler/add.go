@@ -62,6 +62,54 @@ relatedArticles: [{{ join .RelatedArticles ", " }}]
 	return nil
 }
 
+// add library
+func AddLibrary(bname string, metadata metadata.Library) error {
+	// frontmatter
+	const fromtmatter = `---
+isDraft:    {{.IsDraft}}
+isbn13:     "{{.ISBN13}}"
+reviewDate: {{formatTime .ReviewDate}}
+rating:     {{.Rating}}
+---
+`
+	t, err := template.New("library").Funcs(template.FuncMap{
+		"join": strings.Join,
+	}).Funcs(template.FuncMap{
+		"formatTime": CastTimeStamp,
+	}).Parse(fromtmatter)
+	if err != nil {
+		return err
+	}
+
+	// build path
+	path, err := BuildPath("library")
+	fname := bname + ".md"
+	fullpath := filepath.Join(path, fname)
+	if err != nil {
+		return err
+	}
+
+	// overwrite warn
+	if ExistsFile(fullpath) && !Confirm("Overwrite '"+fname+"'?") {
+		fmt.Println("Canceled")
+		return nil
+	}
+
+	// make file
+	file, err := os.Create(fullpath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	if err := t.Execute(file, metadata); err != nil {
+		return err
+	}
+
+	fmt.Println("[SIWL] added library:", bname+".md")
+	return nil
+}
+
 // add tag
 func AddTag(bname string, metadata metadata.Tag) error {
 	// frontmatter

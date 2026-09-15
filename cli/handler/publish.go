@@ -31,6 +31,32 @@ func PublishArticle(bname string) error {
 	return nil
 }
 
+// publish library
+func PublishLibrary(bname string) error {
+	// build path
+	path, err := BuildPath("library")
+	fname := bname + ".md"
+	fullpath := filepath.Join(path, fname)
+	if err != nil {
+		return err
+	}
+
+	// current timestamp
+	reviewDate, err := ReadLibraryProp(fullpath, "reviewDate")
+	newReviewDate := CastTimeStamp(GetTimeStamp())
+
+	// replace
+	err = ReplaceLine(fullpath, 1, "isDraft:    false")
+	err = ReplaceLine(fullpath, 3, "reviewDate: "+newReviewDate)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("[SIWL] update review date:", fname, "\n", reviewDate, "->", newReviewDate)
+
+	return nil
+}
+
 // publish tag
 func PublishTag(bname string) error {
 	// build path

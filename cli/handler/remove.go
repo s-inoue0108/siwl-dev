@@ -31,6 +31,31 @@ func RemoveArticle(bname string) error {
 	return nil
 }
 
+// remove library
+func RemoveLibrary(bname string) error {
+	// build path
+	path, err := BuildPath("library")
+	fname := bname + ".md"
+	fullpath := filepath.Join(path, fname)
+	if err != nil {
+		return err
+	}
+
+	// remove file
+	if !Confirm("Remove " + "'" + fname + "'?") {
+		fmt.Println("Canceled")
+		return nil
+	}
+
+	if err := os.Remove(fullpath); err != nil {
+		return err
+	}
+
+	fmt.Println("[SIWL] removed library:", fname)
+
+	return nil
+}
+
 // remove tag
 func RemoveTag(bname string) error {
 	// build path

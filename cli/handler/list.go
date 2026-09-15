@@ -73,6 +73,51 @@ func ListArticle(isTitle bool) error {
 	return nil
 }
 
+// list library
+func ListLibrary(isIsbn bool) error {
+	// get path
+	path, err := BuildPath("library")
+
+	// scan
+	files, err := GetFiles(path, "md")
+	if err != nil {
+		return err
+	}
+
+	// display
+	for _, entry := range files {
+		fullpath := filepath.Join(path, entry)
+
+		if isIsbn {
+			entry, err = ReadLibraryProp(fullpath, "isbn13")
+			if err != nil {
+				return err
+			}
+		}
+
+		isDraft, err := ReadArticleProp(fullpath, "isDraft")
+		isDraftBool, err := strconv.ParseBool(isDraft)
+		if err != nil {
+			return err
+		}
+
+		var dispDraft string
+		if isDraftBool {
+			dispDraft = "\033[31mdft\033[0m"
+		} else {
+			dispDraft = "\033[32mpub\033[0m"
+		}
+
+		rating, err := ReadLibraryProp(fullpath, "rating")
+		if err != nil {
+			return err
+		}
+
+		fmt.Println("", dispDraft, "|", rating, "|", entry)
+	}
+	return nil
+}
+
 // list tag
 func ListTag(isName bool) error {
 	// get path

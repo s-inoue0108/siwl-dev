@@ -1,0 +1,37 @@
+---
+import ReadingModal from "../button/ReadingModal";
+import ReadingCard from "../card/ReadingCard";
+import type { ReadlogWithBookInfo } from "../../pages/library/[page].astro";
+import type { Page } from "astro";
+import Pager from "../button/Pager";
+import NoItem from "../common/NoItem.astro";
+
+interface Props {
+    page: Page<ReadlogWithBookInfo>;
+}
+
+const { page } = Astro.props;
+---
+
+<ul class="flex flex-wrap justify-center gap-8">
+    {
+        page.data.length > 0 ? (
+            page.data.map((entry) => (
+                <li>
+                    <ReadingCard
+                        rating={entry.readlog.data.rating}
+                        bookInfo={entry.info}
+                        body={entry.body}
+                        client:visible
+                    />
+                </li>
+            ))
+        ) : (
+            <NoItem message="読書記録がありません" />
+        )
+    }
+</ul>
+
+<ReadingModal client:load />
+
+<Pager page={page} />

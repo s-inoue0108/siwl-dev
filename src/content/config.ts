@@ -65,10 +65,22 @@ const bookmarkCollection = defineCollection({
   }),
 });
 
+// 読書ログ
+const libraryCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    isDraft: z.boolean().default(false),
+    isbn13: z.string().length(13),
+    reviewDate: z.date(),
+    rating: z.number().lte(5).gte(1).int(),
+  }),
+});
+
 export const collections = {
   "article": articleCollection,
   "category": categoryCollection,
   "tag": tagCollection,
   "fixed": fixedCollection,
   "bookmark": bookmarkCollection,
+  "library": libraryCollection,
 };

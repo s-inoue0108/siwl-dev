@@ -33,8 +33,8 @@ func FindRoot() (string, error) {
 
 // build path
 func BuildPath(model string) (string, error) {
-	if model != "article" && model != "tag" && model != "bookmark" {
-		return "", fmt.Errorf("only model is 'article' or 'tag' or 'bookmark'")
+	if model != "article" && model != "tag" && model != "bookmark" && model != "library" {
+		return "", fmt.Errorf("only model is 'article' or 'tag' or 'bookmark' or 'library'")
 	}
 
 	// root
@@ -83,6 +83,31 @@ func ReadFileLines(path string) ([]string, error) {
 
 func ReadArticleProp(path string, propKey string) (string, error) {
 	if propKey != "updateDate" && propKey != "isDraft" && propKey != "isLimited" && propKey != "title" && propKey != "category" {
+		return "", fmt.Errorf("invalid metadata key")
+	}
+
+	lines, err := ReadFileLines(path)
+	if err != nil {
+		return "", err
+	}
+
+	var hit []string
+	for _, row := range lines {
+		if strings.HasPrefix(row, propKey+":") {
+			parts := strings.SplitN(row, ": ", 2)
+			value := strings.TrimSpace(parts[1])
+			hit = append(hit, value)
+		}
+	}
+	if len(hit) < 1 {
+		return "", fmt.Errorf("failed to parse frontmatter")
+	}
+
+	return hit[0], nil
+}
+
+func ReadLibraryProp(path string, propKey string) (string, error) {
+	if propKey != "isDraft" && propKey != "isbn13" && propKey != "reviewDate" && propKey != "rating" {
 		return "", fmt.Errorf("invalid metadata key")
 	}
 

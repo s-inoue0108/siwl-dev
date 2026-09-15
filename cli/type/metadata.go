@@ -21,6 +21,13 @@ type Article struct {
 	RelatedArticles []string
 }
 
+type Library struct {
+	IsDraft    bool
+	ISBN13     string
+	ReviewDate time.Time
+	Rating     int
+}
+
 type Tag struct {
 	IsDraft bool
 	Name    string

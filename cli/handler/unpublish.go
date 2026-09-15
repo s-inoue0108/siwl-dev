@@ -26,6 +26,27 @@ func UnpublishArticle(bname string) error {
 	return nil
 }
 
+// unpublish library
+func UnpublishLibrary(bname string) error {
+	// build path
+	path, err := BuildPath("library")
+	fname := bname + ".md"
+	fullpath := filepath.Join(path, fname)
+	if err != nil {
+		return err
+	}
+
+	// replace
+	err = ReplaceLine(fullpath, 1, "isDraft:    true")
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("[SIWL] unpublished library:", fname)
+
+	return nil
+}
+
 // unpublish tag
 func UnpublishTag(bname string) error {
 	// build path

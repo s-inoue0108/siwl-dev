@@ -4199,6 +4199,11 @@ remark-stringify@^11.0.0:
     mdast-util-to-markdown "^2.0.0"
     unified "^11.0.0"
 
+remove-markdown@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.7.0.tgz#59624070a212ced5511fea73afa8ffc4f51830a7"
+  integrity sha512-ZMYw/4jLXcO+pZTB8eAjGt48mhAF17yzfkiW4q0tDVLqcsqm39EGSs1XAJLk0i932KfCYc5ixNysn1EsSnMIAw==
+
 request-light@^0.5.7:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/request-light/-/request-light-0.5.8.tgz#8bf73a07242b9e7b601fac2fa5dc22a094abcc27"
