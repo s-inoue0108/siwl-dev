@@ -112,6 +112,8 @@ https://github.com/zuchka/remove-markdown
 
 ```astro
 ---
+import { type GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
 import removeMarkdown from "remove-markdown";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
