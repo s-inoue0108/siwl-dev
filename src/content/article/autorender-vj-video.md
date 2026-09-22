@@ -4,9 +4,9 @@ isLimited:       false
 title:           DJ Mix 音源から動画を自動レンダリングする
 category:        tech
 tags:            [ts, react, dj]
-description:     "Remotion を使用して、DJ プレイの wav 音源から VJ 動画を自動でレンダリングするシステムを構築しました。"
+description:     "Remotion を使用して、DJ プレイの wav 音源から動画を自動でレンダリングするシステムを構築しました。"
 publishDate:     2026-09-21T00:00:13+09:00
-updateDate:      2026-09-23T00:42:52+09:00
+updateDate:      2026-09-23T00:49:35+09:00
 relatedArticles: []
 ---
 
@@ -254,4 +254,4 @@ https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/Prog
 かなり気に入ったので、色々なバリエーションを用意して長く使っていけたらと思っています。
 
 - [Remotion-VJ | GitHub](https://github.com/s-inoue0108/remotion-vj)
-- [Happy Hardcore #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=-YiAyMvMrn8)
+- [Happy Hardcore Mix #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=-YiAyMvMrn8)
