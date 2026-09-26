@@ -6,7 +6,7 @@ category:        tech
 tags:            [ts, react, dj]
 description:     "Remotion を使用して、DJ プレイの wav 音源から動画を自動でレンダリングするシステムを構築しました。"
 publishDate:     2026-09-21T00:00:13+09:00
-updateDate:      2026-09-23T00:49:35+09:00
+updateDate:      2026-09-26T13:25:49+09:00
 relatedArticles: []
 ---
 
@@ -34,6 +34,7 @@ https://www.youtube.com/watch?v=-YiAyMvMrn8
 public/
 └── project/
     ├── metadata.json
+    ├── theme.json
     ├── mix.wav
     └── covers/
             ├── cover1.jpg
@@ -41,7 +42,7 @@ public/
 ```
 
 `metadata.json` は以下のような形式です。Mix のタイトル、オーディオファイルのパス、日付、平均 BPM、オープニングの表示時間 (sec) が記載してあります。
-`"tracks"` フィールドには使用した曲のタイトル、コンポーザー名、カバーアートのパス、各曲がスタートする時間 (sec) が格納されています。
+`"theme"` フィールドにはカラーテーマを記述した JSON ファイルが、`"tracks"` フィールドには使用した曲のタイトル、コンポーザー名、カバーアートのパス、各曲がスタートする時間 (sec) が格納されています。
 
 ```json:metadata.json
 {
@@ -50,6 +51,7 @@ public/
     "date": "2026-09-21",
     "bpm": 175,
     "opening": 5,
+    "theme": "theme.json",
     "tracks": [
         {
             "title": "music 1",
@@ -90,14 +92,14 @@ https://github.com/s-inoue0108/remotion-vj
 
 親に相当するコンポーネントです。ここでは Remotion や周辺ライブラリの API を使って音源に関する情報を拾っていき、Props を介して必要な情報を画面に配置する子コンポーネントに渡していく設計です。
 
-```tsx:Display.tsx
+```tsx:Audio2VJ.tsx
 import { AbsoluteFill, Html5Audio, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 
 // スペクトラムビジュアライザ
 import { SpectrumVisualizer } from "./SpectrumVisualizer";
 
-export const Display = ({ path, metadata }: Props) => {
+export const Audio2VJ = ({ path, metadata }: Props) => {
 
     // フレーム, FPS
     const frame = useCurrentFrame();
@@ -137,7 +139,7 @@ export const Display = ({ path, metadata }: Props) => {
 
 実際の実装は以下です。
 
-https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/Deepdark.tsx
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/Audio2VJ.tsx
 
 ### スペクトラムビジュアライザ
 
@@ -213,7 +215,7 @@ export const SpectrumVisualizer = ({ frequencies, displayFrequencies = 64, maxBl
 };
 ```
 
-親である `Display` コンポーネントからは、周波数ごとの強度である `frequencies` が毎フレーム渡ってきます。今回は Hardcore techno 系の曲を想定しているので、周波数帯 を 512 チャネルと多めにとり、そのうち低域側の 64 チャネルのみを使用することで、特徴的な力強いキックを精密に捉えるようにしています。
+親である `Audio2VJ` コンポーネントからは、周波数ごとの強度である `frequencies` が毎フレーム渡ってきます。今回は Hardcore techno 系の曲を想定しているので、周波数帯 を 512 チャネルと多めにとり、そのうち低域側の 64 チャネルのみを使用することで、特徴的な力強いキックを精密に捉えるようにしています。
 \
 また、ブロック数 `blocks` を計算する `Math.floor()` に倍率を仕込むことで、わずかな音に対してもビジュアライザが鋭敏に反応するようになっています。
 
@@ -221,19 +223,21 @@ export const SpectrumVisualizer = ({ frequencies, displayFrequencies = 64, maxBl
 
 *[!image] キックの度に画面上部いっぱいのブロックが波打つ*
 
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/SpectrumVisualizer.tsx
+
 ### 現在の曲の情報
 
 カバーアート・タイトル・コンポーザー名が表示してあります。中身はほぼ CSS です。
 \
 以降の実装は割愛するので、GitHub の内容を参照してください。
 
-https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/TrackBanner.tsx
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/TrackBanner.tsx
 
 ### 次の曲の情報
 
 画面下部には次の曲の情報が表示してあり、曲がスイッチするタイミングで Easing するようになっています。
 
-https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/NextTrack.tsx
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/NextTrack.tsx
 
 ### 背景アニメーション
 
@@ -241,13 +245,13 @@ Hardcore techno 系楽曲の MV で、画面いっぱいにパーティクルや
 \
 実際、背景がそのままだと寂しかったので、適度なグラデーションと図形が奥から手前に浮かんでくるようなアニメーションを入れました。
 
-https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/VJBackground.tsx
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/VJBackground.tsx
 
 ### プログレスバー
 
 BPM に合わせて回転するジョグホイールを模したプログレスバーを設置しました。左側のホイールは 8 拍、右側のホイールは 16 拍ごとに一回転するようになっています。
 
-https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/ProgressDisc.tsx
+https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/ProgressDisc.tsx
 
 ## まとめ
 
@@ -255,3 +259,4 @@ https://github.com/s-inoue0108/remotion-vj/blob/main/src/deepdark/component/Prog
 
 - [Remotion-VJ | GitHub](https://github.com/s-inoue0108/remotion-vj)
 - [Happy Hardcore Mix #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=-YiAyMvMrn8)
+- [Happy Hardcore Mix #2 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=lse-BvK7-MY)
