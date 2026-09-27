@@ -6,7 +6,7 @@ category:        tech
 tags:            [ts, react, dj]
 description:     "Remotion を使用して、DJ プレイの wav 音源から動画を自動でレンダリングするシステムを構築しました。"
 publishDate:     2026-09-21T00:00:13+09:00
-updateDate:      2026-09-26T13:25:49+09:00
+updateDate:      2026-09-27T18:35:27+09:00
 relatedArticles: []
 ---
 
@@ -21,10 +21,10 @@ https://remotion.dev
 
 はっきり言って便利すぎました。Node.js さえあれば始められて、しかもコードベースなので AI フレンドリーなのが素晴らしいところです。
 で、これを使えば **Mix 音源から (ほぼ) 自動で動画を生成できる**んじゃね、ということを思い立ったので、実際に作ったというのが本記事の趣旨です。
-\
-先に、実際に生成した Mix 動画を置いておきます：
 
-https://www.youtube.com/watch?v=-YiAyMvMrn8
+### 実際に作成した動画
+
+https://www.youtube.com/watch?v=TY8oj2PxX8U
 
 ## 要件
 
@@ -258,5 +258,6 @@ https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/Prog
 かなり気に入ったので、色々なバリエーションを用意して長く使っていけたらと思っています。
 
 - [Remotion-VJ | GitHub](https://github.com/s-inoue0108/remotion-vj)
-- [Happy Hardcore Mix #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=-YiAyMvMrn8)
-- [Happy Hardcore Mix #2 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=lse-BvK7-MY)
+- [Happy Hardcore Mix #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=TY8oj2PxX8U)
+- [Happy Hardcore Mix #2 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=EG-_lVQ_ej0)
+- [Euphoric Hardstyle Mix #1 【ハードスタイル】 | YouTube](https://www.youtube.com/watch?v=0BJBrQ5G3-0)
