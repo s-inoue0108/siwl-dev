@@ -6,7 +6,7 @@ category:        tech
 tags:            [ts, react, dj]
 description:     "Remotion を使用して、DJ プレイの wav 音源から動画を自動でレンダリングするシステムを構築しました。"
 publishDate:     2026-09-21T00:00:13+09:00
-updateDate:      2026-09-27T18:35:27+09:00
+updateDate:      2026-10-04T22:22:31+09:00
 relatedArticles: []
 ---
 
@@ -24,7 +24,9 @@ https://remotion.dev
 
 ### 実際に作成した動画
 
-https://www.youtube.com/watch?v=TY8oj2PxX8U
+(何作か作った中で個人的に出来が良かったやつ)
+
+https://www.youtube.com/watch?v=6z2LvpGX0dg
 
 ## 要件
 
@@ -215,9 +217,11 @@ export const SpectrumVisualizer = ({ frequencies, displayFrequencies = 64, maxBl
 };
 ```
 
-親である `Audio2VJ` コンポーネントからは、周波数ごとの強度である `frequencies` が毎フレーム渡ってきます。今回は Hardcore techno 系の曲を想定しているので、周波数帯 を 512 チャネルと多めにとり、そのうち低域側の 64 チャネルのみを使用することで、特徴的な力強いキックを精密に捉えるようにしています。
+親である `Audio2VJ` コンポーネントからは、周波数ごとの強度である `frequencies` が毎フレーム渡ってきます。今回は Hardcore techno 系の曲を想定しているので、周波数帯 を 2,048 チャネルと多めにとり、そのうち低域側の 64 チャネルのみを使用することで、特徴的な力強いキックを精密に捉えるようにしています[3]。
 \
 また、ブロック数 `blocks` を計算する `Math.floor()` に倍率を仕込むことで、わずかな音に対してもビジュアライザが鋭敏に反応するようになっています。
+
+[^3]: 最初は 512 チャネルしかとってませんでしたが、Hardstyle や Hardcore の Kick を広く捉えるには 2,048 〜 4,096 程度必要な印象です。
 
 ![frame_4800](./images/autorender-vj-video/frame4800.png)
 
@@ -261,3 +265,4 @@ https://github.com/s-inoue0108/remotion-vj/blob/main/src/audio2vj/component/Prog
 - [Happy Hardcore Mix #1 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=TY8oj2PxX8U)
 - [Happy Hardcore Mix #2 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=EG-_lVQ_ej0)
 - [Euphoric Hardstyle Mix #1 【ハードスタイル】 | YouTube](https://www.youtube.com/watch?v=0BJBrQ5G3-0)
+- [Happy Hardcore Mix #3 【ハピコア】 | YouTube](https://www.youtube.com/watch?v=6z2LvpGX0dg)
